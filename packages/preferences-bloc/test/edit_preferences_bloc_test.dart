@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:environment/environment.dart';
+import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/src/edit_preferences_bloc.dart';
 import 'package:preferences_bloc/src/preferences_bloc.dart';
 import 'package:test/test.dart';
@@ -24,7 +25,7 @@ void main() {
                 password: 'Knippen',
                 baseUrl: 'git',
               ),
-              status: PreferencesStatus.succes,
+              status: LoadingStatus.success,
             ),
           ),
           Future.value(
@@ -34,7 +35,7 @@ void main() {
                 password: 'Knippen 2',
                 baseUrl: 'git 2',
               ),
-              status: PreferencesStatus.succes,
+              status: LoadingStatus.success,
             ),
           ),
         ],

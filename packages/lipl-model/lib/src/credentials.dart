@@ -8,6 +8,15 @@ class Credentials extends Equatable {
   final String username;
   final String password;
 
+  Credentials copyWith({
+    String? username,
+    String? password,
+  }) =>
+      Credentials(
+        username: username ?? this.username,
+        password: password ?? this.password,
+      );
+
   @override
   List<Object?> get props => [username, password];
 

@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/preferences_bloc.dart';
 import 'package:test/test.dart';
 import 'lipl_preferences.dart';
@@ -33,17 +34,17 @@ void main() {
       test('constructor', () {
         final state = PreferencesState<LiplPreferences>.initial();
         expect(state.item, null);
-        expect(state.status, PreferencesStatus.initial);
+        expect(state.status, LoadingStatus.initial);
       });
 
       test('props', () async {
         final state = PreferencesState<LiplPreferences>(
           item: initialLiplPreferences(),
-          status: PreferencesStatus.succes,
+          status: LoadingStatus.success,
         );
         expect(state.props, [
           initialLiplPreferences(),
-          PreferencesStatus.succes,
+          LoadingStatus.success,
         ]);
       });
     });
@@ -72,11 +73,11 @@ void main() {
         act: (bloc) => bloc.add(PreferencesEventLoad()),
         expect: () => [
           PreferencesState<LiplPreferences>.initial().copyWith(
-            status: PreferencesStatus.loading,
+            status: LoadingStatus.loading,
           ),
           PreferencesState<LiplPreferences>(
             item: initialLiplPreferences(),
-            status: PreferencesStatus.succes,
+            status: LoadingStatus.success,
           ),
         ],
       );
@@ -90,7 +91,7 @@ void main() {
         ),
         expect: () => [
           PreferencesState<LiplPreferences>.initial().copyWith(
-            status: PreferencesStatus.loading,
+            status: LoadingStatus.loading,
           ),
         ],
         errors: () => [
@@ -104,7 +105,7 @@ void main() {
         build: () => createSubject(),
         seed: () => PreferencesState(
           item: initialLiplPreferences(),
-          status: PreferencesStatus.succes,
+          status: LoadingStatus.success,
         ),
         act: (bloc) => bloc.add(
           PreferencesEventChange(
@@ -114,11 +115,11 @@ void main() {
         expect: () => [
           PreferencesState<LiplPreferences>(
             item: initialLiplPreferences(),
-            status: PreferencesStatus.changing,
+            status: LoadingStatus.changing,
           ),
           PreferencesState<LiplPreferences>(
             item: secundaryPreferences(),
-            status: PreferencesStatus.succes,
+            status: LoadingStatus.success,
           ),
         ],
       ); // end allChanged
@@ -129,7 +130,7 @@ void main() {
         build: () => createErrorSubject(),
         seed: () => PreferencesState<LiplPreferences>(
           item: initialLiplPreferences(),
-          status: PreferencesStatus.succes,
+          status: LoadingStatus.success,
         ),
         act: (bloc) => bloc.add(
           PreferencesEventChange(
@@ -139,7 +140,7 @@ void main() {
         expect: () => [
           PreferencesState<LiplPreferences>(
             item: initialLiplPreferences(),
-            status: PreferencesStatus.changing,
+            status: LoadingStatus.changing,
           ),
         ],
         errors: () => [isA<SharedPreferencesError>()],

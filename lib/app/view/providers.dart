@@ -13,6 +13,7 @@ import 'package:lipl_control/search/search_cubit.dart';
 import 'package:lipl_encrypt/lipl_encrypt.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
+import 'package:loading_status/loading_status.dart';
 import 'package:logging/logging.dart';
 import 'package:preferences_bloc/preferences_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -126,7 +127,7 @@ class BlocProviders extends StatelessWidget {
 
     final liplRestCubit = LiplAppCubit(
       credentialsStream: preferencesBloc.stream
-          .where((state) => state.status == PreferencesStatus.succes)
+          .where((state) => state.status == LoadingStatus.success)
           .map((state) => state.item)
           .map(
             (item) => item?.credentials,

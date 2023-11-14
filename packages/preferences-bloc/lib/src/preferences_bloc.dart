@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/src/persist.dart';
 
 abstract class PreferencesEvent<T> {}
@@ -15,8 +16,6 @@ class PreferencesEventChange<T> extends PreferencesEvent<T> {
   final T? item;
 }
 
-enum PreferencesStatus { initial, loading, succes, changing }
-
 class PreferencesState<T extends Equatable> extends Equatable {
   const PreferencesState({
     required this.item,
@@ -24,16 +23,16 @@ class PreferencesState<T extends Equatable> extends Equatable {
   });
 
   final T? item;
-  final PreferencesStatus status;
+  final LoadingStatus status;
 
   factory PreferencesState.initial() => const PreferencesState(
         item: null,
-        status: PreferencesStatus.initial,
+        status: LoadingStatus.initial,
       );
 
   PreferencesState<T> copyWith({
     T? Function()? item,
-    PreferencesStatus? status,
+    LoadingStatus? status,
   }) =>
       PreferencesState<T>(
         item: item == null ? this.item : item(),
@@ -61,7 +60,7 @@ class PreferencesBloc<T extends Equatable>
   ) async {
     emit(
       state.copyWith(
-        status: PreferencesStatus.loading,
+        status: LoadingStatus.loading,
       ),
     );
 
@@ -70,7 +69,7 @@ class PreferencesBloc<T extends Equatable>
     emit(
       PreferencesState<T>(
         item: item,
-        status: PreferencesStatus.succes,
+        status: LoadingStatus.success,
       ),
     );
   }
@@ -80,7 +79,7 @@ class PreferencesBloc<T extends Equatable>
     Emitter<PreferencesState<T>> emit,
   ) async {
     if (event.item != state.item) {
-      emit(state.copyWith(status: PreferencesStatus.changing));
+      emit(state.copyWith(status: LoadingStatus.changing));
 
       if (event.item != null) {
         await persist.save(event.item);
@@ -89,7 +88,7 @@ class PreferencesBloc<T extends Equatable>
       emit(
         state.copyWith(
           item: () => event.item,
-          status: PreferencesStatus.succes,
+          status: LoadingStatus.success,
         ),
       );
     }

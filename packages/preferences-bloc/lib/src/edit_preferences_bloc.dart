@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
+import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/preferences_bloc.dart';
 
 abstract class EditPreferencesEvent<T> {}
@@ -58,7 +59,7 @@ class EditPreferencesBloc<T extends Equatable>
           EditPreferencesState.initial(preferences: defaultValue),
         ) {
     _streamSubscription = changes
-        .where((state) => state.status == PreferencesStatus.succes)
+        .where((state) => state.status == LoadingStatus.success)
         .distinct()
         .listen(
       (state) {

@@ -97,14 +97,18 @@ class EditPreferencesView extends StatelessWidget {
                             decoration:
                                 InputDecoration(labelText: l10n.usernameLabel),
                             onChanged: (String value) {
+                              final credentials = state.preferences.credentials;
                               context.read<LiplEditPreferencesBloc>().add(
                                     EditPreferencesEventChange<LiplPreferences>(
                                       preferences: state.preferences.copyWith(
-                                        credentials: () => Credentials(
-                                            username: state.preferences
-                                                    .credentials?.username ??
-                                                '',
-                                            password: value),
+                                        credentials: () => credentials == null
+                                            ? Credentials(
+                                                username: value,
+                                                password: '',
+                                              )
+                                            : credentials.copyWith(
+                                                username: value,
+                                              ),
                                       ),
                                     ),
                                   );
@@ -121,14 +125,18 @@ class EditPreferencesView extends StatelessWidget {
                               labelText: l10n.passwordLabel,
                             ),
                             onChanged: (String value) {
+                              final credentials = state.preferences.credentials;
                               context.read<LiplEditPreferencesBloc>().add(
                                     EditPreferencesEventChange<LiplPreferences>(
                                         preferences: state.preferences.copyWith(
-                                      credentials: () => Credentials(
-                                          username: state.preferences
-                                                  .credentials?.username ??
-                                              '',
-                                          password: value),
+                                      credentials: () => credentials == null
+                                          ? Credentials(
+                                              username: '',
+                                              password: value,
+                                            )
+                                          : credentials.copyWith(
+                                              password: value,
+                                            ),
                                     )),
                                   );
                             },
