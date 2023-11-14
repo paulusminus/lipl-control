@@ -100,7 +100,8 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           const LiplAppState(
@@ -115,7 +116,8 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus add',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         seed: () => loaded(api),
         act: (cubit) async {
           await cubit.postLyric(addingLyric);
@@ -143,7 +145,8 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus delete',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         seed: () => loaded(api),
         act: (cubit) => cubit.deleteLyric(initialLyrics.first.id),
         expect: () => [
@@ -173,7 +176,8 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus change',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         seed: () => loaded(api),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
@@ -202,7 +206,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('lyric'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           LiplAppState.initial().copyWith(
@@ -218,7 +223,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(unauthorized('lyric'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           LiplAppState.initial().copyWith(
@@ -236,7 +242,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.postLyric(const LyricPost(
           title: 'Whatever',
@@ -256,7 +263,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.deleteLyric('5'),
         expect: () => [
@@ -270,7 +278,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
@@ -287,7 +296,8 @@ void main() {
     group('Playlist', () {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus add',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         seed: () => loaded(api),
         act: (cubit) async {
           await cubit.postPlaylist(addingPlaylist);
@@ -312,7 +322,8 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus delete',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         seed: () => loaded(api),
         act: (cubit) async =>
             await cubit.deletePlaylist(initialPlaylists.first.id),
@@ -328,7 +339,8 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus change',
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () =>
+            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
         seed: () => loaded(api),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
@@ -354,7 +366,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('playlist'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.postPlaylist(addingPlaylist),
         expect: () => [
@@ -368,7 +381,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('playlist/4'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async =>
             await cubit.deletePlaylist(initialPlaylists[0].id),
@@ -383,7 +397,8 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('playlist/4'));
         },
-        build: () => LiplAppCubit(credentialsStream: const Stream.empty()),
+        build: () => LiplAppCubit(
+            credentialsStream: const Stream.empty(), api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
