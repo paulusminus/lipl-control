@@ -19,6 +19,8 @@ dependencies:
   retrofit: ^4.0.1
 
 dev_dependencies:
+  environment:
+    path: "../environment"
   bloc_test: ^9.1.1
   build_runner: ^2.3.3
   build_test: ^2.1.7

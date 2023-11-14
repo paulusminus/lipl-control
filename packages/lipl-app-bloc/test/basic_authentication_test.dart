@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
+import 'package:environment/environment.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/src/basic_authentication.dart';
 import 'package:test/test.dart';
@@ -8,21 +7,19 @@ import 'package:mocktail/mocktail.dart';
 
 class MockRequestHandler extends Mock implements RequestInterceptorHandler {}
 
-String? username() => Platform.environment['LIPL_USERNAME'];
-
 void main() {
   Credentials createSubject() =>
-      Credentials(username: username()!, password: 'test');
+      Credentials(username: username(), password: 'test');
 
   group('Credentials', () {
     test('constructor', () {
       final credentials = createSubject();
-      expect(credentials.username, username()!);
+      expect(credentials.username, username());
       expect(credentials.password, 'test');
     });
 
     test('props', () {
-      expect(createSubject().props, [username()!, 'test']);
+      expect(createSubject().props, [username(), 'test']);
     });
 
     test('toString', () {

@@ -13,6 +13,8 @@ dependencies:
   equatable: ^2.0.5
 
 dev_dependencies:
+  environment:
+    path: "../environment"
   bloc_test: ^9.1.1
 #  flutter_test:
 #    sdk: flutter

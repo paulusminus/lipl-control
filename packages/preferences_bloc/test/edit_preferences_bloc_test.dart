@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:bloc_test/bloc_test.dart';
+import 'package:environment/environment.dart';
 import 'package:preferences_bloc/src/edit_preferences_bloc.dart';
 import 'package:preferences_bloc/src/preferences_bloc.dart';
 import 'package:test/test.dart';
 import 'lipl_preferences.dart';
-
-String? username() => Platform.environment['LIPL_USERNAME'];
-String? password() => Platform.environment['LIPL_PASSWORD'];
 
 void main() {
   EditPreferencesBloc<LiplPreferences> createSubject() =>
@@ -84,8 +80,8 @@ void main() {
         act: (bloc) => bloc.add(
           EditPreferencesEventLoad<LiplPreferences>(
             preferences: LiplPreferences(
-              username: username()!,
-              password: password()!,
+              username: username(),
+              password: password(),
               baseUrl: 'http',
             ),
           ),
@@ -93,13 +89,13 @@ void main() {
         expect: () => [
           EditPreferencesState<LiplPreferences>(
             initialPreferences: LiplPreferences(
-              username: username()!,
-              password: password()!,
+              username: username(),
+              password: password(),
               baseUrl: 'http',
             ),
             preferences: LiplPreferences(
-              username: username()!,
-              password: password()!,
+              username: username(),
+              password: password(),
               baseUrl: 'http',
             ),
           ),
@@ -112,13 +108,13 @@ void main() {
         build: () => createSubject(),
         seed: () => EditPreferencesState<LiplPreferences>(
           initialPreferences: LiplPreferences(
-            username: username()!,
-            password: password()!,
+            username: username(),
+            password: password(),
             baseUrl: 'http',
           ),
           preferences: LiplPreferences(
-            username: username()!,
-            password: password()!,
+            username: username(),
+            password: password(),
             baseUrl: 'http',
           ),
         ),
@@ -128,8 +124,8 @@ void main() {
         expect: () => [
           EditPreferencesState<LiplPreferences>(
             initialPreferences: LiplPreferences(
-              username: username()!,
-              password: password()!,
+              username: username(),
+              password: password(),
               baseUrl: 'http',
             ),
             preferences: const LiplPreferences(
