@@ -30,7 +30,7 @@ jobs:
         working-directory: './packages/lipl-model'
       - name: Test preferences-bloc
         run: flutter test -r expanded
-        working-directory: './packages/preferences_bloc'
+        working-directory: './packages/preferences-bloc'
       - name: Test lipl-encrypt
         run: flutter test -r expanded
         working-directory: './packages/lipl-encrypt'
