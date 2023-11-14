@@ -39,7 +39,7 @@ void main() {
     test('Props', () {
       expect(
         createSubject().props,
-        <Object?>['username', 'password', 'baseUrl'],
+        <Object?>['username', 'password', [], []],
       );
     });
 

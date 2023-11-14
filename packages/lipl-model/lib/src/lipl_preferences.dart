@@ -76,5 +76,10 @@ class LiplPreferences extends Equatable {
       );
 
   @override
-  List<Object?> get props => <Object?>[credentials, lyrics, playlists];
+  List<Object?> get props => <Object?>[
+        credentials?.username,
+        credentials?.password,
+        lyrics,
+        playlists
+      ];
 }
