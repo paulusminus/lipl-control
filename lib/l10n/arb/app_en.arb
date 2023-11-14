@@ -1,0 +1,171 @@
+{
+    "@@locale": "en",
+    "addLyric": "Add lyric",
+    "@addLyric": {
+        "description": "Edit/new Playlist Add lyric label"
+    },
+    "baseUrlLabel": "Base URL",
+    "@baseUrlLabel": {
+        "description": "Preferences Base URL label"
+    },
+    "bigger": "Bigger",
+    "@bigger": {
+        "description": "Bigger font on display server"
+    },
+    "cancelButtonLabel": "Cancel",
+    "@cancelButtonLabel": {
+        "description": "Cancel button label"
+    },
+    "confirm": "Confirm",
+    "@confirm": {
+        "description": "Title of confirm dialog"
+    },
+    "confirmPoweroff": "Poweroff Display server?",
+    "@confirmPoweroff": {
+        "description": "Asking for confirmation to poweroff Display server"
+    },
+    "dark": "Dark",
+    "@dark": {
+        "description": "Dark theme"
+    },
+    "delete": "Delete",
+    "@delete": {
+        "description": "Delete in confirmation delete dialog"
+    },
+    "deleteButtonLabel": "delete",
+    "@deleteButtonLabel": {
+        "description": "Delete button label"
+    },
+    "editButtonLabel": "edit",
+    "@editButtonLabel": {
+        "decription": "Edit button label"
+    },
+    "editLyric": "Edit lyric",
+    "@editLyric": {
+        "description": "Edit / new Lyric title"
+    },
+    "editPlaylist": "Edit playlist",
+    "@editPlaylist": {
+        "description": "Edit / new playlist title"
+    },
+    "first": "Begin",
+    "@first": {
+        "description": "Play first icon label"
+    },
+    "last": "End",
+    "@last": {
+        "description": "Play last icon label"
+    },
+    "light": "Light",
+    "@light": {
+        "description": "Light theme"
+    },
+    "liplTitle": "Lipl",
+    "@liplTitle": {
+        "description": "The title of the main program"
+    },
+    "lyrics": "Lyrics",
+    "@lyrics": {
+        "description": "Lyrics"
+    },
+    "newLyric": "New lyric",
+    "@newLyric": {
+        "description": "New lyric"
+    },
+    "newPlaylist": "New playlist",
+    "@newPlaylist": {
+        "description": "New playlist"
+    },
+    "next": "Next",
+    "@next": {
+        "description": "Play next icon label"
+    },
+    "okButtonLabel": "Ok",
+    "@okButtonLabel": {
+        "descriptioni": "Ok button label"
+    },
+    "passwordLabel": "Password",
+    "@passwordLabel": {
+        "description": "Preferences password label"
+    },
+    "playButtonLabel": "play",
+    "@playButtonLabel": {
+        "description": "Main play button label"
+    },
+    "playPageTitle": "Play",
+    "@playPageTitle": {
+        "description": "Play titel"
+    },
+    "preferences": "Preferences",
+    "@preferences": {
+        "description": "Preferences page title"
+    },
+    "preferencesChanged": "Preferences Changed",
+    "@preferencesChanged": {
+        "description": "Notice of changed preferences"
+    },
+    "previous": "Previous",
+    "@previous": {
+        "description": "Play previous icon label"
+    },
+    "poweroff": "Poweroff",
+    "@poweroff": {
+        "description": "Poweroff display server"
+    },
+    "saveButtonLabel": "Save",
+    "@saveButtonLabel": {
+        "description": "Save button label"
+    },
+    "searchPageTitle": "Search lyric",
+    "@searchPageTitle": {
+        "description": "Search lyric page title"
+    },
+    "searchTitleContains": "Title contains",
+    "@searchTitleContains": {
+        "description": "Label for title contains field"
+    },
+    "searchButtonLabel": "Search",
+    "@searchButtonLabel": {
+        "description": "Search button label"
+    },
+    "searchMinimalCharsError": "Minimal of 3 letters please",
+    "@searchMinimalCharsError": {
+        "description": "Search lyric minimal characters error"
+    },
+    "searchNoResults": "No",
+    "@searchNoResults": {
+        "description": "Indicate no search results"
+    },
+    "searchDoesHaveResults": "Search",
+    "@searchDoesHaveResults": {
+        "description": "Indicate search results"
+    },
+    "searchResultsFor": "results for",
+    "@searchResultsFor": {
+        "description": "Lyric search results for"
+    },
+    "selectDisplayServerTitle": "Select display server",
+    "@selectDisplayServerTitle": {
+        "description": "Select display server page title"
+    },
+    "smaller": "Smaller",
+    "@smaller": {
+        "description": "Smaller font on display server"
+    },
+    "textLabel": "Text",
+    "@textLabel": {
+        "description": "Edit Lyric text label"
+    },
+    "titleLabel": "Title",
+    "@titleLabel": {
+        "description": "Edit Lyric c.q. Playlist title label"
+    },
+    "unauthorized": "Unauthorized",
+    "@unauthorized": {
+        "description": "Access needs authentication"
+    },
+    "usernameLabel": "Username",
+    "@usernameLabel": {
+        "description": "Preferences username label"
+    }
+}

@@ -1,0 +1,171 @@
+{
+    "@@locale": "nl",
+    "addLyric": "Tekst toevoegen",
+    "@addLyric": {
+        "description": "Wijzigen / nieuw afspeellijst tekst toevoegen label"
+    },
+    "baseUrlLabel": "Basis URL",
+    "@baseUrlLabel": {
+        "description": "Voorkeuren Basis URL label"
+    },
+    "bigger": "Groter",
+    "@bigger": {
+        "description": "Groter lettertype op scherm"
+    },
+    "cancelButtonLabel": "Annuleren",
+    "@cancelButtonLabel": {
+        "description": "Annuleren knop label"
+    },
+    "confirm": "Bevestigen",
+    "@confirm": {
+        "description": "Titel van bevestigen dialoog"
+    },
+    "confirmPoweroff": "Uitschakelen Display server?",
+    "@confirmPoweroff": {
+        "description": "Vragen om bevestiging uitschakelen Display server"
+    },
+    "dark": "Donker",
+    "@dark": {
+        "description": "Donker thema op scherm"
+    },
+    "delete": "Verwijder",
+    "@delete": {
+        "description": "Verwijder in bevestigen verwijderen dialoog"
+    },
+    "deleteButtonLabel": "Verwijderen",
+    "@deleteButtonLabel": {
+        "description": "Verwijder knop label"
+    },
+    "editButtonLabel": "Wijzigen",
+    "@editButtonLabel": {
+        "decription": "Wijzigen knop label"
+    },
+    "editLyric": "Tekst wijzigen",
+    "@editLyric": {
+        "description": "Wijzigen / nieuwe tekst titel"
+    },
+    "editPlaylist": "Afspeellijst wijzigen",
+    "@editPlaylist": {
+        "description": "Wijzigen / nieuwe afspeellijst titel"
+    },
+    "first": "Begin",
+    "@first": {
+        "description": "Afspelen begin icoon label"
+    },
+    "last": "Eind",
+    "@last": {
+        "description": "Afspelen eind icoon label"
+    },
+    "light": "Licht",
+    "@light": {
+        "description": "Licht thema op scherm"
+    },
+    "liplTitle": "Lipl",
+    "@liplTitle": {
+        "description": "Titel van de applicatie"
+    },
+    "lyrics": "Teksten",
+    "@lyrics": {
+        "description": "Teksten"
+    },
+    "newLyric": "Nieuwe tekst",
+    "@newLyric": {
+        "description": "Nieuwe tekst"
+    },
+    "newPlaylist": "Nieuwe afspeellijst",
+    "@newPlaylist": {
+        "description": "Nieuwe afspeellijst"
+    },
+    "next": "Volgende",
+    "@next": {
+        "description": "Afspelen volgende icoon label"
+    },
+    "okButtonLabel": "Ok",
+    "@okButtonLabel": {
+        "descriptioni": "Ok knop label"
+    },
+    "passwordLabel": "Wachtwoord",
+    "@passwordLabel": {
+        "description": "Voorkeuren wachtwoord label"
+    },
+    "playButtonLabel": "Afspelen",
+    "@playButtonLabel": {
+        "description": "Afspelen knop label"
+    },
+    "playPageTitle": "Afspelen",
+    "@playPageTitle": {
+        "description": "Afspelen titel"
+    },
+    "preferences": "Voorkeuren",
+    "@preferences": {
+        "description": "Voorkeuren pagina titel"
+    },
+    "preferencesChanged": "Voorkeuren gewijzigd",
+    "@preferencesChanged": {
+        "description": "Log voorkeuren gewijzigd"
+    },
+    "previous": "Vorige",
+    "@previous": {
+        "description": "Afspelen vorige knop label"
+    },
+    "poweroff": "Uitschakelen",
+    "@poweroff": {
+        "description": "Display server uitschakelen"
+    },
+    "saveButtonLabel": "Opslaan",
+    "@saveButtonLabel": {
+        "description": "Opslaan knop label"
+    },
+    "searchPageTitle": "Zoek tekst",
+    "@searchPageTitle": {
+        "description": "Zoek tekst pagina titel"
+    },
+    "searchTitleContains": "Titel bevat",
+    "@searchTitleContains": {
+        "description": "Label voor titel bevat veld"
+    },
+    "searchButtonLabel": "Zoeken",
+    "@searchButtonLabel": {
+        "description": "Zoeken knop label"
+    },
+    "searchMinimalCharsError": "Minimaal 3 tekens a.u.b.",
+    "@searchMinimalCharsError": {
+        "description": "Zoek tekst minimaal aantal tekens fout"
+    },
+    "searchNoResults": "Geen",
+    "@searchNoResults": {
+        "description": "Geen resultaten voor zoeken"
+    },
+    "searchDoesHaveResults": "Zoek",
+    "@searchDoesHaveResults": {
+        "description": "Wel resultaten voor zoeken"
+    },
+    "searchResultsFor": "resultaten voor",
+    "@searchResultsFor": {
+        "description": "Tekst zoeken resultaten voor"
+    },
+    "selectDisplayServerTitle": "Selecteer display server",
+    "@selectDisplayServerTitle": {
+        "description": "Selecteer display server pagina titel"
+    },
+    "smaller": "Kleiner",
+    "@smaller": {
+        "description": "Kleiner letterype op scherm"
+    },
+    "textLabel": "Tekst",
+    "@textLabel": {
+        "description": "Wijzigen tekst tekst label"
+    },
+    "titleLabel": "Titel",
+    "@titleLabel": {
+        "description": "Wijzigen tekst c.q. afspeellijst pagina titel"
+    },
+    "unauthorized": "Ongeauthoriseerd",
+    "@unauthorized": {
+        "description": "Toegang niet toegestaan"
+    },
+    "usernameLabel": "Gebruikersnaam",
+    "@usernameLabel": {
+        "description": "Voorkeuren gebruikersnaam label"
+    }
+}
