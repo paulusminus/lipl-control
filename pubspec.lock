@@ -650,7 +650,7 @@ packages:
   preferences_bloc:
     dependency: "direct main"
     description:
-      path: "packages/preferences_bloc"
+      path: "packages/preferences-bloc"
       relative: true
     source: path
     version: "1.2.0"

@@ -31,7 +31,7 @@ dependencies:
     path: packages/loading-status
   logging: ^1.1.1
   preferences_bloc:
-    path: packages/preferences_bloc
+    path: packages/preferences-bloc
   shared_preferences: ^2.1.0
   universal_io: ^2.2.0
 
