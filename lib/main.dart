@@ -13,12 +13,6 @@ Future<void> main() async {
   });
 
   WidgetsFlutterBinding.ensureInitialized();
-  // if (Platform.isAndroid) {
-  //   final ByteData data =
-  //       await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
-  //   SecurityContext.defaultContext
-  //       .setTrustedCertificatesBytes(data.buffer.asUint8List());
-  // }
 
   final Logger logger = Logger('Lipl');
 

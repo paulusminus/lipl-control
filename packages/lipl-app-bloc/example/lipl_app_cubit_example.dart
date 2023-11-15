@@ -67,7 +67,7 @@ Future<void> main() async {
 
   log.info('Renaming Allegaartje');
   await cubit.putPlaylist(
-    p.copyWith(title: () => 'Allemaal te gek'),
+    p.copyWith(title: 'Allemaal te gek'),
   );
 
   log.info('Renamed Allegaartje to Allemaal te gek');

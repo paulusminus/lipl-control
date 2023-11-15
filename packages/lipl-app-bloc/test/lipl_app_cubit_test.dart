@@ -344,7 +344,7 @@ void main() {
         seed: () => loaded(api),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
-            title: () => 'Breng eens wat meer',
+            title: 'Breng eens wat meer',
           ),
         ),
         expect: () => [
@@ -352,7 +352,7 @@ void main() {
           loaded(api).copyWith(
             playlists: [
               initialPlaylists[0].copyWith(
-                title: () => 'Breng eens wat meer',
+                title: 'Breng eens wat meer',
               ),
             ].sortByTitle(),
           )
@@ -402,7 +402,7 @@ void main() {
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
-            title: () => 'Breng eens wat meer',
+            title: 'Breng eens wat meer',
           ),
         ),
         expect: () => [

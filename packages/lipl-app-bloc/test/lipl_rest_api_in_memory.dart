@@ -71,8 +71,7 @@ class InMemoryRestApi implements LiplRestApiInterface {
     _playlists = _playlists
         .map(
           (playlist) => playlist.copyWith(
-            members: () =>
-                playlist.members.where((member) => member != id).toList(),
+            members: playlist.members.where((member) => member != id).toList(),
           ),
         )
         .toList();

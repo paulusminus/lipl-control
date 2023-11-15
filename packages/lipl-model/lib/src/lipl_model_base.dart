@@ -81,17 +81,17 @@ class Playlist extends Summary {
   Map<String, dynamic> toJson() => _$PlaylistToJson(this);
 
   Playlist withoutMember(String id) => copyWith(
-        members: () => members.where((element) => element != id).toList(),
+        members: members.where((element) => element != id).toList(),
       );
 
   Playlist copyWith({
-    String Function()? title,
-    List<String> Function()? members,
+    String? title,
+    List<String>? members,
   }) =>
       Playlist(
         id: id,
-        title: title == null ? this.title : title(),
-        members: members == null ? this.members : members(),
+        title: title ?? this.title,
+        members: members ?? this.members,
       );
 
   @override

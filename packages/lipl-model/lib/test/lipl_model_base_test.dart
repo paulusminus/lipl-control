@@ -354,7 +354,7 @@ void main() {
       });
 
       test('change title', () {
-        final p = playlist.copyWith(title: () => 'New Year');
+        final p = playlist.copyWith(title: 'New Year');
         expect(
           p.title,
           'New Year',
@@ -370,7 +370,7 @@ void main() {
       });
 
       test('change members', () {
-        final p = playlist.copyWith(members: () => ['452']);
+        final p = playlist.copyWith(members: ['452']);
         expect(
           p.title,
           playlist.title,
