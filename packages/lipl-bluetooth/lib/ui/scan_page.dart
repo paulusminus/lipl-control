@@ -58,8 +58,8 @@ class ScanPage extends StatelessWidget {
                 Icon(state.isScanning ? Icons.stop : Icons.bluetooth_searching),
             onPressed: () async {
               state.isScanning
-                  ? await context.read<ScanResultsCubit>().stop()
-                  : await context.read<ScanResultsCubit>().start();
+                  ? await context.read<ScanResultsCubit>().stopScanning()
+                  : await context.read<ScanResultsCubit>().startScanning();
             },
           ),
         );

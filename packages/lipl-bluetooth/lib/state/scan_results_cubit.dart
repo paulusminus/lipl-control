@@ -5,6 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:logging/logging.dart';
 
+const int manufacturerId = 0xFFFF;
+const List<int> manufacturerData = [0x21, 0x22, 0x232, 0x24];
+
+MsdFilter filterByManufacturer() =>
+    MsdFilter(manufacturerId, data: manufacturerData);
+
 final liplDisplayServiceUuid =
     Guid.fromString('27a70fc8-dc38-40c7-80bc-359462e4b808');
 
@@ -92,9 +98,9 @@ class ScanResultsCubit extends Cubit<ScanState> {
   StreamSubscription<List<ScanResult>>? _streamSubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionStateSubsribtion;
 
-  Future<void> start() async {
-    emit(state.copyWith(isScanning: true));
-    await FlutterBluePlus.startScan(withKeywords: ['lipl']);
+  Future<void> startScanning() async {
+    emit(state.copyWith(isScanning: true, scanResults: []));
+    await FlutterBluePlus.startScan(withMsd: [filterByManufacturer()]);
     emit(state.copyWith(isScanning: false));
   }
 
@@ -179,7 +185,7 @@ class ScanResultsCubit extends Cubit<ScanState> {
     }
   }
 
-  Future<void> stop() async {
+  Future<void> stopScanning() async {
     await FlutterBluePlus.stopScan();
     emit(state.copyWith(isScanning: false));
   }
