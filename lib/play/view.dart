@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/widget/confirm.dart';
+import 'package:lipl_model/lipl_model.dart';
 import 'package:logging/logging.dart';
-import 'play.dart';
 
 class PreviousIntent extends Intent {}
 

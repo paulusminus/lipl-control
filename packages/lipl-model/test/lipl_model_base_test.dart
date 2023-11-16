@@ -128,6 +128,48 @@ void main() {
     });
   });
 
+  group('LyricPart', () {
+    late Lyric lyric;
+    setUp(() => {
+          lyric = Lyric(
+            id: '3',
+            title: 'Er is er één jarig',
+            parts: [
+              [
+                'Er is er één jarig hoera hoera',
+                'Dat kun je wel zien dat is hij'
+              ],
+              [
+                'Dat vinden wij allen zo prettig ja ja',
+                'En daarom zingen wij blij',
+              ],
+            ],
+          )
+        });
+
+    test('use indexed', () {
+      expect(
+        lyric.toLyricParts(),
+        [
+          LyricPart(
+            title: 'Er is er één jarig',
+            current: 1,
+            total: 2,
+            text:
+                'Er is er één jarig hoera hoera\nDat kun je wel zien dat is hij',
+          ),
+          LyricPart(
+            title: 'Er is er één jarig',
+            current: 2,
+            total: 2,
+            text:
+                'Dat vinden wij allen zo prettig ja ja\nEn daarom zingen wij blij',
+          ),
+        ],
+      );
+    });
+  });
+
   group('LyricPost', () {
     late LyricPost lyricPost;
     late Map<String, dynamic> lyricPostJson;

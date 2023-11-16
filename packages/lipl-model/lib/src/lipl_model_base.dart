@@ -34,6 +34,15 @@ class Lyric extends Summary {
   @override
   Map<String, dynamic> toJson() => _$LyricToJson(this);
 
+  List<LyricPart> toLyricParts() => parts.indexed
+      .map((element) => LyricPart(
+            title: title,
+            current: element.$1 + 1,
+            total: parts.length,
+            text: element.$2.join('\n'),
+          ))
+      .toList();
+
   Lyric copyWith({
     String Function()? title,
     List<List<String>> Function()? parts,
@@ -116,4 +125,26 @@ class PlaylistPost extends Equatable {
 
   @override
   List<Object?> get props => [title, members];
+}
+
+class LyricPart extends Equatable {
+  const LyricPart({
+    required this.title,
+    required this.current,
+    required this.total,
+    required this.text,
+  });
+
+  final String title;
+  final int current;
+  final int total;
+  final String text;
+
+  @override
+  List<Object?> get props => [title, current, total, text];
+}
+
+extension ListLyricX on List<Lyric> {
+  List<LyricPart> toLyricParts() =>
+      expand((lyric) => lyric.toLyricParts()).toList();
 }
