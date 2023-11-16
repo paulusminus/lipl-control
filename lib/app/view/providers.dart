@@ -1,7 +1,5 @@
 import 'dart:async';
-// import 'dart:convert';
 
-// import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,7 +84,7 @@ class RepoProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: <RepositoryProvider<Object>>[
-        RepositoryProvider(
+        RepositoryProvider<Logger>(
           create: (_) => logger,
         ),
       ],

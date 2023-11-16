@@ -113,7 +113,7 @@ class PlayPage extends StatelessWidget {
   }
 }
 
-Future<void> Function(int) updatePage(
+Future<void> Function(int) createUpdatePage(
   ScanResultsCubit cubit,
   List<LyricPart> lyricParts,
 ) {
@@ -205,6 +205,9 @@ class PlayPart extends StatelessWidget {
 
     final ScanResultsCubit scanResultsCubit = context.read<ScanResultsCubit>();
     final Logger logger = RepositoryProvider.of<Logger>(context);
+    Future<void> Function(int) updatePage =
+        createUpdatePage(scanResultsCubit, lyricParts);
+    updatePage(0);
 
     return Shortcuts(
       shortcuts: <SingleActivator, Intent>{
@@ -258,7 +261,7 @@ class PlayPart extends StatelessWidget {
                 body: PageView(
                   controller: controller,
                   onPageChanged: (int page) async {
-                    await updatePage(scanResultsCubit, lyricParts)(page);
+                    await updatePage(page);
                   },
                   children: buildPageViewChildren(),
                 ),

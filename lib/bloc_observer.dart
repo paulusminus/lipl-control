@@ -16,7 +16,7 @@ class LiplBlocObserver extends BlocObserver {
     super.onChange(bloc, change);
     final dynamic next = change.nextState;
     log?.info(next.runtimeType);
-    log?.info('onChange -- ${bloc.runtimeType}\n\n$next\n');
+    log?.info('onChange -- ${bloc.runtimeType}\n$next');
   }
 
   @override

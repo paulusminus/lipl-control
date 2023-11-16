@@ -96,19 +96,25 @@ class ScanResultsCubit extends Cubit<ScanState> {
     emit(state.copyWith(isScanning: false));
   }
 
+  Future<void> _write(
+      BluetoothCharacteristic? characteristic, String text) async {
+    try {
+      await characteristic?.write(text.codeUnits, withoutResponse: true);
+    } catch (error) {
+      addError(error);
+    }
+  }
+
   Future<void> writeText(String text) async {
-    await state.connectedDevice?.textCharacteristic
-        .write(text.codeUnits, withoutResponse: true);
+    await _write(state.connectedDevice?.textCharacteristic, text);
   }
 
   Future<void> writeStatus(String text) async {
-    await state.connectedDevice?.statusCharacteristic
-        .write(text.codeUnits, withoutResponse: true);
+    await _write(state.connectedDevice?.statusCharacteristic, text);
   }
 
   Future<void> writeCommand(String text) async {
-    await state.connectedDevice?.commandCharacteristic
-        .write(text.codeUnits, withoutResponse: true);
+    await _write(state.connectedDevice?.commandCharacteristic, text);
   }
 
   Future<void> connect(BluetoothDevice device) async {

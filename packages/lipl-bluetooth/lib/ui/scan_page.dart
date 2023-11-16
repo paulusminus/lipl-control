@@ -22,7 +22,7 @@ class ScanPage extends StatelessWidget {
               if (state.connectedDevice != null)
                 ListTile(
                   title: Text(
-                      'Connected to ${state.connectedDevice!.device.advName} on ${state.connectedDevice!.device.platformName}'),
+                      'Connected to ${state.connectedDevice!.device.advName} on ${state.connectedDevice!.device.remoteId}'),
                   trailing: IconButton(
                     icon: const Icon(Icons.tv_off),
                     onPressed: () {
