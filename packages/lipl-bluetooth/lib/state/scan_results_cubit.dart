@@ -52,6 +52,8 @@ class ScanState extends Equatable {
         connectedDevice: null,
       );
 
+  bool isConnected() => connectedDevice != null;
+
   ScanState copyWith({
     List<ScanResult>? scanResults,
     bool? isScanning,

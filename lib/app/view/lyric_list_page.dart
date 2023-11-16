@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lipl_ble/lipl_ble.dart';
+import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
+import 'package:lipl_bluetooth/ui/scan_page.dart';
 import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/edit_lyric/edit_lyric.dart';
 import 'package:lipl_control/edit_playlist/edit_playlist.dart';
@@ -9,7 +10,6 @@ import 'package:lipl_control/edit_preferences/edit_preferences.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/play/play.dart';
 import 'package:lipl_control/search/search_view.dart';
-import 'package:lipl_control/select_display_server/select_display_server.dart';
 import 'package:lipl_control/widget/widget.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
@@ -354,28 +354,19 @@ class BluetoothIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BleScanCubit, BleScanState>(
-      builder: (BuildContext context, BleScanState state) => IconButton(
-        onPressed: () async {
-          final BleScanCubit bleScanCubit = context.read<BleScanCubit>();
-          final NavigatorState navigator = Navigator.of(context);
-          await bleScanCubit.start();
-          navigator.push(SelectDisplayServerPage.route());
-        },
-        icon: BlocBuilder<BleConnectionCubit, BleConnectionState>(
-          builder: (BuildContext context, BleConnectionState state) {
-            return BlocBuilder<BleConnectionCubit, BleConnectionState>(
-              builder: (BuildContext context, BleConnectionState state) {
-                return Icon(
-                  state.isConnected
-                      ? Icons.bluetooth_connected
-                      : Icons.bluetooth,
-                );
-              },
-            );
+    return BlocBuilder<ScanResultsCubit, ScanState>(
+      builder: (BuildContext context, ScanState state) => IconButton(
+          onPressed: () async {
+            final scanResultsCubit = context.read<ScanResultsCubit>();
+            final NavigatorState navigator = Navigator.of(context);
+            await scanResultsCubit.start();
+            navigator.push(ScanPage.route());
           },
-        ),
-      ),
+          icon: Icon(
+            state.connectedDevice != null
+                ? Icons.bluetooth_connected
+                : Icons.bluetooth,
+          )),
     );
   }
 }

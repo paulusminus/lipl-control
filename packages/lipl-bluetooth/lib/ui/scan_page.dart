@@ -4,6 +4,12 @@ import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
 
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
+
+  static Route<void> route() => MaterialPageRoute<void>(
+        fullscreenDialog: true,
+        builder: (_) => const ScanPage(),
+      );
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldMessenger(

@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:lipl_ble/lipl_ble.dart';
+import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
 import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/search/search_cubit.dart';
@@ -101,22 +101,7 @@ class BlocProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bleScanCubit = context.isMobile
-        ? BleScanCubit(
-            flutterReactiveBle: flutterReactiveBle(),
-            logger: logger,
-          )
-        : BleNoScanCubit();
-
-    final bleConnectionCubit = context.isMobile
-        ? BleConnectionCubit(
-            flutterReactiveBle: flutterReactiveBle(),
-            logger: logger,
-            stream: bleScanCubit.stream
-                .map((BleScanState state) => state.selectedDevice)
-                .distinct(),
-          )
-        : BleNoConnectionCubit();
+    final scanResultCubit = ScanResultsCubit(logger: logger);
 
     final preferencesBloc = LiplPreferencesBloc()
       ..add(PreferencesEventLoad<LiplPreferences>());
@@ -140,11 +125,8 @@ class BlocProviders extends StatelessWidget {
     final selectTabCubit = SelectedTabCubit();
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
-        BlocProvider<BleScanCubit>.value(
-          value: bleScanCubit,
-        ),
-        BlocProvider<BleConnectionCubit>.value(
-          value: bleConnectionCubit,
+        BlocProvider<ScanResultsCubit>.value(
+          value: scanResultCubit,
         ),
         BlocProvider<LiplPreferencesBloc>.value(
           value: preferencesBloc,

@@ -19,8 +19,8 @@ dependencies:
   http: ^1.1.0
   intl: any
   json_annotation: ^4.8.0
-  lipl_ble:
-    path: packages/lipl-ble
+  lipl_bluetooth:
+    path: packages/lipl-bluetooth
   lipl_encrypt:
     path: packages/lipl-encrypt
   lipl_model:

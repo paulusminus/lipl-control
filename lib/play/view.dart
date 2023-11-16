@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lipl_ble/lipl_ble.dart';
+import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/widget/confirm.dart';
+import 'package:logging/logging.dart';
 import 'play.dart';
 
 class PreviousIntent extends Intent {}
@@ -37,29 +38,29 @@ class NextAction extends Action<NextIntent> {
   }
 }
 
-class HomeIntent extends Intent {}
+class FirstIntent extends Intent {}
 
-class HomeAction extends Action<HomeIntent> {
-  HomeAction(this.controller);
+class FirstAction extends Action<FirstIntent> {
+  FirstAction(this.controller);
   final PageController controller;
 
   @override
-  Object? invoke(HomeIntent intent) async {
+  Object? invoke(FirstIntent intent) async {
     await controller.animateToPage(0,
         duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
     return null;
   }
 }
 
-class EndIntent extends Intent {}
+class LastIntent extends Intent {}
 
-class EndAction extends Action<EndIntent> {
-  EndAction(this.controller, this.count);
+class LastAction extends Action<LastIntent> {
+  LastAction(this.controller, this.count);
   final PageController controller;
   final int count;
 
   @override
-  Object? invoke(EndIntent intent) async {
+  Object? invoke(LastIntent intent) async {
     await controller.animateToPage(
       count - 1,
       duration: const Duration(milliseconds: 200),
@@ -82,7 +83,7 @@ class CloseAction extends Action<CloseIntent> {
   }
 }
 
-class PlayPage extends StatefulWidget {
+class PlayPage extends StatelessWidget {
   const PlayPage({
     super.key,
     required this.lyricParts,
@@ -94,50 +95,102 @@ class PlayPage extends StatefulWidget {
   static Route<void> route({
     required List<LyricPart> lyricParts,
     required String title,
-  }) {
-    return MaterialPageRoute<void>(
-      fullscreenDialog: true,
-      builder: (BuildContext context) {
-        final bool connected =
-            context.read<BleConnectionCubit>().state.isConnected;
-        if (connected) {
-          updatePage(context, lyricParts)(0);
-        }
-        return PlayPage(
+  }) =>
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => PlayPage(
           lyricParts: lyricParts,
           title: title,
-        );
-      },
-    );
-  }
+        ),
+      );
 
   @override
-  State<StatefulWidget> createState() => _PlayPageState();
+  Widget build(BuildContext context) {
+    return PlayPart(
+      title: title,
+      lyricParts: lyricParts,
+    );
+  }
 }
 
-void Function(int) updatePage(
-    BuildContext context, List<LyricPart> lyricParts) {
-  return (int page) {
-    final BleConnectionCubit cubit = context.read<BleConnectionCubit>();
-    if (cubit.state.isConnected) {
-      final LyricPart part = lyricParts[page];
-      cubit.updateText(part.text);
-      cubit.updateStatus('${part.title} (${part.current} / ${part.total})');
-      cubit.writeText();
-      cubit.writeStatus();
-    }
+Future<void> Function(int) updatePage(
+  ScanResultsCubit cubit,
+  List<LyricPart> lyricParts,
+) {
+  return (int page) async {
+    final LyricPart part = lyricParts[page];
+    await cubit.writeText(part.text);
+    await cubit.writeStatus('${part.title} (${part.current} / ${part.total})');
   };
 }
 
-void updateCommand(BleConnectionCubit cubit, String command) {
-  if (cubit.state.isConnected) {
-    cubit.updateCommand(command);
-    cubit.writeCommand();
-  }
+Future<void> updateCommand(ScanResultsCubit cubit, String command) async {
+  await cubit.writeCommand(command);
 }
 
-class _PlayPageState extends State<PlayPage> {
-  int current = 0;
+class PlayPart extends StatelessWidget {
+  const PlayPart({super.key, required this.title, required this.lyricParts});
+  final String title;
+  final List<LyricPart> lyricParts;
+
+  List<PopupMenuItem<String>> buildCommandMenu(AppLocalizations l10n) {
+    return <PopupMenuItem<String>>[
+      PopupMenuItem<String>(
+        value: 'd',
+        child: Text(l10n.dark),
+      ),
+      PopupMenuItem<String>(
+        value: 'l',
+        child: Text(l10n.light),
+      ),
+      PopupMenuItem<String>(
+        value: '+',
+        child: Text(l10n.bigger),
+      ),
+      PopupMenuItem<String>(
+        value: '-',
+        child: Text(l10n.smaller),
+      ),
+      PopupMenuItem<String>(
+        value: 'o',
+        child: Text(l10n.poweroff),
+      ),
+    ];
+  }
+
+  List<Center> buildPageViewChildren() {
+    return lyricParts
+        .map(
+          (LyricPart lyricPart) => Center(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: RichText(
+                text: TextSpan(
+                  text: lyricPart.text,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    height: 1.2,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text:
+                          '\n\n\n${lyricPart.title} (${lyricPart.current} / ${lyricPart.total})',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.black,
+                        height: 1.2,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        )
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,9 +199,12 @@ class _PlayPageState extends State<PlayPage> {
 
     final PreviousIntent previousIntent = PreviousIntent();
     final NextIntent nextIntent = NextIntent();
-    final HomeIntent homeIntent = HomeIntent();
-    final EndIntent endIntent = EndIntent();
+    final FirstIntent homeIntent = FirstIntent();
+    final LastIntent endIntent = LastIntent();
     final CloseIntent closeIntent = CloseIntent();
+
+    final ScanResultsCubit scanResultsCubit = context.read<ScanResultsCubit>();
+    final Logger logger = RepositoryProvider.of<Logger>(context);
 
     return Shortcuts(
       shortcuts: <SingleActivator, Intent>{
@@ -162,59 +218,37 @@ class _PlayPageState extends State<PlayPage> {
         actions: <Type, Action<Intent>>{
           PreviousIntent: PreviousAction(controller),
           NextIntent: NextAction(controller),
-          HomeIntent: HomeAction(controller),
-          EndIntent: EndAction(controller, widget.lyricParts.length),
+          FirstIntent: FirstAction(controller),
+          LastIntent: LastAction(controller, lyricParts.length),
           CloseIntent: CloseAction(context),
         },
         child: Focus(
           autofocus: true,
-          child: BlocBuilder<BleConnectionCubit, BleConnectionState>(
-            builder: (BuildContext context, BleConnectionState state) {
+          child: BlocBuilder<ScanResultsCubit, ScanState>(
+            builder: (BuildContext context, ScanState state) {
               return Scaffold(
                 appBar: AppBar(
-                  title: Text(widget.title),
+                  title: Text(title),
                   actions: <Widget>[
-                    if (state.isConnected)
+                    if (state.isConnected())
                       PopupMenuButton<String>(
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuItem<String>>[
-                          PopupMenuItem<String>(
-                            value: 'd',
-                            child: Text(l10n.dark),
-                          ),
-                          PopupMenuItem<String>(
-                            value: 'l',
-                            child: Text(l10n.light),
-                          ),
-                          PopupMenuItem<String>(
-                            value: '+',
-                            child: Text(l10n.bigger),
-                          ),
-                          PopupMenuItem<String>(
-                            value: '-',
-                            child: Text(l10n.smaller),
-                          ),
-                          PopupMenuItem<String>(
-                            value: 'o',
-                            child: Text(l10n.poweroff),
-                          ),
-                        ],
-                        onSelected: (String command) {
-                          final BleConnectionCubit bleConnectionCubit =
-                              context.read<BleConnectionCubit>();
+                        itemBuilder: (BuildContext _) => buildCommandMenu(l10n),
+                        onSelected: (String command) async {
                           if (command == 'o') {
-                            confirm(
+                            final result = await confirm(
                               context,
                               title: l10n.poweroff,
                               content: l10n.confirmPoweroff,
                               textOK: l10n.okButtonLabel,
                               textCancel: l10n.cancelButtonLabel,
-                            ).then((result) => {
-                                  if (result)
-                                    {updateCommand(bleConnectionCubit, command)}
-                                });
+                            );
+                            if (result) {
+                              await updateCommand(scanResultsCubit, command);
+                              logger.info('Command $command processed');
+                            }
                           } else {
-                            updateCommand(bleConnectionCubit, command);
+                            await updateCommand(scanResultsCubit, command);
+                            logger.info('Command $command processed');
                           }
                         },
                         icon: const Icon(Icons.settings_display),
@@ -222,48 +256,12 @@ class _PlayPageState extends State<PlayPage> {
                   ],
                 ),
                 body: PageView(
-                    controller: controller,
-                    onPageChanged: (int page) {
-                      if (state.isConnected) {
-                        updatePage(context, widget.lyricParts)(page);
-                      }
-                      setState(
-                        () {
-                          current = page;
-                        },
-                      );
-                    },
-                    children: widget.lyricParts
-                        .map(
-                          (LyricPart lyricPart) => Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: RichText(
-                                text: TextSpan(
-                                  text: lyricPart.text,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    height: 1.2,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text:
-                                          '\n\n\n${lyricPart.title} (${lyricPart.current} / ${lyricPart.total})',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.black,
-                                        height: 1.2,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList()),
+                  controller: controller,
+                  onPageChanged: (int page) async {
+                    await updatePage(scanResultsCubit, lyricParts)(page);
+                  },
+                  children: buildPageViewChildren(),
+                ),
                 bottomNavigationBar: BottomNavigationBar(
                   backgroundColor: Colors.grey.shade200,
                   fixedColor: Colors.black,
