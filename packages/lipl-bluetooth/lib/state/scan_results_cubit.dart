@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,7 +108,8 @@ class ScanResultsCubit extends Cubit<ScanState> {
   Future<void> _write(
       BluetoothCharacteristic? characteristic, String text) async {
     try {
-      await characteristic?.write(text.codeUnits, withoutResponse: true);
+      await characteristic?.write(utf8.encoder.convert(text),
+          withoutResponse: true);
     } catch (error) {
       addError(error);
     }
