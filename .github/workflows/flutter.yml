@@ -7,7 +7,7 @@ name: Flutter
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "flutter_blue_plus" ]
 
 env:
   LIPL_USERNAME: ${{ secrets.LIPL_USERNAME }}
