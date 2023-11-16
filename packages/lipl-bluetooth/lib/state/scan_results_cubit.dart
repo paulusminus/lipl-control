@@ -52,7 +52,8 @@ class ScanState extends Equatable {
         connectedDevice: null,
       );
 
-  bool isConnected() => connectedDevice != null;
+  bool isConnected() =>
+      connectedDevice != null && connectedDevice!.device.isConnected;
 
   ScanState copyWith({
     List<ScanResult>? scanResults,
@@ -89,6 +90,7 @@ class ScanResultsCubit extends Cubit<ScanState> {
 
   final Logger logger;
   StreamSubscription<List<ScanResult>>? _streamSubscription;
+  StreamSubscription<BluetoothConnectionState>? _connectionStateSubsribtion;
 
   Future<void> start() async {
     emit(state.copyWith(isScanning: true));
@@ -121,6 +123,13 @@ class ScanResultsCubit extends Cubit<ScanState> {
     try {
       await disconnect();
       await device.connect();
+      await _connectionStateSubsribtion?.cancel();
+      _connectionStateSubsribtion =
+          device.connectionState.listen((connectionState) {
+        if (connectionState == BluetoothConnectionState.disconnected) {
+          emit(state.copyWith(connectedDevice: () => null));
+        }
+      });
       await device.discoverServices();
       logger.info('Service list ${device.servicesList}');
       final service = device.servicesList
@@ -163,6 +172,7 @@ class ScanResultsCubit extends Cubit<ScanState> {
   Future<void> disconnect() async {
     try {
       await state.connectedDevice?.device.disconnect();
+      await _connectionStateSubsribtion?.cancel();
       emit(state.copyWith(connectedDevice: () => null));
     } catch (error) {
       addError(error);
