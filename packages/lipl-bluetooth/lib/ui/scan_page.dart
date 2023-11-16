@@ -3,11 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
 
 class ScanPage extends StatelessWidget {
-  const ScanPage({super.key});
+  const ScanPage(
+      {super.key, required this.title, required this.connectedToMessage});
+  final String title;
+  final String connectedToMessage;
 
-  static Route<void> route() => MaterialPageRoute<void>(
+  static Route<void> route(String title, String connectedToMessage) =>
+      MaterialPageRoute<void>(
         fullscreenDialog: true,
-        builder: (_) => const ScanPage(),
+        builder: (_) => ScanPage(
+          title: title,
+          connectedToMessage: connectedToMessage,
+        ),
       );
 
   @override
@@ -16,13 +23,13 @@ class ScanPage extends StatelessWidget {
       child:
           BlocBuilder<ScanResultsCubit, ScanState>(builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Lipl Bluetooth')),
+          appBar: AppBar(title: Text(title)),
           body: Column(
             children: [
               if (state.connectedDevice != null)
                 ListTile(
                   title: Text(
-                      'Connected to ${state.connectedDevice!.device.advName} on ${state.connectedDevice!.device.remoteId}'),
+                      '$connectedToMessage ${state.connectedDevice!.device.remoteId} / ${state.connectedDevice!.device.advName}  '),
                   trailing: IconButton(
                     icon: const Icon(Icons.tv_off),
                     onPressed: () {

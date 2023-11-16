@@ -167,5 +167,13 @@
     "usernameLabel": "Username",
     "@usernameLabel": {
         "description": "Preferences username label"
+    },
+    "bluetoothScreenName": "TV Connections",
+    "@bluetoothScreenName": {
+        "description": "Name of the screen where users can pick one"
+    },
+    "bluetoothConnectedTo": "Connected to",
+    "@bluetoothConnectedTo": {
+        "description": "Connected to status message"
     }
 }

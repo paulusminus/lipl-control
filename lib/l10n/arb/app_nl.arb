@@ -167,5 +167,13 @@
     "usernameLabel": "Gebruikersnaam",
     "@usernameLabel": {
         "description": "Voorkeuren gebruikersnaam label"
+    },
+    "bluetoothScreenName": "TV Verbindingen",
+    "@bluetoothScreenName": {
+        "description": "Naam van de pagina waar gebruikers een scherm kunnen selecteren"
+    },
+    "bluetoothConnectedTo": "Verbonden met",
+    "@bluetoothConnectedTo": {
+        "description": "Verbonden met status boodschap"
     }
 }

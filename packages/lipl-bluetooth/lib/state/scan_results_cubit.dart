@@ -101,7 +101,7 @@ class ScanResultsCubit extends Cubit<ScanState> {
 
   Future<void> startScanning() async {
     emit(state.copyWith(isScanning: true, scanResults: []));
-    await FlutterBluePlus.startScan(withMsd: [filterByManufacturer()]);
+    await FlutterBluePlus.startScan(withKeywords: ['lipl']);
     emit(state.copyWith(isScanning: false));
   }
 

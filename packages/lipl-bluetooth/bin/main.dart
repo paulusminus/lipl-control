@@ -60,7 +60,8 @@ class LiplBluetoothApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Lipl Bluetooth',
-      home: ScanPage(),
+      home:
+          ScanPage(title: 'Lipl Bluetooth', connectedToMessage: 'Connected to'),
     );
   }
 }

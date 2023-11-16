@@ -354,13 +354,15 @@ class BluetoothIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<ScanResultsCubit, ScanState>(
       builder: (BuildContext context, ScanState state) => IconButton(
           onPressed: () async {
             final scanResultsCubit = context.read<ScanResultsCubit>();
             final NavigatorState navigator = Navigator.of(context);
             await scanResultsCubit.startScanning();
-            navigator.push(ScanPage.route());
+            navigator.push(ScanPage.route(
+                l10n.bluetoothScreenName, l10n.bluetoothConnectedTo));
           },
           icon: Icon(
             state.connectedDevice != null
