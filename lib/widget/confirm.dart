@@ -9,7 +9,7 @@ Future<bool> confirm(
 }) async {
   final bool? isConfirm = await showDialog<bool>(
     context: context,
-    builder: (_) => WillPopScope(
+    builder: (_) => PopScope(
       child: AlertDialog(
         title: Text(title),
         content: Text(content),
@@ -24,10 +24,6 @@ Future<bool> confirm(
           ),
         ],
       ),
-      onWillPop: () async {
-        Navigator.pop(context, false);
-        return true;
-      },
     ),
   );
 
