@@ -155,6 +155,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Lipl',
+      themeMode: ThemeMode.dark,
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -165,9 +166,6 @@ class App extends StatelessWidget {
         Locale('en'),
         Locale('nl'),
       ],
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: context.isMobile
           ? const LyricListMobile()
           : const LyricListNoMobile(),

@@ -199,8 +199,8 @@ class PlayPart extends StatelessWidget {
 
     final PreviousIntent previousIntent = PreviousIntent();
     final NextIntent nextIntent = NextIntent();
-    final FirstIntent homeIntent = FirstIntent();
-    final LastIntent endIntent = LastIntent();
+    final FirstIntent firstIntent = FirstIntent();
+    final LastIntent lastIntent = LastIntent();
     final CloseIntent closeIntent = CloseIntent();
 
     final ScanResultsCubit scanResultsCubit = context.read<ScanResultsCubit>();
@@ -213,8 +213,8 @@ class PlayPart extends StatelessWidget {
       shortcuts: <SingleActivator, Intent>{
         const SingleActivator(LogicalKeyboardKey.arrowLeft): previousIntent,
         const SingleActivator(LogicalKeyboardKey.arrowRight): nextIntent,
-        const SingleActivator(LogicalKeyboardKey.home): homeIntent,
-        const SingleActivator(LogicalKeyboardKey.end): endIntent,
+        const SingleActivator(LogicalKeyboardKey.home): firstIntent,
+        const SingleActivator(LogicalKeyboardKey.end): lastIntent,
         const SingleActivator(LogicalKeyboardKey.escape): closeIntent,
       },
       child: Actions(
@@ -274,10 +274,10 @@ class PlayPart extends StatelessWidget {
                     Function()? createHandler<T extends Intent>(T t) =>
                         Actions.handler<T>(context, t);
                     <Function()?>[
-                      createHandler(homeIntent),
+                      createHandler(firstIntent),
                       createHandler(previousIntent),
                       createHandler(nextIntent),
-                      createHandler(endIntent),
+                      createHandler(lastIntent),
                     ][index]
                         ?.call();
                   },
