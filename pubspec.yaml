@@ -1,10 +1,10 @@
 name: lipl_control
 description: App that is used to maintain lyrics and playlists and send output to lipl-display
 publish_to: 'none'
-version: 1.3.0
+version: 1.4.0
 
 environment:
-  sdk: ^3.1.5
+  sdk: ^3.2.0
   flutter: ">=3.7.0 <4.0.0"
 
 dependencies:

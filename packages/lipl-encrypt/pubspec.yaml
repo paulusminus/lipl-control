@@ -1,9 +1,9 @@
 name: lipl_encrypt
 description: A starting point for Dart libraries or applications.
-version: 1.2.0
+version: 1.2.1
 
 environment:
-  sdk: ^3.1.5
+  sdk: ^3.2.0
 
 dependencies: 
   encrypt: ^5.0.1

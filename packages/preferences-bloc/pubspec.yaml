@@ -1,10 +1,10 @@
 name: preferences_bloc
 description: Library for handling preferences changes and storing
-version: 1.2.0
+version: 1.2.1
 publish_to: 'none'
 
 environment:
-  sdk: ^3.1.5
+  sdk: ^3.2.0
 
 dependencies:
   bloc: ^8.1.1

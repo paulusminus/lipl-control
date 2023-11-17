@@ -1,5 +1,16 @@
-# Lipl Control Flutter version
+![`build-badge`]
+[![`mit-badge`]](https://opensource.org/licenses/MIT)
 
-Lipl Control Flutter is an application that display lyrics and playlists. Optionally displays lyrics to a bluetooth connect display computer.
+# lipl-control
+
+## Description
+
+Lipl Control is an application that can be used to create, read, update and delete lyrics and playlists. 
+When connected to a Lipl Display bluetooth Server it will display the current part of a selected playlist or lyric.
+
+The application can be used on Android, Desktop and on the Web.
+
+[`build-badge`]: https://github.com/paulusminus/lipl-control/actions/workflows/flutter.yml/badge.svg
+[`mit-badge`]: https://img.shields.io/badge/License-MIT-yellow.svg
 
 
