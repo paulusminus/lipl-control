@@ -107,8 +107,9 @@ class __$$CredentialsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CredentialsImpl implements _Credentials {
-  const _$CredentialsImpl({this.username = null, this.password = null});
+class _$CredentialsImpl extends _Credentials {
+  const _$CredentialsImpl({this.username = null, this.password = null})
+      : super._();
 
   factory _$CredentialsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CredentialsImplFromJson(json);
@@ -154,9 +155,10 @@ class _$CredentialsImpl implements _Credentials {
   }
 }
 
-abstract class _Credentials implements Credentials {
+abstract class _Credentials extends Credentials {
   const factory _Credentials({final String? username, final String? password}) =
       _$CredentialsImpl;
+  const _Credentials._() : super._();
 
   factory _Credentials.fromJson(Map<String, dynamic> json) =
       _$CredentialsImpl.fromJson;

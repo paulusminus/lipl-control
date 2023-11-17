@@ -16,7 +16,7 @@ class PreferencesEventChange<T> extends PreferencesEvent<T> {
   final T? item;
 }
 
-class PreferencesState<T extends Equatable> extends Equatable {
+class PreferencesState<T> extends Equatable {
   const PreferencesState({
     required this.item,
     required this.status,
@@ -43,7 +43,7 @@ class PreferencesState<T extends Equatable> extends Equatable {
   List<Object?> get props => [item, status];
 }
 
-class PreferencesBloc<T extends Equatable>
+class PreferencesBloc<T>
     extends Bloc<PreferencesEvent<T>, PreferencesState<T>> {
   PreferencesBloc({
     required this.persist,

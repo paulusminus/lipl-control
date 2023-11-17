@@ -5,7 +5,7 @@ import 'package:lipl_model/lipl_model.dart';
 
 extension CredentialsExtension on Credentials {
   String get basicAuthenticationHeaderValue {
-    List<int> bytes = utf8.encode(toString());
+    List<int> bytes = utf8.encode('$username:$password');
     final encoded = base64Encode(bytes);
     return 'Basic $encoded';
   }

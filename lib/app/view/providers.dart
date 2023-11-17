@@ -105,8 +105,9 @@ class BlocProviders extends StatelessWidget {
       ..add(PreferencesEventLoad<LiplPreferences>());
 
     final editPreferencesBloc = LiplEditPreferencesBloc(
-        changes: preferencesBloc.stream,
-        defaultValue: LiplPreferences.blank(context.isMobile));
+      changes: preferencesBloc.stream,
+      defaultValue: const LiplPreferences(),
+    );
 
     final liplRestCubit = LiplAppCubit(
       credentialsStream: preferencesBloc.stream

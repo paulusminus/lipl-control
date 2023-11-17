@@ -21,7 +21,12 @@ String joinTitles(List<Summary> summaries) =>
 
 bool isSuccess(LiplAppState state) => state.status == LoadingStatus.success;
 
-void Function(List<Summary>) printTitles(String itemType) => (summaries) {
+void Function(List<Lyric>) printLyricTitles(String itemType) => (summaries) {
+      log.info('$itemType: ${summaries.length} titles');
+    };
+
+void Function(List<Playlist>) printPlaylistTitles(String itemType) =>
+    (summaries) {
       log.info('$itemType: ${summaries.length} titles');
     };
 
@@ -40,12 +45,12 @@ Future<void> main() async {
       .where(isSuccess)
       .map(selectLyrics)
       .distinct()
-      .listen(printTitles('Lyric'));
+      .listen(printLyricTitles('Lyric'));
   final StreamSubscription<List<Playlist>> subscription2 = cubit.stream
       .where(isSuccess)
       .map(selectPlaylists)
       .distinct()
-      .listen(printTitles('Playlist'));
+      .listen(printPlaylistTitles('Playlist'));
 
   log.info('Loading');
   await cubit.load();
@@ -104,7 +109,7 @@ Future<void> main() async {
 
   log.info('Renaming Leningrad 19');
   await cubit.putLyric(
-    l.copyWith(title: () => 'Leningrad 44'),
+    l.copyWith(title: 'Leningrad 44'),
   );
   log.info('Renamed Leningrad 19 to Leningrad 44');
 

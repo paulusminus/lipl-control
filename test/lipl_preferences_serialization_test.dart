@@ -4,11 +4,11 @@ import 'package:lipl_model/lipl_model.dart';
 void main() {
   group('Serialization', () {
     test('serialize blank', () {
-      final liplPreferences = LiplPreferences.blank(true);
+      const liplPreferences = LiplPreferences();
       final s = liplPreferences.serialize();
       expect(
         s,
-        '{"username":null,"password":null,"lyrics":[],"playlists":[]}',
+        '{"credentials":null,"lyrics":[],"playlists":[]}',
       );
     });
 
@@ -21,7 +21,7 @@ void main() {
       final s = liplPreferences.serialize();
       expect(
         s,
-        '{"username":"paul","password":"CumGranoSalis","lyrics":[],"playlists":[]}',
+        '{"credentials":{"username":"paul","password":"CumGranoSalis"},"lyrics":[],"playlists":[]}',
       );
     });
 
@@ -34,7 +34,7 @@ void main() {
       final s = liplPreferences.serialize();
       expect(
         s,
-        '{"username":"paul","password":"CumGranoSalis","lyrics":[{"id":"6","title":"Kortjakje","parts":[]}],"playlists":[]}',
+        '{"credentials":{"username":"paul","password":"CumGranoSalis"},"lyrics":[{"id":"6","title":"Kortjakje","parts":[]}],"playlists":[]}',
       );
     });
   });
@@ -42,7 +42,7 @@ void main() {
   group('deserialize', () {
     test('lyric', () {
       const s =
-          '{"username":"paul","password":"CumGranoSalis","lyrics":[{"id":"6","title":"Kortjakje","parts":[]}],"playlists":[]}';
+          '{"credentials":{"username":"paul","password":"CumGranoSalis"},"lyrics":[{"id":"6","title":"Kortjakje","parts":[]}],"playlists":[]}';
       expect(
         LiplPreferences.deserialize(s),
         const LiplPreferences(

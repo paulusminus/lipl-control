@@ -1,6 +1,6 @@
 name: lipl_model
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
+description: Domain models for lipl.
+version: 1.0.1
 publish: false
 
 environment:

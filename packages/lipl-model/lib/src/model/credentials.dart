@@ -5,6 +5,7 @@ part 'credentials.g.dart';
 
 @freezed
 class Credentials with _$Credentials {
+  const Credentials._();
   const factory Credentials({
     @Default(null) String? username,
     @Default(null) String? password,

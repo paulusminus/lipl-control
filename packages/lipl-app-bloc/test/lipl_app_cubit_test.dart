@@ -181,7 +181,7 @@ void main() {
         seed: () => loaded(api),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
-            title: () => 'Breng eens een emmer',
+            title: 'Breng eens een emmer',
           ),
         ),
         expect: () => [
@@ -189,7 +189,7 @@ void main() {
           LiplAppState(
             lyrics: [
               initialLyrics[0],
-              initialLyrics[1].copyWith(title: () => 'Breng eens een emmer'),
+              initialLyrics[1].copyWith(title: 'Breng eens een emmer'),
               initialLyrics[2],
             ].sortByTitle(),
             playlists: initialPlaylists.sortByTitle(),
@@ -283,7 +283,7 @@ void main() {
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
-            title: () => 'Breng eens een emmer',
+            title: 'Breng eens een emmer',
           ),
         ),
         expect: () => [

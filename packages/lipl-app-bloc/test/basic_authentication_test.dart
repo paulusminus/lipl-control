@@ -18,10 +18,6 @@ void main() {
       expect(credentials.password, 'test');
     });
 
-    test('props', () {
-      expect(createSubject().props, [username(), 'test']);
-    });
-
     test('toString', () {
       expect(
         createSubject().toString(),

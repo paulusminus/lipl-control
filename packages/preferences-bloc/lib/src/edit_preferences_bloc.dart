@@ -17,7 +17,7 @@ class EditPreferencesEventLoad<T> extends EditPreferencesEvent<T> {
   final T preferences;
 }
 
-class EditPreferencesState<T extends Equatable> extends Equatable {
+class EditPreferencesState<T> extends Equatable {
   const EditPreferencesState({
     required this.preferences,
     required this.initialPreferences,
@@ -50,7 +50,7 @@ class EditPreferencesState<T extends Equatable> extends Equatable {
   List<Object?> get props => [preferences, initialPreferences];
 }
 
-class EditPreferencesBloc<T extends Equatable>
+class EditPreferencesBloc<T>
     extends Bloc<EditPreferencesEvent<T>, EditPreferencesState<T>> {
   EditPreferencesBloc({
     required Stream<PreferencesState<T>> changes,

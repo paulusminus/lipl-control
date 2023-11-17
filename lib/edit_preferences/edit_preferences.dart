@@ -97,18 +97,16 @@ class EditPreferencesView extends StatelessWidget {
                             decoration:
                                 InputDecoration(labelText: l10n.usernameLabel),
                             onChanged: (String value) {
-                              final credentials = state.preferences.credentials;
                               context.read<LiplEditPreferencesBloc>().add(
                                     EditPreferencesEventChange<LiplPreferences>(
                                       preferences: state.preferences.copyWith(
-                                        credentials: () => credentials == null
-                                            ? Credentials(
-                                                username: value,
-                                                password: '',
-                                              )
-                                            : credentials.copyWith(
-                                                username: value,
-                                              ),
+                                        credentials: state
+                                                .preferences.credentials
+                                                ?.copyWith(username: value) ??
+                                            Credentials(
+                                              username: value,
+                                              password: null,
+                                            ),
                                       ),
                                     ),
                                   );
@@ -125,19 +123,17 @@ class EditPreferencesView extends StatelessWidget {
                               labelText: l10n.passwordLabel,
                             ),
                             onChanged: (String value) {
-                              final credentials = state.preferences.credentials;
                               context.read<LiplEditPreferencesBloc>().add(
                                     EditPreferencesEventChange<LiplPreferences>(
-                                        preferences: state.preferences.copyWith(
-                                      credentials: () => credentials == null
-                                          ? Credentials(
-                                              username: '',
-                                              password: value,
-                                            )
-                                          : credentials.copyWith(
-                                              password: value,
-                                            ),
-                                    )),
+                                      preferences: state.preferences.copyWith(
+                                        credentials: state
+                                                .preferences.credentials
+                                                ?.copyWith(password: value) ??
+                                            Credentials(
+                                                username: null,
+                                                password: value),
+                                      ),
+                                    ),
                                   );
                             },
                           ),
