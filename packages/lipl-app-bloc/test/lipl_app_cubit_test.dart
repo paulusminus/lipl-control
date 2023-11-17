@@ -94,7 +94,7 @@ void main() {
         final cubit = LiplAppCubit(credentialsStream: const Stream.empty());
         expect(
           cubit.state.copyWith(credentials: null),
-          LiplAppState.initial().copyWith(credentials: null),
+          const LiplAppState().copyWith(credentials: null),
         );
       });
 
@@ -210,7 +210,7 @@ void main() {
             credentialsStream: const Stream.empty(), api: errorApi),
         act: (cubit) async => await cubit.load(),
         expect: () => [
-          LiplAppState.initial().copyWith(
+          const LiplAppState().copyWith(
             status: LoadingStatus.loading,
             credentials: null,
           ),
@@ -227,10 +227,10 @@ void main() {
             credentialsStream: const Stream.empty(), api: errorApi),
         act: (cubit) async => await cubit.load(),
         expect: () => [
-          LiplAppState.initial().copyWith(
+          const LiplAppState().copyWith(
             status: LoadingStatus.loading,
           ),
-          LiplAppState.initial().copyWith(
+          const LiplAppState().copyWith(
             status: LoadingStatus.unauthorized,
           )
         ],

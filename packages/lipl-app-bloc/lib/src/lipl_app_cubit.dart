@@ -2,51 +2,26 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:loading_status/loading_status.dart';
 import 'lipl_rest_api.dart';
 
-class LiplAppState extends Equatable {
-  const LiplAppState({
-    required this.lyrics,
-    required this.playlists,
-    required this.status,
-    required this.credentials,
-  });
+part 'lipl_app_cubit.freezed.dart';
 
-  factory LiplAppState.initial() => const LiplAppState(
-        lyrics: [],
-        playlists: [],
-        status: LoadingStatus.initial,
-        credentials: null,
-      );
-
-  final List<Lyric> lyrics;
-  final List<Playlist> playlists;
-  final LoadingStatus status;
-  final Credentials? credentials;
-
-  LiplAppState copyWith({
-    List<Lyric>? lyrics,
-    List<Playlist>? playlists,
-    LoadingStatus? status,
-    Credentials? credentials,
-  }) =>
-      LiplAppState(
-        lyrics: lyrics ?? this.lyrics,
-        playlists: playlists ?? this.playlists,
-        status: status ?? this.status,
-        credentials: credentials ?? this.credentials,
-      );
-
-  @override
-  List<Object?> get props => [lyrics, playlists, status, credentials];
+@freezed
+class LiplAppState with _$LiplAppState {
+  const factory LiplAppState({
+    @Default([]) List<Lyric> lyrics,
+    @Default([]) List<Playlist> playlists,
+    @Default(LoadingStatus.initial) LoadingStatus status,
+    @Default(null) Credentials? credentials,
+  }) = _LiplAppState;
 }
 
 class LiplAppCubit extends Cubit<LiplAppState> {
   LiplAppCubit({required this.credentialsStream, LiplRestApiInterface? api})
-      : super(LiplAppState.initial()) {
+      : super(const LiplAppState()) {
     _api = api;
     _subscription = credentialsStream.listen((credentials) {
       emit(state.copyWith(credentials: credentials));
