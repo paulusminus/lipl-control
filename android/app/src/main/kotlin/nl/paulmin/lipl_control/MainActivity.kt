@@ -1,4 +1,4 @@
-package com.example.lipl_control_flutter
+package nl.paulmin.lipl_control
 
 import io.flutter.embedding.android.FlutterActivity
 
