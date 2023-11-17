@@ -49,3 +49,5 @@ app.*.map.json
 
 # Coverage
 coverage/
+
+build_deploy_web.sh
