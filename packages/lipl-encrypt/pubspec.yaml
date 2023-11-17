@@ -1,5 +1,6 @@
 name: lipl_encrypt
-description: A starting point for Dart libraries or applications.
+description: Encryption used when storing preferences
+repository: https://github.com/paulusminus/lipl-control/
 version: 1.2.1
 
 environment:

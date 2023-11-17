@@ -1,5 +1,6 @@
 name: lipl_bluetooth
-description: A new Flutter project.
+description: Scan for TV devices and write a part to them
+repository: https://github.com/paulusminus/lipl-control/
 publish_to: 'none' 
 
 version: 1.0.2
