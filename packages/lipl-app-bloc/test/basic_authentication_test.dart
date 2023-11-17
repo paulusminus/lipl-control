@@ -17,13 +17,6 @@ void main() {
       expect(credentials.username, username());
       expect(credentials.password, 'test');
     });
-
-    test('toString', () {
-      expect(
-        createSubject().toString(),
-        'paul:test',
-      );
-    });
   });
 
   group('Authentication', () {

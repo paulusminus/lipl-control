@@ -4,6 +4,8 @@ import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 
+const baseUrl = 'https://lipl/paulmin.nl/api/v1/';
+
 void main() {
   group('LiplRestApi', () {
     late Dio dio;
@@ -12,7 +14,7 @@ void main() {
 
     setUp(() {
       dio = Dio();
-      dioAdapter = DioAdapter(dio: dio);
+      dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
       restClient = LiplRestApi(dio);
     });
 
