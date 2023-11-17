@@ -9,7 +9,6 @@ environment:
 
 dependencies:
   bloc: ^8.1.1
-  equatable: ^2.0.5
   loading_status:
     path: "../loading-status"
 
@@ -19,3 +18,5 @@ dev_dependencies:
   bloc_test: ^9.1.1
   lints: ^3.0.0
   test: ^1.24.9
+  lipl_model:
+    path: '../lipl-model'

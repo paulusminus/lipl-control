@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/src/persist.dart';
 
@@ -16,7 +15,7 @@ class PreferencesEventChange<T> extends PreferencesEvent<T> {
   final T? item;
 }
 
-class PreferencesState<T> extends Equatable {
+class PreferencesState<T> {
   const PreferencesState({
     required this.item,
     required this.status,
@@ -40,7 +39,13 @@ class PreferencesState<T> extends Equatable {
       );
 
   @override
-  List<Object?> get props => [item, status];
+  int get hashCode => Object.hash(item, status);
+
+  @override
+  bool operator ==(Object other) =>
+      (other is PreferencesState<T>) &&
+      other.item == item &&
+      other.status == status;
 }
 
 class PreferencesBloc<T>

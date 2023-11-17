@@ -2,23 +2,25 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/preferences_bloc.dart';
 import 'package:test/test.dart';
-import 'lipl_preferences.dart';
 import 'persist_shared_preferences.dart';
+import 'package:lipl_model/lipl_model.dart';
 
 class SharedPreferencesError extends Error {}
 
 void main() {
   group('PreferencesBloc', () {
     LiplPreferences initialLiplPreferences() => const LiplPreferences(
-          username: 'username 1',
-          password: 'password 1',
-          baseUrl: 'baseUrl 1',
+          credentials: Credentials(
+            username: 'username 1',
+            password: 'password 1',
+          ),
         );
 
     LiplPreferences secundaryPreferences() => const LiplPreferences(
-          username: 'username 2',
-          password: 'password 2',
-          baseUrl: 'baseUrl 2',
+          credentials: Credentials(
+            username: 'username 2',
+            password: 'password 2',
+          ),
         );
 
     group('LiplPreferences', () {
@@ -35,17 +37,7 @@ void main() {
         final state = PreferencesState<LiplPreferences>.initial();
         expect(state.item, null);
         expect(state.status, LoadingStatus.initial);
-      });
-
-      test('props', () async {
-        final state = PreferencesState<LiplPreferences>(
-          item: initialLiplPreferences(),
-          status: LoadingStatus.success,
-        );
-        expect(state.props, [
-          initialLiplPreferences(),
-          LoadingStatus.success,
-        ]);
+        expect(state, PreferencesState.initial());
       });
     });
 
@@ -70,14 +62,18 @@ void main() {
         build: () => createSubject(
           initialValue: initialLiplPreferences(),
         ),
-        act: (bloc) => bloc.add(PreferencesEventLoad()),
+        act: (bloc) => bloc.add(PreferencesEventLoad<LiplPreferences>()),
         expect: () => [
-          PreferencesState<LiplPreferences>.initial().copyWith(
-            status: LoadingStatus.loading,
+          equals(
+            PreferencesState<LiplPreferences>.initial().copyWith(
+              status: LoadingStatus.loading,
+            ),
           ),
-          PreferencesState<LiplPreferences>(
-            item: initialLiplPreferences(),
-            status: LoadingStatus.success,
+          equals(
+            PreferencesState<LiplPreferences>(
+              item: initialLiplPreferences(),
+              status: LoadingStatus.success,
+            ),
           ),
         ],
       );
@@ -103,23 +99,27 @@ void main() {
           PreferencesState<LiplPreferences>>(
         'EventChange',
         build: () => createSubject(),
-        seed: () => PreferencesState(
+        seed: () => PreferencesState<LiplPreferences>(
           item: initialLiplPreferences(),
           status: LoadingStatus.success,
         ),
         act: (bloc) => bloc.add(
-          PreferencesEventChange(
+          PreferencesEventChange<LiplPreferences>(
             item: secundaryPreferences(),
           ),
         ),
         expect: () => [
-          PreferencesState<LiplPreferences>(
-            item: initialLiplPreferences(),
-            status: LoadingStatus.changing,
+          equals(
+            PreferencesState<LiplPreferences>(
+              item: initialLiplPreferences(),
+              status: LoadingStatus.changing,
+            ),
           ),
-          PreferencesState<LiplPreferences>(
-            item: secundaryPreferences(),
-            status: LoadingStatus.success,
+          equals(
+            PreferencesState<LiplPreferences>(
+              item: secundaryPreferences(),
+              status: LoadingStatus.success,
+            ),
           ),
         ],
       ); // end allChanged

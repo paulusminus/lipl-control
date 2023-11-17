@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 import 'package:loading_status/loading_status.dart';
 import 'package:preferences_bloc/preferences_bloc.dart';
@@ -17,7 +16,7 @@ class EditPreferencesEventLoad<T> extends EditPreferencesEvent<T> {
   final T preferences;
 }
 
-class EditPreferencesState<T> extends Equatable {
+class EditPreferencesState<T> {
   const EditPreferencesState({
     required this.preferences,
     required this.initialPreferences,
@@ -47,7 +46,13 @@ class EditPreferencesState<T> extends Equatable {
       );
 
   @override
-  List<Object?> get props => [preferences, initialPreferences];
+  int get hashCode => Object.hash(preferences, initialPreferences);
+
+  @override
+  operator ==(Object other) =>
+      other is EditPreferencesState<T> &&
+      other.preferences == preferences &&
+      other.initialPreferences == initialPreferences;
 }
 
 class EditPreferencesBloc<T>

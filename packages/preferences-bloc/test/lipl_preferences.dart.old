@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'package:equatable/equatable.dart';
 
-class LiplPreferences extends Equatable {
+class LiplPreferences {
   const LiplPreferences({
     required this.username,
     required this.password,
@@ -42,7 +41,4 @@ class LiplPreferences extends Equatable {
       baseUrl: json['base_url'],
     );
   }
-
-  @override
-  List<Object?> get props => [username, password, baseUrl];
 }
