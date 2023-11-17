@@ -306,10 +306,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_blue_plus
-      sha256: a4a2a85dc40c6caedc790dcd610dadd5a46e8f3ba70714b1a31837ec13f656b7
+      sha256: c2d03fa95f1a02370f132cb70852ce565e53e062718941ad129c521f789c9351
       url: "https://pub.dev"
     source: hosted
-    version: "1.29.0"
+    version: "1.29.1"
   flutter_driver:
     dependency: transitive
     description: flutter
