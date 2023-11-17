@@ -1,4 +1,7 @@
-import 'package:lipl_model/lipl_model.dart';
+// import 'package:lipl_model/src/model/model.dart';
+import 'dart:convert';
+
+import 'package:lipl_model/src/model/model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -22,7 +25,7 @@ void main() {
     });
 
     test('Factory blank', () {
-      final LiplPreferences liplPreferences = LiplPreferences.blank(false);
+      final LiplPreferences liplPreferences = LiplPreferences();
       expect(
         liplPreferences.credentials,
         null,
@@ -36,23 +39,21 @@ void main() {
       );
     });
 
-    test('Props', () {
-      expect(
-        createSubject().props,
-        <Object?>['username', 'password', [], []],
-      );
+    test('json string', () {
+      expect(jsonEncode(createSubject().toJson()),
+          '{"credentials":{"username":"username","password":"password"},"lyrics":[],"playlists":[]}');
     });
 
     test('Json', () {
       expect(
-        LiplPreferences.deserialize(createSubject().serialize()),
+        LiplPreferences.fromJson(createSubject().toJson()),
         createSubject(),
       );
     });
 
     test('Deserialize error', () {
       expect(
-        () => LiplPreferences.deserialize('aslkjidf'),
+        () => LiplPreferences.deserialize('asdlkjf'),
         throwsFormatException,
       );
     });
@@ -64,11 +65,27 @@ void main() {
       );
     });
 
+    test('Deserialize error', () {
+      expect(
+        () => LiplPreferences.deserialize('asdlkjf'),
+        throwsFormatException,
+      );
+    });
+
+    test('Serialize equality', () {
+      expect(
+        LiplPreferences.deserialize(createSubject().serialize()),
+        createSubject(),
+      );
+    });
+
     test('CopyWith change username', () {
-      final LiplPreferences liplPreferences = createSubject().copyWith(
-          credentials: () =>
-              Credentials(username: 'username 2', password: 'hallo'));
-      expect(liplPreferences.credentials?.username, 'username 2');
+      final LiplPreferences? liplPreferences =
+          createSubject().copyWith.credentials?.call(
+                username: 'username 2',
+                password: 'hallo',
+              );
+      expect(liplPreferences?.credentials?.username, 'username 2');
     });
   });
 }

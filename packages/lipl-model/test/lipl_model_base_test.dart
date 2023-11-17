@@ -1,4 +1,4 @@
-import 'package:lipl_model/lipl_model.dart';
+import 'package:lipl_model/src/model/model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -76,7 +76,7 @@ void main() {
       });
 
       test('change title', () {
-        final Lyric copyLyric = lyric.copyWith(title: () => 'new title');
+        final Lyric copyLyric = lyric.copyWith(title: 'new title');
         expect(
           copyLyric.title,
           'new title',
@@ -96,7 +96,7 @@ void main() {
           ['new part']
         ];
         final Lyric copyLyric = lyric.copyWith(
-          parts: () => newPart,
+          parts: newPart,
         );
         expect(
           copyLyric.title,
@@ -117,13 +117,6 @@ void main() {
       expect(
         lyric.toString(),
         'Lyric: title 1',
-      );
-    });
-
-    test('props', () {
-      expect(
-        lyric.props,
-        [lyric.id, lyric.title, lyric.parts],
       );
     });
   });
@@ -175,7 +168,7 @@ void main() {
     late Map<String, dynamic> lyricPostJson;
 
     setUp(() {
-      lyricPost = const LyricPost(title: 'title 1', parts: []);
+      lyricPost = LyricPost(title: 'title 1', parts: []);
       lyricPostJson = {
         'title': 'title 1',
         'parts': [],
@@ -222,13 +215,6 @@ void main() {
       expect(
         LyricPost.fromJson(lyricPost.toJson()),
         lyricPost,
-      );
-    });
-
-    test('props', () {
-      expect(
-        lyricPost.props,
-        [lyricPost.title, lyricPost.parts],
       );
     });
   });
@@ -298,13 +284,6 @@ void main() {
       expect(
         summary.toString(),
         'Summary: title 1',
-      );
-    });
-
-    test('props', () {
-      expect(
-        summary.props,
-        [summary.id, summary.title],
       );
     });
   });
@@ -441,13 +420,6 @@ void main() {
         'Playlist: playlist 1',
       );
     });
-
-    test('props', () {
-      expect(
-        playlist.props,
-        [playlist.id, playlist.title, playlist.members],
-      );
-    });
   });
 
   group('PlaylistPost', () {
@@ -498,13 +470,6 @@ void main() {
       expect(
         PlaylistPost.fromJson(playlistPost.toJson()),
         playlistPost,
-      );
-    });
-
-    test('props', () {
-      expect(
-        playlistPost.props,
-        [playlistPost.title, playlistPost.members],
       );
     });
   });
