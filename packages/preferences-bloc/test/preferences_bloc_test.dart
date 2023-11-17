@@ -64,16 +64,12 @@ void main() {
         ),
         act: (bloc) => bloc.add(PreferencesEventLoad<LiplPreferences>()),
         expect: () => [
-          equals(
-            PreferencesState<LiplPreferences>.initial().copyWith(
-              status: LoadingStatus.loading,
-            ),
+          PreferencesState<LiplPreferences>.initial().copyWith(
+            status: LoadingStatus.loading,
           ),
-          equals(
-            PreferencesState<LiplPreferences>(
-              item: initialLiplPreferences(),
-              status: LoadingStatus.success,
-            ),
+          PreferencesState<LiplPreferences>(
+            item: initialLiplPreferences(),
+            status: LoadingStatus.success,
           ),
         ],
       );
@@ -109,17 +105,13 @@ void main() {
           ),
         ),
         expect: () => [
-          equals(
-            PreferencesState<LiplPreferences>(
-              item: initialLiplPreferences(),
-              status: LoadingStatus.changing,
-            ),
+          PreferencesState<LiplPreferences>(
+            item: initialLiplPreferences(),
+            status: LoadingStatus.changing,
           ),
-          equals(
-            PreferencesState<LiplPreferences>(
-              item: secundaryPreferences(),
-              status: LoadingStatus.success,
-            ),
+          PreferencesState<LiplPreferences>(
+            item: secundaryPreferences(),
+            status: LoadingStatus.success,
           ),
         ],
       ); // end allChanged

@@ -128,19 +128,17 @@ void main() {
           ),
         ),
         expect: () => [
-          equals(
-            EditPreferencesState<LiplPreferences>(
-              initialPreferences: LiplPreferences(
-                credentials: Credentials(
-                  username: username(),
-                  password: password(),
-                ),
+          EditPreferencesState<LiplPreferences>(
+            initialPreferences: LiplPreferences(
+              credentials: Credentials(
+                username: username(),
+                password: password(),
               ),
-              preferences: const LiplPreferences(
-                credentials: Credentials(
-                  username: 'Piet',
-                  password: 'Puk',
-                ),
+            ),
+            preferences: const LiplPreferences(
+              credentials: Credentials(
+                username: 'Piet',
+                password: 'Puk',
               ),
             ),
           ),
@@ -152,35 +150,31 @@ void main() {
         'Changes',
         build: () => createSubjectChanges(),
         expect: () => [
-          equals(
-            const EditPreferencesState<LiplPreferences>(
-              initialPreferences: LiplPreferences(
-                credentials: Credentials(
-                  username: 'Jos',
-                  password: 'Knippen',
-                ),
+          const EditPreferencesState<LiplPreferences>(
+            initialPreferences: LiplPreferences(
+              credentials: Credentials(
+                username: 'Jos',
+                password: 'Knippen',
               ),
-              preferences: LiplPreferences(
-                credentials: Credentials(
-                  username: 'Jos',
-                  password: 'Knippen',
-                ),
+            ),
+            preferences: LiplPreferences(
+              credentials: Credentials(
+                username: 'Jos',
+                password: 'Knippen',
               ),
             ),
           ),
-          equals(
-            const EditPreferencesState<LiplPreferences>(
-              initialPreferences: LiplPreferences(
-                credentials: Credentials(
-                  username: 'Jos 2',
-                  password: 'Knippen 2',
-                ),
+          const EditPreferencesState<LiplPreferences>(
+            initialPreferences: LiplPreferences(
+              credentials: Credentials(
+                username: 'Jos 2',
+                password: 'Knippen 2',
               ),
-              preferences: LiplPreferences(
-                credentials: Credentials(
-                  username: 'Jos 2',
-                  password: 'Knippen 2',
-                ),
+            ),
+            preferences: LiplPreferences(
+              credentials: Credentials(
+                username: 'Jos 2',
+                password: 'Knippen 2',
               ),
             ),
           ),
