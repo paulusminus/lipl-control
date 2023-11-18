@@ -1,0 +1,19 @@
+{
+    "@@locale": "en",
+    "connectTo": "Connected to",
+    "@connectedTo": {
+        "description": "Show connected information"
+    },
+    "bluetoothTitle": "TV connections",
+    "@bluetoothTitle": {
+        "description": "Title TV Connections"
+    },
+    "bluetoothActiveConnection": "Active connection",
+    "@bluetoothActiveConnection": {
+        "description": "Active connection"
+    },
+    "bluetoothPossibleConnections": "Possible connections",
+    "@bluetoothPossibleConnections": {
+        "description": "Possible connectons"
+    }
+}

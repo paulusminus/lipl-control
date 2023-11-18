@@ -10,7 +10,9 @@ When connected to a Lipl Display bluetooth Server it will display the current pa
 
 The application can be used on Android, Desktop and on the Web.
 
-To see where this fits in read the [`book`];
+To see where this fits in read the [`book`].
+
+When using this app please check if location services is enabled on your phone.
 
 
 [`build-badge`]: https://github.com/paulusminus/lipl-control/actions/workflows/flutter.yml/badge.svg

@@ -48,6 +48,7 @@ class LyricListNoMobile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: kIsWeb ? null : const PreferencesButton(),
+        titleSpacing: 0,
         title: Text(l10n.liplTitle),
         actions: <Widget>[
           const SearchButton(),
@@ -354,15 +355,15 @@ class BluetoothIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     return BlocBuilder<ScanResultsCubit, ScanState>(
       builder: (BuildContext context, ScanState state) => IconButton(
           onPressed: () async {
             final scanResultsCubit = context.read<ScanResultsCubit>();
             final NavigatorState navigator = Navigator.of(context);
             await scanResultsCubit.startScanning();
-            navigator.push(ScanPage.route(
-                l10n.bluetoothScreenName, l10n.bluetoothConnectedTo));
+            navigator.push(
+              ScanPage.route(),
+            );
           },
           icon: Icon(
             state.connectedDevice != null
@@ -408,20 +409,20 @@ class RefreshIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LiplAppCubit, LiplAppState>(
-      builder: (BuildContext context, LiplAppState state) {
+      builder: (BuildContext context, LiplAppState liplAppState) {
         final isMobile = context.isMobile;
-        final liplRestCubit = context.read<LiplAppCubit>();
+        // final liplRestCubit = context.read<LiplAppCubit>();
         final liplPreferencesBloc = context.read<LiplPreferencesBloc>();
         return IconButton(
-          onPressed: state.status == LoadingStatus.loading
+          onPressed: liplAppState.status == LoadingStatus.loading
               ? null
               : () async {
-                  await liplRestCubit.load();
+                  await context.read<LiplAppCubit>().load();
                   if (isMobile) {
                     final preferences =
                         liplPreferencesBloc.state.item?.copyWith(
-                      lyrics: liplRestCubit.state.lyrics,
-                      playlists: liplRestCubit.state.playlists,
+                      lyrics: liplAppState.lyrics,
+                      playlists: liplAppState.playlists,
                     );
                     liplPreferencesBloc.add(
                       PreferencesEventChange<LiplPreferences>(

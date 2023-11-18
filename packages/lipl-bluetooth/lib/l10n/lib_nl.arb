@@ -1,0 +1,19 @@
+{
+    "@@locale": "nl",
+    "connectTo": "Verbonden met",
+    "@connectedTo": {
+        "description": "Toon verbinding details"
+    },
+    "bluetoothTitle": "TV Verbindingen",
+    "@bluetoothTitle": {
+        "description": "Titel TV Verbindingen"
+    },
+    "bluetoothActiveConnection": "Nu verbonden met",
+    "@bluetoothActiveConnection": {
+        "description": "show active connection"
+    },
+    "bluetoothPossibleConnections": "Mogelijke verbindingen",
+    "@bluetoothPossibleConnections": {
+        "description": "Mogelijke verbindingen"
+    }
+}
