@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'lipl_bluetooth_localizations_en.dart';
-import 'lipl_bluetooth_localizations_nl.dart';
+import 'app_localizations_en.dart';
+import 'app_localizations_nl.dart';
 
 /// Callers can lookup localized strings with an instance of BluetoothAppLocalizations
 /// returned by `BluetoothAppLocalizations.of(context)`.
@@ -16,7 +16,7 @@ import 'lipl_bluetooth_localizations_nl.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'l10n/lipl_bluetooth_localizations.dart';
+/// import 'l10n/app_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: BluetoothAppLocalizations.localizationsDelegates,

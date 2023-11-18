@@ -1,4 +1,4 @@
-import 'lipl_bluetooth_localizations.dart';
+import 'app_localizations.dart';
 
 /// The translations for English (`en`).
 class BluetoothAppLocalizationsEn extends BluetoothAppLocalizations {
