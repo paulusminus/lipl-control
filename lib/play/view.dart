@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
+import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/widget/confirm.dart';
 import 'package:lipl_model/lipl_model.dart';
@@ -114,7 +114,7 @@ class PlayPage extends StatelessWidget {
 }
 
 Future<void> Function(int) createUpdatePage(
-  ScanResultsCubit cubit,
+  ScanCubit cubit,
   List<LyricPart> lyricParts,
 ) {
   return (int page) async {
@@ -124,7 +124,7 @@ Future<void> Function(int) createUpdatePage(
   };
 }
 
-Future<void> updateCommand(ScanResultsCubit cubit, String command) async {
+Future<void> updateCommand(ScanCubit cubit, String command) async {
   await cubit.writeCommand(command);
 }
 
@@ -203,7 +203,7 @@ class PlayPart extends StatelessWidget {
     final LastIntent lastIntent = LastIntent();
     final CloseIntent closeIntent = CloseIntent();
 
-    final ScanResultsCubit scanResultsCubit = context.read<ScanResultsCubit>();
+    final ScanCubit scanResultsCubit = context.read<ScanCubit>();
     final Logger logger = RepositoryProvider.of<Logger>(context);
     Future<void> Function(int) updatePage =
         createUpdatePage(scanResultsCubit, lyricParts);
@@ -227,7 +227,7 @@ class PlayPart extends StatelessWidget {
         },
         child: Focus(
           autofocus: true,
-          child: BlocBuilder<ScanResultsCubit, ScanState>(
+          child: BlocBuilder<ScanCubit, ScanState>(
             builder: (BuildContext context, ScanState state) {
               return Scaffold(
                 appBar: AppBar(

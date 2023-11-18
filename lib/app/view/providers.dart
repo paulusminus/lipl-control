@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:lipl_bluetooth/lipl_bluetooth.dart' as lipl_bluetooth;
+import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/search/search_cubit.dart';
@@ -99,7 +99,7 @@ class BlocProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scanResultCubit = lipl_bluetooth.ScanResultsCubit(logger: logger);
+    final scanResultCubit = ScanCubit(logger: logger);
 
     final preferencesBloc = LiplPreferencesBloc()
       ..add(PreferencesEventLoad<LiplPreferences>());
@@ -124,7 +124,7 @@ class BlocProviders extends StatelessWidget {
     final selectTabCubit = SelectedTabCubit();
     return MultiBlocProvider(
       providers: <BlocProvider<dynamic>>[
-        BlocProvider<lipl_bluetooth.ScanResultsCubit>.value(
+        BlocProvider<ScanCubit>.value(
           value: scanResultCubit,
         ),
         BlocProvider<LiplPreferencesBloc>.value(
@@ -158,7 +158,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.dark,
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         AppLocalizations.delegate,
-        lipl_bluetooth.AppLocalizations.delegate,
+        BluetoothAppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

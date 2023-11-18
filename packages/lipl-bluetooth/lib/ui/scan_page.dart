@@ -14,10 +14,9 @@ class ScanPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = BluetoothAppLocalizations.of(context);
     return ScaffoldMessenger(
-      child:
-          BlocBuilder<ScanResultsCubit, ScanState>(builder: (context, state) {
+      child: BlocBuilder<ScanCubit, ScanState>(builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text(l10n?.bluetoothTitle ?? 'TV Connections')),
           body: Column(
@@ -40,7 +39,7 @@ class ScanPage extends StatelessWidget {
                       trailing: IconButton(
                         icon: const Icon(Icons.tv_off),
                         onPressed: () {
-                          context.read<ScanResultsCubit>().disconnect();
+                          context.read<ScanCubit>().disconnect();
                         },
                       ),
                     ),
@@ -73,7 +72,7 @@ class ScanPage extends StatelessWidget {
                                   icon: const Icon(Icons.connected_tv),
                                   onPressed: () async {
                                     await context
-                                        .read<ScanResultsCubit>()
+                                        .read<ScanCubit>()
                                         .connect(scanResult.device);
                                   },
                                 ),
@@ -92,8 +91,8 @@ class ScanPage extends StatelessWidget {
                 Icon(state.isScanning ? Icons.stop : Icons.bluetooth_searching),
             onPressed: () async {
               state.isScanning
-                  ? await context.read<ScanResultsCubit>().stopScanning()
-                  : await context.read<ScanResultsCubit>().startScanning();
+                  ? await context.read<ScanCubit>().stopScanning()
+                  : await context.read<ScanCubit>().startScanning();
             },
           ),
         );

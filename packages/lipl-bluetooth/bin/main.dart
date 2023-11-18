@@ -44,8 +44,8 @@ class BluetoothProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ScanResultsCubit>.value(
-          value: ScanResultsCubit(logger: logger),
+        BlocProvider<ScanCubit>.value(
+          value: ScanCubit(logger: logger),
         )
       ],
       child: const LiplBluetoothApp(),

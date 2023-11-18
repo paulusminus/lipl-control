@@ -1,8 +1,8 @@
 import 'lipl_bluetooth_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).
-class AppLocalizationsNl extends AppLocalizations {
-  AppLocalizationsNl([String locale = 'nl']) : super(locale);
+class BluetoothAppLocalizationsNl extends BluetoothAppLocalizations {
+  BluetoothAppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
   String get connectTo => 'Verbonden met';

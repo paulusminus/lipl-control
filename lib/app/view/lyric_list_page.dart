@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lipl_bluetooth/state/scan_results_cubit.dart';
-import 'package:lipl_bluetooth/ui/scan_page.dart';
+import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/edit_lyric/edit_lyric.dart';
 import 'package:lipl_control/edit_playlist/edit_playlist.dart';
@@ -355,10 +354,10 @@ class BluetoothIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScanResultsCubit, ScanState>(
+    return BlocBuilder<ScanCubit, ScanState>(
       builder: (BuildContext context, ScanState state) => IconButton(
           onPressed: () async {
-            final scanResultsCubit = context.read<ScanResultsCubit>();
+            final scanResultsCubit = context.read<ScanCubit>();
             final NavigatorState navigator = Navigator.of(context);
             await scanResultsCubit.startScanning();
             navigator.push(
