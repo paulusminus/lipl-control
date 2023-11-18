@@ -109,29 +109,40 @@ class PlayPage extends StatelessWidget {
     return PlayPart(
       title: title,
       lyricParts: lyricParts,
+      onSendCommand: createSendCommand(context.read<ScanCubit>()),
+      onUpdatePage: createUpdatePage(context.read<ScanCubit>()),
     );
   }
 }
 
-Future<void> Function(int) createUpdatePage(
+Future<void> Function(int, List<LyricPart>) createUpdatePage(
   ScanCubit cubit,
-  List<LyricPart> lyricParts,
 ) {
-  return (int page) async {
+  return (int page, List<LyricPart> lyricParts) async {
     final LyricPart part = lyricParts[page];
     await cubit.writeText(part.text);
     await cubit.writeStatus('${part.title} (${part.current} / ${part.total})');
   };
 }
 
-Future<void> updateCommand(ScanCubit cubit, String command) async {
-  await cubit.writeCommand(command);
+Future<void> Function(String) createSendCommand(ScanCubit cubit) {
+  return (String command) async {
+    await cubit.writeCommand(command);
+  };
 }
 
 class PlayPart extends StatelessWidget {
-  const PlayPart({super.key, required this.title, required this.lyricParts});
+  const PlayPart({
+    super.key,
+    required this.title,
+    required this.lyricParts,
+    required this.onSendCommand,
+    required this.onUpdatePage,
+  });
   final String title;
   final List<LyricPart> lyricParts;
+  final Future<void> Function(String) onSendCommand;
+  final Future<void> Function(int, List<LyricPart>) onUpdatePage;
 
   List<PopupMenuItem<String>> buildCommandMenu(AppLocalizations l10n) {
     return <PopupMenuItem<String>>[
@@ -203,11 +214,8 @@ class PlayPart extends StatelessWidget {
     final LastIntent lastIntent = LastIntent();
     final CloseIntent closeIntent = CloseIntent();
 
-    final ScanCubit scanResultsCubit = context.read<ScanCubit>();
     final Logger logger = RepositoryProvider.of<Logger>(context);
-    Future<void> Function(int) updatePage =
-        createUpdatePage(scanResultsCubit, lyricParts);
-    updatePage(0);
+    onUpdatePage(0, lyricParts);
 
     return Shortcuts(
       shortcuts: <SingleActivator, Intent>{
@@ -246,11 +254,11 @@ class PlayPart extends StatelessWidget {
                               textCancel: l10n.cancelButtonLabel,
                             );
                             if (result) {
-                              await updateCommand(scanResultsCubit, command);
+                              await onSendCommand(command);
                               logger.info('Command $command processed');
                             }
                           } else {
-                            await updateCommand(scanResultsCubit, command);
+                            await onSendCommand(command);
                             logger.info('Command $command processed');
                           }
                         },
@@ -261,7 +269,7 @@ class PlayPart extends StatelessWidget {
                 body: PageView(
                   controller: controller,
                   onPageChanged: (int page) async {
-                    await updatePage(page);
+                    await onUpdatePage(page, lyricParts);
                   },
                   children: buildPageViewChildren(),
                 ),
