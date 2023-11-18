@@ -24,14 +24,19 @@ class ScanPage extends StatelessWidget {
             children: [
               if (state.isConnected())
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      l10n?.bluetoothActiveConnection ?? 'Now connected to',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Text(
+                        l10n?.bluetoothActiveConnection ?? 'Now connected to',
+                        textAlign: TextAlign.left,
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
                     ),
                     ListTile(
                       title: Text(
-                          '${l10n?.connectTo} ${state.connectedDevice!.device.remoteId} / ${state.connectedDevice!.device.advName}  '),
+                          '${state.connectedDevice!.device.remoteId} / ${state.connectedDevice!.device.advName}  '),
                       trailing: IconButton(
                         icon: const Icon(Icons.tv_off),
                         onPressed: () {
@@ -43,31 +48,39 @@ class ScanPage extends StatelessWidget {
                 ),
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      l10n?.bluetoothPossibleConnections ??
-                          'Possible connections',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Text(
+                        l10n?.bluetoothPossibleConnections ??
+                            'Possible connections',
+                        style: Theme.of(context).textTheme.labelLarge,
+                        textAlign: TextAlign.left,
+                      ),
                     ),
-                    ListView(
-                      children: state.scanResults
-                          .where((scanResult) =>
-                              scanResult.device !=
-                              state.connectedDevice?.device)
-                          .map(
-                            (scanResult) => ListTile(
-                              title: Text(scanResult.advertisementData.advName),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.connected_tv),
-                                onPressed: () async {
-                                  await context
-                                      .read<ScanResultsCubit>()
-                                      .connect(scanResult.device);
-                                },
+                    Expanded(
+                      child: ListView(
+                        children: state.scanResults
+                            .where((scanResult) =>
+                                scanResult.device !=
+                                state.connectedDevice?.device)
+                            .map(
+                              (scanResult) => ListTile(
+                                title:
+                                    Text(scanResult.advertisementData.advName),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.connected_tv),
+                                  onPressed: () async {
+                                    await context
+                                        .read<ScanResultsCubit>()
+                                        .connect(scanResult.device);
+                                  },
+                                ),
                               ),
-                            ),
-                          )
-                          .toList(),
+                            )
+                            .toList(),
+                      ),
                     ),
                   ],
                 ),

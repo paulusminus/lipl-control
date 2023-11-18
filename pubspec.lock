@@ -481,7 +481,7 @@ packages:
       path: "packages/lipl-bluetooth"
       relative: true
     source: path
-    version: "1.0.2"
+    version: "1.0.3"
   lipl_encrypt:
     dependency: "direct main"
     description:
