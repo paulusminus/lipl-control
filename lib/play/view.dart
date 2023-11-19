@@ -248,75 +248,78 @@ class PlayPart extends StatelessWidget {
                       },
                       children: buildPageViewChildren(),
                     ),
-                    GridView.count(
-                      crossAxisCount: 2,
-                      children: <Widget>[
-                        TextButton(
-                          onPressed: () async {
-                            await onSendCommand('d');
-                          },
-                          child: Text(
-                            l10n.dark,
-                            style: const TextStyle(
-                              letterSpacing: 1.5,
+                    Center(
+                      child: Wrap(
+                        direction: Axis.vertical,
+                        spacing: 10,
+                        children: <Widget>[
+                          TextButton(
+                            onPressed: () async {
+                              await onSendCommand('d');
+                            },
+                            child: Text(
+                              l10n.dark,
+                              style: const TextStyle(
+                                letterSpacing: 1.5,
+                              ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            await onSendCommand('l');
-                          },
-                          child: Text(
-                            l10n.light,
-                            style: const TextStyle(
-                              letterSpacing: 1.5,
+                          TextButton(
+                            onPressed: () async {
+                              await onSendCommand('l');
+                            },
+                            child: Text(
+                              l10n.light,
+                              style: const TextStyle(
+                                letterSpacing: 1.5,
+                              ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            await onSendCommand('+');
-                          },
-                          child: Text(
-                            l10n.bigger,
-                            style: const TextStyle(
-                              letterSpacing: 1.5,
+                          TextButton(
+                            onPressed: () async {
+                              await onSendCommand('+');
+                            },
+                            child: Text(
+                              l10n.bigger,
+                              style: const TextStyle(
+                                letterSpacing: 1.5,
+                              ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            await onSendCommand('-');
-                          },
-                          child: Text(
-                            l10n.smaller,
-                            style: const TextStyle(
-                              letterSpacing: 1.5,
+                          TextButton(
+                            onPressed: () async {
+                              await onSendCommand('-');
+                            },
+                            child: Text(
+                              l10n.smaller,
+                              style: const TextStyle(
+                                letterSpacing: 1.5,
+                              ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            final result = await confirm(
-                              context,
-                              title: l10n.poweroff,
-                              content: l10n.confirmPoweroff,
-                              textOK: l10n.okButtonLabel,
-                              textCancel: l10n.cancelButtonLabel,
-                            );
-                            if (result) {
-                              await onSendCommand('o');
-                              logger.info('Command poweroff processed');
-                            }
-                          },
-                          child: Text(
-                            l10n.poweroff,
-                            style: const TextStyle(
-                              letterSpacing: 1.5,
+                          TextButton(
+                            onPressed: () async {
+                              final result = await confirm(
+                                context,
+                                title: l10n.poweroff,
+                                content: l10n.confirmPoweroff,
+                                textOK: l10n.okButtonLabel,
+                                textCancel: l10n.cancelButtonLabel,
+                              );
+                              if (result) {
+                                await onSendCommand('o');
+                                logger.info('Command poweroff processed');
+                              }
+                            },
+                            child: Text(
+                              l10n.poweroff,
+                              style: const TextStyle(
+                                letterSpacing: 1.5,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   ],
                 ),
