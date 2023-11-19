@@ -16,7 +16,21 @@ class ScanCubit extends Cubit<ScanState> {
     );
     _streamSubscription = FlutterBluePlus.scanResults.listen(
       (scanResults) {
-        emit(state.copyWith(scanResults: scanResults));
+        final liplDevices = scanResults
+            .where(
+              (scanResult) =>
+                  scanResult.advertisementData.serviceUuids
+                      .contains(liplDisplayServiceUuid) &&
+                  scanResult.advertisementData.connectable,
+            )
+            .toList();
+        if (liplDevices.isNotEmpty) {
+          final devicesFound = liplDevices
+              .map((scanResult) => scanResult.device.remoteId.toString())
+              .join(', ');
+          logger.info('found lipl devices on systems: $devicesFound');
+        }
+        emit(state.copyWith(scanResults: liplDevices));
       },
       onError: (error) {
         addError(error);
@@ -30,7 +44,7 @@ class ScanCubit extends Cubit<ScanState> {
 
   Future<void> startScanning() async {
     emit(state.copyWith(isScanning: true, scanResults: []));
-    await FlutterBluePlus.startScan(withKeywords: ['lipl']);
+    await FlutterBluePlus.startScan();
     emit(state.copyWith(isScanning: false));
   }
 
@@ -125,6 +139,7 @@ class ScanCubit extends Cubit<ScanState> {
   @override
   Future<void> close() async {
     await _streamSubscription?.cancel();
-    await super.close();
+    await _connectionStateSubsribtion?.cancel();
+    return super.close();
   }
 }

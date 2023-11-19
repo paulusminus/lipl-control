@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,6 +68,12 @@ class LiplBluetoothApp extends StatelessWidget {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((LogRecord record) {
+    stdout.writeln('${record.level.name}: ${record.time}: ${record.message}');
+  });
+
   final logger = Logger('Lipl');
   Bloc.observer = LiplBlocObserver(logger: logger);
   runApp(BluetoothProviders(logger: logger));
