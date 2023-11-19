@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 import 'package:lipl_control/l10n/l10n.dart';
+import 'package:lipl_control/play/play.dart';
 import 'package:lipl_control/widget/confirm.dart';
+import 'package:lipl_control/widget/widget.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:logging/logging.dart';
 
@@ -98,9 +100,12 @@ class PlayPage extends StatelessWidget {
   }) =>
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (_) => PlayPage(
-          lyricParts: lyricParts,
-          title: title,
+        builder: (_) => BlocProvider<PlayTabCubit>(
+          create: (context) => PlayTabCubit(),
+          child: PlayPage(
+            lyricParts: lyricParts,
+            title: title,
+          ),
         ),
       );
 
@@ -111,6 +116,7 @@ class PlayPage extends StatelessWidget {
       lyricParts: lyricParts,
       onSendCommand: createSendCommand(context.read<ScanCubit>()),
       onUpdatePage: createUpdatePage(context.read<ScanCubit>()),
+      connected: context.read<ScanCubit>().state.isConnected(),
     );
   }
 }
@@ -138,36 +144,13 @@ class PlayPart extends StatelessWidget {
     required this.lyricParts,
     required this.onSendCommand,
     required this.onUpdatePage,
+    required this.connected,
   });
   final String title;
   final List<LyricPart> lyricParts;
   final Future<void> Function(String) onSendCommand;
   final Future<void> Function(int, List<LyricPart>) onUpdatePage;
-
-  List<PopupMenuItem<String>> buildCommandMenu(AppLocalizations l10n) {
-    return <PopupMenuItem<String>>[
-      PopupMenuItem<String>(
-        value: 'd',
-        child: Text(l10n.dark),
-      ),
-      PopupMenuItem<String>(
-        value: 'l',
-        child: Text(l10n.light),
-      ),
-      PopupMenuItem<String>(
-        value: '+',
-        child: Text(l10n.bigger),
-      ),
-      PopupMenuItem<String>(
-        value: '-',
-        child: Text(l10n.smaller),
-      ),
-      PopupMenuItem<String>(
-        value: 'o',
-        child: Text(l10n.poweroff),
-      ),
-    ];
-  }
+  final bool connected;
 
   List<Center> buildPageViewChildren() {
     return lyricParts
@@ -235,17 +218,85 @@ class PlayPart extends StatelessWidget {
         },
         child: Focus(
           autofocus: true,
-          child: BlocBuilder<ScanCubit, ScanState>(
-            builder: (BuildContext context, ScanState state) {
+          child: BlocBuilder<PlayTabCubit, PlayTab>(
+            builder: (context, tabState) {
               return Scaffold(
                 appBar: AppBar(
                   title: Text(title),
                   actions: <Widget>[
-                    if (state.isConnected())
-                      PopupMenuButton<String>(
-                        itemBuilder: (BuildContext _) => buildCommandMenu(l10n),
-                        onSelected: (String command) async {
-                          if (command == 'o') {
+                    if (connected)
+                      IconButton(
+                          onPressed: tabState == PlayTab.play
+                              ? () {
+                                  context.read<PlayTabCubit>().selectTv();
+                                }
+                              : () {
+                                  context.read<PlayTabCubit>().selectPlay();
+                                },
+                          icon: tabState == PlayTab.play
+                              ? const Icon(Icons.tv)
+                              : const Icon(Icons.playlist_play))
+                  ],
+                ),
+                body: IndexedStack(
+                  index: tabState.index,
+                  children: [
+                    PageView(
+                      controller: controller,
+                      onPageChanged: (int page) async {
+                        await onUpdatePage(page, lyricParts);
+                      },
+                      children: buildPageViewChildren(),
+                    ),
+                    GridView.count(
+                      crossAxisCount: 2,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () async {
+                            await onSendCommand('d');
+                          },
+                          child: Text(
+                            l10n.dark,
+                            style: const TextStyle(
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await onSendCommand('l');
+                          },
+                          child: Text(
+                            l10n.light,
+                            style: const TextStyle(
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await onSendCommand('+');
+                          },
+                          child: Text(
+                            l10n.bigger,
+                            style: const TextStyle(
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await onSendCommand('-');
+                          },
+                          child: Text(
+                            l10n.smaller,
+                            style: const TextStyle(
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () async {
                             final result = await confirm(
                               context,
                               title: l10n.poweroff,
@@ -254,60 +305,58 @@ class PlayPart extends StatelessWidget {
                               textCancel: l10n.cancelButtonLabel,
                             );
                             if (result) {
-                              await onSendCommand(command);
-                              logger.info('Command $command processed');
+                              await onSendCommand('o');
+                              logger.info('Command poweroff processed');
                             }
-                          } else {
-                            await onSendCommand(command);
-                            logger.info('Command $command processed');
-                          }
+                          },
+                          child: Text(
+                            l10n.poweroff,
+                            style: const TextStyle(
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                bottomNavigationBar: tabState == PlayTab.play
+                    ? BottomNavigationBar(
+                        backgroundColor: Colors.grey.shade200,
+                        fixedColor: Colors.black,
+                        unselectedItemColor: Colors.black,
+                        showUnselectedLabels: true,
+                        onTap: (int index) {
+                          Function()? createHandler<T extends Intent>(T t) =>
+                              Actions.handler<T>(context, t);
+                          <Function()?>[
+                            createHandler(firstIntent),
+                            createHandler(previousIntent),
+                            createHandler(nextIntent),
+                            createHandler(lastIntent),
+                          ][index]
+                              ?.call();
                         },
-                        icon: const Icon(Icons.settings_display),
-                      ),
-                  ],
-                ),
-                body: PageView(
-                  controller: controller,
-                  onPageChanged: (int page) async {
-                    await onUpdatePage(page, lyricParts);
-                  },
-                  children: buildPageViewChildren(),
-                ),
-                bottomNavigationBar: BottomNavigationBar(
-                  backgroundColor: Colors.grey.shade200,
-                  fixedColor: Colors.black,
-                  unselectedItemColor: Colors.black,
-                  showUnselectedLabels: true,
-                  onTap: (int index) {
-                    Function()? createHandler<T extends Intent>(T t) =>
-                        Actions.handler<T>(context, t);
-                    <Function()?>[
-                      createHandler(firstIntent),
-                      createHandler(previousIntent),
-                      createHandler(nextIntent),
-                      createHandler(lastIntent),
-                    ][index]
-                        ?.call();
-                  },
-                  items: <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.first_page),
-                      label: l10n.first,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.keyboard_arrow_left),
-                      label: l10n.previous,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.keyboard_arrow_right),
-                      label: l10n.next,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.last_page),
-                      label: l10n.last,
-                    ),
-                  ],
-                ),
+                        items: <BottomNavigationBarItem>[
+                          BottomNavigationBarItem(
+                            icon: const Icon(Icons.first_page),
+                            label: l10n.first,
+                          ),
+                          BottomNavigationBarItem(
+                            icon: const Icon(Icons.keyboard_arrow_left),
+                            label: l10n.previous,
+                          ),
+                          BottomNavigationBarItem(
+                            icon: const Icon(Icons.keyboard_arrow_right),
+                            label: l10n.next,
+                          ),
+                          BottomNavigationBarItem(
+                            icon: const Icon(Icons.last_page),
+                            label: l10n.last,
+                          ),
+                        ],
+                      )
+                    : null,
               );
             },
           ),
