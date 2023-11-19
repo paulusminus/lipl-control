@@ -86,15 +86,14 @@ class ScanPage extends StatelessWidget {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            child:
-                Icon(state.isScanning ? Icons.stop : Icons.bluetooth_searching),
-            onPressed: () async {
-              state.isScanning
-                  ? await context.read<ScanCubit>().stopScanning()
-                  : await context.read<ScanCubit>().startScanning();
-            },
-          ),
+          floatingActionButton: state.isScanning
+              ? null
+              : FloatingActionButton(
+                  child: const Icon(Icons.bluetooth_searching),
+                  onPressed: () async {
+                    await context.read<ScanCubit>().startScanning();
+                  },
+                ),
         );
       }),
     );

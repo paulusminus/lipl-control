@@ -43,9 +43,7 @@ class ScanCubit extends Cubit<ScanState> {
   StreamSubscription<BluetoothConnectionState>? _connectionStateSubsribtion;
 
   Future<void> startScanning() async {
-    emit(state.copyWith(isScanning: true, scanResults: []));
     await FlutterBluePlus.startScan();
-    emit(state.copyWith(isScanning: false));
   }
 
   Future<void> _write(
@@ -133,7 +131,6 @@ class ScanCubit extends Cubit<ScanState> {
 
   Future<void> stopScanning() async {
     await FlutterBluePlus.stopScan();
-    emit(state.copyWith(isScanning: false));
   }
 
   @override

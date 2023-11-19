@@ -370,9 +370,10 @@ class BluetoothIndicator extends StatelessWidget {
             final scanResultsCubit = context.read<ScanCubit>();
             final NavigatorState navigator = Navigator.of(context);
             await scanResultsCubit.startScanning();
-            navigator.push(
+            await navigator.push(
               ScanPage.route(),
             );
+            await scanResultsCubit.stopScanning();
           },
           icon: Icon(
             state.connectedDevice != null
