@@ -175,5 +175,9 @@
     "bluetoothConnectedTo": "Verbonden met",
     "@bluetoothConnectedTo": {
         "description": "Verbonden met status boodschap"
+    },
+    "justAMoment": "Even geduld a.u.b.",
+    "@justAMoment": {
+        "description": "Even geduld"
     }
 }

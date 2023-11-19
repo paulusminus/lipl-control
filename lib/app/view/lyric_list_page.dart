@@ -186,6 +186,7 @@ Widget renderLyricList(Stream<List<Lyric>> lyricsStream) {
       final AppLocalizations l10n = context.l10n;
       final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
       final NavigatorState navigator = Navigator.of(context);
+      final scanCubit = context.read<ScanCubit>();
 
       if (lyrics.data == null) {
         return const SizedBox.shrink();
@@ -198,13 +199,17 @@ Widget renderLyricList(Stream<List<Lyric>> lyricsStream) {
           buttons: <ButtonData<Lyric>>[
             ButtonData<Lyric>(
               label: l10n.playButtonLabel,
-              onPressed: (Lyric lyric) {
-                navigator.push(
+              onPressed: (Lyric lyric) async {
+                await navigator.push(
                   PlayPage.route(
                     lyricParts: <Lyric>[lyric].toLyricParts(),
                     title: lyric.title,
                   ),
                 );
+                if (scanCubit.state.isConnected()) {
+                  await scanCubit.writeStatus(l10n.justAMoment);
+                  await scanCubit.writeText('');
+                }
               },
               enabled: (Lyric lyric) => lyric.parts.isNotEmpty,
               showOnMobile: true,
@@ -258,6 +263,7 @@ Widget renderPlaylistList(
               (BuildContext context, AsyncSnapshot<List<Playlist>> playlists) {
             final AppLocalizations l10n = context.l10n;
             final NavigatorState navigator = Navigator.of(context);
+            final scanCubit = context.read<ScanCubit>();
 
             if ((lyrics.data == null) || (playlists.data == null)) {
               return const SizedBox.shrink();
@@ -271,8 +277,8 @@ Widget renderPlaylistList(
                 buttons: <ButtonData<Playlist>>[
                   ButtonData<Playlist>(
                     label: l10n.playButtonLabel,
-                    onPressed: (Playlist playlist) {
-                      navigator.push(
+                    onPressed: (Playlist playlist) async {
+                      await navigator.push(
                         PlayPage.route(
                           lyricParts: playlist.members
                               .map(
@@ -291,6 +297,10 @@ Widget renderPlaylistList(
                           title: playlist.title,
                         ),
                       );
+                      if (scanCubit.state.isConnected()) {
+                        await scanCubit.writeStatus(l10n.justAMoment);
+                        await scanCubit.writeText('');
+                      }
                     },
                     enabled: (Playlist playlist) => playlist.members.isNotEmpty,
                     showOnMobile: true,
@@ -410,7 +420,6 @@ class RefreshIconButton extends StatelessWidget {
     return BlocBuilder<LiplAppCubit, LiplAppState>(
       builder: (BuildContext context, LiplAppState liplAppState) {
         final isMobile = context.isMobile;
-        // final liplRestCubit = context.read<LiplAppCubit>();
         final liplPreferencesBloc = context.read<LiplPreferencesBloc>();
         return IconButton(
           onPressed: liplAppState.status == LoadingStatus.loading

@@ -175,5 +175,9 @@
     "bluetoothConnectedTo": "Connected to",
     "@bluetoothConnectedTo": {
         "description": "Connected to status message"
+    },
+    "justAMoment": "Just a moment...",
+    "@justAMoment": {
+        "description": "Just a moment"
     }
 }
