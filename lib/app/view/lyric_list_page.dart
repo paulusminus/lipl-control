@@ -207,8 +207,7 @@ Widget renderLyricList(Stream<List<Lyric>> lyricsStream) {
                   ),
                 );
                 if (scanCubit.state.isConnected()) {
-                  await scanCubit.writeStatus(l10n.justAMoment);
-                  await scanCubit.writeText('');
+                  await scanCubit.writeCommand('?');
                 }
               },
               enabled: (Lyric lyric) => lyric.parts.isNotEmpty,
@@ -298,8 +297,7 @@ Widget renderPlaylistList(
                         ),
                       );
                       if (scanCubit.state.isConnected()) {
-                        await scanCubit.writeStatus(l10n.justAMoment);
-                        await scanCubit.writeText('');
+                        await scanCubit.writeCommand('?');
                       }
                     },
                     enabled: (Playlist playlist) => playlist.members.isNotEmpty,
