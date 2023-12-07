@@ -1,11 +1,11 @@
 name: loading_status
 description: Loading Status enumeration
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.0.1
+version: 1.0.2
 publish_to: 'none'
 
 environment:
-  sdk: ^3.2.0
+  sdk: ^3.2.3
 
 dev_dependencies:
   lints: ^3.0.0

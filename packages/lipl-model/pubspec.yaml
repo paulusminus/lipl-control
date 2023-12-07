@@ -1,21 +1,19 @@
 name: lipl_model
 description: Domain models for lipl.
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.0.2
+version: 1.0.4
 publish: false
 
 environment:
-  sdk: ^3.2.0
-  flutter: ^3.16.0
+  sdk: ^3.2.3
 
 dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   build_runner: ^2.4.6
   freezed: ^2.4.5
   lints: ^3.0.0
   json_serializable: ^6.7.1
+  test: ^1.24.9

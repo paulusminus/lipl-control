@@ -1,11 +1,11 @@
 name: preferences_bloc
 description: Library for handling preferences changes and storing
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.2.1
+version: 1.2.2
 publish_to: 'none'
 
 environment:
-  sdk: ^3.2.0
+  sdk: ^3.2.3
 
 dependencies:
   bloc: ^8.1.1

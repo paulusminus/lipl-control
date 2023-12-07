@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:lipl_model/src/model/model.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('LiplPreferences', () {
