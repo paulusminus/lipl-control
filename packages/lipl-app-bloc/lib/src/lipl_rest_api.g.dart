@@ -13,7 +13,7 @@ class _LiplRestApi implements LiplRestApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://lipl.paulmin.nl/api/v1/';
+    baseUrl ??= 'https://www.paulmin.nl/lipl/api/v1/';
   }
 
   final Dio _dio;

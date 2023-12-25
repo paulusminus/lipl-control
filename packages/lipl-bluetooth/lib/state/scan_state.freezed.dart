@@ -164,7 +164,7 @@ class _$ScanStateImpl extends _ScanState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScanStateImpl &&

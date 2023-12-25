@@ -28,7 +28,7 @@ LiplRestApi apiFromConfig({Credentials? credentials}) {
   return LiplRestApi(dio);
 }
 
-@RestApi(baseUrl: 'https://lipl.paulmin.nl/api/v1/')
+@RestApi(baseUrl: 'https://www.paulmin.nl/lipl/api/v1/')
 abstract class LiplRestApi implements LiplRestApiInterface {
   factory LiplRestApi(Dio dio) = _LiplRestApi;
 

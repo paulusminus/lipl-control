@@ -24,7 +24,7 @@ void main() {
       final handler = MockRequestHandler();
       final interceptor = basicAuthentication(credentials: createSubject());
       RequestOptions options =
-          RequestOptions(path: 'https://www.paulmin.nl/api/v1/lyric');
+          RequestOptions(path: 'https://www.paulmin.nl/lipl/api/v1/lyric');
       interceptor.onRequest(options, handler);
 
       expect(options.headers['Authorization'], 'Basic cGF1bDp0ZXN0');

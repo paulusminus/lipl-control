@@ -4,7 +4,7 @@ import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 
-const baseUrl = 'https://lipl/paulmin.nl/api/v1/';
+const baseUrl = 'https://www.paulmin.nl/lipl/api/v1/';
 
 void main() {
   group('LiplRestApi', () {
