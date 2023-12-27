@@ -1,6 +1,6 @@
 {
-    "name": "lipl_control_flutter",
-    "short_name": "lipl_control_flutter",
+    "name": "Lipl Control",
+    "short_name": "Lipl",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
