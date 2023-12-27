@@ -13,7 +13,9 @@ jobs:
         contents: write
     steps:
       - uses: actions/checkout@v3
-      - uses: Swatinem/rust-cache@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.5'
       - name: Build html
         run: flutter build web --base-href "/lipl/app/"
       - name: Tarball
