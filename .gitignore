@@ -51,3 +51,4 @@ app.*.map.json
 coverage/
 
 build_deploy_web.sh
+web.tar.gz

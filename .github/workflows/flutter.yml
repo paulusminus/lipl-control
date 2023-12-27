@@ -38,3 +38,6 @@ jobs:
         run: flutter test -r expanded
       - name: Build for Web
         run: flutter build web
+      - name: Create tarball
+        run: tar -czf ../../web.tar.gz .
+        working-directory: "build/web"

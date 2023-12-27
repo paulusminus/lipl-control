@@ -1,0 +1,24 @@
+name: Tarball
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Swatinem/rust-cache@v2
+      - name: Build html
+        run: flutter build web --base-href "/lipl/app/"
+      - name: Tarball
+        run: tar -czf ../../web.tar.gz .
+        working-directory: build/web
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "web.tar.gz"
