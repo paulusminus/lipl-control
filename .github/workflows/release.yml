@@ -19,7 +19,7 @@ jobs:
       - name: Build html
         run: flutter build web --base-href "/lipl/app/"
       - name: Tarball
-        run: tar -czf ../../web.tar.gz .
+        run: tar -czf ../../web.tar.gz --owner=0 --group=0 --no-same-owner --no-same-permissions .
         working-directory: build/web
       - uses: ncipollo/release-action@v1
         with:
