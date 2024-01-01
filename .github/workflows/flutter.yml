@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.16.5'
@@ -37,7 +37,7 @@ jobs:
       - name: Test 
         run: flutter test -r expanded
       - name: Build for Web
-        run: flutter build web
+        run: flutter build web --base-url "/lipl/app/"
       - name: Create tarball
         run: tar -czf ../../web.tar.gz .
         working-directory: "build/web"
