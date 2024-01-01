@@ -37,7 +37,7 @@ jobs:
       - name: Test 
         run: flutter test -r expanded
       - name: Build for Web
-        run: flutter build web --base-url "/lipl/app/"
+        run: flutter build web --base-href "/lipl/app/"
       - name: Create tarball
         run: tar -czf ../../web.tar.gz .
         working-directory: "build/web"
