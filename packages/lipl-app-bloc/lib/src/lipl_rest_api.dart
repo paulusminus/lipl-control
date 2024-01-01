@@ -18,19 +18,24 @@ abstract class LiplRestApiInterface {
   Future<Playlist> putPlaylist(@Path() String id, @Body() Playlist playlist);
 }
 
-LiplRestApi apiFromConfig({Credentials? credentials}) {
+LiplRestApi apiFromConfig({
+  Credentials? credentials,
+  bool isWeb = false,
+}) {
   final Dio dio = credentials == null
       ? Dio()
       : basicAuthenticationDio(
           credentials: credentials,
         );
 
-  return LiplRestApi(dio);
+  return isWeb
+      ? LiplRestApi(dio)
+      : LiplRestApi(dio, baseUrl: 'https://www.paulmin.nl/lipl/api/v1/');
 }
 
-@RestApi(baseUrl: 'https://www.paulmin.nl/lipl/api/v1/')
+@RestApi(baseUrl: '/lipl/api/v1/')
 abstract class LiplRestApi implements LiplRestApiInterface {
-  factory LiplRestApi(Dio dio) = _LiplRestApi;
+  factory LiplRestApi(Dio dio, {String baseUrl}) = _LiplRestApi;
 
   @override
   @GET('lyric?full=true')

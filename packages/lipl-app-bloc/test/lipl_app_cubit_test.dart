@@ -91,7 +91,10 @@ void main() {
 
     group('Lyric', () {
       test('Constructor', () {
-        final cubit = LiplAppCubit(credentialsStream: const Stream.empty());
+        final cubit = LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+        );
         expect(
           cubit.state.copyWith(credentials: null),
           const LiplAppState().copyWith(credentials: null),
@@ -100,8 +103,11 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           const LiplAppState(
@@ -116,8 +122,11 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus add',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         seed: () => loaded(api),
         act: (cubit) async {
           await cubit.postLyric(addingLyric);
@@ -145,8 +154,11 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus delete',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         seed: () => loaded(api),
         act: (cubit) => cubit.deleteLyric(initialLyrics.first.id),
         expect: () => [
@@ -176,8 +188,11 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus change',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         seed: () => loaded(api),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
@@ -207,7 +222,10 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: errorApi,
+        ),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           const LiplAppState().copyWith(
@@ -224,7 +242,9 @@ void main() {
           errorApi = ExceptionsRestApi(unauthorized('lyric'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+            credentialsStream: const Stream.empty(),
+            isWeb: false,
+            api: errorApi),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           const LiplAppState().copyWith(
@@ -243,7 +263,10 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: errorApi,
+        ),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.postLyric(const LyricPost(
           title: 'Whatever',
@@ -264,7 +287,10 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: errorApi,
+        ),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.deleteLyric('5'),
         expect: () => [
@@ -279,7 +305,9 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+            credentialsStream: const Stream.empty(),
+            isWeb: false,
+            api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
@@ -296,8 +324,11 @@ void main() {
     group('Playlist', () {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus add',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         seed: () => loaded(api),
         act: (cubit) async {
           await cubit.postPlaylist(addingPlaylist);
@@ -322,8 +353,11 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus delete',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         seed: () => loaded(api),
         act: (cubit) async =>
             await cubit.deletePlaylist(initialPlaylists.first.id),
@@ -339,8 +373,11 @@ void main() {
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus change',
-        build: () =>
-            LiplAppCubit(credentialsStream: const Stream.empty(), api: api),
+        build: () => LiplAppCubit(
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: api,
+        ),
         seed: () => loaded(api),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
@@ -367,7 +404,10 @@ void main() {
           errorApi = ExceptionsRestApi(error('playlist'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: errorApi,
+        ),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.postPlaylist(addingPlaylist),
         expect: () => [
@@ -382,7 +422,9 @@ void main() {
           errorApi = ExceptionsRestApi(error('playlist/4'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+            credentialsStream: const Stream.empty(),
+            isWeb: false,
+            api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async =>
             await cubit.deletePlaylist(initialPlaylists[0].id),
@@ -398,7 +440,10 @@ void main() {
           errorApi = ExceptionsRestApi(error('playlist/4'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(), api: errorApi),
+          credentialsStream: const Stream.empty(),
+          isWeb: false,
+          api: errorApi,
+        ),
         seed: () => loaded(errorApi),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(

@@ -116,6 +116,7 @@ class BlocProviders extends StatelessWidget {
           .map(
             (item) => item?.credentials,
           ),
+      isWeb: kIsWeb,
     );
 
     final searchCubit = SearchCubit(

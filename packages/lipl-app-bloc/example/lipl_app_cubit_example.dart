@@ -38,8 +38,10 @@ Future<void> main() async {
   log.onRecord.listen((record) {
     stdout.writeln('${record.level.name}: ${record.time}: ${record.message}');
   });
-  final LiplAppCubit cubit =
-      LiplAppCubit(credentialsStream: const Stream.empty());
+  final LiplAppCubit cubit = LiplAppCubit(
+    credentialsStream: const Stream.empty(),
+    isWeb: false,
+  );
 
   final StreamSubscription<List<Lyric>> subscription1 = cubit.stream
       .where(isSuccess)

@@ -15,7 +15,7 @@ void main() {
     setUp(() {
       dio = Dio();
       dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-      restClient = LiplRestApi(dio);
+      restClient = LiplRestApi(dio, baseUrl: baseUrl);
     });
 
     test('get lyric summaries', () async {
