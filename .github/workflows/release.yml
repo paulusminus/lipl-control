@@ -1,4 +1,4 @@
-name: Tarball
+name: Release pwa tarball
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
 
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -15,7 +14,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.16.5'
+          channel: 'stable'
+          cache: true
       - name: Build html
         run: flutter build web --base-href "/lipl/app/"
       - name: Tarball

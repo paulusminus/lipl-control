@@ -16,9 +16,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.16.5'
+          channel: 'stable'
+          cache: true
       - name: Build for Web
-        run: flutter build web --base-ref "/lipl/app/"
+        run: flutter build web --base-href "/lipl/app/"
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.3.0
         with:
