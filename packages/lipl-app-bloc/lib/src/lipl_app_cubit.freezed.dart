@@ -189,7 +189,7 @@ class _$LiplAppStateImpl implements _LiplAppState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LiplAppStateImpl &&
