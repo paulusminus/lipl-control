@@ -20,7 +20,7 @@ abstract class LiplRestApiInterface {
 
 LiplRestApi apiFromConfig({
   Credentials? credentials,
-  bool isWeb = false,
+  required bool isWeb,
 }) {
   final Dio dio = credentials == null
       ? Dio()
@@ -29,11 +29,11 @@ LiplRestApi apiFromConfig({
         );
 
   return isWeb
-      ? LiplRestApi(dio)
+      ? LiplRestApi(dio, baseUrl: '/lipl/api/v1/')
       : LiplRestApi(dio, baseUrl: 'https://www.paulmin.nl/lipl/api/v1/');
 }
 
-@RestApi(baseUrl: '/lipl/api/v1/')
+@RestApi()
 abstract class LiplRestApi implements LiplRestApiInterface {
   factory LiplRestApi(Dio dio, {String baseUrl}) = _LiplRestApi;
 
