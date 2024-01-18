@@ -4,7 +4,7 @@ repository: https://github.com/paulusminus/lipl-control/
 version: 1.2.2
 
 environment:
-  sdk: ^3.2.0
+  sdk: ^3.2.5
 
 dependencies: 
   encrypt: ^5.0.1

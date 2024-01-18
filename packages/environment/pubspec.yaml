@@ -1,10 +1,10 @@
 name: environment
 description: Get environment variables needed for testing
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.0.4
+version: 1.0.5
 
 environment:
-  sdk: ^3.2.3
+  sdk: ^3.2.5
 
 dev_dependencies:
   lints: ^3.0.0

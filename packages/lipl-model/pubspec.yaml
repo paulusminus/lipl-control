@@ -5,7 +5,7 @@ version: 1.0.5
 publish: false
 
 environment:
-  sdk: ^3.2.3
+  sdk: ^3.2.5
 
 dependencies:
   freezed_annotation: ^2.4.1
