@@ -74,7 +74,7 @@ class LyricListMobile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: kIsWeb ? null : const PreferencesButton(),
+        leading: kIsWeb ? const Icon(Icons.home) : const PreferencesButton(),
         title: Text(l10n.liplTitle),
         actions: <Widget>[
           const RefreshIconButton(),
