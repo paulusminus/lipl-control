@@ -474,28 +474,28 @@ packages:
       path: "packages/lipl-app-bloc"
       relative: true
     source: path
-    version: "1.2.5"
+    version: "1.2.6"
   lipl_bluetooth:
     dependency: "direct main"
     description:
       path: "packages/lipl-bluetooth"
       relative: true
     source: path
-    version: "1.0.6"
+    version: "1.0.7"
   lipl_encrypt:
     dependency: "direct main"
     description:
       path: "packages/lipl-encrypt"
       relative: true
     source: path
-    version: "1.2.3"
+    version: "1.2.4"
   lipl_model:
     dependency: "direct main"
     description:
       path: "packages/lipl-model"
       relative: true
     source: path
-    version: "1.0.6"
+    version: "1.0.7"
   loading_status:
     dependency: "direct main"
     description:
@@ -661,7 +661,7 @@ packages:
       path: "packages/preferences-bloc"
       relative: true
     source: path
-    version: "1.2.4"
+    version: "1.2.5"
   process:
     dependency: transitive
     description:
@@ -1020,5 +1020,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.2.5 <4.0.0"
+  dart: ">=3.2.6 <4.0.0"
   flutter: ">=3.16.8"

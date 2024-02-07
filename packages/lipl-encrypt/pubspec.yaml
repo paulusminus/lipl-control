@@ -1,10 +1,10 @@
 name: lipl_encrypt
 description: Encryption used when storing preferences
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.2.3
+version: 1.2.4
 
 environment:
-  sdk: ^3.2.5
+  sdk: ^3.2.6
 
 dependencies: 
   encrypt: ^5.0.1

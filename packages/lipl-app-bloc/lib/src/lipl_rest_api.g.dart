@@ -20,10 +20,10 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<List<Lyric>> getLyrics() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<List<dynamic>>(_setStreamType<List<Lyric>>(Options(
       method: 'GET',
@@ -49,10 +49,10 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<List<Summary>> getLyricSummaries() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<List<dynamic>>(_setStreamType<List<Summary>>(Options(
       method: 'GET',
@@ -78,7 +78,7 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<Lyric> postLyric(LyricPost post) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -106,10 +106,10 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<void> deleteLyric(String id) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,
@@ -133,7 +133,7 @@ class _LiplRestApi implements LiplRestApi {
     String id,
     Lyric lyric,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -161,10 +161,10 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<List<Playlist>> getPlaylists() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<List<dynamic>>(_setStreamType<List<Playlist>>(Options(
       method: 'GET',
@@ -190,10 +190,10 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<List<Summary>> getPlaylistSummaries() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<List<dynamic>>(_setStreamType<List<Summary>>(Options(
       method: 'GET',
@@ -219,7 +219,7 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<Playlist> postPlaylist(PlaylistPost post) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -247,10 +247,10 @@ class _LiplRestApi implements LiplRestApi {
 
   @override
   Future<void> deletePlaylist(String id) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,
@@ -274,7 +274,7 @@ class _LiplRestApi implements LiplRestApi {
     String id,
     Playlist playlist,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
