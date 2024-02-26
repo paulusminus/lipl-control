@@ -1,7 +1,7 @@
 name: lipl_model
 description: Domain models for lipl.
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.0.7
+version: 1.0.8
 publish: false
 
 environment:
