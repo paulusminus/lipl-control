@@ -20,7 +20,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          cache: true
+          cache: false
       - name: Build for Web
         run: flutter build web --base-href "/lipl/app/"
       - name: Install cosign

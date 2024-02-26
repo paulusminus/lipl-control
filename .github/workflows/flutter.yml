@@ -16,7 +16,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          cache: true
+          cache: false
       - name: Test lipl-app-bloc
         run: flutter test -r expanded
         working-directory: './packages/lipl-app-bloc'

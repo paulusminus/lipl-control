@@ -38,7 +38,7 @@
     },
     "editButtonLabel": "Wijzigen",
     "@editButtonLabel": {
-        "decription": "Wijzigen knop label"
+        "description": "Wijzigen knop label"
     },
     "editLyric": "Tekst wijzigen",
     "@editLyric": {
@@ -82,7 +82,7 @@
     },
     "okButtonLabel": "Ok",
     "@okButtonLabel": {
-        "descriptioni": "Ok knop label"
+        "description": "Ok knop label"
     },
     "passwordLabel": "Wachtwoord",
     "@passwordLabel": {

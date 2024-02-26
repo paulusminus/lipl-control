@@ -15,7 +15,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          cache: true
+          cache: false
       - name: Build html
         run: flutter build web --base-href "/lipl/app/"
       - name: Tarball

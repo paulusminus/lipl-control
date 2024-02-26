@@ -17,5 +17,5 @@ When using this app please check if location services is enabled on your phone.
 
 [`build-badge`]: https://github.com/paulusminus/lipl-control/actions/workflows/flutter.yml/badge.svg
 [`mit-badge`]: https://img.shields.io/badge/License-MIT-yellow.svg
-[`book`]: https://paulusminus.github.io/lipl-book/
+[`book`]: https://www.paulmin.nl/lipl/
 

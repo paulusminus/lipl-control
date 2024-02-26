@@ -38,7 +38,7 @@
     },
     "editButtonLabel": "edit",
     "@editButtonLabel": {
-        "decription": "Edit button label"
+        "description": "Edit button label"
     },
     "editLyric": "Edit lyric",
     "@editLyric": {
@@ -82,7 +82,7 @@
     },
     "okButtonLabel": "Ok",
     "@okButtonLabel": {
-        "descriptioni": "Ok button label"
+        "description": "Ok button label"
     },
     "passwordLabel": "Password",
     "@passwordLabel": {
