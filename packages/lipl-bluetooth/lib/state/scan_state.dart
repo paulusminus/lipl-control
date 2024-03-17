@@ -16,12 +16,3 @@ class ScanState with _$ScanState {
   bool isConnected() =>
       connectedDevice != null && connectedDevice!.device.isConnected;
 }
-
-// @freezed
-// class ScanState with _$ScanState {
-//   const factory ScanState({
-//       required List<ScanResult> scanResults,
-//       required bool isScanning,
-//       required ConnectedDevice? connectedDevice,
-//   }) => _ScanState;
-// }

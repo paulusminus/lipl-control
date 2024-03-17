@@ -82,9 +82,9 @@ class ScanCubit extends Cubit<ScanState> {
       await device.discoverServices();
       logger.info('Service list ${device.servicesList}');
       final displayService = device.servicesList
-          .where((e) => e.serviceUuid == liplDisplayServiceUuid)
+          .where((service) => service.serviceUuid == liplDisplayServiceUuid)
           .where(
-            (element) => element.isPrimary,
+            (service) => service.isPrimary,
           )
           .firstOrNull;
       final textCharacteristic = displayService?.characteristics

@@ -1,4 +1,4 @@
-![`build-badge`]
+[![`build-badge`]](https://github.com/paulusminus/lipl-control/actions/workflows/flutter.yml/)
 [![`mit-badge`]](https://opensource.org/licenses/MIT)
 
 # lipl-control

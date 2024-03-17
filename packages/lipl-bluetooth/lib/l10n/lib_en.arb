@@ -1,7 +1,7 @@
 {
     "@@locale": "en",
-    "connectTo": "Connected to",
-    "@connectedTo": {
+    "bluetoothConnectedTo": "Connected to remote",
+    "@bluetoothConnectedTo": {
         "description": "Show connected information"
     },
     "bluetoothTitle": "TV connections",
@@ -15,5 +15,9 @@
     "bluetoothPossibleConnections": "Possible connections",
     "@bluetoothPossibleConnections": {
         "description": "Possible connectons"
+    },
+    "bluetoothWaitForConnection": "Wait for connection",
+    "@bluetoothWaitForConnection": {
+        "description": "Waiting for connection"
     }
 }

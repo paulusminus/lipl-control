@@ -1,7 +1,7 @@
 {
     "@@locale": "nl",
-    "connectTo": "Verbonden met",
-    "@connectedTo": {
+    "bluetoothConnectedTo": "Verbonden met afstandsbediening",
+    "@bluetoothConnectedTo": {
         "description": "Toon verbinding details"
     },
     "bluetoothTitle": "TV Verbindingen",
@@ -15,5 +15,9 @@
     "bluetoothPossibleConnections": "Mogelijke verbindingen",
     "@bluetoothPossibleConnections": {
         "description": "Mogelijke verbindingen"
+    },
+    "bluetoothWaitForConnection": "Wacht op verbinding",
+    "@bluetoothWaitForConnection": {
+        "description": "Wacht op verbinding"
     }
 }

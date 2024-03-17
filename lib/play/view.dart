@@ -111,12 +111,13 @@ class PlayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scanCubit = context.read<ScanCubit>();
     return PlayPart(
       title: title,
       lyricParts: lyricParts,
-      onSendCommand: createSendCommand(context.read<ScanCubit>()),
-      onUpdatePage: createUpdatePage(context.read<ScanCubit>()),
-      connected: context.read<ScanCubit>().state.isConnected(),
+      onSendCommand: createSendCommand(scanCubit),
+      onUpdatePage: createUpdatePage(scanCubit),
+      connected: scanCubit.state.isConnected(),
     );
   }
 }

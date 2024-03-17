@@ -93,11 +93,11 @@ abstract class BluetoothAppLocalizations {
     Locale('nl')
   ];
 
-  /// No description provided for @connectTo.
+  /// Show connected information
   ///
   /// In en, this message translates to:
-  /// **'Connected to'**
-  String get connectTo;
+  /// **'Connected to remote'**
+  String get bluetoothConnectedTo;
 
   /// Title TV Connections
   ///
@@ -116,6 +116,12 @@ abstract class BluetoothAppLocalizations {
   /// In en, this message translates to:
   /// **'Possible connections'**
   String get bluetoothPossibleConnections;
+
+  /// Waiting for connection
+  ///
+  /// In en, this message translates to:
+  /// **'Wait for connection'**
+  String get bluetoothWaitForConnection;
 }
 
 class _BluetoothAppLocalizationsDelegate extends LocalizationsDelegate<BluetoothAppLocalizations> {

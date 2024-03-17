@@ -5,7 +5,7 @@ class BluetoothAppLocalizationsNl extends BluetoothAppLocalizations {
   BluetoothAppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get connectTo => 'Verbonden met';
+  String get bluetoothConnectedTo => 'Verbonden met afstandsbediening';
 
   @override
   String get bluetoothTitle => 'TV Verbindingen';
@@ -15,4 +15,7 @@ class BluetoothAppLocalizationsNl extends BluetoothAppLocalizations {
 
   @override
   String get bluetoothPossibleConnections => 'Mogelijke verbindingen';
+
+  @override
+  String get bluetoothWaitForConnection => 'Wacht op verbinding';
 }
