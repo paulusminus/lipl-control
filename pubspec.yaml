@@ -22,6 +22,7 @@ dependencies:
   json_annotation: ^4.8.0
   lipl_bluetooth:
     path: packages/lipl-bluetooth
+    version: 1.0.11
   lipl_encrypt:
     path: packages/lipl-encrypt
   lipl_model:
