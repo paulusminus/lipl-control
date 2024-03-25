@@ -1,7 +1,7 @@
 name: preferences_bloc
 description: Library for handling preferences changes and storing
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.2.7
+version: 1.2.8
 publish_to: 'none'
 
 environment:
