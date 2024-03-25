@@ -44,7 +44,7 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  bloc_test: ^9.1.1
+  bloc_test: ^9.1.7
   flutter_lints: ^3.0.1
 
 flutter:
