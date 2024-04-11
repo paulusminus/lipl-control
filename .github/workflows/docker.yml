@@ -22,7 +22,7 @@ jobs:
           channel: 'stable'
           cache: false
       - name: Build for Web
-        run: flutter build web
+        run: flutter build web --base-href=/
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.3.0
         with:
