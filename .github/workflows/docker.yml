@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: "paulusminus/paulmin-nl"
+  IMAGE_NAME: "paulusminus/lipl-pwa"
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
           channel: 'stable'
           cache: false
       - name: Build for Web
-        run: flutter build web --base-href "/lipl/app/"
+        run: flutter build web
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.3.0
         with:
@@ -40,7 +40,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           labels: |
-            org.opencontainers.image.description=Serving www.paulmin.nl
+            org.opencontainers.image.description=Lipl pwa
             org.opencontainers.image.authors=Paul Min
             org.opencontainers.image.source=https://github.com/paulusminus/lipl-control
             org.opencontainers.image.licenses=MIT

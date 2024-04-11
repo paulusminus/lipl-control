@@ -1,4 +1,3 @@
-FROM paulusminus/paulmin-nl-doc
+FROM scratch
 
-COPY build/web/ ${WWW_ROOT}lipl/app/
-
+COPY build/web/ /
