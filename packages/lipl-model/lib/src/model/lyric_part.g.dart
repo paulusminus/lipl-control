@@ -8,8 +8,8 @@ part of 'lyric_part.dart';
 
 _$LyricPartImpl _$$LyricPartImplFromJson(Map<String, dynamic> json) =>
     _$LyricPartImpl(
-      current: json['current'] as int,
-      total: json['total'] as int,
+      current: (json['current'] as num).toInt(),
+      total: (json['total'] as num).toInt(),
       text: json['text'] as String,
       title: json['title'] as String,
     );
