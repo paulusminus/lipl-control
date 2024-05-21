@@ -1,7 +1,7 @@
 {
-    "name": "Lipl Control",
-    "short_name": "Lipl",
-    "start_url": "https://vps.paulmin.nl/",
+    "name": "lipl_control",
+    "short_name": "lipl_control",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
