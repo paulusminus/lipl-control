@@ -32,7 +32,8 @@ class SaveAction extends Action<SaveIntent> {
     final EditLyricState state = context.read<EditLyricCubit>().state;
     if (state.isNew) {
       await liplRestCubit.postLyric(
-        LyricPost(
+        Lyric(
+          id: null,
           title: state.title,
           parts: state.text.toParts(),
         ),

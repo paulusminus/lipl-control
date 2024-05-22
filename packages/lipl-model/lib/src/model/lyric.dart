@@ -8,7 +8,7 @@ part 'lyric.g.dart';
 abstract class Lyric with _$Lyric {
   const Lyric._();
   const factory Lyric({
-    required String id,
+    required String? id,
     required String title,
     required List<List<String>> parts,
   }) = _Lyric;

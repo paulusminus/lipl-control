@@ -58,7 +58,8 @@ Future<void> main() async {
   await cubit.load();
 
   log.info('Adding Allegaartje');
-  const PlaylistPost playlistPost = PlaylistPost(
+  final Playlist playlistPost = Playlist(
+    id: newId(),
     title: 'Allegaartje',
     members: [
       'EqCnuUKcSkoWPyvaRK8Jbh',
@@ -80,10 +81,11 @@ Future<void> main() async {
   log.info('Renamed Allegaartje to Allemaal te gek');
 
   log.info('Deleting playlist');
-  await cubit.deletePlaylist(p.id);
+  await cubit.deletePlaylist(p.id!);
   log.info('Deleted playlist');
 
-  const lyricPost = LyricPost(
+  final lyricPost = Lyric(
+    id: newId(),
     title: 'Leningrad 19',
     parts: [
       [
@@ -116,7 +118,7 @@ Future<void> main() async {
   log.info('Renamed Leningrad 19 to Leningrad 44');
 
   log.info('Deleting lyric');
-  await cubit.deleteLyric(l.id);
+  await cubit.deleteLyric(l.id!);
   log.info('Deleted lyric');
 
   await subscription1.cancel();

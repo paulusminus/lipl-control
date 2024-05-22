@@ -20,7 +20,7 @@ Lyric _$LyricFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Lyric {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   List<List<String>> get parts => throw _privateConstructorUsedError;
 
@@ -34,7 +34,7 @@ abstract class $LyricCopyWith<$Res> {
   factory $LyricCopyWith(Lyric value, $Res Function(Lyric) then) =
       _$LyricCopyWithImpl<$Res, Lyric>;
   @useResult
-  $Res call({String id, String title, List<List<String>> parts});
+  $Res call({String? id, String title, List<List<String>> parts});
 }
 
 /// @nodoc
@@ -50,15 +50,15 @@ class _$LyricCopyWithImpl<$Res, $Val extends Lyric>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? parts = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$LyricImplCopyWith<$Res> implements $LyricCopyWith<$Res> {
       __$$LyricImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, List<List<String>> parts});
+  $Res call({String? id, String title, List<List<String>> parts});
 }
 
 /// @nodoc
@@ -92,15 +92,15 @@ class __$$LyricImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? parts = null,
   }) {
     return _then(_$LyricImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ class _$LyricImpl extends _Lyric {
       _$$LyricImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
   final String title;
   final List<List<String>> _parts;
@@ -169,7 +169,7 @@ class _$LyricImpl extends _Lyric {
 
 abstract class _Lyric extends Lyric {
   const factory _Lyric(
-      {required final String id,
+      {required final String? id,
       required final String title,
       required final List<List<String>> parts}) = _$LyricImpl;
   const _Lyric._() : super._();
@@ -177,7 +177,7 @@ abstract class _Lyric extends Lyric {
   factory _Lyric.fromJson(Map<String, dynamic> json) = _$LyricImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
   String get title;
   @override

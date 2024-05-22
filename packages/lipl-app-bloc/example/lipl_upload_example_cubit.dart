@@ -9,10 +9,11 @@ const Credentials? credentials = null;
 
 bool isSuccess(LiplAppState state) => state.status == LoadingStatus.success;
 
-Future<LyricPost> fromFile(File file) async {
+Future<Lyric> fromFile(File file) async {
   final String title = p.basenameWithoutExtension(file.path);
   final text = await file.readAsString();
-  return LyricPost(
+  return Lyric(
+    id: null,
     title: title,
     parts: text.toParts(),
   );
@@ -46,9 +47,10 @@ Future<void> main() async {
       .asyncMap(postLyric)
       .toList();
 
-  final PlaylistPost playlistPost = PlaylistPost(
+  final Playlist playlistPost = Playlist(
+    id: newId(),
     title: 'Alles',
-    members: lyrics.map((Lyric lyric) => lyric.id).toList(),
+    members: lyrics.map((Lyric lyric) => lyric.id!).toList(),
   );
 
   await cubit.postPlaylist(playlistPost);

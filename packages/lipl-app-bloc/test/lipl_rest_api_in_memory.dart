@@ -1,7 +1,6 @@
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:uuid/uuid.dart';
-import 'package:fast_base58/fast_base58.dart';
 
 const Uuid uuid = Uuid();
 
@@ -41,12 +40,12 @@ class ExceptionsRestApi implements LiplRestApiInterface {
   }
 
   @override
-  Future<Lyric> postLyric(LyricPost post) {
+  Future<Lyric> postLyric(Lyric post) {
     throw error;
   }
 
   @override
-  Future<Playlist> postPlaylist(PlaylistPost post) {
+  Future<Playlist> postPlaylist(Playlist post) {
     throw error;
   }
 
@@ -88,7 +87,7 @@ class InMemoryRestApi implements LiplRestApiInterface {
   Future<List<Summary>> getLyricSummaries() => Future.value(
         _lyrics
             .map(
-              (lyric) => Summary(id: lyric.id, title: lyric.title),
+              (lyric) => Summary(id: lyric.id!, title: lyric.title),
             )
             .toList()
             .sortByTitle(),
@@ -101,7 +100,7 @@ class InMemoryRestApi implements LiplRestApiInterface {
   Future<List<Summary>> getPlaylistSummaries() => Future.value(
         _playlists
             .map(
-              (playlist) => Summary(id: playlist.id, title: playlist.title),
+              (playlist) => Summary(id: playlist.id!, title: playlist.title),
             )
             .toList()
             .sortByTitle(),
@@ -111,20 +110,15 @@ class InMemoryRestApi implements LiplRestApiInterface {
   Future<List<Playlist>> getPlaylists() => Future.value(_playlists);
 
   @override
-  Future<Lyric> postLyric(LyricPost post) {
-    final lyric = Lyric(
-      id: _newId(),
-      title: post.title,
-      parts: post.parts,
-    );
-    _lyrics = [..._lyrics, lyric].sortByTitle();
-    return Future.value(lyric);
+  Future<Lyric> postLyric(Lyric post) {
+    _lyrics = [..._lyrics, post].sortByTitle();
+    return Future.value(post);
   }
 
   @override
-  Future<Playlist> postPlaylist(PlaylistPost post) {
+  Future<Playlist> postPlaylist(Playlist post) {
     final playlist = Playlist(
-      id: _newId(),
+      id: newId(),
       title: post.title,
       members: post.members,
     );
@@ -142,11 +136,5 @@ class InMemoryRestApi implements LiplRestApiInterface {
   Future<Playlist> putPlaylist(String id, Playlist playlist) {
     _playlists.replaceItem(playlist);
     return Future.value(playlist);
-  }
-
-  String _newId() {
-    List<int> buffer = List.generate(16, (_) => 0);
-    uuid.v4buffer(buffer);
-    return Base58Encode(uuid.v1buffer(buffer));
   }
 }

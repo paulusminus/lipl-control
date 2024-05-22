@@ -131,7 +131,7 @@ class LyricsOrPlaylistsView extends StatelessWidget {
   }
 }
 
-String selectLyricId(Lyric lyric) => lyric.id;
+String selectLyricId(Lyric lyric) => lyric.id!;
 
 Widget renderLyricTitle(Lyric lyric) => ListTile(
       title: Text(lyric.title),
@@ -148,7 +148,7 @@ Widget renderLyricSummary(Lyric lyric) => ListTile(
       ),
     );
 
-String selectPlaylistId(Playlist playlist) => playlist.id;
+String selectPlaylistId(Playlist playlist) => playlist.id!;
 
 Widget renderPlaylistTitle(Playlist playlist) => ListTile(
       title: Text(playlist.title),
@@ -223,7 +223,7 @@ Widget renderLyricList(Stream<List<Lyric>> lyricsStream) {
                   textOK: l10n.okButtonLabel,
                   textCancel: l10n.cancelButtonLabel,
                 ).then((result) => {
-                      if (result) {liplRestCubit.deleteLyric(lyric.id)}
+                      if (result) {liplRestCubit.deleteLyric(lyric.id!)}
                     });
               },
               showOnMobile: false,
@@ -316,7 +316,7 @@ Widget renderPlaylistList(
                         textCancel: l10n.cancelButtonLabel,
                       );
                       if (await confirmDialog) {
-                        await liplRestCubit.deletePlaylist(playlist.id);
+                        await liplRestCubit.deletePlaylist(playlist.id!);
                       }
                     },
                     showOnMobile: false,

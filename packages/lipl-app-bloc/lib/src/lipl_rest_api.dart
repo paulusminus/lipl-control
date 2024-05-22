@@ -8,12 +8,12 @@ part 'lipl_rest_api.g.dart';
 abstract class LiplRestApiInterface {
   Future<List<Lyric>> getLyrics();
   Future<List<Summary>> getLyricSummaries();
-  Future<Lyric> postLyric(@Body() LyricPost post);
+  Future<Lyric> postLyric(@Body() Lyric post);
   Future<void> deleteLyric(@Path() String id);
   Future<Lyric> putLyric(@Path() String id, @Body() Lyric lyric);
   Future<List<Playlist>> getPlaylists();
   Future<List<Summary>> getPlaylistSummaries();
-  Future<Playlist> postPlaylist(@Body() PlaylistPost post);
+  Future<Playlist> postPlaylist(@Body() Playlist post);
   Future<void> deletePlaylist(@Path() String id);
   Future<Playlist> putPlaylist(@Path() String id, @Body() Playlist playlist);
 }
@@ -47,7 +47,7 @@ abstract class LiplRestApi implements LiplRestApiInterface {
 
   @override
   @POST('lyric')
-  Future<Lyric> postLyric(@Body() LyricPost post);
+  Future<Lyric> postLyric(@Body() Lyric post);
 
   @override
   @DELETE('lyric/{id}')
@@ -67,7 +67,7 @@ abstract class LiplRestApi implements LiplRestApiInterface {
 
   @override
   @POST('playlist')
-  Future<Playlist> postPlaylist(@Body() PlaylistPost post);
+  Future<Playlist> postPlaylist(@Body() Playlist post);
 
   @override
   @DELETE('playlist/{id}')

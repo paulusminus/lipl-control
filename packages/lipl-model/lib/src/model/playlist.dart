@@ -7,7 +7,7 @@ part 'playlist.g.dart';
 class Playlist with _$Playlist {
   const Playlist._();
   const factory Playlist({
-    required String id,
+    required String? id,
     required String title,
     required List<String> members,
   }) = _Playlist;

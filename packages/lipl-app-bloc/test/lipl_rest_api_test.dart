@@ -64,7 +64,8 @@ void main() {
     });
 
     test('post lyric', () async {
-      const payload = LyricPost(
+      final payload = Lyric(
+        id: newId(),
         title: 'Breng eens een zonnetje',
         parts: [
           [
@@ -170,7 +171,8 @@ void main() {
     });
 
     test('post playlist', () async {
-      const payload = PlaylistPost(
+      const payload = Playlist(
+        id: null,
         title: 'Alles',
         members: [
           '56',

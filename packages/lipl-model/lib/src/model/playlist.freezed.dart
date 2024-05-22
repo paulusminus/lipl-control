@@ -20,7 +20,7 @@ Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Playlist {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   List<String> get members => throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $PlaylistCopyWith<$Res> {
   factory $PlaylistCopyWith(Playlist value, $Res Function(Playlist) then) =
       _$PlaylistCopyWithImpl<$Res, Playlist>;
   @useResult
-  $Res call({String id, String title, List<String> members});
+  $Res call({String? id, String title, List<String> members});
 }
 
 /// @nodoc
@@ -51,15 +51,15 @@ class _$PlaylistCopyWithImpl<$Res, $Val extends Playlist>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? members = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$PlaylistImplCopyWith<$Res>
       __$$PlaylistImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, List<String> members});
+  $Res call({String? id, String title, List<String> members});
 }
 
 /// @nodoc
@@ -94,15 +94,15 @@ class __$$PlaylistImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? members = null,
   }) {
     return _then(_$PlaylistImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ class _$PlaylistImpl extends _Playlist {
       _$$PlaylistImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
   final String title;
   final List<String> _members;
@@ -171,7 +171,7 @@ class _$PlaylistImpl extends _Playlist {
 
 abstract class _Playlist extends Playlist {
   const factory _Playlist(
-      {required final String id,
+      {required final String? id,
       required final String title,
       required final List<String> members}) = _$PlaylistImpl;
   const _Playlist._() : super._();
@@ -180,7 +180,7 @@ abstract class _Playlist extends Playlist {
       _$PlaylistImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
   String get title;
   @override

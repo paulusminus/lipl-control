@@ -77,7 +77,7 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Lyric> postLyric(LyricPost post) async {
+  Future<Lyric> postLyric(Lyric post) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -218,7 +218,7 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Playlist> postPlaylist(PlaylistPost post) async {
+  Future<Playlist> postPlaylist(Playlist post) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

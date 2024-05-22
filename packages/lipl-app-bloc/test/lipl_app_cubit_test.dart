@@ -7,33 +7,38 @@ import 'package:test/test.dart';
 
 import 'lipl_rest_api_in_memory.dart';
 
-const lyricPost1 = LyricPost(
+final lyricPost1 = Lyric(
+  id: newId(),
   title: 'aan de amsterdamse grachten',
   parts: [],
 );
 
-const lyricPost2 = LyricPost(
+final lyricPost2 = Lyric(
+  id: newId(),
   title: 'Breng eens een zonnetje',
   parts: [],
 );
 
-const lyricPost3 = LyricPost(
+final lyricPost3 = Lyric(
+  id: newId(),
   title: 'Oh kindeke klein',
   parts: [],
 );
 
-const addingLyric = LyricPost(
+final addingLyric = Lyric(
+  id: newId(),
   title: 'Adding lyric',
   parts: [],
 );
 
-const addingPlaylist = PlaylistPost(
+final addingPlaylist = Playlist(
+  id: null,
   title: 'Allemaal helemaal te gek',
   members: [],
 );
 
-PlaylistPost initialPlaylistPost(String title, List<String> members) =>
-    PlaylistPost(
+Playlist initialPlaylistPost(String title, List<String> members) => Playlist(
+      id: null,
       title: 'Alles',
       members: members,
     );
@@ -59,7 +64,7 @@ void main() {
           'Alles',
           initialLyrics
               .map(
-                (e) => e.id,
+                (e) => e.id!,
               )
               .toList(),
         ),
@@ -132,7 +137,7 @@ void main() {
           await cubit.postLyric(addingLyric);
           final lyric = (await api.getLyrics())
               .firstWhere((element) => element.title == addingLyric.title);
-          addedLyricId = lyric.id;
+          addedLyricId = lyric.id!;
         },
         expect: () => [
           loaded(api).copyWith(status: LoadingStatus.changing),
@@ -160,7 +165,7 @@ void main() {
           api: api,
         ),
         seed: () => loaded(api),
-        act: (cubit) => cubit.deleteLyric(initialLyrics.first.id),
+        act: (cubit) => cubit.deleteLyric(initialLyrics.first.id!),
         expect: () => [
           loaded(api).copyWith(status: LoadingStatus.changing),
           LiplAppState(
@@ -268,7 +273,8 @@ void main() {
           api: errorApi,
         ),
         seed: () => loaded(errorApi),
-        act: (cubit) async => await cubit.postLyric(const LyricPost(
+        act: (cubit) async => await cubit.postLyric(Lyric(
+          id: newId(),
           title: 'Whatever',
           parts: [],
         )),
@@ -334,7 +340,7 @@ void main() {
           await cubit.postPlaylist(addingPlaylist);
           final playlist = (await api.getPlaylists())
               .firstWhere((element) => element.title == addingPlaylist.title);
-          addedPlaylistId = playlist.id;
+          addedPlaylistId = playlist.id!;
         },
         expect: () => [
           loaded(api).copyWith(status: LoadingStatus.changing),
@@ -360,7 +366,7 @@ void main() {
         ),
         seed: () => loaded(api),
         act: (cubit) async =>
-            await cubit.deletePlaylist(initialPlaylists.first.id),
+            await cubit.deletePlaylist(initialPlaylists.first.id!),
         expect: () => [
           loaded(api).copyWith(status: LoadingStatus.changing),
           loaded(api).copyWith(
@@ -427,7 +433,7 @@ void main() {
             api: errorApi),
         seed: () => loaded(errorApi),
         act: (cubit) async =>
-            await cubit.deletePlaylist(initialPlaylists[0].id),
+            await cubit.deletePlaylist(initialPlaylists[0].id!),
         expect: () => [
           loaded(errorApi).copyWith(status: LoadingStatus.changing),
         ],

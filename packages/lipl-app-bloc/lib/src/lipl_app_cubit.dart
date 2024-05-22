@@ -100,10 +100,13 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         );
       });
 
-  Future<void> postLyric(LyricPost lyricPost) => _runAsync(() async {
+  Future<void> postLyric(Lyric lyricPost) => _runAsync(() async {
         final api =
             _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
         emit(state.copyWith(status: LoadingStatus.changing));
+        if (lyricPost.id == null) {
+          lyricPost = lyricPost.copyWith(id: newId());
+        }
         final lyric = await api.postLyric(lyricPost);
         emit(
           state.copyWith(
@@ -117,7 +120,7 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         final api =
             _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
         emit(state.copyWith(status: LoadingStatus.changing));
-        final Lyric returnedLyric = await api.putLyric(lyric.id, lyric);
+        final Lyric returnedLyric = await api.putLyric(lyric.id!, lyric);
         emit(
           state.copyWith(
             lyrics: state.lyrics.replaceItem(returnedLyric),
@@ -142,10 +145,13 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         );
       });
 
-  Future<void> postPlaylist(PlaylistPost playlistPost) => _runAsync(() async {
+  Future<void> postPlaylist(Playlist playlistPost) => _runAsync(() async {
         final api =
             _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
         emit(state.copyWith(status: LoadingStatus.changing));
+        if (playlistPost.id == null) {
+          playlistPost = playlistPost.copyWith(id: newId());
+        }
         final playlist = await api.postPlaylist(playlistPost);
         emit(
           state.copyWith(
@@ -160,7 +166,7 @@ class LiplAppCubit extends Cubit<LiplAppState> {
             _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
         emit(state.copyWith(status: LoadingStatus.changing));
         final Playlist playlistReturned =
-            await api.putPlaylist(playlist.id, playlist);
+            await api.putPlaylist(playlist.id!, playlist);
         emit(
           state.copyWith(
             playlists: state.playlists.replaceItem(playlistReturned),

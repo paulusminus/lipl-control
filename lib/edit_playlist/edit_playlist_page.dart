@@ -20,11 +20,12 @@ class SaveAction extends Action<SaveIntent> {
   Object? invoke(SaveIntent intent) async {
     final EditPlaylistState state = editPlaylistCubit.state;
     if (isNew) {
-      final PlaylistPost playlistPost = PlaylistPost(
+      final Playlist playlistPost = Playlist(
+        id: null,
         title: state.title,
         members: state.members
             .map(
-              (Lyric lyric) => lyric.id,
+              (Lyric lyric) => lyric.id!,
             )
             .toList(),
       );
@@ -33,7 +34,7 @@ class SaveAction extends Action<SaveIntent> {
       final Playlist playlist = Playlist(
         id: state.id!,
         title: state.title,
-        members: state.members.map((Lyric lyric) => lyric.id).toList(),
+        members: state.members.map((Lyric lyric) => lyric.id!).toList(),
       );
       await liplRestCubit.putPlaylist(playlist);
     }
@@ -197,7 +198,7 @@ class _MembersField extends StatelessWidget {
             if (direction == DismissDirection.endToStart) {
               context
                   .read<EditPlaylistCubit>()
-                  .membersItemDeleted(state.members[index].id);
+                  .membersItemDeleted(state.members[index].id!);
             }
           },
           child: ListTile(

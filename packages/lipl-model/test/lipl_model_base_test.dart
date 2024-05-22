@@ -163,62 +163,6 @@ void main() {
     });
   });
 
-  group('LyricPost', () {
-    late LyricPost lyricPost;
-    late Map<String, dynamic> lyricPostJson;
-
-    setUp(() {
-      lyricPost = LyricPost(title: 'title 1', parts: []);
-      lyricPostJson = {
-        'title': 'title 1',
-        'parts': [],
-      };
-    });
-
-    test('Constructor', () {
-      const LyricPost lyricPost = LyricPost(title: 'title 1', parts: []);
-      expect(
-        lyricPost.title,
-        'title 1',
-      );
-      expect(
-        lyricPost.parts,
-        [],
-      );
-    });
-
-    test('toJson', () {
-      final Map<String, dynamic> json = lyricPost.toJson();
-      expect(
-        json['title'],
-        'title 1',
-      );
-      expect(
-        json['parts'],
-        [],
-      );
-    });
-
-    test('fromJson', () {
-      final LyricPost lyricPost = LyricPost.fromJson(lyricPostJson);
-      expect(
-        lyricPost.title,
-        'title 1',
-      );
-      expect(
-        lyricPost.parts,
-        [],
-      );
-    });
-
-    test('json equality', () {
-      expect(
-        LyricPost.fromJson(lyricPost.toJson()),
-        lyricPost,
-      );
-    });
-  });
-
   group('Summary', () {
     late Summary summary;
     late Map<String, dynamic> summaryJson;
@@ -418,58 +362,6 @@ void main() {
       expect(
         playlist.toString(),
         'Playlist: playlist 1',
-      );
-    });
-  });
-
-  group('PlaylistPost', () {
-    late PlaylistPost playlistPost;
-    late Map<String, dynamic> playlistPostJson;
-
-    setUp(() {
-      playlistPost = const PlaylistPost(
-        title: 'Playlist 1',
-        members: ['1'],
-      );
-      playlistPostJson = {
-        'title': 'Playlist 1',
-        'members': ['1'],
-      };
-    });
-
-    test('Constructor', () {
-      const PlaylistPost playlistPost = PlaylistPost(
-        title: 'Playlist 1',
-        members: ['1'],
-      );
-      expect(
-        playlistPost.title,
-        'Playlist 1',
-      );
-      expect(
-        playlistPost.members,
-        ['1'],
-      );
-    });
-
-    test('toJson', () {
-      expect(
-        playlistPost.toJson(),
-        playlistPostJson,
-      );
-    });
-
-    test('fromJson', () {
-      expect(
-        PlaylistPost.fromJson(playlistPostJson),
-        playlistPost,
-      );
-    });
-
-    test('json equality', () {
-      expect(
-        PlaylistPost.fromJson(playlistPost.toJson()),
-        playlistPost,
       );
     });
   });

@@ -214,7 +214,7 @@ void main() {
               members: <Lyric>[createSubjectLyric2()],
             ),
             act: (EditPlaylistCubit cubit) =>
-                cubit.membersItemDeleted(createSubjectLyric2().id),
+                cubit.membersItemDeleted(createSubjectLyric2().id!),
             expect: () => <EditPlaylistState>[
               EditPlaylistState(
                 status: LoadingStatus.initial,
