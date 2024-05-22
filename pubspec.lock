@@ -562,7 +562,7 @@ packages:
       path: "packages/lipl-app-bloc"
       relative: true
     source: path
-    version: "1.2.12"
+    version: "1.2.14"
   lipl_bluetooth:
     dependency: "direct main"
     description:

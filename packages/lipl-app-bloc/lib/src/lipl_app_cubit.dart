@@ -120,10 +120,10 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         final api =
             _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
         emit(state.copyWith(status: LoadingStatus.changing));
-        final Lyric returnedLyric = await api.putLyric(lyric.id!, lyric);
+        await api.putLyric(lyric.id!, lyric);
         emit(
           state.copyWith(
-            lyrics: state.lyrics.replaceItem(returnedLyric),
+            lyrics: state.lyrics.replaceItem(lyric),
             status: LoadingStatus.success,
           ),
         );
@@ -165,11 +165,10 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         final api =
             _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
         emit(state.copyWith(status: LoadingStatus.changing));
-        final Playlist playlistReturned =
-            await api.putPlaylist(playlist.id!, playlist);
+        await api.putPlaylist(playlist.id!, playlist);
         emit(
           state.copyWith(
-            playlists: state.playlists.replaceItem(playlistReturned),
+            playlists: state.playlists.replaceItem(playlist),
             status: LoadingStatus.success,
           ),
         );

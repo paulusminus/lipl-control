@@ -77,12 +77,12 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Lyric> postLyric(Lyric post) async {
+  Future<Lyric> postLyric(Lyric lyric) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(post.toJson());
+    _data.addAll(lyric.toJson());
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Lyric>(Options(
       method: 'POST',
@@ -218,12 +218,12 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Playlist> postPlaylist(Playlist post) async {
+  Future<Playlist> postPlaylist(Playlist playlist) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(post.toJson());
+    _data.addAll(playlist.toJson());
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Playlist>(Options(
       method: 'POST',
