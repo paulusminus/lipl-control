@@ -18,8 +18,8 @@ jobs:
       - name: Build for Web
         run: flutter build web --base-href=/
       - name: Create tarball
-        run: tar -czf ../../lipl-pwa.tar.gz . --owner=0 --group=0
-        working-directory: build/web
+        working-directory: build/web/
+        run: tar -czf ../../lipl-pwa.tar.gz --owner=0 --group=0 .
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "lipl-pwa.tar.gz"
