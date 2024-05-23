@@ -23,14 +23,15 @@ class CloseAction extends Action<CloseIntent> {
 class SaveIntent extends Intent {}
 
 class SaveAction extends Action<SaveIntent> {
-  SaveAction(this.context);
-  final BuildContext context;
+  SaveAction(this.editLyricCubit, this.liplRestCubit, this.isNew);
+  final EditLyricCubit editLyricCubit;
+  final LiplAppCubit liplRestCubit;
+  final bool isNew;
 
   @override
   Object? invoke(SaveIntent intent) async {
-    final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
-    final EditLyricState state = context.read<EditLyricCubit>().state;
-    if (state.isNew) {
+    final EditLyricState state = editLyricCubit.state;
+    if (isNew) {
       await liplRestCubit.postLyric(
         Lyric(
           id: null,
@@ -47,9 +48,7 @@ class SaveAction extends Action<SaveIntent> {
         ),
       );
     }
-    if (context.mounted) {
-      context.read<EditLyricCubit>().submitted();
-    }
+    editLyricCubit.submitted();
     return null;
   }
 }
@@ -95,6 +94,8 @@ class EditLyricView extends StatelessWidget {
         context.select((EditLyricCubit cubit) => cubit.state.status);
     final bool isNew =
         context.select((EditLyricCubit cubit) => cubit.state.id == null);
+    final EditLyricCubit editLyricCubit = context.read<EditLyricCubit>();
+    final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
 
     return Shortcuts(
       shortcuts: <SingleActivator, Intent>{
@@ -104,7 +105,7 @@ class EditLyricView extends StatelessWidget {
       },
       child: Actions(
         actions: <Type, Action<Intent>>{
-          SaveIntent: SaveAction(context),
+          SaveIntent: SaveAction(editLyricCubit, liplRestCubit, isNew),
           CloseIntent: CloseAction(context),
         },
         child: Builder(
