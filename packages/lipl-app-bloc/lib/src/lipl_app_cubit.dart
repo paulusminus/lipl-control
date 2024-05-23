@@ -46,8 +46,7 @@ class LiplAppCubit extends Cubit<LiplAppState> {
 
   Stream<List<Lyric>> get lyricsStream => stream
       .where((state) => state.status == LoadingStatus.success)
-      .map((state) => state.lyrics)
-      .distinct();
+      .map((state) => state.lyrics);
 
   Stream<List<Playlist>> get playlistsStream => stream
       .where((state) => state.status == LoadingStatus.success)
