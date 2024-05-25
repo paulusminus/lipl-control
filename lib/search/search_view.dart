@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/search/search_cubit.dart';
@@ -116,6 +117,9 @@ class SearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = context.l10n;
+    final lyrics = context.read<LiplAppCubit>().state.lyrics;
+    context.read<SearchCubit>().lyricsChanged(lyrics);
+
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (BuildContext context, SearchState state) {
         final Stream<List<Lyric>> stream =

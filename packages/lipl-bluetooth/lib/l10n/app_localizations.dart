@@ -64,8 +64,8 @@ abstract class BluetoothAppLocalizations {
 
   final String localeName;
 
-  static BluetoothAppLocalizations? of(BuildContext context) {
-    return Localizations.of<BluetoothAppLocalizations>(context, BluetoothAppLocalizations);
+  static BluetoothAppLocalizations of(BuildContext context) {
+    return Localizations.of<BluetoothAppLocalizations>(context, BluetoothAppLocalizations)!;
   }
 
   static const LocalizationsDelegate<BluetoothAppLocalizations> delegate = _BluetoothAppLocalizationsDelegate();

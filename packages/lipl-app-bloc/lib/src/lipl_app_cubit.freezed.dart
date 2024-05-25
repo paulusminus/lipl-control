@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+LiplAppState _$LiplAppStateFromJson(Map<String, dynamic> json) {
+  return _LiplAppState.fromJson(json);
+}
+
 /// @nodoc
 mixin _$LiplAppState {
   List<Lyric> get lyrics => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$LiplAppState {
   LoadingStatus get status => throw _privateConstructorUsedError;
   Credentials? get credentials => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LiplAppStateCopyWith<LiplAppState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -148,7 +153,7 @@ class __$$LiplAppStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$LiplAppStateImpl implements _LiplAppState {
   const _$LiplAppStateImpl(
       {final List<Lyric> lyrics = const [],
@@ -157,6 +162,9 @@ class _$LiplAppStateImpl implements _LiplAppState {
       this.credentials = null})
       : _lyrics = lyrics,
         _playlists = playlists;
+
+  factory _$LiplAppStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LiplAppStateImplFromJson(json);
 
   final List<Lyric> _lyrics;
   @override
@@ -201,6 +209,7 @@ class _$LiplAppStateImpl implements _LiplAppState {
                 other.credentials == credentials));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -214,6 +223,13 @@ class _$LiplAppStateImpl implements _LiplAppState {
   @pragma('vm:prefer-inline')
   _$$LiplAppStateImplCopyWith<_$LiplAppStateImpl> get copyWith =>
       __$$LiplAppStateImplCopyWithImpl<_$LiplAppStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LiplAppStateImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _LiplAppState implements LiplAppState {
@@ -222,6 +238,9 @@ abstract class _LiplAppState implements LiplAppState {
       final List<Playlist> playlists,
       final LoadingStatus status,
       final Credentials? credentials}) = _$LiplAppStateImpl;
+
+  factory _LiplAppState.fromJson(Map<String, dynamic> json) =
+      _$LiplAppStateImpl.fromJson;
 
   @override
   List<Lyric> get lyrics;

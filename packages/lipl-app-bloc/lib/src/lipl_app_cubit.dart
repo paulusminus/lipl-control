@@ -1,13 +1,17 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:loading_status/loading_status.dart';
+import 'package:logging/logging.dart';
 import 'lipl_rest_api.dart';
 
 part 'lipl_app_cubit.freezed.dart';
+part 'lipl_app_cubit.g.dart';
+
+final Logger logger = Logger('$LiplAppCubit');
 
 @freezed
 class LiplAppState with _$LiplAppState {
@@ -17,32 +21,29 @@ class LiplAppState with _$LiplAppState {
     @Default(LoadingStatus.initial) LoadingStatus status,
     @Default(null) Credentials? credentials,
   }) = _LiplAppState;
+
+  factory LiplAppState.fromJson(Map<String, Object?> json) =>
+      _$LiplAppStateFromJson(json);
 }
 
-class LiplAppCubit extends Cubit<LiplAppState> {
+class LiplAppCubit extends HydratedCubit<LiplAppState> {
   LiplAppCubit({
-    required this.credentialsStream,
-    required this.isWeb,
     LiplRestApiInterface? api,
   }) : super(const LiplAppState()) {
     _api = api;
-    _subscription = credentialsStream.listen((credentials) {
-      emit(state.copyWith(credentials: credentials));
-      load();
-    });
   }
 
-  late StreamSubscription<Credentials?> _subscription;
   late LiplRestApiInterface? _api;
-  bool isWeb;
 
   @override
-  Future<void> close() async {
-    await _subscription.cancel();
-    await super.close();
+  LiplAppState fromJson(Map<String, dynamic> json) {
+    return LiplAppState.fromJson(json['preferences']);
   }
 
-  Stream<Credentials?> credentialsStream;
+  @override
+  Map<String, dynamic> toJson(LiplAppState state) {
+    return <String, LiplAppState>{'preferences': state};
+  }
 
   Stream<List<Lyric>> get lyricsStream => stream
       .where((state) => state.status == LoadingStatus.success)
@@ -70,26 +71,20 @@ class LiplAppCubit extends Cubit<LiplAppState> {
     }
   }
 
+  void preferencesChanged(Credentials? credentials) {
+    emit(state.copyWith(credentials: credentials));
+  }
+
   Future<void> load() => _runAsync(() async {
         emit(
           state.copyWith(
             status: LoadingStatus.loading,
           ),
         );
-        List<Lyric> lyrics = [];
-        List<Playlist> playlists = [];
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
-        await Future.wait<void>(
-          [
-            api.getLyrics().then((value) {
-              lyrics = value;
-            }),
-            api.getPlaylists().then((value) {
-              playlists = value;
-            }),
-          ],
-        );
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
+        final (lyrics, playlists) =
+            await (api.getLyrics(), api.getPlaylists()).wait;
+        logger.info('Fetch lyrics and playlists succes');
         emit(
           state.copyWith(
             lyrics: lyrics.sortByTitle(),
@@ -99,14 +94,14 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         );
       });
 
-  Future<void> postLyric(Lyric lyricPost) => _runAsync(() async {
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
+  Future<void> postLyric(Lyric lyric) => _runAsync(() async {
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
-        if (lyricPost.id == null) {
-          lyricPost = lyricPost.copyWith(id: newId());
+        if (lyric.id == null) {
+          lyric = lyric.copyWith(id: newId());
         }
-        final lyric = await api.postLyric(lyricPost);
+        await api.postLyric(lyric);
+        logger.info('Posting new lyric with title ${lyric.title} successful');
         emit(
           state.copyWith(
             lyrics: state.lyrics.addItem(lyric),
@@ -116,10 +111,10 @@ class LiplAppCubit extends Cubit<LiplAppState> {
       });
 
   Future<void> putLyric(Lyric lyric) => _runAsync(() async {
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         await api.putLyric(lyric.id!, lyric);
+        logger.info('Changing lyric with title ${lyric.title} successfull');
         emit(
           state.copyWith(
             lyrics: state.lyrics.replaceItem(lyric),
@@ -129,10 +124,10 @@ class LiplAppCubit extends Cubit<LiplAppState> {
       });
 
   Future<void> deleteLyric(String id) => _runAsync(() async {
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         await api.deleteLyric(id);
+        logger.info('Deleting lyric with id $id successful');
         emit(
           state.copyWith(
             lyrics: state.lyrics.removeItemById(id),
@@ -144,14 +139,15 @@ class LiplAppCubit extends Cubit<LiplAppState> {
         );
       });
 
-  Future<void> postPlaylist(Playlist playlistPost) => _runAsync(() async {
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
+  Future<void> postPlaylist(Playlist playlist) => _runAsync(() async {
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
-        if (playlistPost.id == null) {
-          playlistPost = playlistPost.copyWith(id: newId());
+        if (playlist.id == null) {
+          playlist = playlist.copyWith(id: newId());
         }
-        final playlist = await api.postPlaylist(playlistPost);
+        await api.postPlaylist(playlist);
+        logger
+            .info('Posting new lyric with title ${playlist.title} successfull');
         emit(
           state.copyWith(
             playlists: state.playlists.addItem(playlist),
@@ -161,10 +157,10 @@ class LiplAppCubit extends Cubit<LiplAppState> {
       });
 
   Future<void> putPlaylist(Playlist playlist) => _runAsync(() async {
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         await api.putPlaylist(playlist.id!, playlist);
+        logger.info('Changing lyric with title ${playlist.title} successfull');
         emit(
           state.copyWith(
             playlists: state.playlists.replaceItem(playlist),
@@ -174,10 +170,10 @@ class LiplAppCubit extends Cubit<LiplAppState> {
       });
 
   Future<void> deletePlaylist(String id) => _runAsync(() async {
-        final api =
-            _api ?? apiFromConfig(credentials: state.credentials, isWeb: isWeb);
+        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         await api.deletePlaylist(id);
+        logger.info('Deleting playlist with id $id successfull');
         emit(
           state.copyWith(
             playlists: state.playlists.removeItemById(id),

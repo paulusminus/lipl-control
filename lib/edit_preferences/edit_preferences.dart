@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lipl_app_bloc/lipl_app_bloc.dart' hide logger;
 import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_model/lipl_model.dart';
-import 'package:preferences_bloc/preferences_bloc.dart';
+
+class EditPreferencesCubit extends Cubit<Credentials?> {
+  EditPreferencesCubit(super.initialState);
+
+  void setCredentials(Credentials? credentials) {
+    emit(credentials);
+  }
+}
 
 class CloseIntent extends Intent {}
 
@@ -27,14 +35,15 @@ class SaveAction extends Action<SaveIntent> {
 
   @override
   Object? invoke(SaveIntent intent) {
-    final LiplPreferences item =
-        context.read<LiplEditPreferencesBloc>().state.preferences;
-    context.read<LiplPreferencesBloc>().add(
-          PreferencesEventChange<LiplPreferences>(
-            item: item,
-          ),
-        );
+    logger.info('Save button pressed');
+    final Credentials? credentials = context.read<EditPreferencesCubit>().state;
+    logger.info('Preferences fetched from LiplEditPreferencesBloc');
+    final liplAppCubit = context.read<LiplAppCubit>();
+    liplAppCubit.preferencesChanged(credentials);
+    liplAppCubit.load();
+    logger.info('Preferences sent to LiplAppCubit');
     Navigator.of(context).pop();
+    logger.info('Navigate to parent finished');
     return null;
   }
 }
@@ -58,6 +67,10 @@ class EditPreferencesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Credentials? appCredentials =
+        context.read<LiplAppCubit>().state.credentials;
+    final editPreferencesCubit = context.read<EditPreferencesCubit>();
+    editPreferencesCubit.setCredentials(appCredentials);
     final AppLocalizations l10n = context.l10n;
     return Shortcuts(
       shortcuts: <SingleActivator, Intent>{
@@ -73,11 +86,10 @@ class EditPreferencesView extends StatelessWidget {
         child: Builder(builder: (BuildContext context) {
           return Focus(
             autofocus: true,
-            child: BlocBuilder<LiplEditPreferencesBloc,
-                EditPreferencesState<LiplPreferences>>(
+            child: BlocBuilder<EditPreferencesCubit, Credentials?>(
               builder: (
                 BuildContext context,
-                EditPreferencesState<LiplPreferences> state,
+                Credentials? credentials,
               ) {
                 return Scaffold(
                   appBar: AppBar(
@@ -89,32 +101,22 @@ class EditPreferencesView extends StatelessWidget {
                       child: ListView(
                         children: <Widget>[
                           TextFormField(
-                            initialValue:
-                                state.preferences.credentials?.username ?? '',
+                            initialValue: credentials?.username ?? '',
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.text,
                             decoration:
                                 InputDecoration(labelText: l10n.usernameLabel),
-                            onChanged: (String value) {
-                              context.read<LiplEditPreferencesBloc>().add(
-                                    EditPreferencesEventChange<LiplPreferences>(
-                                      preferences: state.preferences.copyWith(
-                                        credentials: state
-                                                .preferences.credentials
-                                                ?.copyWith(username: value) ??
-                                            Credentials(
-                                              username: value,
-                                              password: null,
-                                            ),
-                                      ),
-                                    ),
-                                  );
+                            onChanged: (String username) {
+                              final editPreferencesCubit =
+                                  context.read<EditPreferencesCubit>();
+                              editPreferencesCubit.setCredentials(Credentials(
+                                  username: username,
+                                  password: credentials?.password));
                             },
                           ),
                           TextFormField(
-                            initialValue:
-                                state.preferences.credentials?.password ?? '',
+                            initialValue: credentials?.password ?? '',
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
@@ -122,19 +124,13 @@ class EditPreferencesView extends StatelessWidget {
                             decoration: InputDecoration(
                               labelText: l10n.passwordLabel,
                             ),
-                            onChanged: (String value) {
-                              context.read<LiplEditPreferencesBloc>().add(
-                                    EditPreferencesEventChange<LiplPreferences>(
-                                      preferences: state.preferences.copyWith(
-                                        credentials: state
-                                                .preferences.credentials
-                                                ?.copyWith(password: value) ??
-                                            Credentials(
-                                                username: null,
-                                                password: value),
-                                      ),
-                                    ),
-                                  );
+                            onChanged: (String password) {
+                              final editPreferencesCubit =
+                                  context.read<EditPreferencesCubit>();
+                              editPreferencesCubit.setCredentials(Credentials(
+                                username: credentials?.username,
+                                password: password,
+                              ));
                             },
                           ),
                         ],
@@ -142,7 +138,7 @@ class EditPreferencesView extends StatelessWidget {
                     ),
                   ),
                   floatingActionButton: FloatingActionButton(
-                    onPressed: state.hasChanged
+                    onPressed: appCredentials != credentials
                         ? Actions.handler(context, SaveIntent())
                         : null,
                     child: const Icon(Icons.save),

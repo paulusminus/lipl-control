@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'model.dart';
 
@@ -15,12 +16,12 @@ abstract class Lyric with _$Lyric {
 
   factory Lyric.fromJson(Map<String, Object?> json) => _$LyricFromJson(json);
 
-  List<LyricPart> toLyricParts() => parts.indexed
-      .map((element) => LyricPart(
+  List<LyricPart> toLyricParts() => parts
+      .mapIndexed((index, part) => LyricPart(
             title: title,
-            current: element.$1 + 1,
+            current: index + 1,
             total: parts.length,
-            text: element.$2.join('\n'),
+            text: part.join('\n'),
           ))
       .toList();
 

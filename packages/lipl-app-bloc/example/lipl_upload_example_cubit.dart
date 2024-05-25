@@ -20,8 +20,7 @@ Future<Lyric> fromFile(File file) async {
 }
 
 Future<void> main() async {
-  final LiplAppCubit cubit =
-      LiplAppCubit(credentialsStream: const Stream.empty(), isWeb: false);
+  final LiplAppCubit cubit = LiplAppCubit();
   await cubit.load();
 
   Future<Lyric> postLyric(File file) async {

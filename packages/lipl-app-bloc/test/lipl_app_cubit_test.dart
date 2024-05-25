@@ -1,11 +1,15 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dio/dio.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:loading_status/loading_status.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 import 'lipl_rest_api_in_memory.dart';
+
+class MockStorage extends Mock implements Storage {}
 
 final lyricPost1 = Lyric(
   id: newId(),
@@ -32,13 +36,13 @@ final addingLyric = Lyric(
 );
 
 final addingPlaylist = Playlist(
-  id: null,
+  id: newId(),
   title: 'Allemaal helemaal te gek',
   members: [],
 );
 
-Playlist initialPlaylistPost(String title, List<String> members) => Playlist(
-      id: null,
+Playlist initialPlaylist(String title, List<String> members) => Playlist(
+      id: newId(),
       title: 'Alles',
       members: members,
     );
@@ -50,33 +54,37 @@ void main() {
   late List<Playlist> initialPlaylists;
   late LiplRestApiInterface api;
   late LiplRestApiInterface errorApi;
+  late Storage storage;
 
   setUp(() async {
-    api = InMemoryRestApi();
-    initialLyrics = [
-      await api.postLyric(lyricPost1),
-      await api.postLyric(lyricPost2),
-      await api.postLyric(lyricPost3),
-    ];
-    initialPlaylists = [
-      await api.postPlaylist(
-        initialPlaylistPost(
-          'Alles',
-          initialLyrics
-              .map(
-                (e) => e.id!,
-              )
-              .toList(),
-        ),
-      )
-    ];
+    api = InMemoryRestApi(lyrics: [], playlists: []);
+    await api.postLyric(lyricPost1);
+    await api.postLyric(lyricPost2);
+    await api.postLyric(lyricPost3);
+    initialLyrics = await api.getLyrics();
+    await api.postPlaylist(
+      initialPlaylist(
+        'Alles',
+        initialLyrics
+            .map(
+              (e) => e.id!,
+            )
+            .toList(),
+      ),
+    );
+    initialPlaylists = await api.getPlaylists();
+    // mock storage for hydrated bloc
+    storage = MockStorage();
+    when(
+      () => storage.write(any(), any<dynamic>()),
+    ).thenAnswer((_) async {});
+    HydratedBloc.storage = storage;
   });
 
-  group('LiplRestCubit', () {
+  group('LiplAppCubit', () {
     late String addedLyricId;
-    late String addedPlaylistId;
 
-    LiplAppState loaded(LiplRestApiInterface api) => LiplAppState(
+    LiplAppState loaded() => LiplAppState(
           lyrics: initialLyrics.sortByTitle(),
           playlists: initialPlaylists.sortByTitle(),
           status: LoadingStatus.success,
@@ -96,10 +104,7 @@ void main() {
 
     group('Lyric', () {
       test('Constructor', () {
-        final cubit = LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
-        );
+        final cubit = LiplAppCubit();
         expect(
           cubit.state.copyWith(credentials: null),
           const LiplAppState().copyWith(credentials: null),
@@ -109,8 +114,6 @@ void main() {
       blocTest<LiplAppCubit, LiplAppState>(
         'load',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
         act: (cubit) async => await cubit.load(),
@@ -121,18 +124,16 @@ void main() {
             status: LoadingStatus.loading,
             credentials: null,
           ),
-          loaded(api),
+          loaded(),
         ],
       );
 
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus add',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
-        seed: () => loaded(api),
+        seed: () => loaded(),
         act: (cubit) async {
           await cubit.postLyric(addingLyric);
           final lyric = (await api.getLyrics())
@@ -140,7 +141,7 @@ void main() {
           addedLyricId = lyric.id!;
         },
         expect: () => [
-          loaded(api).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
           LiplAppState(
             lyrics: [
               ...initialLyrics,
@@ -160,14 +161,12 @@ void main() {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus delete',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
-        seed: () => loaded(api),
+        seed: () => loaded(),
         act: (cubit) => cubit.deleteLyric(initialLyrics.first.id!),
         expect: () => [
-          loaded(api).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
           LiplAppState(
             lyrics: initialLyrics
                 .sortByTitle()
@@ -194,18 +193,16 @@ void main() {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus change',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
-        seed: () => loaded(api),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
             title: 'Breng eens een emmer',
           ),
         ),
         expect: () => [
-          loaded(api).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
           LiplAppState(
             lyrics: [
               initialLyrics[0],
@@ -227,8 +224,6 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric'));
         },
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: errorApi,
         ),
         act: (cubit) async => await cubit.load(),
@@ -247,9 +242,8 @@ void main() {
           errorApi = ExceptionsRestApi(unauthorized('lyric'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(),
-            isWeb: false,
-            api: errorApi),
+          api: errorApi,
+        ),
         act: (cubit) async => await cubit.load(),
         expect: () => [
           const LiplAppState().copyWith(
@@ -268,11 +262,9 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: errorApi,
         ),
-        seed: () => loaded(errorApi),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.postLyric(Lyric(
           id: newId(),
           title: 'Whatever',
@@ -280,7 +272,7 @@ void main() {
         )),
         wait: const Duration(milliseconds: 10),
         expect: () => [
-          loaded(errorApi).copyWith(
+          loaded().copyWith(
             status: LoadingStatus.changing,
           )
         ],
@@ -293,14 +285,12 @@ void main() {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: errorApi,
         ),
-        seed: () => loaded(errorApi),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.deleteLyric('5'),
         expect: () => [
-          loaded(errorApi).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
         ],
         errors: () => [isA<DioException>()],
       );
@@ -310,18 +300,15 @@ void main() {
         setUp: () {
           errorApi = ExceptionsRestApi(error('lyric/5'));
         },
-        build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(),
-            isWeb: false,
-            api: errorApi),
-        seed: () => loaded(errorApi),
+        build: () => LiplAppCubit(api: errorApi),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.putLyric(
           initialLyrics[1].copyWith(
             title: 'Breng eens een emmer',
           ),
         ),
         expect: () => [
-          loaded(errorApi).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
         ],
         errors: () => [isA<DioException>()],
       );
@@ -331,27 +318,18 @@ void main() {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus add',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
-        seed: () => loaded(api),
+        seed: () => loaded(),
         act: (cubit) async {
           await cubit.postPlaylist(addingPlaylist);
-          final playlist = (await api.getPlaylists())
-              .firstWhere((element) => element.title == addingPlaylist.title);
-          addedPlaylistId = playlist.id!;
         },
         expect: () => [
-          loaded(api).copyWith(status: LoadingStatus.changing),
-          loaded(api).copyWith(
+          loaded().copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(
             playlists: [
               ...initialPlaylists,
-              Playlist(
-                id: addedPlaylistId,
-                title: addingPlaylist.title,
-                members: addingPlaylist.members,
-              )
+              addingPlaylist,
             ].sortByTitle(),
           )
         ],
@@ -360,16 +338,14 @@ void main() {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus delete',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
-        seed: () => loaded(api),
+        seed: () => loaded(),
         act: (cubit) async =>
             await cubit.deletePlaylist(initialPlaylists.first.id!),
         expect: () => [
-          loaded(api).copyWith(status: LoadingStatus.changing),
-          loaded(api).copyWith(
+          loaded().copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(
               playlists: initialPlaylists
                   .sortByTitle()
                   .where((playlist) => playlist.id != initialPlaylists.first.id)
@@ -380,19 +356,17 @@ void main() {
       blocTest<LiplAppCubit, LiplAppState>(
         'load plus change',
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: api,
         ),
-        seed: () => loaded(api),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
             title: 'Breng eens wat meer',
           ),
         ),
         expect: () => [
-          loaded(api).copyWith(status: LoadingStatus.changing),
-          loaded(api).copyWith(
+          loaded().copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(
             playlists: [
               initialPlaylists[0].copyWith(
                 title: 'Breng eens wat meer',
@@ -410,14 +384,12 @@ void main() {
           errorApi = ExceptionsRestApi(error('playlist'));
         },
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: errorApi,
         ),
-        seed: () => loaded(errorApi),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.postPlaylist(addingPlaylist),
         expect: () => [
-          loaded(errorApi).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
         ],
         errors: () => [isA<DioException>()],
       );
@@ -428,14 +400,13 @@ void main() {
           errorApi = ExceptionsRestApi(error('playlist/4'));
         },
         build: () => LiplAppCubit(
-            credentialsStream: const Stream.empty(),
-            isWeb: false,
-            api: errorApi),
-        seed: () => loaded(errorApi),
+          api: errorApi,
+        ),
+        seed: () => loaded(),
         act: (cubit) async =>
             await cubit.deletePlaylist(initialPlaylists[0].id!),
         expect: () => [
-          loaded(errorApi).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
         ],
         errors: () => [isA<DioException>()],
       );
@@ -446,18 +417,16 @@ void main() {
           errorApi = ExceptionsRestApi(error('playlist/4'));
         },
         build: () => LiplAppCubit(
-          credentialsStream: const Stream.empty(),
-          isWeb: false,
           api: errorApi,
         ),
-        seed: () => loaded(errorApi),
+        seed: () => loaded(),
         act: (cubit) async => await cubit.putPlaylist(
           initialPlaylists[0].copyWith(
             title: 'Breng eens wat meer',
           ),
         ),
         expect: () => [
-          loaded(errorApi).copyWith(status: LoadingStatus.changing),
+          loaded().copyWith(status: LoadingStatus.changing),
         ],
         errors: () => [isA<DioException>()],
       );

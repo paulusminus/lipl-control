@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   bs58: ^1.0.2
+  collection: ^1.18.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
   uuid: ^4.4.0

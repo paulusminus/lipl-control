@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'model.dart';
 
@@ -17,8 +15,4 @@ class LiplPreferences with _$LiplPreferences {
 
   factory LiplPreferences.fromJson(Map<String, Object?> json) =>
       _$LiplPreferencesFromJson(json);
-
-  factory LiplPreferences.deserialize(String s) =>
-      LiplPreferences.fromJson(jsonDecode(s));
-  String serialize() => jsonEncode(toJson());
 }

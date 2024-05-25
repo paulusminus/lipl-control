@@ -23,15 +23,6 @@ void main() {
           ),
         );
 
-    group('LiplPreferences', () {
-      test('equality deserialize serialize', () {
-        expect(
-          initialLiplPreferences(),
-          LiplPreferences.deserialize(initialLiplPreferences().serialize()),
-        );
-      });
-    });
-
     group('State', () {
       test('constructor', () {
         final state = PreferencesState<LiplPreferences>.initial();

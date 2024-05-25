@@ -19,25 +19,18 @@ class SaveAction extends Action<SaveIntent> {
   @override
   Object? invoke(SaveIntent intent) async {
     final EditPlaylistState state = editPlaylistCubit.state;
-    if (isNew) {
-      final Playlist playlistPost = Playlist(
-        id: null,
-        title: state.title,
-        members: state.members
-            .map(
-              (Lyric lyric) => lyric.id!,
-            )
-            .toList(),
-      );
-      await liplRestCubit.postPlaylist(playlistPost);
-    } else {
-      final Playlist playlist = Playlist(
-        id: state.id!,
-        title: state.title,
-        members: state.members.map((Lyric lyric) => lyric.id!).toList(),
-      );
-      await liplRestCubit.putPlaylist(playlist);
-    }
+    final playlist = Playlist(
+      id: isNew ? null : state.id,
+      title: state.title,
+      members: state.members
+          .map(
+            (Lyric lyric) => lyric.id!,
+          )
+          .toList(),
+    );
+    await (isNew
+        ? liplRestCubit.postPlaylist
+        : liplRestCubit.putPlaylist)(playlist);
     editPlaylistCubit.submitted();
     return null;
   }

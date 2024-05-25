@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/lipl_bluetooth.dart';
@@ -13,7 +13,6 @@ import 'package:lipl_control/widget/widget.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:loading_status/loading_status.dart';
-import 'package:preferences_bloc/preferences_bloc.dart';
 
 void Function(BuildContext, LiplAppState) onRestUnauthorized(
   AppLocalizations l10n,
@@ -99,30 +98,11 @@ class LyricsOrPlaylistsView extends StatelessWidget {
           index: selectedTab.index,
           children: <Widget>[
             renderLyricList(
-              context.isMobile
-                  ? Stream.fromIterable([
-                      context.watch<LiplPreferencesBloc>().state.item?.lyrics ??
-                          []
-                    ])
-                  : context.read<LiplAppCubit>().lyricsStream,
+              context.read<LiplAppCubit>().lyricsStream,
             ),
             renderPlaylistList(
-              context.isMobile
-                  ? Stream.fromIterable([
-                      context.watch<LiplPreferencesBloc>().state.item?.lyrics ??
-                          []
-                    ])
-                  : context.read<LiplAppCubit>().lyricsStream,
-              context.isMobile
-                  ? Stream.fromIterable([
-                      context
-                              .watch<LiplPreferencesBloc>()
-                              .state
-                              .item
-                              ?.playlists ??
-                          []
-                    ])
-                  : context.read<LiplAppCubit>().playlistsStream,
+              context.read<LiplAppCubit>().lyricsStream,
+              context.read<LiplAppCubit>().playlistsStream,
             ),
           ],
         );
@@ -232,11 +212,7 @@ Widget renderLyricList(Stream<List<Lyric>> lyricsStream) {
               label: l10n.editButtonLabel,
               onPressed: (Lyric lyric) {
                 navigator.push(
-                  EditLyricPage.route(
-                    id: lyric.id,
-                    title: lyric.title,
-                    parts: lyric.parts,
-                  ),
+                  EditLyricPage.route(lyric: lyric),
                 );
               },
               showOnMobile: false,
@@ -418,25 +394,11 @@ class RefreshIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LiplAppCubit, LiplAppState>(
       builder: (BuildContext context, LiplAppState liplAppState) {
-        final isMobile = context.isMobile;
-        final liplPreferencesBloc = context.read<LiplPreferencesBloc>();
         return IconButton(
           onPressed: liplAppState.status == LoadingStatus.loading
               ? null
               : () async {
                   await context.read<LiplAppCubit>().load();
-                  if (isMobile) {
-                    final preferences =
-                        liplPreferencesBloc.state.item?.copyWith(
-                      lyrics: liplAppState.lyrics,
-                      playlists: liplAppState.playlists,
-                    );
-                    liplPreferencesBloc.add(
-                      PreferencesEventChange<LiplPreferences>(
-                        item: preferences,
-                      ),
-                    );
-                  }
                 },
           icon: const Icon(Icons.refresh),
         );

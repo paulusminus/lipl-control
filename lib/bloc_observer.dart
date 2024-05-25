@@ -1,33 +1,32 @@
 import 'package:bloc/bloc.dart';
-import 'package:logging/logging.dart';
+import 'package:lipl_control/app/app.dart';
 
 class LiplBlocObserver extends BlocObserver {
-  LiplBlocObserver(this.log);
-  final Logger? log;
+  LiplBlocObserver();
 
   @override
   void onCreate(BlocBase<dynamic> bloc) {
     super.onCreate(bloc);
-    log?.info('onCreate -- ${bloc.runtimeType}');
+    logger.info('onCreate -- ${bloc.runtimeType}');
   }
 
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
     final dynamic next = change.nextState;
-    log?.info(next.runtimeType);
-    log?.info('onChange -- ${bloc.runtimeType}\n$next');
+    logger.info('onChange -- next ${next.runtimeType}');
+    logger.info('onChange -- ${bloc.runtimeType}\n$next');
   }
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log?.info('onError -- ${bloc.runtimeType}, $error');
+    logger.info('onError -- ${bloc.runtimeType}, $error');
     super.onError(bloc, error, stackTrace);
   }
 
   @override
   void onClose(BlocBase<dynamic> bloc) {
     super.onClose(bloc);
-    log?.info('onClose -- ${bloc.runtimeType}');
+    logger.info('onClose -- ${bloc.runtimeType}');
   }
 }

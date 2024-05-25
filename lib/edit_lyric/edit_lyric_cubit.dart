@@ -1,50 +1,31 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:loading_status/loading_status.dart';
 
-class EditLyricState extends Equatable {
-  const EditLyricState({
-    this.status = LoadingStatus.initial,
-    this.id,
-    this.title = '',
-    this.text = '',
-  });
+part 'edit_lyric_cubit.freezed.dart';
 
-  final LoadingStatus status;
-  final String? id;
-  final String title;
-  final String text;
-
-  bool get isNew => id == null;
-
-  EditLyricState copyWith({
-    LoadingStatus? status,
-    String? id,
-    String? title,
-    String? text,
-  }) =>
-      EditLyricState(
-        status: status ?? this.status,
-        id: id ?? this.id,
-        title: title ?? this.title,
-        text: text ?? this.text,
-      );
-
-  @override
-  List<Object?> get props => <Object?>[status, id, title, text];
+@freezed
+class EditLyricState with _$EditLyricState {
+  const EditLyricState._();
+  const factory EditLyricState({
+    @Default(true) bool isNew,
+    @Default(LoadingStatus.initial) LoadingStatus status,
+    @Default(null) String? id,
+    @Default('') String title,
+    @Default('') String text,
+  }) = _EditLyricState;
 }
 
 class EditLyricCubit extends Cubit<EditLyricState> {
   EditLyricCubit({
-    String? id,
-    String? title,
-    List<List<String>>? parts,
+    Lyric? lyric,
   }) : super(
           EditLyricState(
-            id: id,
-            title: title ?? '',
-            text: parts == null ? '' : parts.toText(),
+            isNew: lyric?.id == null,
+            id: lyric?.id ?? newId(),
+            title: lyric?.title ?? '',
+            text: lyric?.parts.toText() ?? '',
           ),
         );
 

@@ -1,9 +1,10 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lipl_control/app/view/providers.dart';
 import 'package:lipl_control/bloc_observer.dart';
 import 'package:logging/logging.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:universal_io/io.dart';
 
 Future<void> main() async {
@@ -18,12 +19,16 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  final Logger logger = Logger('Lipl');
+  if (kDebugMode) {
+    Bloc.observer = LiplBlocObserver();
+  }
 
-  Bloc.observer = LiplBlocObserver(kDebugMode ? logger : null);
+  final Directory storageDirectory = await getApplicationSupportDirectory();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: storageDirectory,
+  );
+
   runApp(
-    RepoProviders(
-      logger: logger,
-    ),
+    const BlocProviders(),
   );
 }

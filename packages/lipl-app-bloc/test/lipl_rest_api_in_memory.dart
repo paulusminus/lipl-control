@@ -61,13 +61,14 @@ class ExceptionsRestApi implements LiplRestApiInterface {
 }
 
 class InMemoryRestApi implements LiplRestApiInterface {
-  List<Lyric> _lyrics = [];
-  List<Playlist> _playlists = [];
+  InMemoryRestApi({required this.lyrics, required this.playlists});
+  List<Lyric> lyrics = [];
+  List<Playlist> playlists = [];
 
   @override
   Future<void> deleteLyric(String id) {
-    _lyrics = _lyrics.removeItemById(id);
-    _playlists = _playlists
+    lyrics = lyrics.removeItemById(id);
+    playlists = playlists
         .map(
           (playlist) => playlist.copyWith(
             members: playlist.members.where((member) => member != id).toList(),
@@ -79,13 +80,13 @@ class InMemoryRestApi implements LiplRestApiInterface {
 
   @override
   Future<void> deletePlaylist(String id) {
-    _playlists = _playlists.removeItemById(id);
+    playlists = playlists.removeItemById(id);
     return Future.value();
   }
 
   @override
   Future<List<Summary>> getLyricSummaries() => Future.value(
-        _lyrics
+        lyrics
             .map(
               (lyric) => Summary(id: lyric.id!, title: lyric.title),
             )
@@ -94,11 +95,11 @@ class InMemoryRestApi implements LiplRestApiInterface {
       );
 
   @override
-  Future<List<Lyric>> getLyrics() => Future.value(_lyrics.sortByTitle());
+  Future<List<Lyric>> getLyrics() => Future.value(lyrics.sortByTitle());
 
   @override
   Future<List<Summary>> getPlaylistSummaries() => Future.value(
-        _playlists
+        playlists
             .map(
               (playlist) => Summary(id: playlist.id!, title: playlist.title),
             )
@@ -107,11 +108,11 @@ class InMemoryRestApi implements LiplRestApiInterface {
       );
 
   @override
-  Future<List<Playlist>> getPlaylists() => Future.value(_playlists);
+  Future<List<Playlist>> getPlaylists() => Future.value(playlists);
 
   @override
   Future<Lyric> postLyric(Lyric post) {
-    _lyrics = [..._lyrics, post].sortByTitle();
+    lyrics = [...lyrics, post].sortByTitle();
     return Future.value(post);
   }
 
@@ -122,19 +123,19 @@ class InMemoryRestApi implements LiplRestApiInterface {
       title: post.title,
       members: post.members,
     );
-    _playlists = [..._playlists, playlist];
+    playlists = [...playlists, playlist];
     return Future.value(playlist);
   }
 
   @override
   Future<Lyric> putLyric(String id, Lyric lyric) {
-    _lyrics.replaceItem(lyric);
+    lyrics.replaceItem(lyric);
     return Future.value(lyric);
   }
 
   @override
   Future<Playlist> putPlaylist(String id, Playlist playlist) {
-    _playlists.replaceItem(playlist);
+    playlists.replaceItem(playlist);
     return Future.value(playlist);
   }
 }

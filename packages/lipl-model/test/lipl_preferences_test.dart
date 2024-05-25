@@ -51,30 +51,9 @@ void main() {
       );
     });
 
-    test('Deserialize error', () {
-      expect(
-        () => LiplPreferences.deserialize('asdlkjf'),
-        throwsFormatException,
-      );
-    });
-
     test('CopyWith equality', () {
       expect(
         createSubject().copyWith(),
-        createSubject(),
-      );
-    });
-
-    test('Deserialize error', () {
-      expect(
-        () => LiplPreferences.deserialize('asdlkjf'),
-        throwsFormatException,
-      );
-    });
-
-    test('Serialize equality', () {
-      expect(
-        LiplPreferences.deserialize(createSubject().serialize()),
         createSubject(),
       );
     });

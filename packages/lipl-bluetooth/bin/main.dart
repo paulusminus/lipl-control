@@ -6,9 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 import 'package:logging/logging.dart';
 
+final logger = Logger('Lipl');
+
 class LiplBlocObserver extends BlocObserver {
-  LiplBlocObserver({required this.logger});
-  final Logger logger;
+  LiplBlocObserver();
 
   @override
   void onCreate(BlocBase<dynamic> bloc) {
@@ -38,15 +39,14 @@ class LiplBlocObserver extends BlocObserver {
 }
 
 class BluetoothProviders extends StatelessWidget {
-  const BluetoothProviders({super.key, required this.logger});
-  final Logger logger;
+  const BluetoothProviders({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ScanCubit>.value(
-          value: ScanCubit(logger: logger),
+          value: ScanCubit(),
         )
       ],
       child: const LiplBluetoothApp(),
@@ -74,7 +74,6 @@ Future<void> main() async {
     stdout.writeln('${record.level.name}: ${record.time}: ${record.message}');
   });
 
-  final logger = Logger('Lipl');
-  Bloc.observer = LiplBlocObserver(logger: logger);
-  runApp(BluetoothProviders(logger: logger));
+  Bloc.observer = LiplBlocObserver();
+  runApp(const BluetoothProviders());
 }

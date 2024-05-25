@@ -57,25 +57,8 @@ void main() {
               expect(state.search, '');
               expect(state.members, <Lyric>[]);
               expect(state.lyrics, <Lyric>[]);
-              expect(state.isNewLyric, true);
+              expect(state.isNew, true);
               expect(state.filtered, <Lyric>[]);
-            },
-          );
-
-          test(
-            'Props',
-            () {
-              expect(
-                createSubject().props,
-                <Object?>[
-                  LoadingStatus.success,
-                  'id 1',
-                  'title 1',
-                  'search 1',
-                  <Lyric>[createSubjectLyric1()],
-                  <Lyric>[createSubjectLyric1(), createSubjectLyric2()]
-                ],
-              );
             },
           );
 

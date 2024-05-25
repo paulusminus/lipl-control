@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/lipl_bluetooth.dart';
+import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/play/play.dart';
 import 'package:lipl_control/widget/confirm.dart';
 import 'package:lipl_control/widget/widget.dart';
 import 'package:lipl_model/lipl_model.dart';
-import 'package:logging/logging.dart';
 
 class PreviousIntent extends Intent {}
 
@@ -198,7 +198,6 @@ class PlayPart extends StatelessWidget {
     final LastIntent lastIntent = LastIntent();
     final CloseIntent closeIntent = CloseIntent();
 
-    final Logger logger = RepositoryProvider.of<Logger>(context);
     onUpdatePage(0, lyricParts);
 
     return Shortcuts(

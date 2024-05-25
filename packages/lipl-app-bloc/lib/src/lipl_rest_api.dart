@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/src/basic_authentication.dart';
 import 'package:dio/dio.dart';
@@ -8,19 +9,18 @@ part 'lipl_rest_api.g.dart';
 abstract class LiplRestApiInterface {
   Future<List<Lyric>> getLyrics();
   Future<List<Summary>> getLyricSummaries();
-  Future<Lyric> postLyric(@Body() Lyric lyric);
+  Future<void> postLyric(@Body() Lyric lyric);
   Future<void> deleteLyric(@Path() String id);
-  Future<Lyric> putLyric(@Path() String id, @Body() Lyric lyric);
+  Future<void> putLyric(@Path() String id, @Body() Lyric lyric);
   Future<List<Playlist>> getPlaylists();
   Future<List<Summary>> getPlaylistSummaries();
-  Future<Playlist> postPlaylist(@Body() Playlist playlist);
+  Future<void> postPlaylist(@Body() Playlist playlist);
   Future<void> deletePlaylist(@Path() String id);
   Future<Playlist> putPlaylist(@Path() String id, @Body() Playlist playlist);
 }
 
 LiplRestApi apiFromConfig({
   Credentials? credentials,
-  required bool isWeb,
 }) {
   final Dio dio = credentials == null
       ? Dio()
@@ -28,9 +28,9 @@ LiplRestApi apiFromConfig({
           credentials: credentials,
         );
 
-  return isWeb
+  return kIsWeb
       ? LiplRestApi(dio, baseUrl: '/lipl/api/v1/')
-      : LiplRestApi(dio, baseUrl: 'https://www.paulmin.nl/lipl/api/v1/');
+      : LiplRestApi(dio, baseUrl: 'https://lipl.paulmin.nl/lipl/api/v1/');
 }
 
 @RestApi()

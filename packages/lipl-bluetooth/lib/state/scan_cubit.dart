@@ -3,12 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-import 'package:logging/logging.dart';
-import 'state.dart';
+import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 
 class ScanCubit extends Cubit<ScanState> {
-  ScanCubit({required this.logger})
-      : super(ScanState(isScanning: FlutterBluePlus.isScanningNow)) {
+  ScanCubit() : super(ScanState(isScanning: FlutterBluePlus.isScanningNow)) {
     FlutterBluePlus.isScanning.listen(
       (isScanning) {
         emit(state.copyWith(isScanning: isScanning));
@@ -28,7 +26,7 @@ class ScanCubit extends Cubit<ScanState> {
           final devicesFound = liplDevices
               .map((scanResult) => scanResult.device.remoteId.toString())
               .join(', ');
-          logger.info('found lipl devices on systems: $devicesFound');
+          bluetoothLogger.info('found lipl devices on systems: $devicesFound');
         }
         emit(state.copyWith(scanResults: liplDevices));
       },
@@ -38,7 +36,6 @@ class ScanCubit extends Cubit<ScanState> {
     );
   }
 
-  final Logger logger;
   StreamSubscription<List<ScanResult>>? _streamSubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionStateSubsribtion;
 
@@ -80,7 +77,7 @@ class ScanCubit extends Cubit<ScanState> {
         }
       });
       await device.discoverServices();
-      logger.info('Service list ${device.servicesList}');
+      bluetoothLogger.info('Service list ${device.servicesList}');
       final displayService = device.servicesList
           .where((service) => service.serviceUuid == liplDisplayServiceUuid)
           .where(
@@ -99,7 +96,7 @@ class ScanCubit extends Cubit<ScanState> {
           .where((characteristic) =>
               characteristic.characteristicUuid == characteristicCommandUuid)
           .firstOrNull;
-      logger.info("Found dislay service");
+      bluetoothLogger.info("Found dislay service");
 
       if (displayService != null &&
           textCharacteristic != null &&

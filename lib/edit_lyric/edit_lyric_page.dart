@@ -23,31 +23,19 @@ class CloseAction extends Action<CloseIntent> {
 class SaveIntent extends Intent {}
 
 class SaveAction extends Action<SaveIntent> {
-  SaveAction(this.editLyricCubit, this.liplRestCubit, this.isNew);
+  SaveAction(this.editLyricCubit, this.liplAppCubit);
   final EditLyricCubit editLyricCubit;
-  final LiplAppCubit liplRestCubit;
-  final bool isNew;
+  final LiplAppCubit liplAppCubit;
 
   @override
   Object? invoke(SaveIntent intent) async {
     final EditLyricState state = editLyricCubit.state;
-    if (isNew) {
-      await liplRestCubit.postLyric(
-        Lyric(
-          id: null,
-          title: state.title,
-          parts: state.text.toParts(),
-        ),
-      );
-    } else {
-      await liplRestCubit.putLyric(
-        Lyric(
-          id: state.id!,
-          title: state.title,
-          parts: state.text.toParts(),
-        ),
-      );
-    }
+    final lyric = Lyric(
+      id: state.id,
+      title: state.title,
+      parts: state.text.toParts(),
+    );
+    await (state.isNew ? liplAppCubit.postLyric : liplAppCubit.putLyric)(lyric);
     editLyricCubit.submitted();
     return null;
   }
@@ -56,15 +44,12 @@ class SaveAction extends Action<SaveIntent> {
 class EditLyricPage extends StatelessWidget {
   const EditLyricPage({super.key});
 
-  static Route<void> route(
-      {String? id, String? title, List<List<String>>? parts}) {
+  static Route<void> route({Lyric? lyric}) {
     return MaterialPageRoute<void>(
       fullscreenDialog: true,
       builder: (BuildContext context) => BlocProvider<EditLyricCubit>(
         create: (BuildContext context) => EditLyricCubit(
-          id: id,
-          title: title,
-          parts: parts,
+          lyric: lyric,
         ),
         child: const EditLyricPage(),
       ),
@@ -92,10 +77,8 @@ class EditLyricView extends StatelessWidget {
     final AppLocalizations l10n = context.l10n;
     final LoadingStatus status =
         context.select((EditLyricCubit cubit) => cubit.state.status);
-    final bool isNew =
-        context.select((EditLyricCubit cubit) => cubit.state.id == null);
     final EditLyricCubit editLyricCubit = context.read<EditLyricCubit>();
-    final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
+    final LiplAppCubit liplAppCubit = context.read<LiplAppCubit>();
 
     return Shortcuts(
       shortcuts: <SingleActivator, Intent>{
@@ -105,7 +88,10 @@ class EditLyricView extends StatelessWidget {
       },
       child: Actions(
         actions: <Type, Action<Intent>>{
-          SaveIntent: SaveAction(editLyricCubit, liplRestCubit, isNew),
+          SaveIntent: SaveAction(
+            editLyricCubit,
+            liplAppCubit,
+          ),
           CloseIntent: CloseAction(context),
         },
         child: Builder(
@@ -113,7 +99,9 @@ class EditLyricView extends StatelessWidget {
             autofocus: true,
             child: Scaffold(
               appBar: AppBar(
-                title: Text(isNew ? l10n.newLyric : l10n.editLyric),
+                title: Text(
+                  editLyricCubit.state.isNew ? l10n.newLyric : l10n.editLyric,
+                ),
               ),
               body: const SingleChildScrollView(
                 child: Padding(

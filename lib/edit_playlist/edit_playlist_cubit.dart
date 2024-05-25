@@ -1,26 +1,23 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:loading_status/loading_status.dart';
 
-class EditPlaylistState extends Equatable {
-  const EditPlaylistState({
-    this.status = LoadingStatus.initial,
-    this.id,
-    this.title = '',
-    this.search = '',
-    this.members = const <Lyric>[],
-    this.lyrics = const <Lyric>[],
-  });
+part 'edit_playlist_cubit.freezed.dart';
 
-  final LoadingStatus status;
-  final String? id;
-  final String title;
-  final String search;
-  final List<Lyric> members;
-  final List<Lyric> lyrics;
+@freezed
+class EditPlaylistState with _$EditPlaylistState {
+  const EditPlaylistState._();
+  const factory EditPlaylistState({
+    @Default(LoadingStatus.initial) LoadingStatus status,
+    @Default(null) String? id,
+    @Default('') String title,
+    @Default('') String search,
+    @Default([]) List<Lyric> members,
+    @Default([]) List<Lyric> lyrics,
+  }) = _EditPlaylistState;
 
-  bool get isNewLyric => id == null;
+  bool get isNew => id == null;
 
   List<Lyric> get filtered => lyrics
       .where(
@@ -28,32 +25,6 @@ class EditPlaylistState extends Equatable {
             lyric.title.toLowerCase().contains(search.toLowerCase()),
       )
       .toList();
-
-  EditPlaylistState copyWith({
-    LoadingStatus? status,
-    String? id,
-    String? title,
-    String? search,
-    List<Lyric>? members,
-  }) =>
-      EditPlaylistState(
-        status: status ?? this.status,
-        id: id ?? this.id,
-        title: title ?? this.title,
-        search: search ?? this.search,
-        members: members ?? this.members,
-        lyrics: lyrics,
-      );
-
-  @override
-  List<Object?> get props => <Object?>[
-        status,
-        id,
-        title,
-        search,
-        members,
-        lyrics,
-      ];
 }
 
 class EditPlaylistCubit extends Cubit<EditPlaylistState> {

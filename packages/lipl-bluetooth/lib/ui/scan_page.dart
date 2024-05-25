@@ -22,18 +22,16 @@ class ScanPage extends StatelessWidget {
           listener: (context, state) async {
             if (state.isConnected()) {
               final message =
-                  '${l10n?.bluetoothConnectedTo ?? "Connected to"} ${state.connectedDevice?.device.remoteId}';
+                  '${l10n.bluetoothConnectedTo} ${state.connectedDevice?.device.remoteId}';
               await context.read<ScanCubit>().writeText(message);
             } else {
-              final message =
-                  l10n?.bluetoothWaitForConnection ?? 'Wait for connection';
+              final message = l10n.bluetoothWaitForConnection;
               await context.read<ScanCubit>().writeText(message);
             }
           },
           builder: (context, state) {
             return Scaffold(
-              appBar:
-                  AppBar(title: Text(l10n?.bluetoothTitle ?? 'TV Connections')),
+              appBar: AppBar(title: Text(l10n.bluetoothTitle)),
               body: Column(
                 children: [
                   if (state.isConnected())
@@ -43,8 +41,7 @@ class ScanPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: Text(
-                            l10n?.bluetoothActiveConnection ??
-                                'Now connected to',
+                            l10n.bluetoothActiveConnection,
                             textAlign: TextAlign.left,
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
@@ -68,8 +65,7 @@ class ScanPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: Text(
-                            l10n?.bluetoothPossibleConnections ??
-                                'Possible connections',
+                            l10n.bluetoothPossibleConnections,
                             style: Theme.of(context).textTheme.labelLarge,
                             textAlign: TextAlign.left,
                           ),
