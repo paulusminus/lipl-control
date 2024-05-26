@@ -23,10 +23,10 @@ Future<void> main() async {
     Bloc.observer = LiplBlocObserver();
   }
 
-  final Directory storageDirectory = await getApplicationSupportDirectory();
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory:
-        kIsWeb ? HydratedStorage.webStorageDirectory : storageDirectory,
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationSupportDirectory(),
   );
 
   runApp(
