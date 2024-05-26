@@ -52,6 +52,13 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
       .where((state) => state.status == LoadingStatus.success)
       .map((state) => state.playlists);
 
+  List<Lyric> searchResults(String searchTerm) => searchTerm.trim().length < 3
+      ? <Lyric>[]
+      : state.lyrics
+          .where((Lyric lyric) =>
+              lyric.title.toLowerCase().contains(searchTerm.toLowerCase()))
+          .toList();
+
   @override
   void onError(Object error, StackTrace stackTrace) {
     if (error is DioException) {

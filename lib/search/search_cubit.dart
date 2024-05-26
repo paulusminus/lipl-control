@@ -9,10 +9,9 @@ class SearchState with _$SearchState {
   const SearchState._();
   const factory SearchState({
     @Default('') String searchTerm,
-    @Default([]) List<Lyric> lyrics,
   }) = _SearchState;
 
-  List<Lyric> get searchResult => searchTerm.trim().length < 3
+  List<Lyric> searchResult(String searchTerm) => searchTerm.trim().length < 3
       ? <Lyric>[]
       : lyrics
           .where((Lyric lyric) =>
@@ -21,9 +20,9 @@ class SearchState with _$SearchState {
 }
 
 class SearchCubit extends Cubit<SearchState> {
-  SearchCubit() : super(const SearchState(searchTerm: '', lyrics: <Lyric>[]));
+  SearchCubit() : super(const SearchState(searchTerm: ''));
 
-  void search(String value) {
+  void searchChanged(String value) {
     emit(state.copyWith(searchTerm: value));
   }
 
