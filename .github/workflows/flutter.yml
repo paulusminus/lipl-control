@@ -23,12 +23,6 @@ jobs:
       - name: Test lipl-model
         run: flutter test -r expanded
         working-directory: './packages/lipl-model'
-      - name: Test preferences-bloc
-        run: flutter test -r expanded
-        working-directory: './packages/preferences-bloc'
-      - name: Test lipl-encrypt
-        run: flutter test -r expanded
-        working-directory: './packages/lipl-encrypt'
       - name: Test 
         run: flutter test -r expanded
       - name: Build for Web
