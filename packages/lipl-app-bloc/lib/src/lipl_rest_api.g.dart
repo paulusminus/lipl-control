@@ -77,31 +77,28 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Lyric> postLyric(Lyric lyric) async {
+  Future<void> postLyric(Lyric lyric) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(lyric.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Lyric>(Options(
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'lyric',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Lyric.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          'lyric',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override
@@ -129,7 +126,7 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Lyric> putLyric(
+  Future<void> putLyric(
     String id,
     Lyric lyric,
   ) async {
@@ -138,25 +135,22 @@ class _LiplRestApi implements LiplRestApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(lyric.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Lyric>(Options(
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'lyric/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Lyric.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          'lyric/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override
@@ -218,31 +212,28 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Playlist> postPlaylist(Playlist playlist) async {
+  Future<void> postPlaylist(Playlist playlist) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(playlist.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Playlist>(Options(
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'playlist',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Playlist.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          'playlist',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override
@@ -270,7 +261,7 @@ class _LiplRestApi implements LiplRestApi {
   }
 
   @override
-  Future<Playlist> putPlaylist(
+  Future<void> putPlaylist(
     String id,
     Playlist playlist,
   ) async {
@@ -279,25 +270,22 @@ class _LiplRestApi implements LiplRestApi {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(playlist.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Playlist>(Options(
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'playlist/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Playlist.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          'playlist/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

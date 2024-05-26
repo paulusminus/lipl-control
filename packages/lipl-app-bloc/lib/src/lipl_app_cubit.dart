@@ -113,8 +113,10 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
   Future<void> putLyric(Lyric lyric) => _runAsync(() async {
         final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
+        logger.info('About to change lyric with title ${lyric.title}');
+        logger.info('Lyric json: ${lyric.toJson()}');
         await api.putLyric(lyric.id!, lyric);
-        logger.info('Changing lyric with title ${lyric.title} successfull');
+        logger.info('Changed lyric with title ${lyric.title}');
         emit(
           state.copyWith(
             lyrics: state.lyrics.replaceItem(lyric),

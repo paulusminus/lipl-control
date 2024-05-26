@@ -2,9 +2,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/src/basic_authentication.dart';
 import 'package:dio/dio.dart';
+import 'package:logging/logging.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'lipl_rest_api.g.dart';
+
+final logger = Logger('$LiplRestApi');
 
 abstract class LiplRestApiInterface {
   Future<List<Lyric>> getLyrics();
@@ -16,12 +19,16 @@ abstract class LiplRestApiInterface {
   Future<List<Summary>> getPlaylistSummaries();
   Future<void> postPlaylist(@Body() Playlist playlist);
   Future<void> deletePlaylist(@Path() String id);
-  Future<Playlist> putPlaylist(@Path() String id, @Body() Playlist playlist);
+  Future<void> putPlaylist(@Path() String id, @Body() Playlist playlist);
 }
 
 LiplRestApi apiFromConfig({
   Credentials? credentials,
 }) {
+  const String apiPrefix = String.fromEnvironment('API_PREFIX',
+      defaultValue: 'https://lipl.paulmin.nl');
+  logger.info('Prefix = $apiPrefix');
+
   final Dio dio = credentials == null
       ? Dio()
       : basicAuthenticationDio(
@@ -30,7 +37,7 @@ LiplRestApi apiFromConfig({
 
   return kIsWeb
       ? LiplRestApi(dio, baseUrl: '/lipl/api/v1/')
-      : LiplRestApi(dio, baseUrl: 'https://lipl.paulmin.nl/lipl/api/v1/');
+      : LiplRestApi(dio, baseUrl: '$apiPrefix/lipl/api/v1/');
 }
 
 @RestApi()
@@ -47,7 +54,7 @@ abstract class LiplRestApi implements LiplRestApiInterface {
 
   @override
   @POST('lyric')
-  Future<Lyric> postLyric(@Body() Lyric lyric);
+  Future<void> postLyric(@Body() Lyric lyric);
 
   @override
   @DELETE('lyric/{id}')
@@ -55,7 +62,7 @@ abstract class LiplRestApi implements LiplRestApiInterface {
 
   @override
   @PUT('lyric/{id}')
-  Future<Lyric> putLyric(@Path() String id, @Body() Lyric lyric);
+  Future<void> putLyric(@Path() String id, @Body() Lyric lyric);
 
   @override
   @GET('playlist?full=true')
@@ -67,7 +74,7 @@ abstract class LiplRestApi implements LiplRestApiInterface {
 
   @override
   @POST('playlist')
-  Future<Playlist> postPlaylist(@Body() Playlist playlist);
+  Future<void> postPlaylist(@Body() Playlist playlist);
 
   @override
   @DELETE('playlist/{id}')
@@ -75,5 +82,5 @@ abstract class LiplRestApi implements LiplRestApiInterface {
 
   @override
   @PUT('playlist/{id}')
-  Future<Playlist> putPlaylist(@Path() String id, @Body() Playlist playlist);
+  Future<void> putPlaylist(@Path() String id, @Body() Playlist playlist);
 }

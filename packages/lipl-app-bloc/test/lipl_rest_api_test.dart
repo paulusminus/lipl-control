@@ -75,25 +75,13 @@ void main() {
         ],
       );
 
-      const Lyric lyricResponse = Lyric(
-        id: '1',
-        title: 'Breng eens een zonnetje',
-        parts: [
-          [
-            'Breng eens een zonnetje onder de mensen',
-            'Een blij gezicht te zien dat doet toch goed',
-          ],
-        ],
-      );
-
       dioAdapter.onPost(
         'lyric',
-        (request) => request.reply(201, lyricResponse),
+        (request) => request.reply(201, ''),
         data: payload.toJson(),
       );
 
-      final lyric = await restClient.postLyric(payload);
-      expect(lyricResponse, lyric);
+      await restClient.postLyric(payload);
     });
 
     test('delete lyric', () async {
@@ -122,12 +110,11 @@ void main() {
 
       dioAdapter.onPut(
         'lyric/${payload.id}',
-        (request) => request.reply(204, payload),
+        (request) => request.reply(204, ''),
         data: payload.toJson(),
       );
 
-      final response = await restClient.putLyric('1', payload);
-      expect(payload, response);
+      await restClient.putLyric('1', payload);
     });
 
     test('get playlist summaries', () async {
@@ -180,23 +167,13 @@ void main() {
         ],
       );
 
-      const Playlist playlistResponse = Playlist(
-        id: '1',
-        title: 'Alles',
-        members: [
-          '56',
-          '23',
-        ],
-      );
-
       dioAdapter.onPost(
         'playlist',
-        (request) => request.reply(201, playlistResponse),
+        (request) => request.reply(201, ''),
         data: payload.toJson(),
       );
 
-      final playlist = await restClient.postPlaylist(payload);
-      expect(playlistResponse, playlist);
+      await restClient.postPlaylist(payload);
     });
 
     test('delete playlist', () async {
@@ -223,12 +200,11 @@ void main() {
 
       dioAdapter.onPut(
         'playlist/${payload.id}',
-        (request) => request.reply(204, payload),
+        (request) => request.reply(204, ''),
         data: payload.toJson(),
       );
 
-      final response = await restClient.putPlaylist('1', payload);
-      expect(payload, response);
+      await restClient.putPlaylist('1', payload);
     });
   });
 }
