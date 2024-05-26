@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
-import 'package:loading_status/loading_status.dart';
 import 'package:path/path.dart' as p;
 
 const String path = '/home/paul/Documenten/lipl.data/Geheugenkoor/';

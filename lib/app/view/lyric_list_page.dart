@@ -12,7 +12,6 @@ import 'package:lipl_control/search/search_view.dart';
 import 'package:lipl_control/widget/widget.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
-import 'package:loading_status/loading_status.dart';
 
 void Function(BuildContext, LiplAppState) onRestUnauthorized(
   AppLocalizations l10n,

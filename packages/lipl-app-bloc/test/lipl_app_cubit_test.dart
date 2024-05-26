@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
-import 'package:loading_status/loading_status.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

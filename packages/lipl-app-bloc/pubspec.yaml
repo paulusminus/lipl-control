@@ -18,8 +18,6 @@ dependencies:
   json_annotation: ^4.9.0
   lipl_model:
     path: "../lipl-model"
-  loading_status:
-    path: "../loading-status"
   logging: ^1.2.0
   retrofit: ^4.0.1
 

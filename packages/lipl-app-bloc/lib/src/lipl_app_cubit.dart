@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lipl_model/lipl_model.dart';
-import 'package:loading_status/loading_status.dart';
 import 'package:logging/logging.dart';
 import 'lipl_rest_api.dart';
 

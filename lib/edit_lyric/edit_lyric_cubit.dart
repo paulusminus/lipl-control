@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lipl_model/lipl_model.dart';
-import 'package:loading_status/loading_status.dart';
 
 part 'edit_lyric_cubit.freezed.dart';
 
