@@ -5,23 +5,27 @@ import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/search/search_cubit.dart';
 import 'package:lipl_control/widget/widget.dart';
+import 'package:lipl_model/lipl_model.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
   static MaterialPageRoute<void> route() => MaterialPageRoute<void>(
         fullscreenDialog: true,
-        builder: (_) => const SearchPage(),
+        builder: (context) {
+          context.read<SearchCubit>().searchChanged('');
+          return const SearchPage();
+        },
       );
 
   @override
   Widget build(BuildContext context) {
-    return SearchForm2(formKey: GlobalKey());
+    return SearchForm(formKey: GlobalKey());
   }
 }
 
-class SearchForm2 extends StatelessWidget {
-  const SearchForm2({required this.formKey, super.key});
+class SearchForm extends StatelessWidget {
+  const SearchForm({required this.formKey, super.key});
   final GlobalKey<FormState> formKey;
 
   @override
@@ -29,6 +33,14 @@ class SearchForm2 extends StatelessWidget {
     final l10n = context.l10n;
     final String searchTerm =
         context.select<SearchCubit, String>((cubit) => cubit.state.searchTerm);
+    final List<Lyric> lyrics = context
+        .select<LiplAppCubit, List<Lyric>>((cubit) => cubit.state.lyrics);
+    final List<Lyric> filteredLyrics = (searchTerm.length > 2)
+        ? lyrics
+            .where((lyric) =>
+                lyric.title.toLowerCase().contains(searchTerm.toLowerCase()))
+            .toList()
+        : [];
     return Scaffold(
       appBar: AppBar(title: Text(l10n.searchPageTitle)),
       body: Column(
@@ -91,35 +103,20 @@ class SearchForm2 extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: SearchResults(searchTerm: searchTerm),
+            child: ListTile(
+              title: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Text(
+                  '${filteredLyrics.isNotEmpty ? l10n.searchDoesHaveResults : l10n.searchNoResults} ${l10n.searchResultsFor} $searchTerm',
+                ),
+              ),
+              subtitle: LyricList(
+                lyrics: filteredLyrics,
+              ),
+            ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class SearchResults extends StatelessWidget {
-  const SearchResults({required this.searchTerm, super.key});
-  final String searchTerm;
-
-  @override
-  Widget build(BuildContext context) {
-    final AppLocalizations l10n = context.l10n;
-
-    return BlocBuilder<SearchCubit, SearchState>(
-      builder: (BuildContext context, SearchState state) {
-        final lyrics = context.read<LiplAppCubit>().searchResults(searchTerm);
-        return ListTile(
-          title: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: Text(
-              '${lyrics.isNotEmpty ? l10n.searchDoesHaveResults : l10n.searchNoResults} ${l10n.searchResultsFor} ${state.searchTerm}',
-            ),
-          ),
-          subtitle: renderLyricList(Stream.fromIterable([lyrics])),
-        );
-      },
     );
   }
 }

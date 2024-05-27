@@ -91,18 +91,17 @@ class LyricsOrPlaylistsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lyrics = context
+        .select<LiplAppCubit, List<Lyric>>((cubit) => cubit.state.lyrics);
     return BlocBuilder<SelectedTabCubit, SelectedTab>(
       builder: (BuildContext context, SelectedTab selectedTab) {
         return IndexedStack(
           index: selectedTab.index,
           children: <Widget>[
-            renderLyricList(
-              context.read<LiplAppCubit>().lyricsStream,
+            LyricList(
+              lyrics: lyrics,
             ),
-            renderPlaylistList(
-              context.read<LiplAppCubit>().lyricsStream,
-              context.read<LiplAppCubit>().playlistsStream,
-            ),
+            const PlaylistList(),
           ],
         );
       },
@@ -156,180 +155,6 @@ Widget renderPlaylistSummary(
           .join('\n'),
     ),
   );
-}
-
-Widget renderLyricList(Stream<List<Lyric>> lyricsStream) {
-  return StreamBuilder<List<Lyric>>(
-    stream: lyricsStream,
-    builder: (BuildContext context, AsyncSnapshot<List<Lyric>> lyrics) {
-      final AppLocalizations l10n = context.l10n;
-      final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
-      final NavigatorState navigator = Navigator.of(context);
-      final scanCubit = context.read<ScanCubit>();
-
-      if (lyrics.data == null) {
-        return const SizedBox.shrink();
-      } else {
-        return expansionPanelList<Lyric>(
-          items: lyrics.data!,
-          selectId: selectLyricId,
-          selectTitle: renderLyricTitle,
-          selectSummary: renderLyricSummary,
-          buttons: <ButtonData<Lyric>>[
-            ButtonData<Lyric>(
-              label: l10n.playButtonLabel,
-              onPressed: (Lyric lyric) async {
-                await navigator.push(
-                  PlayPage.route(
-                    lyricParts: <Lyric>[lyric].toLyricParts(),
-                    title: lyric.title,
-                  ),
-                );
-                if (scanCubit.state.isConnected()) {
-                  await scanCubit.writeCommand('?');
-                }
-              },
-              enabled: (Lyric lyric) => lyric.parts.isNotEmpty,
-              showOnMobile: true,
-            ),
-            ButtonData<Lyric>(
-              label: l10n.deleteButtonLabel,
-              onPressed: (Lyric lyric) {
-                confirm(
-                  context,
-                  title: l10n.confirm,
-                  content: '${l10n.delete} "${lyric.title}"?',
-                  textOK: l10n.okButtonLabel,
-                  textCancel: l10n.cancelButtonLabel,
-                ).then((result) => {
-                      if (result) {liplRestCubit.deleteLyric(lyric.id!)}
-                    });
-              },
-              showOnMobile: false,
-            ),
-            ButtonData<Lyric>(
-              label: l10n.editButtonLabel,
-              onPressed: (Lyric lyric) {
-                navigator.push(
-                  EditLyricPage.route(lyric: lyric),
-                );
-              },
-              showOnMobile: false,
-            ),
-          ]
-              .where((buttonData) =>
-                  context.isMobile ? buttonData.showOnMobile : true)
-              .toList(),
-        );
-      }
-    },
-  );
-}
-
-Widget renderPlaylistList(
-    Stream<List<Lyric>> lyricStream, Stream<List<Playlist>> playlistStream) {
-  return StreamBuilder(
-      stream: lyricStream,
-      builder: (BuildContext context, AsyncSnapshot<List<Lyric>> lyrics) {
-        return StreamBuilder(
-          stream: playlistStream,
-          builder:
-              (BuildContext context, AsyncSnapshot<List<Playlist>> playlists) {
-            final AppLocalizations l10n = context.l10n;
-            final NavigatorState navigator = Navigator.of(context);
-            final scanCubit = context.read<ScanCubit>();
-
-            if ((lyrics.data == null) || (playlists.data == null)) {
-              return const SizedBox.shrink();
-            } else {
-              return expansionPanelList<Playlist>(
-                items: playlists.data!,
-                selectId: selectPlaylistId,
-                selectTitle: renderPlaylistTitle,
-                selectSummary: (Playlist playlist) =>
-                    renderPlaylistSummary(context, playlist, lyrics.data!),
-                buttons: <ButtonData<Playlist>>[
-                  ButtonData<Playlist>(
-                    label: l10n.playButtonLabel,
-                    onPressed: (Playlist playlist) async {
-                      await navigator.push(
-                        PlayPage.route(
-                          lyricParts: playlist.members
-                              .map(
-                                (String id) =>
-                                    lyrics.data!.cast<Lyric?>().firstWhere(
-                                          (Lyric? lyric) => lyric?.id == id,
-                                          orElse: () => null,
-                                        ),
-                              )
-                              .where(
-                                (Lyric? lyric) => lyric != null,
-                              )
-                              .cast<Lyric>()
-                              .toList()
-                              .toLyricParts(),
-                          title: playlist.title,
-                        ),
-                      );
-                      if (scanCubit.state.isConnected()) {
-                        await scanCubit.writeCommand('?');
-                      }
-                    },
-                    enabled: (Playlist playlist) => playlist.members.isNotEmpty,
-                    showOnMobile: true,
-                  ),
-                  ButtonData<Playlist>(
-                    label: l10n.deleteButtonLabel,
-                    onPressed: (Playlist playlist) async {
-                      final LiplAppCubit liplRestCubit =
-                          context.read<LiplAppCubit>();
-                      final confirmDialog = confirm(
-                        context,
-                        title: l10n.confirm,
-                        content: '${l10n.delete} "${playlist.title}"?',
-                        textOK: l10n.okButtonLabel,
-                        textCancel: l10n.cancelButtonLabel,
-                      );
-                      if (await confirmDialog) {
-                        await liplRestCubit.deletePlaylist(playlist.id!);
-                      }
-                    },
-                    showOnMobile: false,
-                  ),
-                  ButtonData<Playlist>(
-                    label: l10n.editButtonLabel,
-                    onPressed: (Playlist playlist) {
-                      navigator.push(
-                        EditPlaylistPage.route(
-                          id: playlist.id,
-                          title: playlist.title,
-                          members: <Lyric>[
-                            ...playlist.members
-                                .map(
-                                  (String lyricId) =>
-                                      lyrics.data!.cast<Lyric?>().firstWhere(
-                                            (Lyric? lyric) =>
-                                                lyric?.id == lyricId,
-                                            orElse: () => null,
-                                          ),
-                                )
-                                .where((Lyric? lyric) => lyric != null)
-                                .cast<Lyric>()
-                          ],
-                        ),
-                      );
-                    },
-                    showOnMobile: false,
-                  ),
-                ]
-                    .where((buttonData) =>
-                        context.isMobile ? buttonData.showOnMobile : true)
-                    .toList(),
-              );
-            }
-          },
-        );
-      });
 }
 
 class BluetoothIndicator extends StatelessWidget {
@@ -462,6 +287,166 @@ class PreferencesButton extends StatelessWidget {
         Navigator.of(context).push(EditPreferencesPage.route());
       },
       icon: const Icon(Icons.settings),
+    );
+  }
+}
+
+class LyricList extends StatelessWidget {
+  const LyricList({required this.lyrics, super.key});
+  final List<Lyric> lyrics;
+
+  @override
+  Widget build(BuildContext context) {
+    final AppLocalizations l10n = context.l10n;
+    final LiplAppCubit liplAppCubit = context.read<LiplAppCubit>();
+    final NavigatorState navigator = Navigator.of(context);
+    final scanCubit = context.read<ScanCubit>();
+    return expansionPanelList<Lyric>(
+      items: lyrics,
+      selectId: selectLyricId,
+      selectTitle: renderLyricTitle,
+      selectSummary: renderLyricSummary,
+      buttons: <ButtonData<Lyric>>[
+        ButtonData<Lyric>(
+          label: l10n.playButtonLabel,
+          onPressed: (Lyric lyric) async {
+            await navigator.push(
+              PlayPage.route(
+                lyricParts: <Lyric>[lyric].toLyricParts(),
+                title: lyric.title,
+              ),
+            );
+            if (scanCubit.state.isConnected()) {
+              await scanCubit.writeCommand('?');
+            }
+          },
+          enabled: (Lyric lyric) => lyric.parts.isNotEmpty,
+          showOnMobile: true,
+        ),
+        ButtonData<Lyric>(
+          label: l10n.deleteButtonLabel,
+          onPressed: (Lyric lyric) {
+            confirm(
+              context,
+              title: l10n.confirm,
+              content: '${l10n.delete} "${lyric.title}"?',
+              textOK: l10n.okButtonLabel,
+              textCancel: l10n.cancelButtonLabel,
+            ).then((result) => {
+                  if (result) {liplAppCubit.deleteLyric(lyric.id!)}
+                });
+          },
+          showOnMobile: false,
+        ),
+        ButtonData<Lyric>(
+          label: l10n.editButtonLabel,
+          onPressed: (Lyric lyric) {
+            navigator.push(
+              EditLyricPage.route(lyric: lyric),
+            );
+          },
+          showOnMobile: false,
+        ),
+      ]
+          .where(
+              (buttonData) => context.isMobile ? buttonData.showOnMobile : true)
+          .toList(),
+    );
+  }
+}
+
+class PlaylistList extends StatelessWidget {
+  const PlaylistList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final playlists = context
+        .select<LiplAppCubit, List<Playlist>>((cubit) => cubit.state.playlists);
+    final lyrics = context
+        .select<LiplAppCubit, List<Lyric>>((cubit) => cubit.state.lyrics);
+    final AppLocalizations l10n = context.l10n;
+    final NavigatorState navigator = Navigator.of(context);
+    final scanCubit = context.read<ScanCubit>();
+
+    return expansionPanelList<Playlist>(
+      items: playlists,
+      selectId: selectPlaylistId,
+      selectTitle: renderPlaylistTitle,
+      selectSummary: (Playlist playlist) =>
+          renderPlaylistSummary(context, playlist, lyrics),
+      buttons: <ButtonData<Playlist>>[
+        ButtonData<Playlist>(
+          label: l10n.playButtonLabel,
+          onPressed: (Playlist playlist) async {
+            await navigator.push(
+              PlayPage.route(
+                lyricParts: playlist.members
+                    .map(
+                      (String id) => lyrics.cast<Lyric?>().firstWhere(
+                            (Lyric? lyric) => lyric?.id == id,
+                            orElse: () => null,
+                          ),
+                    )
+                    .where(
+                      (Lyric? lyric) => lyric != null,
+                    )
+                    .cast<Lyric>()
+                    .toList()
+                    .toLyricParts(),
+                title: playlist.title,
+              ),
+            );
+            if (scanCubit.state.isConnected()) {
+              await scanCubit.writeCommand('?');
+            }
+          },
+          enabled: (Playlist playlist) => playlist.members.isNotEmpty,
+          showOnMobile: true,
+        ),
+        ButtonData<Playlist>(
+          label: l10n.deleteButtonLabel,
+          onPressed: (Playlist playlist) async {
+            final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
+            final confirmDialog = confirm(
+              context,
+              title: l10n.confirm,
+              content: '${l10n.delete} "${playlist.title}"?',
+              textOK: l10n.okButtonLabel,
+              textCancel: l10n.cancelButtonLabel,
+            );
+            if (await confirmDialog) {
+              await liplRestCubit.deletePlaylist(playlist.id!);
+            }
+          },
+          showOnMobile: false,
+        ),
+        ButtonData<Playlist>(
+          label: l10n.editButtonLabel,
+          onPressed: (Playlist playlist) {
+            navigator.push(
+              EditPlaylistPage.route(
+                id: playlist.id,
+                title: playlist.title,
+                members: <Lyric>[
+                  ...playlist.members
+                      .map(
+                        (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
+                              (Lyric? lyric) => lyric?.id == lyricId,
+                              orElse: () => null,
+                            ),
+                      )
+                      .where((Lyric? lyric) => lyric != null)
+                      .cast<Lyric>()
+                ],
+              ),
+            );
+          },
+          showOnMobile: false,
+        ),
+      ]
+          .where(
+              (buttonData) => context.isMobile ? buttonData.showOnMobile : true)
+          .toList(),
     );
   }
 }

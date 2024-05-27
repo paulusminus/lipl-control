@@ -39,12 +39,11 @@ class ScanCubit extends Cubit<ScanState> {
   StreamSubscription<List<ScanResult>>? _streamSubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionStateSubsribtion;
 
-  Future<void> startScanning() async {
+  startScanning() async {
     await FlutterBluePlus.startScan();
   }
 
-  Future<void> _write(
-      BluetoothCharacteristic? characteristic, String text) async {
+  _write(BluetoothCharacteristic? characteristic, String text) async {
     try {
       await characteristic?.write(utf8.encoder.convert(text),
           withoutResponse: true);
@@ -53,19 +52,19 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  Future<void> writeText(String text) async {
+  writeText(String text) async {
     await _write(state.connectedDevice?.textCharacteristic, text);
   }
 
-  Future<void> writeStatus(String text) async {
+  writeStatus(String text) async {
     await _write(state.connectedDevice?.statusCharacteristic, text);
   }
 
-  Future<void> writeCommand(String text) async {
+  writeCommand(String text) async {
     await _write(state.connectedDevice?.commandCharacteristic, text);
   }
 
-  Future<void> connect(BluetoothDevice device) async {
+  connect(BluetoothDevice device) async {
     try {
       await disconnect();
       await device.connect();
@@ -116,7 +115,7 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  Future<void> disconnect() async {
+  disconnect() async {
     try {
       await state.connectedDevice?.device.disconnect();
       await _connectionStateSubsribtion?.cancel();
@@ -126,12 +125,12 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  Future<void> stopScanning() async {
+  stopScanning() async {
     await FlutterBluePlus.stopScan();
   }
 
   @override
-  Future<void> close() async {
+  close() async {
     await _streamSubscription?.cancel();
     await _connectionStateSubsribtion?.cancel();
     return super.close();

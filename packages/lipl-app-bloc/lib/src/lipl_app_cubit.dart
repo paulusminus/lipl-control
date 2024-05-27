@@ -44,20 +44,12 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
     return <String, LiplAppState>{'preferences': state};
   }
 
-  Stream<List<Lyric>> get lyricsStream => stream
-      .where((state) => state.status == LoadingStatus.success)
-      .map((state) => state.lyrics);
-
-  Stream<List<Playlist>> get playlistsStream => stream
-      .where((state) => state.status == LoadingStatus.success)
-      .map((state) => state.playlists);
-
-  List<Lyric> searchResults(String searchTerm) => searchTerm.trim().length < 3
-      ? <Lyric>[]
-      : state.lyrics
-          .where((Lyric lyric) =>
-              lyric.title.toLowerCase().contains(searchTerm.toLowerCase()))
-          .toList();
+  // List<Lyric> searchResults(String searchTerm) => searchTerm.trim().length < 3
+  //     ? <Lyric>[]
+  //     : state.lyrics
+  //         .where((Lyric lyric) =>
+  //             lyric.title.toLowerCase().contains(searchTerm.toLowerCase()))
+  //         .toList();
 
   @override
   void onError(Object error, StackTrace stackTrace) {
