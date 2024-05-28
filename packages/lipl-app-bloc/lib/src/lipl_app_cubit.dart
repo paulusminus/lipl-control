@@ -77,7 +77,7 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
     emit(state.copyWith(credentials: credentials));
   }
 
-  Future<void> load() => _runAsync(() async {
+  Future<void> load({DateTime? time}) => _runAsync(() async {
         emit(
           state.copyWith(
             status: LoadingStatus.loading,
@@ -91,7 +91,7 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
             lyrics: lyrics.sortByTitle(),
             playlists: playlists.sortByTitle(),
             status: LoadingStatus.success,
-            lastFetch: DateTime.now().toUtc(),
+            lastFetch: time ?? DateTime.now().toUtc(),
           ),
         );
       });
