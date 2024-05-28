@@ -179,5 +179,29 @@
     "justAMoment": "Just a moment...",
     "@justAMoment": {
         "description": "Just a moment"
+    },
+    "name": "Name",
+    "@name": {
+        "description": "Name"
+    },
+    "version": "Version",
+    "@version": {
+        "description": "Version"
+    },
+    "repository": "Repository",
+    "@repository": {
+        "description": "Repository"
+    },
+    "description": "Description",
+    "@description": {
+        "description": "Description"
+    },
+    "appDescription": "Maintenance of lyrics and playlists",
+    "@appDescription": {
+        "description": "App Description"
+    },
+    "appRepository": "https://github.com/paulusminus/lipl-control/",
+    "@appRepository": {
+        "description": "App Repository"
     }
 }

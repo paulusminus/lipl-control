@@ -6,6 +6,7 @@ import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/edit_lyric/edit_lyric.dart';
 import 'package:lipl_control/edit_playlist/edit_playlist.dart';
 import 'package:lipl_control/edit_preferences/edit_preferences.dart';
+import 'package:lipl_control/info/info.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/play/play.dart';
 import 'package:lipl_control/search/search_view.dart';
@@ -44,7 +45,7 @@ class LyricListNoMobile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: kIsWeb ? null : const PreferencesButton(),
+        leading: kIsWeb ? const WebInfoButton() : const PreferencesButton(),
         titleSpacing: 0,
         title: Text(l10n.liplTitle),
         actions: <Widget>[
@@ -287,6 +288,20 @@ class PreferencesButton extends StatelessWidget {
         Navigator.of(context).push(EditPreferencesPage.route());
       },
       icon: const Icon(Icons.settings),
+    );
+  }
+}
+
+class WebInfoButton extends StatelessWidget {
+  const WebInfoButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        Navigator.of(context).push(InfoPage.route());
+      },
+      icon: const Icon(Icons.info),
     );
   }
 }

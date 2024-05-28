@@ -179,5 +179,29 @@
     "justAMoment": "Even geduld a.u.b.",
     "@justAMoment": {
         "description": "Even geduld"
+    },
+    "name": "Naam",
+    "@name": {
+        "description": "Naam"
+    },
+    "version": "Versie",
+    "@version": {
+        "description": "Versie"
+    },
+    "repository": "Repository",
+    "@repository": {
+        "description": "Repository"
+    },
+    "description": "Omschrijving",
+    "@description": {
+        "description": "Omschrijving"
+    },
+    "appDescription": "Onderhoud van liedteksten en afspeellijsten",
+    "@appDescription": {
+        "description": "App omschrijving"
+    },
+    "appRepository": "https://github.com/paulusminus/lipl-control/",
+    "@appRepository": {
+        "description": "App Repository"
     }
 }

@@ -138,4 +138,22 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get justAMoment => 'Even geduld a.u.b.';
+
+  @override
+  String get name => 'Naam';
+
+  @override
+  String get version => 'Versie';
+
+  @override
+  String get repository => 'Repository';
+
+  @override
+  String get description => 'Omschrijving';
+
+  @override
+  String get appDescription => 'Onderhoud van liedteksten en afspeellijsten';
+
+  @override
+  String get appRepository => 'https://github.com/paulusminus/lipl-control/';
 }

@@ -7,7 +7,7 @@ import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 
 class ScanCubit extends Cubit<ScanState> {
   ScanCubit() : super(ScanState(isScanning: FlutterBluePlus.isScanningNow)) {
-    FlutterBluePlus.isScanning.listen(
+    _isScanningSubscription = FlutterBluePlus.isScanning.listen(
       (isScanning) {
         emit(state.copyWith(isScanning: isScanning));
       },
@@ -36,7 +36,8 @@ class ScanCubit extends Cubit<ScanState> {
     );
   }
 
-  StreamSubscription<List<ScanResult>>? _streamSubscription;
+  late StreamSubscription<bool> _isScanningSubscription;
+  late StreamSubscription<List<ScanResult>> _streamSubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionStateSubsribtion;
 
   startScanning() async {
@@ -131,7 +132,8 @@ class ScanCubit extends Cubit<ScanState> {
 
   @override
   close() async {
-    await _streamSubscription?.cancel();
+    await _isScanningSubscription.cancel();
+    await _streamSubscription.cancel();
     await _connectionStateSubsribtion?.cancel();
     return super.close();
   }

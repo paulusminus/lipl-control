@@ -4,6 +4,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lipl_control/app/view/providers.dart';
 import 'package:lipl_control/bloc_observer.dart';
 import 'package:logging/logging.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
@@ -19,6 +20,8 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
+  final packageInfo = await PackageInfo.fromPlatform();
+
   if (kDebugMode) {
     Bloc.observer = LiplBlocObserver();
   }
@@ -30,6 +33,8 @@ Future<void> main() async {
   );
 
   runApp(
-    const BlocProviders(),
+    BlocProviders(
+      packageInfo: packageInfo,
+    ),
   );
 }

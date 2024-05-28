@@ -362,6 +362,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Just a moment...'**
   String get justAMoment;
+
+  /// Name
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// Version
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// Repository
+  ///
+  /// In en, this message translates to:
+  /// **'Repository'**
+  String get repository;
+
+  /// Description
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// App Description
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance of lyrics and playlists'**
+  String get appDescription;
+
+  /// App Repository
+  ///
+  /// In en, this message translates to:
+  /// **'https://github.com/paulusminus/lipl-control/'**
+  String get appRepository;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

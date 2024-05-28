@@ -8,6 +8,7 @@ import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/search/search_cubit.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
 
 extension ContextExtension on BuildContext {
@@ -15,33 +16,37 @@ extension ContextExtension on BuildContext {
 }
 
 class BlocProviders extends StatelessWidget {
-  const BlocProviders({super.key});
+  const BlocProviders({required this.packageInfo, super.key});
+  final PackageInfo packageInfo;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: <BlocProvider<dynamic>>[
-        BlocProvider<ScanCubit>(
-          create: (_) => ScanCubit(),
-        ),
-        BlocProvider<EditPreferencesCubit>(
-          create: (_) => EditPreferencesCubit(const Credentials()),
-        ),
-        BlocProvider<LiplAppCubit>(
-          create: (_) {
-            final liplAppCubit = LiplAppCubit();
-            liplAppCubit.load();
-            return liplAppCubit;
-          },
-        ),
-        BlocProvider<SelectedTabCubit>(
-          create: (_) => SelectedTabCubit(),
-        ),
-        BlocProvider<SearchCubit>(
-          create: (_) => SearchCubit(),
-        ),
-      ],
-      child: const App(),
+    return RepositoryProvider<PackageInfo>(
+      create: (context) => packageInfo,
+      child: MultiBlocProvider(
+        providers: <BlocProvider<dynamic>>[
+          BlocProvider<ScanCubit>(
+            create: (_) => ScanCubit(),
+          ),
+          BlocProvider<EditPreferencesCubit>(
+            create: (_) => EditPreferencesCubit(const Credentials()),
+          ),
+          BlocProvider<LiplAppCubit>(
+            create: (_) {
+              final liplAppCubit = LiplAppCubit();
+              liplAppCubit.load();
+              return liplAppCubit;
+            },
+          ),
+          BlocProvider<SelectedTabCubit>(
+            create: (_) => SelectedTabCubit(),
+          ),
+          BlocProvider<SearchCubit>(
+            create: (_) => SearchCubit(),
+          ),
+        ],
+        child: const App(),
+      ),
     );
   }
 }

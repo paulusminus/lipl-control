@@ -138,4 +138,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get justAMoment => 'Just a moment...';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get repository => 'Repository';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get appDescription => 'Maintenance of lyrics and playlists';
+
+  @override
+  String get appRepository => 'https://github.com/paulusminus/lipl-control/';
 }
