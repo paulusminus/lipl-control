@@ -34,7 +34,12 @@ class BlocProviders extends StatelessWidget {
           BlocProvider<LiplAppCubit>(
             create: (_) {
               final liplAppCubit = LiplAppCubit();
-              liplAppCubit.load();
+              final int? elapsed =
+                  liplAppCubit.state.elapsedSecondsSinceLastRun;
+
+              if (elapsed == null || elapsed > 3600) {
+                liplAppCubit.load();
+              }
               return liplAppCubit;
             },
           ),

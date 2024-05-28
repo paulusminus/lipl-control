@@ -16,7 +16,7 @@ jobs:
           channel: 'stable'
           cache: false
       - name: Build for Web
-        run: flutter build web --base-href=/
+        run: flutter build web --release
       - name: Create tarball
         working-directory: build/web/
         run: tar -czf ../../lipl-pwa.tar.gz --owner=0 --group=0 .

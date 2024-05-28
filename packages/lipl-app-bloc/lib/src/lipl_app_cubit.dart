@@ -14,15 +14,23 @@ final Logger logger = Logger('$LiplAppCubit');
 
 @freezed
 class LiplAppState with _$LiplAppState {
+  const LiplAppState._();
   const factory LiplAppState({
     @Default([]) List<Lyric> lyrics,
     @Default([]) List<Playlist> playlists,
     @Default(LoadingStatus.initial) LoadingStatus status,
     @Default(null) Credentials? credentials,
+    @Default(null) DateTime? lastFetch,
   }) = _LiplAppState;
 
   factory LiplAppState.fromJson(Map<String, Object?> json) =>
       _$LiplAppStateFromJson(json);
+
+  int? get elapsedSecondsSinceLastRun => (lastFetch == null)
+      ? null
+      : (lastFetch!.millisecondsSinceEpoch -
+              DateTime.now().toUtc().millisecondsSinceEpoch) ~/
+          1000;
 }
 
 class LiplAppCubit extends HydratedCubit<LiplAppState> {
@@ -44,13 +52,6 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
     return <String, LiplAppState>{'preferences': state};
   }
 
-  // List<Lyric> searchResults(String searchTerm) => searchTerm.trim().length < 3
-  //     ? <Lyric>[]
-  //     : state.lyrics
-  //         .where((Lyric lyric) =>
-  //             lyric.title.toLowerCase().contains(searchTerm.toLowerCase()))
-  //         .toList();
-
   @override
   void onError(Object error, StackTrace stackTrace) {
     if (error is DioException) {
@@ -60,6 +61,9 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
     }
     super.onError(error, stackTrace);
   }
+
+  LiplRestApiInterface api() =>
+      _api ?? apiFromConfig(credentials: state.credentials);
 
   Future<void> _runAsync(Future<void> Function() runnable) async {
     try {
@@ -79,26 +83,25 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
             status: LoadingStatus.loading,
           ),
         );
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         final (lyrics, playlists) =
-            await (api.getLyrics(), api.getPlaylists()).wait;
+            await (api().getLyrics(), api().getPlaylists()).wait;
         logger.info('Fetch lyrics and playlists succes');
         emit(
           state.copyWith(
             lyrics: lyrics.sortByTitle(),
             playlists: playlists.sortByTitle(),
             status: LoadingStatus.success,
+            lastFetch: DateTime.now().toUtc(),
           ),
         );
       });
 
   Future<void> postLyric(Lyric lyric) => _runAsync(() async {
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         if (lyric.id == null) {
           lyric = lyric.copyWith(id: newId());
         }
-        await api.postLyric(lyric);
+        await api().postLyric(lyric);
         logger.info('Posting new lyric with title ${lyric.title} successful');
         emit(
           state.copyWith(
@@ -109,11 +112,10 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
       });
 
   Future<void> putLyric(Lyric lyric) => _runAsync(() async {
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         logger.info('About to change lyric with title ${lyric.title}');
         logger.info('Lyric json: ${lyric.toJson()}');
-        await api.putLyric(lyric.id!, lyric);
+        await api().putLyric(lyric.id!, lyric);
         logger.info('Changed lyric with title ${lyric.title}');
         emit(
           state.copyWith(
@@ -124,9 +126,8 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
       });
 
   Future<void> deleteLyric(String id) => _runAsync(() async {
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
-        await api.deleteLyric(id);
+        await api().deleteLyric(id);
         logger.info('Deleting lyric with id $id successful');
         emit(
           state.copyWith(
@@ -140,12 +141,11 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
       });
 
   Future<void> postPlaylist(Playlist playlist) => _runAsync(() async {
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
         if (playlist.id == null) {
           playlist = playlist.copyWith(id: newId());
         }
-        await api.postPlaylist(playlist);
+        await api().postPlaylist(playlist);
         logger
             .info('Posting new lyric with title ${playlist.title} successfull');
         emit(
@@ -157,9 +157,8 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
       });
 
   Future<void> putPlaylist(Playlist playlist) => _runAsync(() async {
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
-        await api.putPlaylist(playlist.id!, playlist);
+        await api().putPlaylist(playlist.id!, playlist);
         logger.info('Changing lyric with title ${playlist.title} successfull');
         emit(
           state.copyWith(
@@ -170,9 +169,8 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
       });
 
   Future<void> deletePlaylist(String id) => _runAsync(() async {
-        final api = _api ?? apiFromConfig(credentials: state.credentials);
         emit(state.copyWith(status: LoadingStatus.changing));
-        await api.deletePlaylist(id);
+        await api().deletePlaylist(id);
         logger.info('Deleting playlist with id $id successfull');
         emit(
           state.copyWith(

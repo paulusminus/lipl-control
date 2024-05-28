@@ -21,6 +21,9 @@ _$LiplAppStateImpl _$$LiplAppStateImplFromJson(Map<String, dynamic> json) =>
       credentials: json['credentials'] == null
           ? null
           : Credentials.fromJson(json['credentials'] as Map<String, dynamic>),
+      lastFetch: json['lastFetch'] == null
+          ? null
+          : DateTime.parse(json['lastFetch'] as String),
     );
 
 Map<String, dynamic> _$$LiplAppStateImplToJson(_$LiplAppStateImpl instance) =>
@@ -29,6 +32,7 @@ Map<String, dynamic> _$$LiplAppStateImplToJson(_$LiplAppStateImpl instance) =>
       'playlists': instance.playlists,
       'status': _$LoadingStatusEnumMap[instance.status]!,
       'credentials': instance.credentials,
+      'lastFetch': instance.lastFetch?.toIso8601String(),
     };
 
 const _$LoadingStatusEnumMap = {

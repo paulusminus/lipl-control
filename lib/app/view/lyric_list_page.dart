@@ -442,17 +442,16 @@ class PlaylistList extends StatelessWidget {
               EditPlaylistPage.route(
                 id: playlist.id,
                 title: playlist.title,
-                members: <Lyric>[
-                  ...playlist.members
-                      .map(
-                        (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
-                              (Lyric? lyric) => lyric?.id == lyricId,
-                              orElse: () => null,
-                            ),
-                      )
-                      .where((Lyric? lyric) => lyric != null)
-                      .cast<Lyric>()
-                ],
+                members: playlist.members
+                    .map(
+                      (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
+                            (Lyric? lyric) => lyric?.id == lyricId,
+                            orElse: () => null,
+                          ),
+                    )
+                    .where((Lyric? lyric) => lyric != null)
+                    .cast<Lyric>()
+                    .toList(),
               ),
             );
           },

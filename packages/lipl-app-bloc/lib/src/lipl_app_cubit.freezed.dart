@@ -24,6 +24,7 @@ mixin _$LiplAppState {
   List<Playlist> get playlists => throw _privateConstructorUsedError;
   LoadingStatus get status => throw _privateConstructorUsedError;
   Credentials? get credentials => throw _privateConstructorUsedError;
+  DateTime? get lastFetch => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $LiplAppStateCopyWith<$Res> {
       {List<Lyric> lyrics,
       List<Playlist> playlists,
       LoadingStatus status,
-      Credentials? credentials});
+      Credentials? credentials,
+      DateTime? lastFetch});
 
   $CredentialsCopyWith<$Res>? get credentials;
 }
@@ -63,6 +65,7 @@ class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
     Object? playlists = null,
     Object? status = null,
     Object? credentials = freezed,
+    Object? lastFetch = freezed,
   }) {
     return _then(_value.copyWith(
       lyrics: null == lyrics
@@ -81,6 +84,10 @@ class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as Credentials?,
+      lastFetch: freezed == lastFetch
+          ? _value.lastFetch
+          : lastFetch // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -109,7 +116,8 @@ abstract class _$$LiplAppStateImplCopyWith<$Res>
       {List<Lyric> lyrics,
       List<Playlist> playlists,
       LoadingStatus status,
-      Credentials? credentials});
+      Credentials? credentials,
+      DateTime? lastFetch});
 
   @override
   $CredentialsCopyWith<$Res>? get credentials;
@@ -130,6 +138,7 @@ class __$$LiplAppStateImplCopyWithImpl<$Res>
     Object? playlists = null,
     Object? status = null,
     Object? credentials = freezed,
+    Object? lastFetch = freezed,
   }) {
     return _then(_$LiplAppStateImpl(
       lyrics: null == lyrics
@@ -148,20 +157,26 @@ class __$$LiplAppStateImplCopyWithImpl<$Res>
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as Credentials?,
+      lastFetch: freezed == lastFetch
+          ? _value.lastFetch
+          : lastFetch // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LiplAppStateImpl implements _LiplAppState {
+class _$LiplAppStateImpl extends _LiplAppState {
   const _$LiplAppStateImpl(
       {final List<Lyric> lyrics = const [],
       final List<Playlist> playlists = const [],
       this.status = LoadingStatus.initial,
-      this.credentials = null})
+      this.credentials = null,
+      this.lastFetch = null})
       : _lyrics = lyrics,
-        _playlists = playlists;
+        _playlists = playlists,
+        super._();
 
   factory _$LiplAppStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$LiplAppStateImplFromJson(json);
@@ -190,10 +205,13 @@ class _$LiplAppStateImpl implements _LiplAppState {
   @override
   @JsonKey()
   final Credentials? credentials;
+  @override
+  @JsonKey()
+  final DateTime? lastFetch;
 
   @override
   String toString() {
-    return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials)';
+    return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
   }
 
   @override
@@ -206,7 +224,9 @@ class _$LiplAppStateImpl implements _LiplAppState {
                 .equals(other._playlists, _playlists) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.credentials, credentials) ||
-                other.credentials == credentials));
+                other.credentials == credentials) &&
+            (identical(other.lastFetch, lastFetch) ||
+                other.lastFetch == lastFetch));
   }
 
   @JsonKey(ignore: true)
@@ -216,7 +236,8 @@ class _$LiplAppStateImpl implements _LiplAppState {
       const DeepCollectionEquality().hash(_lyrics),
       const DeepCollectionEquality().hash(_playlists),
       status,
-      credentials);
+      credentials,
+      lastFetch);
 
   @JsonKey(ignore: true)
   @override
@@ -232,12 +253,14 @@ class _$LiplAppStateImpl implements _LiplAppState {
   }
 }
 
-abstract class _LiplAppState implements LiplAppState {
+abstract class _LiplAppState extends LiplAppState {
   const factory _LiplAppState(
       {final List<Lyric> lyrics,
       final List<Playlist> playlists,
       final LoadingStatus status,
-      final Credentials? credentials}) = _$LiplAppStateImpl;
+      final Credentials? credentials,
+      final DateTime? lastFetch}) = _$LiplAppStateImpl;
+  const _LiplAppState._() : super._();
 
   factory _LiplAppState.fromJson(Map<String, dynamic> json) =
       _$LiplAppStateImpl.fromJson;
@@ -250,6 +273,8 @@ abstract class _LiplAppState implements LiplAppState {
   LoadingStatus get status;
   @override
   Credentials? get credentials;
+  @override
+  DateTime? get lastFetch;
   @override
   @JsonKey(ignore: true)
   _$$LiplAppStateImplCopyWith<_$LiplAppStateImpl> get copyWith =>
