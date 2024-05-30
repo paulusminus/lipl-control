@@ -2,11 +2,11 @@ name: lipl_app_bloc
 description: Library request and handle response from Lipl Service
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: none
-version: 1.11.0
+version: 1.11.2
 
 environment:
-  sdk: ^3.4.0
-  flutter: ^3.22.0
+  sdk: ^3.4.1
+  flutter: ^3.22.1
 
 dependencies:
   bloc: ^8.1.1

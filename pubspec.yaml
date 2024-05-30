@@ -2,11 +2,11 @@ name: lipl_control
 description: App to maintain lyrics and playlists and send text to lipl-display
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: 'none'
-version: 1.12.1
+version: 1.12.2
 
 environment:
-  sdk: ^3.4.0
-  flutter: ^3.22.0
+  sdk: ^3.4.1
+  flutter: ^3.22.1
 
 dependencies:
   flutter:
@@ -23,7 +23,7 @@ dependencies:
     path: packages/lipl-bluetooth
   lipl_model:
     path: packages/lipl-model
-  lipl_app_bloc: 
+  lipl_app_bloc:
     path: packages/lipl-app-bloc
   logging: ^1.2.0
   universal_io: ^2.2.2

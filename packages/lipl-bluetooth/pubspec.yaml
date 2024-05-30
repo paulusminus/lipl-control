@@ -3,10 +3,10 @@ description: Scan for TV devices and write a part to them
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: 'none' 
 
-version: 1.11.0
+version: 1.11.2
 
 environment:
-  sdk: ^3.4.0
+  sdk: ^3.4.1
 
 dependencies:
   flutter:
