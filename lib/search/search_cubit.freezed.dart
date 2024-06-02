@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchState {
   String get searchTerm => throw _privateConstructorUsedError;
-  List<Lyric> get lyrics => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -30,7 +29,7 @@ abstract class $SearchStateCopyWith<$Res> {
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
-  $Res call({String searchTerm, List<Lyric> lyrics});
+  $Res call({String searchTerm});
 }
 
 /// @nodoc
@@ -47,17 +46,12 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   @override
   $Res call({
     Object? searchTerm = null,
-    Object? lyrics = null,
   }) {
     return _then(_value.copyWith(
       searchTerm: null == searchTerm
           ? _value.searchTerm
           : searchTerm // ignore: cast_nullable_to_non_nullable
               as String,
-      lyrics: null == lyrics
-          ? _value.lyrics
-          : lyrics // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
     ) as $Val);
   }
 }
@@ -70,7 +64,7 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       __$$SearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String searchTerm, List<Lyric> lyrics});
+  $Res call({String searchTerm});
 }
 
 /// @nodoc
@@ -85,17 +79,12 @@ class __$$SearchStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchTerm = null,
-    Object? lyrics = null,
   }) {
     return _then(_$SearchStateImpl(
       searchTerm: null == searchTerm
           ? _value.searchTerm
           : searchTerm // ignore: cast_nullable_to_non_nullable
               as String,
-      lyrics: null == lyrics
-          ? _value._lyrics
-          : lyrics // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
     ));
   }
 }
@@ -103,26 +92,15 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchStateImpl extends _SearchState {
-  const _$SearchStateImpl(
-      {this.searchTerm = '', final List<Lyric> lyrics = const []})
-      : _lyrics = lyrics,
-        super._();
+  const _$SearchStateImpl({this.searchTerm = ''}) : super._();
 
   @override
   @JsonKey()
   final String searchTerm;
-  final List<Lyric> _lyrics;
-  @override
-  @JsonKey()
-  List<Lyric> get lyrics {
-    if (_lyrics is EqualUnmodifiableListView) return _lyrics;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_lyrics);
-  }
 
   @override
   String toString() {
-    return 'SearchState(searchTerm: $searchTerm, lyrics: $lyrics)';
+    return 'SearchState(searchTerm: $searchTerm)';
   }
 
   @override
@@ -131,13 +109,11 @@ class _$SearchStateImpl extends _SearchState {
         (other.runtimeType == runtimeType &&
             other is _$SearchStateImpl &&
             (identical(other.searchTerm, searchTerm) ||
-                other.searchTerm == searchTerm) &&
-            const DeepCollectionEquality().equals(other._lyrics, _lyrics));
+                other.searchTerm == searchTerm));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, searchTerm, const DeepCollectionEquality().hash(_lyrics));
+  int get hashCode => Object.hash(runtimeType, searchTerm);
 
   @JsonKey(ignore: true)
   @override
@@ -147,14 +123,11 @@ class _$SearchStateImpl extends _SearchState {
 }
 
 abstract class _SearchState extends SearchState {
-  const factory _SearchState(
-      {final String searchTerm, final List<Lyric> lyrics}) = _$SearchStateImpl;
+  const factory _SearchState({final String searchTerm}) = _$SearchStateImpl;
   const _SearchState._() : super._();
 
   @override
   String get searchTerm;
-  @override
-  List<Lyric> get lyrics;
   @override
   @JsonKey(ignore: true)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>
