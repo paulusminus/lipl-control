@@ -570,21 +570,21 @@ packages:
       path: "packages/lipl-app-bloc"
       relative: true
     source: path
-    version: "1.11.2"
+    version: "1.12.4"
   lipl_bluetooth:
     dependency: "direct main"
     description:
       path: "packages/lipl-bluetooth"
       relative: true
     source: path
-    version: "1.11.2"
+    version: "1.12.4"
   lipl_model:
     dependency: "direct main"
     description:
       path: "packages/lipl-model"
       relative: true
     source: path
-    version: "1.11.2"
+    version: "1.12.4"
   logging:
     dependency: "direct main"
     description:
