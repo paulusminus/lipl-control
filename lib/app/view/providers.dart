@@ -6,7 +6,6 @@ import 'package:lipl_control/app/app.dart';
 import 'package:lipl_control/edit_preferences/edit_preferences.dart';
 import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_control/search/search_cubit.dart';
-import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_io/io.dart';
@@ -29,19 +28,10 @@ class BlocProviders extends StatelessWidget {
             create: (_) => ScanCubit(),
           ),
           BlocProvider<EditPreferencesCubit>(
-            create: (_) => EditPreferencesCubit(const Credentials()),
+            create: (_) => EditPreferencesCubit(),
           ),
           BlocProvider<LiplAppCubit>(
-            create: (_) {
-              final liplAppCubit = LiplAppCubit();
-              final int? elapsed =
-                  liplAppCubit.state.elapsedSecondsSinceLastRun;
-
-              if (elapsed == null || elapsed > 3600) {
-                liplAppCubit.load();
-              }
-              return liplAppCubit;
-            },
+            create: (_) => LiplAppCubit(),
           ),
           BlocProvider<SelectedTabCubit>(
             create: (_) => SelectedTabCubit(),
@@ -75,9 +65,13 @@ class App extends StatelessWidget {
         Locale('en'),
         Locale('nl'),
       ],
-      home: context.isMobile
-          ? const LyricListMobile()
-          : const LyricListNoMobile(),
+      home: BlocBuilder<LiplAppCubit, LiplAppState>(
+        builder: (context, liplAppState) => liplAppState.credentials == null
+            ? const EditPreferencesView()
+            : context.isMobile
+                ? const LyricListMobile()
+                : const LyricListNoMobile(),
+      ),
     );
   }
 }

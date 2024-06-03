@@ -7,7 +7,7 @@ import 'package:lipl_control/l10n/l10n.dart';
 import 'package:lipl_model/lipl_model.dart';
 
 class EditPreferencesCubit extends Cubit<Credentials?> {
-  EditPreferencesCubit(super.initialState);
+  EditPreferencesCubit() : super(null);
 
   void setCredentials(Credentials? credentials) {
     emit(credentials);
@@ -34,16 +34,22 @@ class SaveAction extends Action<SaveIntent> {
   final BuildContext context;
 
   @override
-  Object? invoke(SaveIntent intent) {
+  Object? invoke(SaveIntent intent) async {
     logger.info('Save button pressed');
-    final Credentials? credentials = context.read<EditPreferencesCubit>().state;
-    logger.info('Preferences fetched from LiplEditPreferencesBloc');
     final liplAppCubit = context.read<LiplAppCubit>();
-    liplAppCubit.preferencesChanged(credentials);
-    liplAppCubit.load();
+    final editPreferencesCubit = context.read<EditPreferencesCubit>();
+    logger.info('Preferences fetched from LiplEditPreferencesBloc');
+    final navigator = Navigator.of(context);
+    liplAppCubit.preferencesChanged(editPreferencesCubit.state);
     logger.info('Preferences sent to LiplAppCubit');
-    Navigator.of(context).pop();
-    logger.info('Navigate to parent finished');
+    liplAppCubit.load();
+    final appState = await liplAppCubit.stream
+        .where((state) => state.status != LoadingStatus.loading)
+        .single;
+    if (appState.status == LoadingStatus.success) {
+      navigator.pop();
+      logger.info('Navigate to parent finished');
+    }
     return null;
   }
 }

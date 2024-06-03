@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lipl_bluetooth/lipl_bluetooth.dart';
@@ -45,7 +44,7 @@ class LyricListNoMobile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: kIsWeb ? const WebInfoButton() : const PreferencesButton(),
+        leading: const PreferencesButton(),
         titleSpacing: 0,
         title: Text(l10n.liplTitle),
         actions: <Widget>[
@@ -73,7 +72,7 @@ class LyricListMobile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: kIsWeb ? const Icon(Icons.home) : const PreferencesButton(),
+        leading: const PreferencesButton(),
         title: Text(l10n.liplTitle),
         actions: <Widget>[
           const RefreshIconButton(),
