@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/src/basic_authentication.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:logging/logging.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -24,20 +28,30 @@ abstract class LiplRestApiInterface {
 
 LiplRestApi apiFromConfig({
   Credentials? credentials,
+  Directory? directory,
 }) {
   const String apiPrefix = String.fromEnvironment('API_PREFIX',
       defaultValue: 'https://lipl.paulmin.nl');
   logger.info('Prefix = $apiPrefix');
 
-  final Dio dio = credentials == null
-      ? Dio()
-      : basicAuthenticationDio(
-          credentials: credentials,
-        );
+  final Dio dio = Dio();
+  if (credentials != null) {
+    logger.info('Adding basic authentication headers');
+    dio.interceptors.add(basicAuthentication(credentials: credentials));
+  }
 
-  return kIsWeb
-      ? LiplRestApi(dio, baseUrl: '/lipl/api/v1/')
-      : LiplRestApi(dio, baseUrl: '$apiPrefix/lipl/api/v1/');
+  if (kIsWeb) {
+    dio.options.baseUrl = "/lipl/api/v1/";
+  } else {
+    final options = CacheOptions(
+      store:
+          directory == null ? MemCacheStore() : HiveCacheStore(directory.path),
+    );
+    dio.options.baseUrl = '$apiPrefix/lipl/api/v1/';
+    dio.interceptors.add(DioCacheInterceptor(options: options));
+  }
+
+  return LiplRestApi(dio);
 }
 
 @RestApi()

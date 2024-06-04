@@ -111,7 +111,7 @@ class SearchForm extends StatelessWidget {
                 ),
               ),
               subtitle: LyricList(
-                lyrics: filteredLyrics,
+                searchTerm: searchTerm,
               ),
             ),
           ),

@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:environment/environment.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
 import 'package:logging/logging.dart';
 
 final Logger log = Logger('lipl_repo_stream_example');
+
+String username() => Platform.environment['LIPL_USERNAME']!;
+String password() => Platform.environment['LIPL_PASSWORD']!;
 
 Credentials credentials = Credentials(
   username: username(),

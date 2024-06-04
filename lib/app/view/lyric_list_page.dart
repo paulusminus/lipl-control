@@ -48,6 +48,7 @@ class LyricListNoMobile extends StatelessWidget {
         titleSpacing: 0,
         title: Text(l10n.liplTitle),
         actions: <Widget>[
+          const RefreshIconButton(),
           const SearchButton(),
           SelectTabButton(),
         ],
@@ -91,17 +92,13 @@ class LyricsOrPlaylistsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lyrics = context
-        .select<LiplAppCubit, List<Lyric>>((cubit) => cubit.state.lyrics);
     return BlocBuilder<SelectedTabCubit, SelectedTab>(
       builder: (BuildContext context, SelectedTab selectedTab) {
         return IndexedStack(
           index: selectedTab.index,
-          children: <Widget>[
-            LyricList(
-              lyrics: lyrics,
-            ),
-            const PlaylistList(),
+          children: const <Widget>[
+            LyricList(searchTerm: null),
+            PlaylistList(),
           ],
         );
       },
@@ -216,17 +213,15 @@ class RefreshIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LiplAppCubit, LiplAppState>(
-      builder: (BuildContext context, LiplAppState liplAppState) {
-        return IconButton(
-          onPressed: liplAppState.status == LoadingStatus.loading
-              ? null
-              : () async {
-                  await context.read<LiplAppCubit>().load();
-                },
-          icon: const Icon(Icons.refresh),
-        );
-      },
+    final LoadingStatus status = context
+        .select<LiplAppCubit, LoadingStatus>((cubit) => cubit.state.status);
+    return IconButton(
+      onPressed: status == LoadingStatus.loading
+          ? null
+          : () async {
+              await context.read<LiplAppCubit>().load();
+            },
+      icon: const Icon(Icons.refresh),
     );
   }
 }
@@ -306,8 +301,8 @@ class WebInfoButton extends StatelessWidget {
 }
 
 class LyricList extends StatelessWidget {
-  const LyricList({required this.lyrics, super.key});
-  final List<Lyric> lyrics;
+  const LyricList({required this.searchTerm, super.key});
+  final String? searchTerm;
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +310,17 @@ class LyricList extends StatelessWidget {
     final LiplAppCubit liplAppCubit = context.read<LiplAppCubit>();
     final NavigatorState navigator = Navigator.of(context);
     final scanCubit = context.read<ScanCubit>();
+    final List<Lyric> lyrics = context.select<LiplAppCubit, List<Lyric>>(
+      (cubit) => (searchTerm == null)
+          ? cubit.state.lyrics
+          : (searchTerm!.length > 2)
+              ? cubit.state.lyrics
+                  .where((lyric) => lyric.title
+                      .toLowerCase()
+                      .contains(searchTerm!.toLowerCase()))
+                  .toList()
+              : [],
+    );
     return expansionPanelList<Lyric>(
       items: lyrics,
       selectId: selectLyricId,
@@ -438,20 +444,7 @@ class PlaylistList extends StatelessWidget {
           label: l10n.editButtonLabel,
           onPressed: (Playlist playlist) {
             navigator.push(
-              EditPlaylistPage.route(
-                id: playlist.id,
-                title: playlist.title,
-                members: playlist.members
-                    .map(
-                      (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
-                            (Lyric? lyric) => lyric?.id == lyricId,
-                            orElse: () => null,
-                          ),
-                    )
-                    .where((Lyric? lyric) => lyric != null)
-                    .cast<Lyric>()
-                    .toList(),
-              ),
+              EditPlaylistPage.route(playlist: playlist),
             );
           },
           showOnMobile: false,

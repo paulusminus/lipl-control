@@ -1,8 +1,5 @@
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/lipl_app_bloc.dart';
-import 'package:uuid/uuid.dart';
-
-const Uuid uuid = Uuid();
 
 class ExceptionsRestApi implements LiplRestApiInterface {
   ExceptionsRestApi(this.error);
@@ -40,22 +37,22 @@ class ExceptionsRestApi implements LiplRestApiInterface {
   }
 
   @override
-  Future<Lyric> postLyric(Lyric post) {
+  Future<void> postLyric(Lyric post) {
     throw error;
   }
 
   @override
-  Future<Playlist> postPlaylist(Playlist post) {
+  Future<void> postPlaylist(Playlist post) {
     throw error;
   }
 
   @override
-  Future<Lyric> putLyric(String id, Lyric lyric) {
+  Future<void> putLyric(String id, Lyric lyric) {
     throw error;
   }
 
   @override
-  Future<Playlist> putPlaylist(String id, Playlist playlist) {
+  Future<void> putPlaylist(String id, Playlist playlist) {
     throw error;
   }
 }
@@ -66,7 +63,7 @@ class InMemoryRestApi implements LiplRestApiInterface {
   List<Playlist> playlists = [];
 
   @override
-  Future<void> deleteLyric(String id) {
+  deleteLyric(String id) async {
     lyrics = lyrics.removeItemById(id);
     playlists = playlists
         .map(
@@ -75,67 +72,52 @@ class InMemoryRestApi implements LiplRestApiInterface {
           ),
         )
         .toList();
-    return Future.value();
   }
 
   @override
-  Future<void> deletePlaylist(String id) {
+  deletePlaylist(String id) async {
     playlists = playlists.removeItemById(id);
-    return Future.value();
   }
 
   @override
-  Future<List<Summary>> getLyricSummaries() => Future.value(
-        lyrics
-            .map(
-              (lyric) => Summary(id: lyric.id!, title: lyric.title),
-            )
-            .toList()
-            .sortByTitle(),
-      );
+  getLyricSummaries() async => lyrics
+      .map(
+        (lyric) => Summary(id: lyric.id!, title: lyric.title),
+      )
+      .toList()
+      .sortByTitle();
 
   @override
-  Future<List<Lyric>> getLyrics() => Future.value(lyrics.sortByTitle());
+  getLyrics() async => lyrics.sortByTitle();
 
   @override
-  Future<List<Summary>> getPlaylistSummaries() => Future.value(
-        playlists
-            .map(
-              (playlist) => Summary(id: playlist.id!, title: playlist.title),
-            )
-            .toList()
-            .sortByTitle(),
-      );
+  getPlaylistSummaries() async => playlists
+      .map(
+        (playlist) => Summary(id: playlist.id!, title: playlist.title),
+      )
+      .toList()
+      .sortByTitle();
 
   @override
-  Future<List<Playlist>> getPlaylists() => Future.value(playlists);
+  getPlaylists() async => playlists;
 
   @override
-  Future<Lyric> postLyric(Lyric post) {
-    lyrics = [...lyrics, post].sortByTitle();
-    return Future.value(post);
+  postLyric(Lyric lyric) async {
+    lyrics = [...lyrics, lyric].sortByTitle();
   }
 
   @override
-  Future<Playlist> postPlaylist(Playlist post) {
-    final playlist = Playlist(
-      id: newId(),
-      title: post.title,
-      members: post.members,
-    );
-    playlists = [...playlists, playlist];
-    return Future.value(playlist);
+  postPlaylist(Playlist playlist) async {
+    playlists = [...playlists, playlist].sortByTitle();
   }
 
   @override
-  Future<Lyric> putLyric(String id, Lyric lyric) {
+  putLyric(String id, Lyric lyric) async {
     lyrics.replaceItem(lyric);
-    return Future.value(lyric);
   }
 
   @override
-  Future<Playlist> putPlaylist(String id, Playlist playlist) {
+  putPlaylist(String id, Playlist playlist) async {
     playlists.replaceItem(playlist);
-    return Future.value(playlist);
   }
 }

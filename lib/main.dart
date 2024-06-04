@@ -32,9 +32,20 @@ Future<void> main() async {
         : await getApplicationSupportDirectory(),
   );
 
-  runApp(
-    BlocProviders(
-      packageInfo: packageInfo,
-    ),
-  );
+  if (kIsWeb) {
+    runApp(
+      BlocProviders(
+        packageInfo: packageInfo,
+        applicationSupportDirectory: null,
+      ),
+    );
+  } else {
+    final dir = await getApplicationSupportDirectory();
+    runApp(
+      BlocProviders(
+        packageInfo: packageInfo,
+        applicationSupportDirectory: dir,
+      ),
+    );
+  }
 }

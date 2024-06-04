@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:environment/environment.dart';
 import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/src/basic_authentication.dart';
 import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'environment.dart';
 
 class MockRequestHandler extends Mock implements RequestInterceptorHandler {}
 

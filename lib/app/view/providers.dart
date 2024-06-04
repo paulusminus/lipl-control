@@ -15,8 +15,12 @@ extension ContextExtension on BuildContext {
 }
 
 class BlocProviders extends StatelessWidget {
-  const BlocProviders({required this.packageInfo, super.key});
+  const BlocProviders(
+      {required this.packageInfo,
+      required this.applicationSupportDirectory,
+      super.key});
   final PackageInfo packageInfo;
+  final Directory? applicationSupportDirectory;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,8 @@ class BlocProviders extends StatelessWidget {
             create: (_) => EditPreferencesCubit(),
           ),
           BlocProvider<LiplAppCubit>(
-            create: (_) => LiplAppCubit(),
+            create: (_) => LiplAppCubit(
+                applicationSupportDirectory: applicationSupportDirectory),
           ),
           BlocProvider<SelectedTabCubit>(
             create: (_) => SelectedTabCubit(),

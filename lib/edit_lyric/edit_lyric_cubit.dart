@@ -8,11 +8,11 @@ part 'edit_lyric_cubit.freezed.dart';
 class EditLyricState with _$EditLyricState {
   const EditLyricState._();
   const factory EditLyricState({
-    @Default(true) bool isNew,
+    required bool isNew,
     @Default(LoadingStatus.initial) LoadingStatus status,
-    @Default(null) String? id,
-    @Default('') String title,
-    @Default('') String text,
+    required String id,
+    required String title,
+    required String text,
   }) = _EditLyricState;
 }
 

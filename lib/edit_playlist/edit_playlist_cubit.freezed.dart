@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditPlaylistState {
+  bool get isNew => throw _privateConstructorUsedError;
   LoadingStatus get status => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get search => throw _privateConstructorUsedError;
   List<Lyric> get members => throw _privateConstructorUsedError;
@@ -35,8 +36,9 @@ abstract class $EditPlaylistStateCopyWith<$Res> {
       _$EditPlaylistStateCopyWithImpl<$Res, EditPlaylistState>;
   @useResult
   $Res call(
-      {LoadingStatus status,
-      String? id,
+      {bool isNew,
+      LoadingStatus status,
+      String id,
       String title,
       String search,
       List<Lyric> members,
@@ -56,22 +58,27 @@ class _$EditPlaylistStateCopyWithImpl<$Res, $Val extends EditPlaylistState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isNew = null,
     Object? status = null,
-    Object? id = freezed,
+    Object? id = null,
     Object? title = null,
     Object? search = null,
     Object? members = null,
     Object? lyrics = null,
   }) {
     return _then(_value.copyWith(
+      isNew: null == isNew
+          ? _value.isNew
+          : isNew // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoadingStatus,
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -101,8 +108,9 @@ abstract class _$$EditPlaylistStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {LoadingStatus status,
-      String? id,
+      {bool isNew,
+      LoadingStatus status,
+      String id,
       String title,
       String search,
       List<Lyric> members,
@@ -120,22 +128,27 @@ class __$$EditPlaylistStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isNew = null,
     Object? status = null,
-    Object? id = freezed,
+    Object? id = null,
     Object? title = null,
     Object? search = null,
     Object? members = null,
     Object? lyrics = null,
   }) {
     return _then(_$EditPlaylistStateImpl(
+      isNew: null == isNew
+          ? _value.isNew
+          : isNew // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoadingStatus,
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -160,8 +173,9 @@ class __$$EditPlaylistStateImplCopyWithImpl<$Res>
 
 class _$EditPlaylistStateImpl extends _EditPlaylistState {
   const _$EditPlaylistStateImpl(
-      {this.status = LoadingStatus.initial,
-      this.id = null,
+      {required this.isNew,
+      this.status = LoadingStatus.initial,
+      required this.id,
       this.title = '',
       this.search = '',
       final List<Lyric> members = const [],
@@ -171,11 +185,12 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
         super._();
 
   @override
+  final bool isNew;
+  @override
   @JsonKey()
   final LoadingStatus status;
   @override
-  @JsonKey()
-  final String? id;
+  final String id;
   @override
   @JsonKey()
   final String title;
@@ -202,7 +217,7 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
 
   @override
   String toString() {
-    return 'EditPlaylistState(status: $status, id: $id, title: $title, search: $search, members: $members, lyrics: $lyrics)';
+    return 'EditPlaylistState(isNew: $isNew, status: $status, id: $id, title: $title, search: $search, members: $members, lyrics: $lyrics)';
   }
 
   @override
@@ -210,6 +225,7 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditPlaylistStateImpl &&
+            (identical(other.isNew, isNew) || other.isNew == isNew) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
@@ -221,6 +237,7 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isNew,
       status,
       id,
       title,
@@ -238,8 +255,9 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
 
 abstract class _EditPlaylistState extends EditPlaylistState {
   const factory _EditPlaylistState(
-      {final LoadingStatus status,
-      final String? id,
+      {required final bool isNew,
+      final LoadingStatus status,
+      required final String id,
       final String title,
       final String search,
       final List<Lyric> members,
@@ -247,9 +265,11 @@ abstract class _EditPlaylistState extends EditPlaylistState {
   const _EditPlaylistState._() : super._();
 
   @override
+  bool get isNew;
+  @override
   LoadingStatus get status;
   @override
-  String? get id;
+  String get id;
   @override
   String get title;
   @override

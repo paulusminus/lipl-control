@@ -8,15 +8,14 @@ part 'edit_playlist_cubit.freezed.dart';
 class EditPlaylistState with _$EditPlaylistState {
   const EditPlaylistState._();
   const factory EditPlaylistState({
+    required bool isNew,
     @Default(LoadingStatus.initial) LoadingStatus status,
-    @Default(null) String? id,
+    required String id,
     @Default('') String title,
     @Default('') String search,
     @Default([]) List<Lyric> members,
     @Default([]) List<Lyric> lyrics,
   }) = _EditPlaylistState;
-
-  bool get isNew => id == null;
 
   List<Lyric> get filtered => lyrics
       .where(
@@ -34,7 +33,8 @@ class EditPlaylistCubit extends Cubit<EditPlaylistState> {
     required List<Lyric>? lyrics,
   }) : super(
           EditPlaylistState(
-            id: id,
+            isNew: id == null,
+            id: id ?? newId(),
             title: title ?? '',
             members: members ?? <Lyric>[],
             lyrics: lyrics ?? <Lyric>[],

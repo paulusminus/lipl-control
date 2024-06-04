@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditLyricState {
   bool get isNew => throw _privateConstructorUsedError;
   LoadingStatus get status => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
 
@@ -34,11 +34,7 @@ abstract class $EditLyricStateCopyWith<$Res> {
       _$EditLyricStateCopyWithImpl<$Res, EditLyricState>;
   @useResult
   $Res call(
-      {bool isNew,
-      LoadingStatus status,
-      String? id,
-      String title,
-      String text});
+      {bool isNew, LoadingStatus status, String id, String title, String text});
 }
 
 /// @nodoc
@@ -56,7 +52,7 @@ class _$EditLyricStateCopyWithImpl<$Res, $Val extends EditLyricState>
   $Res call({
     Object? isNew = null,
     Object? status = null,
-    Object? id = freezed,
+    Object? id = null,
     Object? title = null,
     Object? text = null,
   }) {
@@ -69,10 +65,10 @@ class _$EditLyricStateCopyWithImpl<$Res, $Val extends EditLyricState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoadingStatus,
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -94,11 +90,7 @@ abstract class _$$EditLyricStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isNew,
-      LoadingStatus status,
-      String? id,
-      String title,
-      String text});
+      {bool isNew, LoadingStatus status, String id, String title, String text});
 }
 
 /// @nodoc
@@ -114,7 +106,7 @@ class __$$EditLyricStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isNew = null,
     Object? status = null,
-    Object? id = freezed,
+    Object? id = null,
     Object? title = null,
     Object? text = null,
   }) {
@@ -127,10 +119,10 @@ class __$$EditLyricStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoadingStatus,
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -147,27 +139,23 @@ class __$$EditLyricStateImplCopyWithImpl<$Res>
 
 class _$EditLyricStateImpl extends _EditLyricState {
   const _$EditLyricStateImpl(
-      {this.isNew = true,
+      {required this.isNew,
       this.status = LoadingStatus.initial,
-      this.id = null,
-      this.title = '',
-      this.text = ''})
+      required this.id,
+      required this.title,
+      required this.text})
       : super._();
 
   @override
-  @JsonKey()
   final bool isNew;
   @override
   @JsonKey()
   final LoadingStatus status;
   @override
-  @JsonKey()
-  final String? id;
+  final String id;
   @override
-  @JsonKey()
   final String title;
   @override
-  @JsonKey()
   final String text;
 
   @override
@@ -200,11 +188,11 @@ class _$EditLyricStateImpl extends _EditLyricState {
 
 abstract class _EditLyricState extends EditLyricState {
   const factory _EditLyricState(
-      {final bool isNew,
+      {required final bool isNew,
       final LoadingStatus status,
-      final String? id,
-      final String title,
-      final String text}) = _$EditLyricStateImpl;
+      required final String id,
+      required final String title,
+      required final String text}) = _$EditLyricStateImpl;
   const _EditLyricState._() : super._();
 
   @override
@@ -212,7 +200,7 @@ abstract class _EditLyricState extends EditLyricState {
   @override
   LoadingStatus get status;
   @override
-  String? get id;
+  String get id;
   @override
   String get title;
   @override

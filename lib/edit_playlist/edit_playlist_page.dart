@@ -52,19 +52,30 @@ class EditPlaylistPage extends StatelessWidget {
   const EditPlaylistPage({super.key});
 
   static Route<void> route({
-    String? id,
-    String? title,
-    List<Lyric>? members,
+    Playlist? playlist,
   }) {
     return MaterialPageRoute<void>(
       fullscreenDialog: true,
       builder: (_) => BlocProvider<EditPlaylistCubit>(
-        create: (BuildContext context) => EditPlaylistCubit(
-          id: id,
-          title: title,
-          members: members,
-          lyrics: context.read<LiplAppCubit>().state.lyrics,
-        ),
+        create: (BuildContext context) {
+          final lyrics = context.read<LiplAppCubit>().state.lyrics;
+          final members = playlist?.members
+              .map(
+                (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
+                      (Lyric? lyric) => lyric?.id == lyricId,
+                      orElse: () => null,
+                    ),
+              )
+              .where((Lyric? lyric) => lyric != null)
+              .cast<Lyric>()
+              .toList();
+          return EditPlaylistCubit(
+            id: playlist?.id ?? newId(),
+            title: playlist?.title,
+            members: members ?? [],
+            lyrics: lyrics,
+          );
+        },
         child: const EditPlaylistPage(),
       ),
     );
@@ -91,8 +102,7 @@ class EditPlaylistView extends StatelessWidget {
     final AppLocalizations l10n = context.l10n;
     final LoadingStatus status =
         context.select((EditPlaylistCubit cubit) => cubit.state.status);
-    final bool isNew =
-        context.select((EditPlaylistCubit cubit) => cubit.state.id == null);
+    final bool isNew = context.read<EditPlaylistCubit>().state.isNew;
     final EditPlaylistCubit editPlaylistCubit =
         context.read<EditPlaylistCubit>();
     final LiplAppCubit liplRestCubit = context.read<LiplAppCubit>();
