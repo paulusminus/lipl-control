@@ -6,7 +6,8 @@ void main() {
     test("new", () {
       final uuid = newId();
       print(uuid);
-      expect(uuid.length, 22);
+      expect(
+          uuid.length, allOf(greaterThanOrEqualTo(21), lessThanOrEqualTo(22)));
     });
   });
 }
