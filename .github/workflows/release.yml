@@ -10,6 +10,8 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Install ninja
+        run: sudo apt install ninja-build -y
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
