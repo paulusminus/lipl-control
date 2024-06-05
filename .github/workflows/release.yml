@@ -17,9 +17,16 @@ jobs:
           cache: false
       - name: Build for Web
         run: flutter build web --release
-      - name: Create tarball
+      - name: Create pwa tarball
         working-directory: build/web/
         run: tar -czf ../../lipl-pwa.tar.gz --owner=0 --group=0 .
+      - name: Build linux app
+        run: flutter build linux
+      - name: Create linux executable tarball
+        working-directory: build/linux/x64/release/bundle
+        run: tar -czf ../../../../../lipl-linux-x64.tar.gz --owner=0 --group=0 .
+      - name: Calculate checksum
+        run: sha256sum lipl-linux-x64.tar.gz > lipl-linux-x64.tar.gz.sig.txt
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "lipl-pwa.tar.gz"
+          artifacts: "lipl-pwa.tar.gz,lipl-linux-x64.tar.gz,lipl-linux-x64.tar.gz.sig.txt"

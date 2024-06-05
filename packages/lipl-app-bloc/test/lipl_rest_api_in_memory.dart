@@ -16,10 +16,10 @@ class ExceptionsRestApi implements LiplRestApiInterface {
     throw error;
   }
 
-  @override
-  Future<List<Summary>> getLyricSummaries() {
-    throw error;
-  }
+  // @override
+  // Future<List<Summary>> getLyricSummaries() {
+  //   throw error;
+  // }
 
   @override
   Future<List<Lyric>> getLyrics() {
@@ -79,13 +79,13 @@ class InMemoryRestApi implements LiplRestApiInterface {
     playlists = playlists.removeItemById(id);
   }
 
-  @override
-  getLyricSummaries() async => lyrics
-      .map(
-        (lyric) => Summary(id: lyric.id!, title: lyric.title),
-      )
-      .toList()
-      .sortByTitle();
+  // @override
+  // getLyricSummaries() async => lyrics
+  //     .map(
+  //       (lyric) => Summary(id: lyric.id!, title: lyric.title),
+  //     )
+  //     .toList()
+  //     .sortByTitle();
 
   @override
   getLyrics() async => lyrics.sortByTitle();

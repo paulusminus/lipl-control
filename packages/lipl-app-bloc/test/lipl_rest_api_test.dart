@@ -18,24 +18,24 @@ void main() {
       restClient = LiplRestApi(dio, baseUrl: baseUrl);
     });
 
-    test('get lyric summaries', () async {
-      const getLyricSummariesResponse = [
-        Summary(
-          id: '2',
-          title: 'Breng eens een zonnetje',
-        ),
-      ];
+    // test('get lyric summaries', () async {
+    //   const getLyricSummariesResponse = [
+    //     Summary(
+    //       id: '2',
+    //       title: 'Breng eens een zonnetje',
+    //     ),
+    //   ];
 
-      dioAdapter.onGet(
-        'lyric',
-        (request) => request.reply(200, getLyricSummariesResponse),
-        data: {},
-      );
+    //   dioAdapter.onGet(
+    //     'lyric',
+    //     (request) => request.reply(200, getLyricSummariesResponse),
+    //     data: {},
+    //   );
 
-      final response = await restClient.getLyricSummaries();
+    //   final response = await restClient.getLyricSummaries();
 
-      expect(getLyricSummariesResponse, response);
-    });
+    //   expect(getLyricSummariesResponse, response);
+    // });
 
     test('get lyrics', () async {
       const getLyricsResponse = [

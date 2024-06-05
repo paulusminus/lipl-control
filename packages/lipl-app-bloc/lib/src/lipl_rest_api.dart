@@ -15,7 +15,7 @@ final logger = Logger('$LiplRestApi');
 
 abstract class LiplRestApiInterface {
   Future<List<Lyric>> getLyrics();
-  Future<List<Summary>> getLyricSummaries();
+  // Future<List<Summary>> getLyricSummaries();
   Future<void> postLyric(@Body() Lyric lyric);
   Future<void> deleteLyric(@Path() String id);
   Future<void> putLyric(@Path() String id, @Body() Lyric lyric);
@@ -59,12 +59,12 @@ abstract class LiplRestApi implements LiplRestApiInterface {
   factory LiplRestApi(Dio dio, {String baseUrl}) = _LiplRestApi;
 
   @override
-  @GET('lyric?full=true')
+  @GET('lyric')
   Future<List<Lyric>> getLyrics();
 
-  @override
-  @GET('lyric')
-  Future<List<Summary>> getLyricSummaries();
+  // @override
+  // @GET('lyric')
+  // Future<List<Summary>> getLyricSummaries();
 
   @override
   @POST('lyric')
