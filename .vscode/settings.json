@@ -1,4 +1,10 @@
 {
     "cmake.configureOnOpen": false,
-    "cmake.sourceDirectory": "/home/paul/Code/dart/lipl-control/linux/flutter"
+    "cmake.sourceDirectory": "/home/paul/Code/dart/lipl-control/linux/flutter",
+    "files.watcherExclude": {
+        "**/.dart_tool": true,
+        "**/build/**": true,
+        ".flatpak/**": true,
+        "_build/**": true
+    }
 }

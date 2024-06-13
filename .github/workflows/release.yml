@@ -23,10 +23,9 @@ jobs:
         working-directory: build/web/
         run: tar -czf ../../lipl-pwa.tar.gz --owner=0 --group=0 .
       - name: Build linux app
-        run: flutter build linux
+        run: flutter build linux --release
       - name: Create linux executable tarball
-        working-directory: build/linux/x64/release/bundle
-        run: tar -czf ../../../../../lipl-linux-x64.tar.gz --owner=0 --group=0 .
+        run: tar -czf lipl-linux-x64.tar.gz flatpak -C build/linux/x64/release bundle  --no-same-owner
       - name: Calculate checksum
         run: sha256sum lipl-linux-x64.tar.gz > lipl-linux-x64.tar.gz.sig.txt
       - uses: ncipollo/release-action@v1
