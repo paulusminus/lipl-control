@@ -32,35 +32,6 @@ class _LiplRestApi implements LiplRestApi {
     )
             .compose(
               _dio.options,
-              'lyric?full=true',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) => Lyric.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
-  }
-
-  @override
-  Future<List<Summary>> getLyricSummaries() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Summary>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
               'lyric',
               queryParameters: queryParameters,
               data: _data,
@@ -71,7 +42,7 @@ class _LiplRestApi implements LiplRestApi {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Summary.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => Lyric.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

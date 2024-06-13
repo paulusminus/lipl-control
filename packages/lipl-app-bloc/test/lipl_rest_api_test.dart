@@ -54,7 +54,7 @@ void main() {
       ];
 
       dioAdapter.onGet(
-        'lyric?full=true',
+        'lyric',
         (request) => request.reply(200, getLyricsResponse),
         data: {},
       );
