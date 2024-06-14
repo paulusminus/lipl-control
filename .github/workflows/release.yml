@@ -25,7 +25,7 @@ jobs:
       - name: Build linux app
         run: flutter build linux --release
       - name: Create linux executable tarball
-        run: tar -czf lipl-linux-x64.tar.gz -C build/linux/x64/release/bundle . --no-same-owner
+        run: tar -czf lipl-linux-x64.tar.gz flatpak -C build/linux/x64/release bundle --no-same-owner
       - name: Calculate checksum
         run: sha256sum lipl-linux-x64.tar.gz > lipl-linux-x64.tar.gz.sig.txt
       - uses: ncipollo/release-action@v1
