@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>nl.paulmin.LiplControl</id>
+  <id>nl.paulmin.lipl.Control</id>
   <name>Lipl Control</name>
   <summary>Maintaining lyrics and playlists</summary>
   <developer_name>Paul Min</developer_name>
@@ -15,7 +15,7 @@
   <description>
     <p>Maintaining lyrics and playlists</p>
   </description>
-  <launchable type="desktop-id">nl.paulmin.LiplControl.desktop</launchable>
+  <launchable type="desktop-id">nl.paulmin.lipl.Control.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <image>https://www.paulmin.nl/lipl_control_screenshot.png</image>
@@ -23,6 +23,6 @@
   </screenshots>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="1.12.6" date="2024-06-05" />
+    <release version="1.12.8" date="2024-06-16" />
   </releases>
 </component>

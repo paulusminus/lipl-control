@@ -6,7 +6,7 @@ Name=Lipl Control
 Comment=Maintaining lyrics and playlists
 Categories=Utility;Amusement;
 
-Icon=nl.paulmin.LiplControl
+Icon=nl.paulmin.lipl.Control
 Exec=lipl_control
 Terminal=false
 StartupWMClass=lipl_control
