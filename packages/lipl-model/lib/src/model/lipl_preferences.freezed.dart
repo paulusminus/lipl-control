@@ -24,8 +24,12 @@ mixin _$LiplPreferences {
   List<Lyric> get lyrics => throw _privateConstructorUsedError;
   List<Playlist> get playlists => throw _privateConstructorUsedError;
 
+  /// Serializes this LiplPreferences to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LiplPreferences
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LiplPreferencesCopyWith<LiplPreferences> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$LiplPreferencesCopyWithImpl<$Res, $Val extends LiplPreferences>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LiplPreferences
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +81,8 @@ class _$LiplPreferencesCopyWithImpl<$Res, $Val extends LiplPreferences>
     ) as $Val);
   }
 
+  /// Create a copy of LiplPreferences
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CredentialsCopyWith<$Res>? get credentials {
@@ -111,6 +119,8 @@ class __$$LiplPreferencesImplCopyWithImpl<$Res>
       _$LiplPreferencesImpl _value, $Res Function(_$LiplPreferencesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LiplPreferences
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,7 +197,7 @@ class _$LiplPreferencesImpl extends _LiplPreferences {
                 .equals(other._playlists, _playlists));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -195,7 +205,9 @@ class _$LiplPreferencesImpl extends _LiplPreferences {
       const DeepCollectionEquality().hash(_lyrics),
       const DeepCollectionEquality().hash(_playlists));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LiplPreferences
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LiplPreferencesImplCopyWith<_$LiplPreferencesImpl> get copyWith =>
@@ -226,8 +238,11 @@ abstract class _LiplPreferences extends LiplPreferences {
   List<Lyric> get lyrics;
   @override
   List<Playlist> get playlists;
+
+  /// Create a copy of LiplPreferences
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LiplPreferencesImplCopyWith<_$LiplPreferencesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

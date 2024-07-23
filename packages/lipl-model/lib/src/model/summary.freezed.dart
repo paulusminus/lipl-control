@@ -23,8 +23,12 @@ mixin _$Summary {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
+  /// Serializes this Summary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Summary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SummaryCopyWith<Summary> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -46,6 +50,8 @@ class _$SummaryCopyWithImpl<$Res, $Val extends Summary>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Summary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,6 +89,8 @@ class __$$SummaryImplCopyWithImpl<$Res>
       _$SummaryImpl _value, $Res Function(_$SummaryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Summary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,11 +132,13 @@ class _$SummaryImpl extends _Summary {
             (identical(other.title, title) || other.title == title));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Summary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SummaryImplCopyWith<_$SummaryImpl> get copyWith =>
@@ -153,8 +163,11 @@ abstract class _Summary extends Summary {
   String get id;
   @override
   String get title;
+
+  /// Create a copy of Summary
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SummaryImplCopyWith<_$SummaryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

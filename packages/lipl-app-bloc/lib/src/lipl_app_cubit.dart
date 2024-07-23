@@ -32,6 +32,25 @@ class LiplAppState with _$LiplAppState {
       : (lastFetch!.millisecondsSinceEpoch -
               DateTime.now().toUtc().millisecondsSinceEpoch) ~/
           1000;
+
+  Playlist? findPlaylist(String id) => playlists
+      .cast<Playlist?>()
+      .firstWhere((playlist) => playlist?.id == id, orElse: () => null);
+
+  Lyric? findLyric(String id) => lyrics
+      .cast<Lyric?>()
+      .firstWhere((lyric) => lyric?.id == id, orElse: () => null);
+
+  List<Lyric> lyricMembers(Playlist playlist) => playlist.members
+      .map(
+        (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
+              (Lyric? lyric) => lyric?.id == lyricId,
+              orElse: () => null,
+            ),
+      )
+      .where((Lyric? lyric) => lyric != null)
+      .cast<Lyric>()
+      .toList();
 }
 
 class LiplAppCubit extends HydratedCubit<LiplAppState> {

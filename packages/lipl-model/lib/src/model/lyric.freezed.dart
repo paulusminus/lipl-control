@@ -24,8 +24,12 @@ mixin _$Lyric {
   String get title => throw _privateConstructorUsedError;
   List<List<String>> get parts => throw _privateConstructorUsedError;
 
+  /// Serializes this Lyric to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Lyric
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LyricCopyWith<Lyric> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -47,6 +51,8 @@ class _$LyricCopyWithImpl<$Res, $Val extends Lyric>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Lyric
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +95,8 @@ class __$$LyricImplCopyWithImpl<$Res>
       _$LyricImpl _value, $Res Function(_$LyricImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Lyric
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,12 +156,14 @@ class _$LyricImpl extends _Lyric {
             const DeepCollectionEquality().equals(other._parts, _parts));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, title, const DeepCollectionEquality().hash(_parts));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Lyric
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LyricImplCopyWith<_$LyricImpl> get copyWith =>
@@ -182,8 +192,11 @@ abstract class _Lyric extends Lyric {
   String get title;
   @override
   List<List<String>> get parts;
+
+  /// Create a copy of Lyric
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LyricImplCopyWith<_$LyricImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
