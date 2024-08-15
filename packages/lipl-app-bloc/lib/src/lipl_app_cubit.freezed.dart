@@ -26,8 +26,12 @@ mixin _$LiplAppState {
   Credentials? get credentials => throw _privateConstructorUsedError;
   DateTime? get lastFetch => throw _privateConstructorUsedError;
 
+  /// Serializes this LiplAppState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LiplAppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LiplAppStateCopyWith<LiplAppState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LiplAppState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
     ) as $Val);
   }
 
+  /// Create a copy of LiplAppState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CredentialsCopyWith<$Res>? get credentials {
@@ -131,6 +139,8 @@ class __$$LiplAppStateImplCopyWithImpl<$Res>
       _$LiplAppStateImpl _value, $Res Function(_$LiplAppStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LiplAppState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -229,7 +239,7 @@ class _$LiplAppStateImpl extends _LiplAppState {
                 other.lastFetch == lastFetch));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -239,7 +249,9 @@ class _$LiplAppStateImpl extends _LiplAppState {
       credentials,
       lastFetch);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LiplAppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LiplAppStateImplCopyWith<_$LiplAppStateImpl> get copyWith =>
@@ -275,8 +287,11 @@ abstract class _LiplAppState extends LiplAppState {
   Credentials? get credentials;
   @override
   DateTime? get lastFetch;
+
+  /// Create a copy of LiplAppState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LiplAppStateImplCopyWith<_$LiplAppStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
