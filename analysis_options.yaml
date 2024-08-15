@@ -2,3 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude: ["lib/l10n/arb/**.dart"]
+
+linter:
+  rules:
+    - invalid_runtime_check_with_js_interop_types

@@ -3,3 +3,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - '**/app_localizations_*.dart'
+
+linter:
+  rules:
+    - invalid_runtime_check_with_js_interop_types
