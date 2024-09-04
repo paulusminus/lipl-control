@@ -25,7 +25,9 @@ mixin _$ConnectedDevice {
   BluetoothCharacteristic get commandCharacteristic =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConnectedDevice
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConnectedDeviceCopyWith<ConnectedDevice> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +56,8 @@ class _$ConnectedDeviceCopyWithImpl<$Res, $Val extends ConnectedDevice>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConnectedDevice
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +116,8 @@ class __$$ConnectedDeviceImplCopyWithImpl<$Res>
       _$ConnectedDeviceImpl _value, $Res Function(_$ConnectedDeviceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConnectedDevice
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -192,7 +198,9 @@ class _$ConnectedDeviceImpl implements _ConnectedDevice {
   int get hashCode => Object.hash(runtimeType, device, displayService,
       textCharacteristic, statusCharacteristic, commandCharacteristic);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConnectedDevice
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConnectedDeviceImplCopyWith<_$ConnectedDeviceImpl> get copyWith =>
@@ -219,8 +227,11 @@ abstract class _ConnectedDevice implements ConnectedDevice {
   BluetoothCharacteristic get statusCharacteristic;
   @override
   BluetoothCharacteristic get commandCharacteristic;
+
+  /// Create a copy of ConnectedDevice
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConnectedDeviceImplCopyWith<_$ConnectedDeviceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -22,7 +22,9 @@ mixin _$EditLyricState {
   String get title => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditLyricState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EditLyricStateCopyWith<EditLyricState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$EditLyricStateCopyWithImpl<$Res, $Val extends EditLyricState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EditLyricState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +105,8 @@ class __$$EditLyricStateImplCopyWithImpl<$Res>
       _$EditLyricStateImpl _value, $Res Function(_$EditLyricStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditLyricState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,7 +184,9 @@ class _$EditLyricStateImpl extends _EditLyricState {
   @override
   int get hashCode => Object.hash(runtimeType, isNew, status, id, title, text);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditLyricState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditLyricStateImplCopyWith<_$EditLyricStateImpl> get copyWith =>
@@ -205,8 +213,11 @@ abstract class _EditLyricState extends EditLyricState {
   String get title;
   @override
   String get text;
+
+  /// Create a copy of EditLyricState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditLyricStateImplCopyWith<_$EditLyricStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

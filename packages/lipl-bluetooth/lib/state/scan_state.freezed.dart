@@ -20,7 +20,9 @@ mixin _$ScanState {
   bool get isScanning => throw _privateConstructorUsedError;
   ConnectedDevice? get connectedDevice => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScanState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ScanStateCopyWith<ScanState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$ScanStateCopyWithImpl<$Res, $Val extends ScanState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ScanState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -71,6 +75,8 @@ class _$ScanStateCopyWithImpl<$Res, $Val extends ScanState>
     ) as $Val);
   }
 
+  /// Create a copy of ScanState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConnectedDeviceCopyWith<$Res>? get connectedDevice {
@@ -109,6 +115,8 @@ class __$$ScanStateImplCopyWithImpl<$Res>
       _$ScanStateImpl _value, $Res Function(_$ScanStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ScanState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -183,7 +191,9 @@ class _$ScanStateImpl extends _ScanState {
       isScanning,
       connectedDevice);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScanState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScanStateImplCopyWith<_$ScanStateImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _ScanState extends ScanState {
   bool get isScanning;
   @override
   ConnectedDevice? get connectedDevice;
+
+  /// Create a copy of ScanState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScanStateImplCopyWith<_$ScanStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

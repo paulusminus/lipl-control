@@ -24,7 +24,9 @@ mixin _$EditPlaylistState {
   List<Lyric> get members => throw _privateConstructorUsedError;
   List<Lyric> get lyrics => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditPlaylistState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EditPlaylistStateCopyWith<EditPlaylistState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +57,8 @@ class _$EditPlaylistStateCopyWithImpl<$Res, $Val extends EditPlaylistState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EditPlaylistState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,6 +129,8 @@ class __$$EditPlaylistStateImplCopyWithImpl<$Res>
       $Res Function(_$EditPlaylistStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditPlaylistState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -245,7 +251,9 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
       const DeepCollectionEquality().hash(_members),
       const DeepCollectionEquality().hash(_lyrics));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditPlaylistState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditPlaylistStateImplCopyWith<_$EditPlaylistStateImpl> get copyWith =>
@@ -278,8 +286,11 @@ abstract class _EditPlaylistState extends EditPlaylistState {
   List<Lyric> get members;
   @override
   List<Lyric> get lyrics;
+
+  /// Create a copy of EditPlaylistState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditPlaylistStateImplCopyWith<_$EditPlaylistStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
