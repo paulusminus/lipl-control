@@ -242,10 +242,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "99e066ce75c89d6b29903d788a7bb9369cf754f7b24bf70bf4b6d6d6b26853b9"
+      sha256: "7856d364b589d1f08986e140938578ed36ed948581fbc3bc9aef1805039ac5ab"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.6"
+    version: "2.3.7"
   dartx:
     dependency: transitive
     description:
@@ -607,21 +607,21 @@ packages:
       path: "packages/lipl-app-bloc"
       relative: true
     source: path
-    version: "1.13.1"
+    version: "1.13.2"
   lipl_bluetooth:
     dependency: "direct main"
     description:
       path: "packages/lipl-bluetooth"
       relative: true
     source: path
-    version: "1.13.1"
+    version: "1.13.2"
   lipl_model:
     dependency: "direct main"
     description:
       path: "packages/lipl-model"
       relative: true
     source: path
-    version: "1.13.1"
+    version: "1.13.2"
   logging:
     dependency: "direct main"
     description:
@@ -850,10 +850,10 @@ packages:
     dependency: transitive
     description:
       name: retrofit
-      sha256: "479cc534c2d83296dac6ae16933dd77e7a52bb54cf7e75e6eb83ee51928c8465"
+      sha256: "3c9885ef3dbc5dc4b3fb0a40c972ab52e4dad04d52dac9bba24dfa76cf100451"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.0"
+    version: "4.4.1"
   shelf:
     dependency: transitive
     description:
@@ -874,10 +874,10 @@ packages:
     dependency: transitive
     description:
       name: shelf_static
-      sha256: a41d3f53c4adf0f57480578c1d61d90342cd617de7fc8077b1304643c2d85c1e
+      sha256: c87c3875f91262785dade62d135760c2c69cb217ac759485334c5857ad89f6e3
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.1.3"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -1172,5 +1172,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.5.0 <4.0.0"
+  dart: ">=3.5.3 <4.0.0"
   flutter: ">=3.22.0"
