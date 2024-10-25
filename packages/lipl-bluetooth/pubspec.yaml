@@ -1,12 +1,12 @@
 name: lipl_bluetooth
 description: Scan for TV devices and write a part to them
 repository: https://github.com/paulusminus/lipl-control/
-publish_to: 'none' 
+publish_to: "none"
 
-version: 1.13.2
+version: 1.13.4
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.5.4
 
 dependencies:
   flutter:
@@ -32,4 +32,3 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
-
