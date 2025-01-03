@@ -45,9 +45,6 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.8.0
 
-flutter:
-  uses-material-design: true
-
 flutter_launcher_icons:
   adaptive_icon_background: #ffffff
   android: "launcher_icon"

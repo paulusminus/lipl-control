@@ -7,3 +7,6 @@ workspace:
   - packages/lipl-app-bloc
   - packages/lipl-bluetooth
   - packages/lipl-model
+
+flutter:
+  uses-material-design: true
