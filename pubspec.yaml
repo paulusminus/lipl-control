@@ -1,60 +1,9 @@
-name: lipl_control
-description: App to maintain lyrics and playlists and send text to lipl-display
-repository: https://github.com/paulusminus/lipl-control/
-publish_to: "none"
-version: 1.13.10
-
+name: _
+publish_to: none
 environment:
   sdk: ^3.6.0
-
-dependencies:
-  bloc: ^8.1.4
-  cupertino_icons: ^1.0.8
-  flutter:
-    sdk: flutter
-  flutter_bloc: ^8.1.5
-  flutter_gen: ^5.5.0
-  flutter_localizations:
-    sdk: flutter
-  freezed_annotation: ^2.4.1
-  go_router: ^14.2.0
-  hydrated_bloc: ^9.1.5
-  http: ^1.2.1
-  intl: ^0.19.0
-  json_annotation: ^4.9.0
-  lipl_app_bloc:
-    path: packages/lipl-app-bloc
-  lipl_bluetooth:
-    path: packages/lipl-bluetooth
-  lipl_model:
-    path: packages/lipl-model
-  logging: ^1.2.0
-  package_info_plus: ^8.0.0
-  path_provider: ^2.1.3
-  universal_io: ^2.2.2
-dev_dependencies:
-  bloc_test: ^9.1.7
-  build_runner: ^2.4.10
-  flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^5.0.0
-  flutter_test:
-    sdk: flutter
-  freezed: ^2.5.2
-  integration_test:
-    sdk: flutter
-  json_serializable: ^6.8.0
-
-flutter:
-  uses-material-design: true
-
-flutter_launcher_icons:
-  adaptive_icon_background: #ffffff
-  android: "launcher_icon"
-  image_path: "assets/icon/icon.png"
-  ios: false
-  remove_alpha_ios: true
-  web:
-    generate: true
-    image_path: "assets/icon/icon.png"
-    background_color: #0175C2
-    theme_color: #0175C2
+workspace:
+  - packages/app
+  - packages/lipl-app-bloc
+  - packages/lipl-bluetooth
+  - packages/lipl-model

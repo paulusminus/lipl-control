@@ -6,6 +6,7 @@ publish: false
 
 environment:
   sdk: ^3.6.0
+resolution: workspace
 
 dependencies:
   bs58: ^1.0.2
