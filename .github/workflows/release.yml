@@ -15,17 +15,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: false
       - name: Build for Web
         run: flutter build web --release
       - name: Create pwa tarball
-        working-directory: build/web/
+        working-directory: "./packages/app/build/web"
         run: tar -czf ../../lipl-pwa.tar.gz --owner=0 --group=0 .
       - name: Build linux app
         run: flutter build linux --release
+        working-directory: "./packages/app"
       - name: Create linux executable tarball
-        run: tar -czf lipl-linux-x64.tar.gz flatpak -C build/linux/x64/release bundle --no-same-owner
+        run: tar -czf lipl-linux-x64.tar.gz flatpak -C packages/app/build/linux/x64/release bundle --no-same-owner
       - name: Calculate checksum
         run: sha256sum lipl-linux-x64.tar.gz > lipl-linux-x64.tar.gz.sig.txt
       - uses: ncipollo/release-action@v1
