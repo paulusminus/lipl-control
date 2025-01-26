@@ -28,8 +28,8 @@ Future<void> main() async {
 
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
-        ? HydratedStorage.web
-        : await getApplicationSupportDirectory(),
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getApplicationSupportDirectory()).path),
   );
 
   if (kIsWeb) {
