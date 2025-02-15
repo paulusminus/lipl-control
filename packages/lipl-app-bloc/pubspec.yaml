@@ -35,4 +35,4 @@ dev_dependencies:
   test: ^1.24.2
   uuid: ^4.2.1
   fast_base58: ^0.2.1
-  freezed: ^3.0.0-0.0.dev
+  freezed: ^2.5.8

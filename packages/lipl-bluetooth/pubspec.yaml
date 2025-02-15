@@ -27,7 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  freezed: ^3.0.0-0.0.dev
+  freezed: ^2.5.8
   build_runner: ^2.4.6
 
 flutter:
