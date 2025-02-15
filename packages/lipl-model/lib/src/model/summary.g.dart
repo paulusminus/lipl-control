@@ -7,13 +7,7 @@ part of 'summary.dart';
 // **************************************************************************
 
 _$SummaryImpl _$$SummaryImplFromJson(Map<String, dynamic> json) =>
-    _$SummaryImpl(
-      id: json['id'] as String,
-      title: json['title'] as String,
-    );
+    _$SummaryImpl(id: json['id'] as String, title: json['title'] as String);
 
 Map<String, dynamic> _$$SummaryImplToJson(_$SummaryImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-    };
+    <String, dynamic>{'id': instance.id, 'title': instance.title};

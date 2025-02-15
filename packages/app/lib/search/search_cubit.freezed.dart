@@ -12,7 +12,8 @@ part of 'search_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SearchState {
@@ -28,8 +29,9 @@ mixin _$SearchState {
 /// @nodoc
 abstract class $SearchStateCopyWith<$Res> {
   factory $SearchStateCopyWith(
-          SearchState value, $Res Function(SearchState) then) =
-      _$SearchStateCopyWithImpl<$Res, SearchState>;
+    SearchState value,
+    $Res Function(SearchState) then,
+  ) = _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
   $Res call({String searchTerm});
 }
@@ -48,15 +50,17 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? searchTerm = null,
-  }) {
-    return _then(_value.copyWith(
-      searchTerm: null == searchTerm
-          ? _value.searchTerm
-          : searchTerm // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? searchTerm = null}) {
+    return _then(
+      _value.copyWith(
+            searchTerm:
+                null == searchTerm
+                    ? _value.searchTerm
+                    : searchTerm // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -64,8 +68,9 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
 abstract class _$$SearchStateImplCopyWith<$Res>
     implements $SearchStateCopyWith<$Res> {
   factory _$$SearchStateImplCopyWith(
-          _$SearchStateImpl value, $Res Function(_$SearchStateImpl) then) =
-      __$$SearchStateImplCopyWithImpl<$Res>;
+    _$SearchStateImpl value,
+    $Res Function(_$SearchStateImpl) then,
+  ) = __$$SearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String searchTerm});
@@ -76,22 +81,24 @@ class __$$SearchStateImplCopyWithImpl<$Res>
     extends _$SearchStateCopyWithImpl<$Res, _$SearchStateImpl>
     implements _$$SearchStateImplCopyWith<$Res> {
   __$$SearchStateImplCopyWithImpl(
-      _$SearchStateImpl _value, $Res Function(_$SearchStateImpl) _then)
-      : super(_value, _then);
+    _$SearchStateImpl _value,
+    $Res Function(_$SearchStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? searchTerm = null,
-  }) {
-    return _then(_$SearchStateImpl(
-      searchTerm: null == searchTerm
-          ? _value.searchTerm
-          : searchTerm // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? searchTerm = null}) {
+    return _then(
+      _$SearchStateImpl(
+        searchTerm:
+            null == searchTerm
+                ? _value.searchTerm
+                : searchTerm // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 

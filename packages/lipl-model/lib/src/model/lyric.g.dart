@@ -7,12 +7,13 @@ part of 'lyric.dart';
 // **************************************************************************
 
 _$LyricImpl _$$LyricImplFromJson(Map<String, dynamic> json) => _$LyricImpl(
-      id: json['id'] as String?,
-      title: json['title'] as String,
-      parts: (json['parts'] as List<dynamic>)
+  id: json['id'] as String?,
+  title: json['title'] as String,
+  parts:
+      (json['parts'] as List<dynamic>)
           .map((e) => (e as List<dynamic>).map((e) => e as String).toList())
           .toList(),
-    );
+);
 
 Map<String, dynamic> _$$LyricImplToJson(_$LyricImpl instance) =>
     <String, dynamic>{

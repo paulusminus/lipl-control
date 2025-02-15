@@ -12,7 +12,8 @@ part of 'playlist.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
   return _Playlist.fromJson(json);
@@ -61,20 +62,26 @@ class _$PlaylistCopyWithImpl<$Res, $Val extends Playlist>
     Object? title = null,
     Object? members = null,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      members: null == members
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            members:
+                null == members
+                    ? _value.members
+                    : members // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -82,8 +89,9 @@ class _$PlaylistCopyWithImpl<$Res, $Val extends Playlist>
 abstract class _$$PlaylistImplCopyWith<$Res>
     implements $PlaylistCopyWith<$Res> {
   factory _$$PlaylistImplCopyWith(
-          _$PlaylistImpl value, $Res Function(_$PlaylistImpl) then) =
-      __$$PlaylistImplCopyWithImpl<$Res>;
+    _$PlaylistImpl value,
+    $Res Function(_$PlaylistImpl) then,
+  ) = __$$PlaylistImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String title, List<String> members});
@@ -94,8 +102,9 @@ class __$$PlaylistImplCopyWithImpl<$Res>
     extends _$PlaylistCopyWithImpl<$Res, _$PlaylistImpl>
     implements _$$PlaylistImplCopyWith<$Res> {
   __$$PlaylistImplCopyWithImpl(
-      _$PlaylistImpl _value, $Res Function(_$PlaylistImpl) _then)
-      : super(_value, _then);
+    _$PlaylistImpl _value,
+    $Res Function(_$PlaylistImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of Playlist
   /// with the given fields replaced by the non-null parameter values.
@@ -106,32 +115,37 @@ class __$$PlaylistImplCopyWithImpl<$Res>
     Object? title = null,
     Object? members = null,
   }) {
-    return _then(_$PlaylistImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      members: null == members
-          ? _value._members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+    return _then(
+      _$PlaylistImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        members:
+            null == members
+                ? _value._members
+                : members // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PlaylistImpl extends _Playlist {
-  const _$PlaylistImpl(
-      {required this.id,
-      required this.title,
-      required final List<String> members})
-      : _members = members,
-        super._();
+  const _$PlaylistImpl({
+    required this.id,
+    required this.title,
+    required final List<String> members,
+  }) : _members = members,
+       super._();
 
   factory _$PlaylistImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlaylistImplFromJson(json);
@@ -161,7 +175,11 @@ class _$PlaylistImpl extends _Playlist {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, title, const DeepCollectionEquality().hash(_members));
+    runtimeType,
+    id,
+    title,
+    const DeepCollectionEquality().hash(_members),
+  );
 
   /// Create a copy of Playlist
   /// with the given fields replaced by the non-null parameter values.
@@ -173,17 +191,16 @@ class _$PlaylistImpl extends _Playlist {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PlaylistImplToJson(
-      this,
-    );
+    return _$$PlaylistImplToJson(this);
   }
 }
 
 abstract class _Playlist extends Playlist {
-  const factory _Playlist(
-      {required final String? id,
-      required final String title,
-      required final List<String> members}) = _$PlaylistImpl;
+  const factory _Playlist({
+    required final String? id,
+    required final String title,
+    required final List<String> members,
+  }) = _$PlaylistImpl;
   const _Playlist._() : super._();
 
   factory _Playlist.fromJson(Map<String, dynamic> json) =

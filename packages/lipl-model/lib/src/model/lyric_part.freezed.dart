@@ -12,7 +12,8 @@ part of 'lyric_part.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 LyricPart _$LyricPartFromJson(Map<String, dynamic> json) {
   return _LyricPart.fromJson(json);
@@ -63,24 +64,31 @@ class _$LyricPartCopyWithImpl<$Res, $Val extends LyricPart>
     Object? text = null,
     Object? title = null,
   }) {
-    return _then(_value.copyWith(
-      current: null == current
-          ? _value.current
-          : current // ignore: cast_nullable_to_non_nullable
-              as int,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            current:
+                null == current
+                    ? _value.current
+                    : current // ignore: cast_nullable_to_non_nullable
+                        as int,
+            total:
+                null == total
+                    ? _value.total
+                    : total // ignore: cast_nullable_to_non_nullable
+                        as int,
+            text:
+                null == text
+                    ? _value.text
+                    : text // ignore: cast_nullable_to_non_nullable
+                        as String,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -88,8 +96,9 @@ class _$LyricPartCopyWithImpl<$Res, $Val extends LyricPart>
 abstract class _$$LyricPartImplCopyWith<$Res>
     implements $LyricPartCopyWith<$Res> {
   factory _$$LyricPartImplCopyWith(
-          _$LyricPartImpl value, $Res Function(_$LyricPartImpl) then) =
-      __$$LyricPartImplCopyWithImpl<$Res>;
+    _$LyricPartImpl value,
+    $Res Function(_$LyricPartImpl) then,
+  ) = __$$LyricPartImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int current, int total, String text, String title});
@@ -100,8 +109,9 @@ class __$$LyricPartImplCopyWithImpl<$Res>
     extends _$LyricPartCopyWithImpl<$Res, _$LyricPartImpl>
     implements _$$LyricPartImplCopyWith<$Res> {
   __$$LyricPartImplCopyWithImpl(
-      _$LyricPartImpl _value, $Res Function(_$LyricPartImpl) _then)
-      : super(_value, _then);
+    _$LyricPartImpl _value,
+    $Res Function(_$LyricPartImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LyricPart
   /// with the given fields replaced by the non-null parameter values.
@@ -113,35 +123,42 @@ class __$$LyricPartImplCopyWithImpl<$Res>
     Object? text = null,
     Object? title = null,
   }) {
-    return _then(_$LyricPartImpl(
-      current: null == current
-          ? _value.current
-          : current // ignore: cast_nullable_to_non_nullable
-              as int,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$LyricPartImpl(
+        current:
+            null == current
+                ? _value.current
+                : current // ignore: cast_nullable_to_non_nullable
+                    as int,
+        total:
+            null == total
+                ? _value.total
+                : total // ignore: cast_nullable_to_non_nullable
+                    as int,
+        text:
+            null == text
+                ? _value.text
+                : text // ignore: cast_nullable_to_non_nullable
+                    as String,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LyricPartImpl implements _LyricPart {
-  const _$LyricPartImpl(
-      {required this.current,
-      required this.total,
-      required this.text,
-      required this.title});
+  const _$LyricPartImpl({
+    required this.current,
+    required this.total,
+    required this.text,
+    required this.title,
+  });
 
   factory _$LyricPartImpl.fromJson(Map<String, dynamic> json) =>
       _$$LyricPartImplFromJson(json);
@@ -185,18 +202,17 @@ class _$LyricPartImpl implements _LyricPart {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LyricPartImplToJson(
-      this,
-    );
+    return _$$LyricPartImplToJson(this);
   }
 }
 
 abstract class _LyricPart implements LyricPart {
-  const factory _LyricPart(
-      {required final int current,
-      required final int total,
-      required final String text,
-      required final String title}) = _$LyricPartImpl;
+  const factory _LyricPart({
+    required final int current,
+    required final int total,
+    required final String text,
+    required final String title,
+  }) = _$LyricPartImpl;
 
   factory _LyricPart.fromJson(Map<String, dynamic> json) =
       _$LyricPartImpl.fromJson;

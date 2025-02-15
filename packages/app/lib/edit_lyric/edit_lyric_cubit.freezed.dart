@@ -12,7 +12,8 @@ part of 'edit_lyric_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$EditLyricState {
@@ -32,11 +33,17 @@ mixin _$EditLyricState {
 /// @nodoc
 abstract class $EditLyricStateCopyWith<$Res> {
   factory $EditLyricStateCopyWith(
-          EditLyricState value, $Res Function(EditLyricState) then) =
-      _$EditLyricStateCopyWithImpl<$Res, EditLyricState>;
+    EditLyricState value,
+    $Res Function(EditLyricState) then,
+  ) = _$EditLyricStateCopyWithImpl<$Res, EditLyricState>;
   @useResult
-  $Res call(
-      {bool isNew, LoadingStatus status, String id, String title, String text});
+  $Res call({
+    bool isNew,
+    LoadingStatus status,
+    String id,
+    String title,
+    String text,
+  });
 }
 
 /// @nodoc
@@ -60,41 +67,55 @@ class _$EditLyricStateCopyWithImpl<$Res, $Val extends EditLyricState>
     Object? title = null,
     Object? text = null,
   }) {
-    return _then(_value.copyWith(
-      isNew: null == isNew
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LoadingStatus,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isNew:
+                null == isNew
+                    ? _value.isNew
+                    : isNew // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as LoadingStatus,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            text:
+                null == text
+                    ? _value.text
+                    : text // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$EditLyricStateImplCopyWith<$Res>
     implements $EditLyricStateCopyWith<$Res> {
-  factory _$$EditLyricStateImplCopyWith(_$EditLyricStateImpl value,
-          $Res Function(_$EditLyricStateImpl) then) =
-      __$$EditLyricStateImplCopyWithImpl<$Res>;
+  factory _$$EditLyricStateImplCopyWith(
+    _$EditLyricStateImpl value,
+    $Res Function(_$EditLyricStateImpl) then,
+  ) = __$$EditLyricStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isNew, LoadingStatus status, String id, String title, String text});
+  $Res call({
+    bool isNew,
+    LoadingStatus status,
+    String id,
+    String title,
+    String text,
+  });
 }
 
 /// @nodoc
@@ -102,8 +123,9 @@ class __$$EditLyricStateImplCopyWithImpl<$Res>
     extends _$EditLyricStateCopyWithImpl<$Res, _$EditLyricStateImpl>
     implements _$$EditLyricStateImplCopyWith<$Res> {
   __$$EditLyricStateImplCopyWithImpl(
-      _$EditLyricStateImpl _value, $Res Function(_$EditLyricStateImpl) _then)
-      : super(_value, _then);
+    _$EditLyricStateImpl _value,
+    $Res Function(_$EditLyricStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of EditLyricState
   /// with the given fields replaced by the non-null parameter values.
@@ -116,41 +138,48 @@ class __$$EditLyricStateImplCopyWithImpl<$Res>
     Object? title = null,
     Object? text = null,
   }) {
-    return _then(_$EditLyricStateImpl(
-      isNew: null == isNew
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LoadingStatus,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$EditLyricStateImpl(
+        isNew:
+            null == isNew
+                ? _value.isNew
+                : isNew // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as LoadingStatus,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        text:
+            null == text
+                ? _value.text
+                : text // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$EditLyricStateImpl extends _EditLyricState {
-  const _$EditLyricStateImpl(
-      {required this.isNew,
-      this.status = LoadingStatus.initial,
-      required this.id,
-      required this.title,
-      required this.text})
-      : super._();
+  const _$EditLyricStateImpl({
+    required this.isNew,
+    this.status = LoadingStatus.initial,
+    required this.id,
+    required this.title,
+    required this.text,
+  }) : super._();
 
   @override
   final bool isNew;
@@ -191,16 +220,19 @@ class _$EditLyricStateImpl extends _EditLyricState {
   @pragma('vm:prefer-inline')
   _$$EditLyricStateImplCopyWith<_$EditLyricStateImpl> get copyWith =>
       __$$EditLyricStateImplCopyWithImpl<_$EditLyricStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _EditLyricState extends EditLyricState {
-  const factory _EditLyricState(
-      {required final bool isNew,
-      final LoadingStatus status,
-      required final String id,
-      required final String title,
-      required final String text}) = _$EditLyricStateImpl;
+  const factory _EditLyricState({
+    required final bool isNew,
+    final LoadingStatus status,
+    required final String id,
+    required final String title,
+    required final String text,
+  }) = _$EditLyricStateImpl;
   const _EditLyricState._() : super._();
 
   @override

@@ -12,7 +12,8 @@ part of 'lipl_app_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 LiplAppState _$LiplAppStateFromJson(Map<String, dynamic> json) {
   return _LiplAppState.fromJson(json);
@@ -39,15 +40,17 @@ mixin _$LiplAppState {
 /// @nodoc
 abstract class $LiplAppStateCopyWith<$Res> {
   factory $LiplAppStateCopyWith(
-          LiplAppState value, $Res Function(LiplAppState) then) =
-      _$LiplAppStateCopyWithImpl<$Res, LiplAppState>;
+    LiplAppState value,
+    $Res Function(LiplAppState) then,
+  ) = _$LiplAppStateCopyWithImpl<$Res, LiplAppState>;
   @useResult
-  $Res call(
-      {List<Lyric> lyrics,
-      List<Playlist> playlists,
-      LoadingStatus status,
-      Credentials? credentials,
-      DateTime? lastFetch});
+  $Res call({
+    List<Lyric> lyrics,
+    List<Playlist> playlists,
+    LoadingStatus status,
+    Credentials? credentials,
+    DateTime? lastFetch,
+  });
 
   $CredentialsCopyWith<$Res>? get credentials;
 }
@@ -73,28 +76,36 @@ class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
     Object? credentials = freezed,
     Object? lastFetch = freezed,
   }) {
-    return _then(_value.copyWith(
-      lyrics: null == lyrics
-          ? _value.lyrics
-          : lyrics // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
-      playlists: null == playlists
-          ? _value.playlists
-          : playlists // ignore: cast_nullable_to_non_nullable
-              as List<Playlist>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LoadingStatus,
-      credentials: freezed == credentials
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as Credentials?,
-      lastFetch: freezed == lastFetch
-          ? _value.lastFetch
-          : lastFetch // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            lyrics:
+                null == lyrics
+                    ? _value.lyrics
+                    : lyrics // ignore: cast_nullable_to_non_nullable
+                        as List<Lyric>,
+            playlists:
+                null == playlists
+                    ? _value.playlists
+                    : playlists // ignore: cast_nullable_to_non_nullable
+                        as List<Playlist>,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as LoadingStatus,
+            credentials:
+                freezed == credentials
+                    ? _value.credentials
+                    : credentials // ignore: cast_nullable_to_non_nullable
+                        as Credentials?,
+            lastFetch:
+                freezed == lastFetch
+                    ? _value.lastFetch
+                    : lastFetch // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of LiplAppState
@@ -116,16 +127,18 @@ class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
 abstract class _$$LiplAppStateImplCopyWith<$Res>
     implements $LiplAppStateCopyWith<$Res> {
   factory _$$LiplAppStateImplCopyWith(
-          _$LiplAppStateImpl value, $Res Function(_$LiplAppStateImpl) then) =
-      __$$LiplAppStateImplCopyWithImpl<$Res>;
+    _$LiplAppStateImpl value,
+    $Res Function(_$LiplAppStateImpl) then,
+  ) = __$$LiplAppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<Lyric> lyrics,
-      List<Playlist> playlists,
-      LoadingStatus status,
-      Credentials? credentials,
-      DateTime? lastFetch});
+  $Res call({
+    List<Lyric> lyrics,
+    List<Playlist> playlists,
+    LoadingStatus status,
+    Credentials? credentials,
+    DateTime? lastFetch,
+  });
 
   @override
   $CredentialsCopyWith<$Res>? get credentials;
@@ -136,8 +149,9 @@ class __$$LiplAppStateImplCopyWithImpl<$Res>
     extends _$LiplAppStateCopyWithImpl<$Res, _$LiplAppStateImpl>
     implements _$$LiplAppStateImplCopyWith<$Res> {
   __$$LiplAppStateImplCopyWithImpl(
-      _$LiplAppStateImpl _value, $Res Function(_$LiplAppStateImpl) _then)
-      : super(_value, _then);
+    _$LiplAppStateImpl _value,
+    $Res Function(_$LiplAppStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LiplAppState
   /// with the given fields replaced by the non-null parameter values.
@@ -150,43 +164,50 @@ class __$$LiplAppStateImplCopyWithImpl<$Res>
     Object? credentials = freezed,
     Object? lastFetch = freezed,
   }) {
-    return _then(_$LiplAppStateImpl(
-      lyrics: null == lyrics
-          ? _value._lyrics
-          : lyrics // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
-      playlists: null == playlists
-          ? _value._playlists
-          : playlists // ignore: cast_nullable_to_non_nullable
-              as List<Playlist>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LoadingStatus,
-      credentials: freezed == credentials
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as Credentials?,
-      lastFetch: freezed == lastFetch
-          ? _value.lastFetch
-          : lastFetch // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
+    return _then(
+      _$LiplAppStateImpl(
+        lyrics:
+            null == lyrics
+                ? _value._lyrics
+                : lyrics // ignore: cast_nullable_to_non_nullable
+                    as List<Lyric>,
+        playlists:
+            null == playlists
+                ? _value._playlists
+                : playlists // ignore: cast_nullable_to_non_nullable
+                    as List<Playlist>,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as LoadingStatus,
+        credentials:
+            freezed == credentials
+                ? _value.credentials
+                : credentials // ignore: cast_nullable_to_non_nullable
+                    as Credentials?,
+        lastFetch:
+            freezed == lastFetch
+                ? _value.lastFetch
+                : lastFetch // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LiplAppStateImpl extends _LiplAppState {
-  const _$LiplAppStateImpl(
-      {final List<Lyric> lyrics = const [],
-      final List<Playlist> playlists = const [],
-      this.status = LoadingStatus.initial,
-      this.credentials = null,
-      this.lastFetch = null})
-      : _lyrics = lyrics,
-        _playlists = playlists,
-        super._();
+  const _$LiplAppStateImpl({
+    final List<Lyric> lyrics = const [],
+    final List<Playlist> playlists = const [],
+    this.status = LoadingStatus.initial,
+    this.credentials = null,
+    this.lastFetch = null,
+  }) : _lyrics = lyrics,
+       _playlists = playlists,
+       super._();
 
   factory _$LiplAppStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$LiplAppStateImplFromJson(json);
@@ -230,8 +251,10 @@ class _$LiplAppStateImpl extends _LiplAppState {
         (other.runtimeType == runtimeType &&
             other is _$LiplAppStateImpl &&
             const DeepCollectionEquality().equals(other._lyrics, _lyrics) &&
-            const DeepCollectionEquality()
-                .equals(other._playlists, _playlists) &&
+            const DeepCollectionEquality().equals(
+              other._playlists,
+              _playlists,
+            ) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.credentials, credentials) ||
                 other.credentials == credentials) &&
@@ -242,12 +265,13 @@ class _$LiplAppStateImpl extends _LiplAppState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_lyrics),
-      const DeepCollectionEquality().hash(_playlists),
-      status,
-      credentials,
-      lastFetch);
+    runtimeType,
+    const DeepCollectionEquality().hash(_lyrics),
+    const DeepCollectionEquality().hash(_playlists),
+    status,
+    credentials,
+    lastFetch,
+  );
 
   /// Create a copy of LiplAppState
   /// with the given fields replaced by the non-null parameter values.
@@ -259,19 +283,18 @@ class _$LiplAppStateImpl extends _LiplAppState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LiplAppStateImplToJson(
-      this,
-    );
+    return _$$LiplAppStateImplToJson(this);
   }
 }
 
 abstract class _LiplAppState extends LiplAppState {
-  const factory _LiplAppState(
-      {final List<Lyric> lyrics,
-      final List<Playlist> playlists,
-      final LoadingStatus status,
-      final Credentials? credentials,
-      final DateTime? lastFetch}) = _$LiplAppStateImpl;
+  const factory _LiplAppState({
+    final List<Lyric> lyrics,
+    final List<Playlist> playlists,
+    final LoadingStatus status,
+    final Credentials? credentials,
+    final DateTime? lastFetch,
+  }) = _$LiplAppStateImpl;
   const _LiplAppState._() : super._();
 
   factory _LiplAppState.fromJson(Map<String, dynamic> json) =

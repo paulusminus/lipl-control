@@ -12,7 +12,8 @@ part of 'scan_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ScanState {
@@ -32,10 +33,11 @@ abstract class $ScanStateCopyWith<$Res> {
   factory $ScanStateCopyWith(ScanState value, $Res Function(ScanState) then) =
       _$ScanStateCopyWithImpl<$Res, ScanState>;
   @useResult
-  $Res call(
-      {List<ScanResult> scanResults,
-      bool isScanning,
-      ConnectedDevice? connectedDevice});
+  $Res call({
+    List<ScanResult> scanResults,
+    bool isScanning,
+    ConnectedDevice? connectedDevice,
+  });
 
   $ConnectedDeviceCopyWith<$Res>? get connectedDevice;
 }
@@ -59,20 +61,26 @@ class _$ScanStateCopyWithImpl<$Res, $Val extends ScanState>
     Object? isScanning = null,
     Object? connectedDevice = freezed,
   }) {
-    return _then(_value.copyWith(
-      scanResults: null == scanResults
-          ? _value.scanResults
-          : scanResults // ignore: cast_nullable_to_non_nullable
-              as List<ScanResult>,
-      isScanning: null == isScanning
-          ? _value.isScanning
-          : isScanning // ignore: cast_nullable_to_non_nullable
-              as bool,
-      connectedDevice: freezed == connectedDevice
-          ? _value.connectedDevice
-          : connectedDevice // ignore: cast_nullable_to_non_nullable
-              as ConnectedDevice?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            scanResults:
+                null == scanResults
+                    ? _value.scanResults
+                    : scanResults // ignore: cast_nullable_to_non_nullable
+                        as List<ScanResult>,
+            isScanning:
+                null == isScanning
+                    ? _value.isScanning
+                    : isScanning // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            connectedDevice:
+                freezed == connectedDevice
+                    ? _value.connectedDevice
+                    : connectedDevice // ignore: cast_nullable_to_non_nullable
+                        as ConnectedDevice?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of ScanState
@@ -94,14 +102,16 @@ class _$ScanStateCopyWithImpl<$Res, $Val extends ScanState>
 abstract class _$$ScanStateImplCopyWith<$Res>
     implements $ScanStateCopyWith<$Res> {
   factory _$$ScanStateImplCopyWith(
-          _$ScanStateImpl value, $Res Function(_$ScanStateImpl) then) =
-      __$$ScanStateImplCopyWithImpl<$Res>;
+    _$ScanStateImpl value,
+    $Res Function(_$ScanStateImpl) then,
+  ) = __$$ScanStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<ScanResult> scanResults,
-      bool isScanning,
-      ConnectedDevice? connectedDevice});
+  $Res call({
+    List<ScanResult> scanResults,
+    bool isScanning,
+    ConnectedDevice? connectedDevice,
+  });
 
   @override
   $ConnectedDeviceCopyWith<$Res>? get connectedDevice;
@@ -112,8 +122,9 @@ class __$$ScanStateImplCopyWithImpl<$Res>
     extends _$ScanStateCopyWithImpl<$Res, _$ScanStateImpl>
     implements _$$ScanStateImplCopyWith<$Res> {
   __$$ScanStateImplCopyWithImpl(
-      _$ScanStateImpl _value, $Res Function(_$ScanStateImpl) _then)
-      : super(_value, _then);
+    _$ScanStateImpl _value,
+    $Res Function(_$ScanStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ScanState
   /// with the given fields replaced by the non-null parameter values.
@@ -124,32 +135,37 @@ class __$$ScanStateImplCopyWithImpl<$Res>
     Object? isScanning = null,
     Object? connectedDevice = freezed,
   }) {
-    return _then(_$ScanStateImpl(
-      scanResults: null == scanResults
-          ? _value._scanResults
-          : scanResults // ignore: cast_nullable_to_non_nullable
-              as List<ScanResult>,
-      isScanning: null == isScanning
-          ? _value.isScanning
-          : isScanning // ignore: cast_nullable_to_non_nullable
-              as bool,
-      connectedDevice: freezed == connectedDevice
-          ? _value.connectedDevice
-          : connectedDevice // ignore: cast_nullable_to_non_nullable
-              as ConnectedDevice?,
-    ));
+    return _then(
+      _$ScanStateImpl(
+        scanResults:
+            null == scanResults
+                ? _value._scanResults
+                : scanResults // ignore: cast_nullable_to_non_nullable
+                    as List<ScanResult>,
+        isScanning:
+            null == isScanning
+                ? _value.isScanning
+                : isScanning // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        connectedDevice:
+            freezed == connectedDevice
+                ? _value.connectedDevice
+                : connectedDevice // ignore: cast_nullable_to_non_nullable
+                    as ConnectedDevice?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ScanStateImpl extends _ScanState {
-  const _$ScanStateImpl(
-      {final List<ScanResult> scanResults = const [],
-      required this.isScanning,
-      this.connectedDevice = null})
-      : _scanResults = scanResults,
-        super._();
+  const _$ScanStateImpl({
+    final List<ScanResult> scanResults = const [],
+    required this.isScanning,
+    this.connectedDevice = null,
+  }) : _scanResults = scanResults,
+       super._();
 
   final List<ScanResult> _scanResults;
   @override
@@ -176,8 +192,10 @@ class _$ScanStateImpl extends _ScanState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScanStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._scanResults, _scanResults) &&
+            const DeepCollectionEquality().equals(
+              other._scanResults,
+              _scanResults,
+            ) &&
             (identical(other.isScanning, isScanning) ||
                 other.isScanning == isScanning) &&
             (identical(other.connectedDevice, connectedDevice) ||
@@ -186,10 +204,11 @@ class _$ScanStateImpl extends _ScanState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_scanResults),
-      isScanning,
-      connectedDevice);
+    runtimeType,
+    const DeepCollectionEquality().hash(_scanResults),
+    isScanning,
+    connectedDevice,
+  );
 
   /// Create a copy of ScanState
   /// with the given fields replaced by the non-null parameter values.
@@ -201,10 +220,11 @@ class _$ScanStateImpl extends _ScanState {
 }
 
 abstract class _ScanState extends ScanState {
-  const factory _ScanState(
-      {final List<ScanResult> scanResults,
-      required final bool isScanning,
-      final ConnectedDevice? connectedDevice}) = _$ScanStateImpl;
+  const factory _ScanState({
+    final List<ScanResult> scanResults,
+    required final bool isScanning,
+    final ConnectedDevice? connectedDevice,
+  }) = _$ScanStateImpl;
   const _ScanState._() : super._();
 
   @override

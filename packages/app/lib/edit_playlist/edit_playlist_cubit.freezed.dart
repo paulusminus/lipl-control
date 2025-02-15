@@ -12,7 +12,8 @@ part of 'edit_playlist_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$EditPlaylistState {
@@ -34,17 +35,19 @@ mixin _$EditPlaylistState {
 /// @nodoc
 abstract class $EditPlaylistStateCopyWith<$Res> {
   factory $EditPlaylistStateCopyWith(
-          EditPlaylistState value, $Res Function(EditPlaylistState) then) =
-      _$EditPlaylistStateCopyWithImpl<$Res, EditPlaylistState>;
+    EditPlaylistState value,
+    $Res Function(EditPlaylistState) then,
+  ) = _$EditPlaylistStateCopyWithImpl<$Res, EditPlaylistState>;
   @useResult
-  $Res call(
-      {bool isNew,
-      LoadingStatus status,
-      String id,
-      String title,
-      String search,
-      List<Lyric> members,
-      List<Lyric> lyrics});
+  $Res call({
+    bool isNew,
+    LoadingStatus status,
+    String id,
+    String title,
+    String search,
+    List<Lyric> members,
+    List<Lyric> lyrics,
+  });
 }
 
 /// @nodoc
@@ -70,64 +73,77 @@ class _$EditPlaylistStateCopyWithImpl<$Res, $Val extends EditPlaylistState>
     Object? members = null,
     Object? lyrics = null,
   }) {
-    return _then(_value.copyWith(
-      isNew: null == isNew
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LoadingStatus,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      search: null == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as String,
-      members: null == members
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
-      lyrics: null == lyrics
-          ? _value.lyrics
-          : lyrics // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isNew:
+                null == isNew
+                    ? _value.isNew
+                    : isNew // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as LoadingStatus,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            search:
+                null == search
+                    ? _value.search
+                    : search // ignore: cast_nullable_to_non_nullable
+                        as String,
+            members:
+                null == members
+                    ? _value.members
+                    : members // ignore: cast_nullable_to_non_nullable
+                        as List<Lyric>,
+            lyrics:
+                null == lyrics
+                    ? _value.lyrics
+                    : lyrics // ignore: cast_nullable_to_non_nullable
+                        as List<Lyric>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$EditPlaylistStateImplCopyWith<$Res>
     implements $EditPlaylistStateCopyWith<$Res> {
-  factory _$$EditPlaylistStateImplCopyWith(_$EditPlaylistStateImpl value,
-          $Res Function(_$EditPlaylistStateImpl) then) =
-      __$$EditPlaylistStateImplCopyWithImpl<$Res>;
+  factory _$$EditPlaylistStateImplCopyWith(
+    _$EditPlaylistStateImpl value,
+    $Res Function(_$EditPlaylistStateImpl) then,
+  ) = __$$EditPlaylistStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isNew,
-      LoadingStatus status,
-      String id,
-      String title,
-      String search,
-      List<Lyric> members,
-      List<Lyric> lyrics});
+  $Res call({
+    bool isNew,
+    LoadingStatus status,
+    String id,
+    String title,
+    String search,
+    List<Lyric> members,
+    List<Lyric> lyrics,
+  });
 }
 
 /// @nodoc
 class __$$EditPlaylistStateImplCopyWithImpl<$Res>
     extends _$EditPlaylistStateCopyWithImpl<$Res, _$EditPlaylistStateImpl>
     implements _$$EditPlaylistStateImplCopyWith<$Res> {
-  __$$EditPlaylistStateImplCopyWithImpl(_$EditPlaylistStateImpl _value,
-      $Res Function(_$EditPlaylistStateImpl) _then)
-      : super(_value, _then);
+  __$$EditPlaylistStateImplCopyWithImpl(
+    _$EditPlaylistStateImpl _value,
+    $Res Function(_$EditPlaylistStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of EditPlaylistState
   /// with the given fields replaced by the non-null parameter values.
@@ -142,53 +158,62 @@ class __$$EditPlaylistStateImplCopyWithImpl<$Res>
     Object? members = null,
     Object? lyrics = null,
   }) {
-    return _then(_$EditPlaylistStateImpl(
-      isNew: null == isNew
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LoadingStatus,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      search: null == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as String,
-      members: null == members
-          ? _value._members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
-      lyrics: null == lyrics
-          ? _value._lyrics
-          : lyrics // ignore: cast_nullable_to_non_nullable
-              as List<Lyric>,
-    ));
+    return _then(
+      _$EditPlaylistStateImpl(
+        isNew:
+            null == isNew
+                ? _value.isNew
+                : isNew // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as LoadingStatus,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        search:
+            null == search
+                ? _value.search
+                : search // ignore: cast_nullable_to_non_nullable
+                    as String,
+        members:
+            null == members
+                ? _value._members
+                : members // ignore: cast_nullable_to_non_nullable
+                    as List<Lyric>,
+        lyrics:
+            null == lyrics
+                ? _value._lyrics
+                : lyrics // ignore: cast_nullable_to_non_nullable
+                    as List<Lyric>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$EditPlaylistStateImpl extends _EditPlaylistState {
-  const _$EditPlaylistStateImpl(
-      {required this.isNew,
-      this.status = LoadingStatus.initial,
-      required this.id,
-      this.title = '',
-      this.search = '',
-      final List<Lyric> members = const [],
-      final List<Lyric> lyrics = const []})
-      : _members = members,
-        _lyrics = lyrics,
-        super._();
+  const _$EditPlaylistStateImpl({
+    required this.isNew,
+    this.status = LoadingStatus.initial,
+    required this.id,
+    this.title = '',
+    this.search = '',
+    final List<Lyric> members = const [],
+    final List<Lyric> lyrics = const [],
+  }) : _members = members,
+       _lyrics = lyrics,
+       super._();
 
   @override
   final bool isNew;
@@ -242,14 +267,15 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isNew,
-      status,
-      id,
-      title,
-      search,
-      const DeepCollectionEquality().hash(_members),
-      const DeepCollectionEquality().hash(_lyrics));
+    runtimeType,
+    isNew,
+    status,
+    id,
+    title,
+    search,
+    const DeepCollectionEquality().hash(_members),
+    const DeepCollectionEquality().hash(_lyrics),
+  );
 
   /// Create a copy of EditPlaylistState
   /// with the given fields replaced by the non-null parameter values.
@@ -258,18 +284,21 @@ class _$EditPlaylistStateImpl extends _EditPlaylistState {
   @pragma('vm:prefer-inline')
   _$$EditPlaylistStateImplCopyWith<_$EditPlaylistStateImpl> get copyWith =>
       __$$EditPlaylistStateImplCopyWithImpl<_$EditPlaylistStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _EditPlaylistState extends EditPlaylistState {
-  const factory _EditPlaylistState(
-      {required final bool isNew,
-      final LoadingStatus status,
-      required final String id,
-      final String title,
-      final String search,
-      final List<Lyric> members,
-      final List<Lyric> lyrics}) = _$EditPlaylistStateImpl;
+  const factory _EditPlaylistState({
+    required final bool isNew,
+    final LoadingStatus status,
+    required final String id,
+    final String title,
+    final String search,
+    final List<Lyric> members,
+    final List<Lyric> lyrics,
+  }) = _$EditPlaylistStateImpl;
   const _EditPlaylistState._() : super._();
 
   @override

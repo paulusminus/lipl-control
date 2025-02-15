@@ -8,22 +8,29 @@ part of 'lipl_app_cubit.dart';
 
 _$LiplAppStateImpl _$$LiplAppStateImplFromJson(Map<String, dynamic> json) =>
     _$LiplAppStateImpl(
-      lyrics: (json['lyrics'] as List<dynamic>?)
+      lyrics:
+          (json['lyrics'] as List<dynamic>?)
               ?.map((e) => Lyric.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      playlists: (json['playlists'] as List<dynamic>?)
+      playlists:
+          (json['playlists'] as List<dynamic>?)
               ?.map((e) => Playlist.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      status: $enumDecodeNullable(_$LoadingStatusEnumMap, json['status']) ??
+      status:
+          $enumDecodeNullable(_$LoadingStatusEnumMap, json['status']) ??
           LoadingStatus.initial,
-      credentials: json['credentials'] == null
-          ? null
-          : Credentials.fromJson(json['credentials'] as Map<String, dynamic>),
-      lastFetch: json['lastFetch'] == null
-          ? null
-          : DateTime.parse(json['lastFetch'] as String),
+      credentials:
+          json['credentials'] == null
+              ? null
+              : Credentials.fromJson(
+                json['credentials'] as Map<String, dynamic>,
+              ),
+      lastFetch:
+          json['lastFetch'] == null
+              ? null
+              : DateTime.parse(json['lastFetch'] as String),
     );
 
 Map<String, dynamic> _$$LiplAppStateImplToJson(_$LiplAppStateImpl instance) =>

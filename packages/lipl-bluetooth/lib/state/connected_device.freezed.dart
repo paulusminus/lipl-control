@@ -12,7 +12,8 @@ part of 'connected_device.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ConnectedDevice {
@@ -35,15 +36,17 @@ mixin _$ConnectedDevice {
 /// @nodoc
 abstract class $ConnectedDeviceCopyWith<$Res> {
   factory $ConnectedDeviceCopyWith(
-          ConnectedDevice value, $Res Function(ConnectedDevice) then) =
-      _$ConnectedDeviceCopyWithImpl<$Res, ConnectedDevice>;
+    ConnectedDevice value,
+    $Res Function(ConnectedDevice) then,
+  ) = _$ConnectedDeviceCopyWithImpl<$Res, ConnectedDevice>;
   @useResult
-  $Res call(
-      {BluetoothDevice device,
-      BluetoothService displayService,
-      BluetoothCharacteristic textCharacteristic,
-      BluetoothCharacteristic statusCharacteristic,
-      BluetoothCharacteristic commandCharacteristic});
+  $Res call({
+    BluetoothDevice device,
+    BluetoothService displayService,
+    BluetoothCharacteristic textCharacteristic,
+    BluetoothCharacteristic statusCharacteristic,
+    BluetoothCharacteristic commandCharacteristic,
+  });
 }
 
 /// @nodoc
@@ -67,45 +70,55 @@ class _$ConnectedDeviceCopyWithImpl<$Res, $Val extends ConnectedDevice>
     Object? statusCharacteristic = null,
     Object? commandCharacteristic = null,
   }) {
-    return _then(_value.copyWith(
-      device: null == device
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as BluetoothDevice,
-      displayService: null == displayService
-          ? _value.displayService
-          : displayService // ignore: cast_nullable_to_non_nullable
-              as BluetoothService,
-      textCharacteristic: null == textCharacteristic
-          ? _value.textCharacteristic
-          : textCharacteristic // ignore: cast_nullable_to_non_nullable
-              as BluetoothCharacteristic,
-      statusCharacteristic: null == statusCharacteristic
-          ? _value.statusCharacteristic
-          : statusCharacteristic // ignore: cast_nullable_to_non_nullable
-              as BluetoothCharacteristic,
-      commandCharacteristic: null == commandCharacteristic
-          ? _value.commandCharacteristic
-          : commandCharacteristic // ignore: cast_nullable_to_non_nullable
-              as BluetoothCharacteristic,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            device:
+                null == device
+                    ? _value.device
+                    : device // ignore: cast_nullable_to_non_nullable
+                        as BluetoothDevice,
+            displayService:
+                null == displayService
+                    ? _value.displayService
+                    : displayService // ignore: cast_nullable_to_non_nullable
+                        as BluetoothService,
+            textCharacteristic:
+                null == textCharacteristic
+                    ? _value.textCharacteristic
+                    : textCharacteristic // ignore: cast_nullable_to_non_nullable
+                        as BluetoothCharacteristic,
+            statusCharacteristic:
+                null == statusCharacteristic
+                    ? _value.statusCharacteristic
+                    : statusCharacteristic // ignore: cast_nullable_to_non_nullable
+                        as BluetoothCharacteristic,
+            commandCharacteristic:
+                null == commandCharacteristic
+                    ? _value.commandCharacteristic
+                    : commandCharacteristic // ignore: cast_nullable_to_non_nullable
+                        as BluetoothCharacteristic,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$ConnectedDeviceImplCopyWith<$Res>
     implements $ConnectedDeviceCopyWith<$Res> {
-  factory _$$ConnectedDeviceImplCopyWith(_$ConnectedDeviceImpl value,
-          $Res Function(_$ConnectedDeviceImpl) then) =
-      __$$ConnectedDeviceImplCopyWithImpl<$Res>;
+  factory _$$ConnectedDeviceImplCopyWith(
+    _$ConnectedDeviceImpl value,
+    $Res Function(_$ConnectedDeviceImpl) then,
+  ) = __$$ConnectedDeviceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {BluetoothDevice device,
-      BluetoothService displayService,
-      BluetoothCharacteristic textCharacteristic,
-      BluetoothCharacteristic statusCharacteristic,
-      BluetoothCharacteristic commandCharacteristic});
+  $Res call({
+    BluetoothDevice device,
+    BluetoothService displayService,
+    BluetoothCharacteristic textCharacteristic,
+    BluetoothCharacteristic statusCharacteristic,
+    BluetoothCharacteristic commandCharacteristic,
+  });
 }
 
 /// @nodoc
@@ -113,8 +126,9 @@ class __$$ConnectedDeviceImplCopyWithImpl<$Res>
     extends _$ConnectedDeviceCopyWithImpl<$Res, _$ConnectedDeviceImpl>
     implements _$$ConnectedDeviceImplCopyWith<$Res> {
   __$$ConnectedDeviceImplCopyWithImpl(
-      _$ConnectedDeviceImpl _value, $Res Function(_$ConnectedDeviceImpl) _then)
-      : super(_value, _then);
+    _$ConnectedDeviceImpl _value,
+    $Res Function(_$ConnectedDeviceImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ConnectedDevice
   /// with the given fields replaced by the non-null parameter values.
@@ -127,40 +141,48 @@ class __$$ConnectedDeviceImplCopyWithImpl<$Res>
     Object? statusCharacteristic = null,
     Object? commandCharacteristic = null,
   }) {
-    return _then(_$ConnectedDeviceImpl(
-      device: null == device
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as BluetoothDevice,
-      displayService: null == displayService
-          ? _value.displayService
-          : displayService // ignore: cast_nullable_to_non_nullable
-              as BluetoothService,
-      textCharacteristic: null == textCharacteristic
-          ? _value.textCharacteristic
-          : textCharacteristic // ignore: cast_nullable_to_non_nullable
-              as BluetoothCharacteristic,
-      statusCharacteristic: null == statusCharacteristic
-          ? _value.statusCharacteristic
-          : statusCharacteristic // ignore: cast_nullable_to_non_nullable
-              as BluetoothCharacteristic,
-      commandCharacteristic: null == commandCharacteristic
-          ? _value.commandCharacteristic
-          : commandCharacteristic // ignore: cast_nullable_to_non_nullable
-              as BluetoothCharacteristic,
-    ));
+    return _then(
+      _$ConnectedDeviceImpl(
+        device:
+            null == device
+                ? _value.device
+                : device // ignore: cast_nullable_to_non_nullable
+                    as BluetoothDevice,
+        displayService:
+            null == displayService
+                ? _value.displayService
+                : displayService // ignore: cast_nullable_to_non_nullable
+                    as BluetoothService,
+        textCharacteristic:
+            null == textCharacteristic
+                ? _value.textCharacteristic
+                : textCharacteristic // ignore: cast_nullable_to_non_nullable
+                    as BluetoothCharacteristic,
+        statusCharacteristic:
+            null == statusCharacteristic
+                ? _value.statusCharacteristic
+                : statusCharacteristic // ignore: cast_nullable_to_non_nullable
+                    as BluetoothCharacteristic,
+        commandCharacteristic:
+            null == commandCharacteristic
+                ? _value.commandCharacteristic
+                : commandCharacteristic // ignore: cast_nullable_to_non_nullable
+                    as BluetoothCharacteristic,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ConnectedDeviceImpl implements _ConnectedDevice {
-  const _$ConnectedDeviceImpl(
-      {required this.device,
-      required this.displayService,
-      required this.textCharacteristic,
-      required this.statusCharacteristic,
-      required this.commandCharacteristic});
+  const _$ConnectedDeviceImpl({
+    required this.device,
+    required this.displayService,
+    required this.textCharacteristic,
+    required this.statusCharacteristic,
+    required this.commandCharacteristic,
+  });
 
   @override
   final BluetoothDevice device;
@@ -195,8 +217,14 @@ class _$ConnectedDeviceImpl implements _ConnectedDevice {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, device, displayService,
-      textCharacteristic, statusCharacteristic, commandCharacteristic);
+  int get hashCode => Object.hash(
+    runtimeType,
+    device,
+    displayService,
+    textCharacteristic,
+    statusCharacteristic,
+    commandCharacteristic,
+  );
 
   /// Create a copy of ConnectedDevice
   /// with the given fields replaced by the non-null parameter values.
@@ -205,17 +233,19 @@ class _$ConnectedDeviceImpl implements _ConnectedDevice {
   @pragma('vm:prefer-inline')
   _$$ConnectedDeviceImplCopyWith<_$ConnectedDeviceImpl> get copyWith =>
       __$$ConnectedDeviceImplCopyWithImpl<_$ConnectedDeviceImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _ConnectedDevice implements ConnectedDevice {
-  const factory _ConnectedDevice(
-          {required final BluetoothDevice device,
-          required final BluetoothService displayService,
-          required final BluetoothCharacteristic textCharacteristic,
-          required final BluetoothCharacteristic statusCharacteristic,
-          required final BluetoothCharacteristic commandCharacteristic}) =
-      _$ConnectedDeviceImpl;
+  const factory _ConnectedDevice({
+    required final BluetoothDevice device,
+    required final BluetoothService displayService,
+    required final BluetoothCharacteristic textCharacteristic,
+    required final BluetoothCharacteristic statusCharacteristic,
+    required final BluetoothCharacteristic commandCharacteristic,
+  }) = _$ConnectedDeviceImpl;
 
   @override
   BluetoothDevice get device;

@@ -12,7 +12,8 @@ part of 'lyric.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Lyric _$LyricFromJson(Map<String, dynamic> json) {
   return _Lyric.fromJson(json);
@@ -60,28 +61,35 @@ class _$LyricCopyWithImpl<$Res, $Val extends Lyric>
     Object? title = null,
     Object? parts = null,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      parts: null == parts
-          ? _value.parts
-          : parts // ignore: cast_nullable_to_non_nullable
-              as List<List<String>>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            parts:
+                null == parts
+                    ? _value.parts
+                    : parts // ignore: cast_nullable_to_non_nullable
+                        as List<List<String>>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$LyricImplCopyWith<$Res> implements $LyricCopyWith<$Res> {
   factory _$$LyricImplCopyWith(
-          _$LyricImpl value, $Res Function(_$LyricImpl) then) =
-      __$$LyricImplCopyWithImpl<$Res>;
+    _$LyricImpl value,
+    $Res Function(_$LyricImpl) then,
+  ) = __$$LyricImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String title, List<List<String>> parts});
@@ -92,8 +100,9 @@ class __$$LyricImplCopyWithImpl<$Res>
     extends _$LyricCopyWithImpl<$Res, _$LyricImpl>
     implements _$$LyricImplCopyWith<$Res> {
   __$$LyricImplCopyWithImpl(
-      _$LyricImpl _value, $Res Function(_$LyricImpl) _then)
-      : super(_value, _then);
+    _$LyricImpl _value,
+    $Res Function(_$LyricImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of Lyric
   /// with the given fields replaced by the non-null parameter values.
@@ -104,32 +113,37 @@ class __$$LyricImplCopyWithImpl<$Res>
     Object? title = null,
     Object? parts = null,
   }) {
-    return _then(_$LyricImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      parts: null == parts
-          ? _value._parts
-          : parts // ignore: cast_nullable_to_non_nullable
-              as List<List<String>>,
-    ));
+    return _then(
+      _$LyricImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        parts:
+            null == parts
+                ? _value._parts
+                : parts // ignore: cast_nullable_to_non_nullable
+                    as List<List<String>>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LyricImpl extends _Lyric {
-  const _$LyricImpl(
-      {required this.id,
-      required this.title,
-      required final List<List<String>> parts})
-      : _parts = parts,
-        super._();
+  const _$LyricImpl({
+    required this.id,
+    required this.title,
+    required final List<List<String>> parts,
+  }) : _parts = parts,
+       super._();
 
   factory _$LyricImpl.fromJson(Map<String, dynamic> json) =>
       _$$LyricImplFromJson(json);
@@ -159,7 +173,11 @@ class _$LyricImpl extends _Lyric {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, title, const DeepCollectionEquality().hash(_parts));
+    runtimeType,
+    id,
+    title,
+    const DeepCollectionEquality().hash(_parts),
+  );
 
   /// Create a copy of Lyric
   /// with the given fields replaced by the non-null parameter values.
@@ -171,17 +189,16 @@ class _$LyricImpl extends _Lyric {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LyricImplToJson(
-      this,
-    );
+    return _$$LyricImplToJson(this);
   }
 }
 
 abstract class _Lyric extends Lyric {
-  const factory _Lyric(
-      {required final String? id,
-      required final String title,
-      required final List<List<String>> parts}) = _$LyricImpl;
+  const factory _Lyric({
+    required final String? id,
+    required final String title,
+    required final List<List<String>> parts,
+  }) = _$LyricImpl;
   const _Lyric._() : super._();
 
   factory _Lyric.fromJson(Map<String, dynamic> json) = _$LyricImpl.fromJson;

@@ -12,7 +12,8 @@ part of 'summary.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Summary _$SummaryFromJson(Map<String, dynamic> json) {
   return _Summary.fromJson(json);
@@ -54,28 +55,31 @@ class _$SummaryCopyWithImpl<$Res, $Val extends Summary>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? id = null, Object? title = null}) {
+    return _then(
+      _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$SummaryImplCopyWith<$Res> implements $SummaryCopyWith<$Res> {
   factory _$$SummaryImplCopyWith(
-          _$SummaryImpl value, $Res Function(_$SummaryImpl) then) =
-      __$$SummaryImplCopyWithImpl<$Res>;
+    _$SummaryImpl value,
+    $Res Function(_$SummaryImpl) then,
+  ) = __$$SummaryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String title});
@@ -86,27 +90,29 @@ class __$$SummaryImplCopyWithImpl<$Res>
     extends _$SummaryCopyWithImpl<$Res, _$SummaryImpl>
     implements _$$SummaryImplCopyWith<$Res> {
   __$$SummaryImplCopyWithImpl(
-      _$SummaryImpl _value, $Res Function(_$SummaryImpl) _then)
-      : super(_value, _then);
+    _$SummaryImpl _value,
+    $Res Function(_$SummaryImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of Summary
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-  }) {
-    return _then(_$SummaryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? id = null, Object? title = null}) {
+    return _then(
+      _$SummaryImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
@@ -146,15 +152,15 @@ class _$SummaryImpl extends _Summary {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SummaryImplToJson(
-      this,
-    );
+    return _$$SummaryImplToJson(this);
   }
 }
 
 abstract class _Summary extends Summary {
-  const factory _Summary(
-      {required final String id, required final String title}) = _$SummaryImpl;
+  const factory _Summary({
+    required final String id,
+    required final String title,
+  }) = _$SummaryImpl;
   const _Summary._() : super._();
 
   factory _Summary.fromJson(Map<String, dynamic> json) = _$SummaryImpl.fromJson;

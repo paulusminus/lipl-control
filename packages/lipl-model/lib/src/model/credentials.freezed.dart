@@ -12,7 +12,8 @@ part of 'credentials.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Credentials _$CredentialsFromJson(Map<String, dynamic> json) {
   return _Credentials.fromJson(json);
@@ -36,8 +37,9 @@ mixin _$Credentials {
 /// @nodoc
 abstract class $CredentialsCopyWith<$Res> {
   factory $CredentialsCopyWith(
-          Credentials value, $Res Function(Credentials) then) =
-      _$CredentialsCopyWithImpl<$Res, Credentials>;
+    Credentials value,
+    $Res Function(Credentials) then,
+  ) = _$CredentialsCopyWithImpl<$Res, Credentials>;
   @useResult
   $Res call({String? username, String? password});
 }
@@ -56,20 +58,22 @@ class _$CredentialsCopyWithImpl<$Res, $Val extends Credentials>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? username = freezed,
-    Object? password = freezed,
-  }) {
-    return _then(_value.copyWith(
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? username = freezed, Object? password = freezed}) {
+    return _then(
+      _value.copyWith(
+            username:
+                freezed == username
+                    ? _value.username
+                    : username // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            password:
+                freezed == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -77,8 +81,9 @@ class _$CredentialsCopyWithImpl<$Res, $Val extends Credentials>
 abstract class _$$CredentialsImplCopyWith<$Res>
     implements $CredentialsCopyWith<$Res> {
   factory _$$CredentialsImplCopyWith(
-          _$CredentialsImpl value, $Res Function(_$CredentialsImpl) then) =
-      __$$CredentialsImplCopyWithImpl<$Res>;
+    _$CredentialsImpl value,
+    $Res Function(_$CredentialsImpl) then,
+  ) = __$$CredentialsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? username, String? password});
@@ -89,27 +94,29 @@ class __$$CredentialsImplCopyWithImpl<$Res>
     extends _$CredentialsCopyWithImpl<$Res, _$CredentialsImpl>
     implements _$$CredentialsImplCopyWith<$Res> {
   __$$CredentialsImplCopyWithImpl(
-      _$CredentialsImpl _value, $Res Function(_$CredentialsImpl) _then)
-      : super(_value, _then);
+    _$CredentialsImpl _value,
+    $Res Function(_$CredentialsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of Credentials
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? username = freezed,
-    Object? password = freezed,
-  }) {
-    return _then(_$CredentialsImpl(
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? username = freezed, Object? password = freezed}) {
+    return _then(
+      _$CredentialsImpl(
+        username:
+            freezed == username
+                ? _value.username
+                : username // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        password:
+            freezed == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -117,7 +124,7 @@ class __$$CredentialsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CredentialsImpl extends _Credentials {
   const _$CredentialsImpl({this.username = null, this.password = null})
-      : super._();
+    : super._();
 
   factory _$CredentialsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CredentialsImplFromJson(json);
@@ -159,9 +166,7 @@ class _$CredentialsImpl extends _Credentials {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CredentialsImplToJson(
-      this,
-    );
+    return _$$CredentialsImplToJson(this);
   }
 }
 
