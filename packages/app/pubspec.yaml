@@ -5,7 +5,7 @@ publish_to: "none"
 version: 1.13.10
 
 environment:
-  sdk: ^3.6.1
+  sdk: ^3.7.0
 resolution: workspace
 
 dependencies:
@@ -23,12 +23,9 @@ dependencies:
   http: ^1.2.1
   intl: ^0.19.0
   json_annotation: ^4.9.0
-  lipl_app_bloc:
-    path: packages/lipl-app-bloc
-  lipl_bluetooth:
-    path: packages/lipl-bluetooth
-  lipl_model:
-    path: packages/lipl-model
+  lipl_app_bloc: ^1.13.10
+  lipl_bluetooth: ^1.13.10
+  lipl_model: ^1.13.10
   logging: ^1.2.0
   package_info_plus: ^8.0.0
   path_provider: ^2.1.3
