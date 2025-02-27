@@ -6,7 +6,7 @@ part of 'lyric.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LyricImpl _$$LyricImplFromJson(Map<String, dynamic> json) => _$LyricImpl(
+_Lyric _$LyricFromJson(Map<String, dynamic> json) => _Lyric(
   id: json['id'] as String?,
   title: json['title'] as String,
   parts:
@@ -15,9 +15,8 @@ _$LyricImpl _$$LyricImplFromJson(Map<String, dynamic> json) => _$LyricImpl(
           .toList(),
 );
 
-Map<String, dynamic> _$$LyricImplToJson(_$LyricImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'parts': instance.parts,
-    };
+Map<String, dynamic> _$LyricToJson(_Lyric instance) => <String, dynamic>{
+  'id': instance.id,
+  'title': instance.title,
+  'parts': instance.parts,
+};

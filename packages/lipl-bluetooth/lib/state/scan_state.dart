@@ -5,7 +5,7 @@ import 'state.dart';
 part 'scan_state.freezed.dart';
 
 @freezed
-class ScanState with _$ScanState {
+abstract class ScanState with _$ScanState {
   const ScanState._();
   const factory ScanState({
     @Default([]) List<ScanResult> scanResults,

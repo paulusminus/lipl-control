@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,265 +10,181 @@ part of 'lipl_preferences.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-LiplPreferences _$LiplPreferencesFromJson(Map<String, dynamic> json) {
-  return _LiplPreferences.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LiplPreferences {
-  Credentials? get credentials => throw _privateConstructorUsedError;
-  List<Lyric> get lyrics => throw _privateConstructorUsedError;
-  List<Playlist> get playlists => throw _privateConstructorUsedError;
+
+ Credentials? get credentials; List<Lyric> get lyrics; List<Playlist> get playlists;
+/// Create a copy of LiplPreferences
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LiplPreferencesCopyWith<LiplPreferences> get copyWith => _$LiplPreferencesCopyWithImpl<LiplPreferences>(this as LiplPreferences, _$identity);
 
   /// Serializes this LiplPreferences to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of LiplPreferences
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LiplPreferencesCopyWith<LiplPreferences> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiplPreferences&&(identical(other.credentials, credentials) || other.credentials == credentials)&&const DeepCollectionEquality().equals(other.lyrics, lyrics)&&const DeepCollectionEquality().equals(other.playlists, playlists));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,credentials,const DeepCollectionEquality().hash(lyrics),const DeepCollectionEquality().hash(playlists));
+
+@override
+String toString() {
+  return 'LiplPreferences(credentials: $credentials, lyrics: $lyrics, playlists: $playlists)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LiplPreferencesCopyWith<$Res> {
-  factory $LiplPreferencesCopyWith(
-    LiplPreferences value,
-    $Res Function(LiplPreferences) then,
-  ) = _$LiplPreferencesCopyWithImpl<$Res, LiplPreferences>;
-  @useResult
-  $Res call({
-    Credentials? credentials,
-    List<Lyric> lyrics,
-    List<Playlist> playlists,
-  });
+abstract mixin class $LiplPreferencesCopyWith<$Res>  {
+  factory $LiplPreferencesCopyWith(LiplPreferences value, $Res Function(LiplPreferences) _then) = _$LiplPreferencesCopyWithImpl;
+@useResult
+$Res call({
+ Credentials? credentials, List<Lyric> lyrics, List<Playlist> playlists
+});
 
-  $CredentialsCopyWith<$Res>? get credentials;
+
+$CredentialsCopyWith<$Res>? get credentials;
+
 }
-
 /// @nodoc
-class _$LiplPreferencesCopyWithImpl<$Res, $Val extends LiplPreferences>
+class _$LiplPreferencesCopyWithImpl<$Res>
     implements $LiplPreferencesCopyWith<$Res> {
-  _$LiplPreferencesCopyWithImpl(this._value, this._then);
+  _$LiplPreferencesCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LiplPreferences _self;
+  final $Res Function(LiplPreferences) _then;
 
-  /// Create a copy of LiplPreferences
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? credentials = freezed,
-    Object? lyrics = null,
-    Object? playlists = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            credentials:
-                freezed == credentials
-                    ? _value.credentials
-                    : credentials // ignore: cast_nullable_to_non_nullable
-                        as Credentials?,
-            lyrics:
-                null == lyrics
-                    ? _value.lyrics
-                    : lyrics // ignore: cast_nullable_to_non_nullable
-                        as List<Lyric>,
-            playlists:
-                null == playlists
-                    ? _value.playlists
-                    : playlists // ignore: cast_nullable_to_non_nullable
-                        as List<Playlist>,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of LiplPreferences
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CredentialsCopyWith<$Res>? get credentials {
-    if (_value.credentials == null) {
-      return null;
-    }
-
-    return $CredentialsCopyWith<$Res>(_value.credentials!, (value) {
-      return _then(_value.copyWith(credentials: value) as $Val);
-    });
-  }
+/// Create a copy of LiplPreferences
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? credentials = freezed,Object? lyrics = null,Object? playlists = null,}) {
+  return _then(_self.copyWith(
+credentials: freezed == credentials ? _self.credentials : credentials // ignore: cast_nullable_to_non_nullable
+as Credentials?,lyrics: null == lyrics ? _self.lyrics : lyrics // ignore: cast_nullable_to_non_nullable
+as List<Lyric>,playlists: null == playlists ? _self.playlists : playlists // ignore: cast_nullable_to_non_nullable
+as List<Playlist>,
+  ));
 }
+/// Create a copy of LiplPreferences
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CredentialsCopyWith<$Res>? get credentials {
+    if (_self.credentials == null) {
+    return null;
+  }
 
-/// @nodoc
-abstract class _$$LiplPreferencesImplCopyWith<$Res>
-    implements $LiplPreferencesCopyWith<$Res> {
-  factory _$$LiplPreferencesImplCopyWith(
-    _$LiplPreferencesImpl value,
-    $Res Function(_$LiplPreferencesImpl) then,
-  ) = __$$LiplPreferencesImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    Credentials? credentials,
-    List<Lyric> lyrics,
-    List<Playlist> playlists,
+  return $CredentialsCopyWith<$Res>(_self.credentials!, (value) {
+    return _then(_self.copyWith(credentials: value));
   });
-
-  @override
-  $CredentialsCopyWith<$Res>? get credentials;
+}
 }
 
-/// @nodoc
-class __$$LiplPreferencesImplCopyWithImpl<$Res>
-    extends _$LiplPreferencesCopyWithImpl<$Res, _$LiplPreferencesImpl>
-    implements _$$LiplPreferencesImplCopyWith<$Res> {
-  __$$LiplPreferencesImplCopyWithImpl(
-    _$LiplPreferencesImpl _value,
-    $Res Function(_$LiplPreferencesImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LiplPreferences
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? credentials = freezed,
-    Object? lyrics = null,
-    Object? playlists = null,
-  }) {
-    return _then(
-      _$LiplPreferencesImpl(
-        credentials:
-            freezed == credentials
-                ? _value.credentials
-                : credentials // ignore: cast_nullable_to_non_nullable
-                    as Credentials?,
-        lyrics:
-            null == lyrics
-                ? _value._lyrics
-                : lyrics // ignore: cast_nullable_to_non_nullable
-                    as List<Lyric>,
-        playlists:
-            null == playlists
-                ? _value._playlists
-                : playlists // ignore: cast_nullable_to_non_nullable
-                    as List<Playlist>,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 @JsonSerializable()
-class _$LiplPreferencesImpl extends _LiplPreferences {
-  const _$LiplPreferencesImpl({
-    this.credentials = null,
-    final List<Lyric> lyrics = const [],
-    final List<Playlist> playlists = const [],
-  }) : _lyrics = lyrics,
-       _playlists = playlists,
-       super._();
 
-  factory _$LiplPreferencesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LiplPreferencesImplFromJson(json);
+class _LiplPreferences extends LiplPreferences {
+  const _LiplPreferences({this.credentials = null, final  List<Lyric> lyrics = const [], final  List<Playlist> playlists = const []}): _lyrics = lyrics,_playlists = playlists,super._();
+  factory _LiplPreferences.fromJson(Map<String, dynamic> json) => _$LiplPreferencesFromJson(json);
 
-  @override
-  @JsonKey()
-  final Credentials? credentials;
-  final List<Lyric> _lyrics;
-  @override
-  @JsonKey()
-  List<Lyric> get lyrics {
-    if (_lyrics is EqualUnmodifiableListView) return _lyrics;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_lyrics);
-  }
-
-  final List<Playlist> _playlists;
-  @override
-  @JsonKey()
-  List<Playlist> get playlists {
-    if (_playlists is EqualUnmodifiableListView) return _playlists;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_playlists);
-  }
-
-  @override
-  String toString() {
-    return 'LiplPreferences(credentials: $credentials, lyrics: $lyrics, playlists: $playlists)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LiplPreferencesImpl &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials) &&
-            const DeepCollectionEquality().equals(other._lyrics, _lyrics) &&
-            const DeepCollectionEquality().equals(
-              other._playlists,
-              _playlists,
-            ));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    credentials,
-    const DeepCollectionEquality().hash(_lyrics),
-    const DeepCollectionEquality().hash(_playlists),
-  );
-
-  /// Create a copy of LiplPreferences
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LiplPreferencesImplCopyWith<_$LiplPreferencesImpl> get copyWith =>
-      __$$LiplPreferencesImplCopyWithImpl<_$LiplPreferencesImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LiplPreferencesImplToJson(this);
-  }
+@override@JsonKey() final  Credentials? credentials;
+ final  List<Lyric> _lyrics;
+@override@JsonKey() List<Lyric> get lyrics {
+  if (_lyrics is EqualUnmodifiableListView) return _lyrics;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_lyrics);
 }
 
-abstract class _LiplPreferences extends LiplPreferences {
-  const factory _LiplPreferences({
-    final Credentials? credentials,
-    final List<Lyric> lyrics,
-    final List<Playlist> playlists,
-  }) = _$LiplPreferencesImpl;
-  const _LiplPreferences._() : super._();
-
-  factory _LiplPreferences.fromJson(Map<String, dynamic> json) =
-      _$LiplPreferencesImpl.fromJson;
-
-  @override
-  Credentials? get credentials;
-  @override
-  List<Lyric> get lyrics;
-  @override
-  List<Playlist> get playlists;
-
-  /// Create a copy of LiplPreferences
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LiplPreferencesImplCopyWith<_$LiplPreferencesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+ final  List<Playlist> _playlists;
+@override@JsonKey() List<Playlist> get playlists {
+  if (_playlists is EqualUnmodifiableListView) return _playlists;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_playlists);
 }
+
+
+/// Create a copy of LiplPreferences
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LiplPreferencesCopyWith<_LiplPreferences> get copyWith => __$LiplPreferencesCopyWithImpl<_LiplPreferences>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$LiplPreferencesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LiplPreferences&&(identical(other.credentials, credentials) || other.credentials == credentials)&&const DeepCollectionEquality().equals(other._lyrics, _lyrics)&&const DeepCollectionEquality().equals(other._playlists, _playlists));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,credentials,const DeepCollectionEquality().hash(_lyrics),const DeepCollectionEquality().hash(_playlists));
+
+@override
+String toString() {
+  return 'LiplPreferences(credentials: $credentials, lyrics: $lyrics, playlists: $playlists)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LiplPreferencesCopyWith<$Res> implements $LiplPreferencesCopyWith<$Res> {
+  factory _$LiplPreferencesCopyWith(_LiplPreferences value, $Res Function(_LiplPreferences) _then) = __$LiplPreferencesCopyWithImpl;
+@override @useResult
+$Res call({
+ Credentials? credentials, List<Lyric> lyrics, List<Playlist> playlists
+});
+
+
+@override $CredentialsCopyWith<$Res>? get credentials;
+
+}
+/// @nodoc
+class __$LiplPreferencesCopyWithImpl<$Res>
+    implements _$LiplPreferencesCopyWith<$Res> {
+  __$LiplPreferencesCopyWithImpl(this._self, this._then);
+
+  final _LiplPreferences _self;
+  final $Res Function(_LiplPreferences) _then;
+
+/// Create a copy of LiplPreferences
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? credentials = freezed,Object? lyrics = null,Object? playlists = null,}) {
+  return _then(_LiplPreferences(
+credentials: freezed == credentials ? _self.credentials : credentials // ignore: cast_nullable_to_non_nullable
+as Credentials?,lyrics: null == lyrics ? _self._lyrics : lyrics // ignore: cast_nullable_to_non_nullable
+as List<Lyric>,playlists: null == playlists ? _self._playlists : playlists // ignore: cast_nullable_to_non_nullable
+as List<Playlist>,
+  ));
+}
+
+/// Create a copy of LiplPreferences
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CredentialsCopyWith<$Res>? get credentials {
+    if (_self.credentials == null) {
+    return null;
+  }
+
+  return $CredentialsCopyWith<$Res>(_self.credentials!, (value) {
+    return _then(_self.copyWith(credentials: value));
+  });
+}
+}
+
+// dart format on

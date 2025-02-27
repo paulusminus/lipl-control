@@ -6,8 +6,10 @@ part of 'summary.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SummaryImpl _$$SummaryImplFromJson(Map<String, dynamic> json) =>
-    _$SummaryImpl(id: json['id'] as String, title: json['title'] as String);
+_Summary _$SummaryFromJson(Map<String, dynamic> json) =>
+    _Summary(id: json['id'] as String, title: json['title'] as String);
 
-Map<String, dynamic> _$$SummaryImplToJson(_$SummaryImpl instance) =>
-    <String, dynamic>{'id': instance.id, 'title': instance.title};
+Map<String, dynamic> _$SummaryToJson(_Summary instance) => <String, dynamic>{
+  'id': instance.id,
+  'title': instance.title,
+};

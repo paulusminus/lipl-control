@@ -6,8 +6,8 @@ part of 'lipl_app_cubit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LiplAppStateImpl _$$LiplAppStateImplFromJson(Map<String, dynamic> json) =>
-    _$LiplAppStateImpl(
+_LiplAppState _$LiplAppStateFromJson(Map<String, dynamic> json) =>
+    _LiplAppState(
       lyrics:
           (json['lyrics'] as List<dynamic>?)
               ?.map((e) => Lyric.fromJson(e as Map<String, dynamic>))
@@ -33,7 +33,7 @@ _$LiplAppStateImpl _$$LiplAppStateImplFromJson(Map<String, dynamic> json) =>
               : DateTime.parse(json['lastFetch'] as String),
     );
 
-Map<String, dynamic> _$$LiplAppStateImplToJson(_$LiplAppStateImpl instance) =>
+Map<String, dynamic> _$LiplAppStateToJson(_LiplAppState instance) =>
     <String, dynamic>{
       'lyrics': instance.lyrics,
       'playlists': instance.playlists,

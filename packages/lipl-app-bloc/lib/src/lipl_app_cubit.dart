@@ -14,7 +14,7 @@ part 'lipl_app_cubit.g.dart';
 final Logger logger = Logger('$LiplAppCubit');
 
 @freezed
-class LiplAppState with _$LiplAppState {
+abstract class LiplAppState with _$LiplAppState {
   const LiplAppState._();
   const factory LiplAppState({
     @Default([]) List<Lyric> lyrics,
@@ -27,41 +27,44 @@ class LiplAppState with _$LiplAppState {
   factory LiplAppState.fromJson(Map<String, Object?> json) =>
       _$LiplAppStateFromJson(json);
 
-  int? get elapsedSecondsSinceLastRun => (lastFetch == null)
-      ? null
-      : (lastFetch!.millisecondsSinceEpoch -
-              DateTime.now().toUtc().millisecondsSinceEpoch) ~/
-          1000;
+  int? get elapsedSecondsSinceLastRun =>
+      (lastFetch == null)
+          ? null
+          : (lastFetch!.millisecondsSinceEpoch -
+                  DateTime.now().toUtc().millisecondsSinceEpoch) ~/
+              1000;
 
-  Playlist? findPlaylist(String id) => playlists
-      .cast<Playlist?>()
-      .firstWhere((playlist) => playlist?.id == id, orElse: () => null);
+  Playlist? findPlaylist(String id) => playlists.cast<Playlist?>().firstWhere(
+    (playlist) => playlist?.id == id,
+    orElse: () => null,
+  );
 
-  Lyric? findLyric(String id) => lyrics
-      .cast<Lyric?>()
-      .firstWhere((lyric) => lyric?.id == id, orElse: () => null);
+  Lyric? findLyric(String id) => lyrics.cast<Lyric?>().firstWhere(
+    (lyric) => lyric?.id == id,
+    orElse: () => null,
+  );
 
-  List<Lyric> lyricMembers(Playlist playlist) => playlist.members
-      .map(
-        (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
+  List<Lyric> lyricMembers(Playlist playlist) =>
+      playlist.members
+          .map(
+            (String lyricId) => lyrics.cast<Lyric?>().firstWhere(
               (Lyric? lyric) => lyric?.id == lyricId,
               orElse: () => null,
             ),
-      )
-      .where((Lyric? lyric) => lyric != null)
-      .cast<Lyric>()
-      .toList();
+          )
+          .where((Lyric? lyric) => lyric != null)
+          .cast<Lyric>()
+          .toList();
 }
 
 class LiplAppCubit extends HydratedCubit<LiplAppState> {
-  LiplAppCubit({
-    LiplRestApiInterface? api,
-    this.applicationSupportDirectory,
-  }) : super(const LiplAppState()) {
+  LiplAppCubit({LiplRestApiInterface? api, this.applicationSupportDirectory})
+    : super(const LiplAppState()) {
     if (api != null) {
       useInMemory = true;
     }
-    this.api = api ??
+    this.api =
+        api ??
         apiFromConfig(
           directory: applicationSupportDirectory,
           credentials: state.credentials,
@@ -111,105 +114,99 @@ class LiplAppCubit extends HydratedCubit<LiplAppState> {
   }
 
   Future<void> load({DateTime? time}) => _runAsync(() async {
-        emit(
-          state.copyWith(
-            status: LoadingStatus.loading,
-          ),
-        );
-        final (lyrics, playlists) =
-            await (api.getLyrics(), api.getPlaylists()).wait;
-        logger.info('Fetch lyrics and playlists succes');
-        emit(
-          state.copyWith(
-            lyrics: lyrics.sortByTitle(),
-            playlists: playlists.sortByTitle(),
-            status: LoadingStatus.success,
-            lastFetch: time ?? DateTime.now().toUtc(),
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.loading));
+    final (lyrics, playlists) =
+        await (api.getLyrics(), api.getPlaylists()).wait;
+    logger.info('Fetch lyrics and playlists succes');
+    emit(
+      state.copyWith(
+        lyrics: lyrics.sortByTitle(),
+        playlists: playlists.sortByTitle(),
+        status: LoadingStatus.success,
+        lastFetch: time ?? DateTime.now().toUtc(),
+      ),
+    );
+  });
 
   Future<void> postLyric(Lyric lyric) => _runAsync(() async {
-        emit(state.copyWith(status: LoadingStatus.changing));
-        if (lyric.id == null) {
-          lyric = lyric.copyWith(id: newId());
-        }
-        await api.postLyric(lyric);
-        logger.info('Posting new lyric with title ${lyric.title} successful');
-        emit(
-          state.copyWith(
-            lyrics: state.lyrics.addItem(lyric),
-            status: LoadingStatus.success,
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.changing));
+    if (lyric.id == null) {
+      lyric = lyric.copyWith(id: newId());
+    }
+    await api.postLyric(lyric);
+    logger.info('Posting new lyric with title ${lyric.title} successful');
+    emit(
+      state.copyWith(
+        lyrics: state.lyrics.addItem(lyric),
+        status: LoadingStatus.success,
+      ),
+    );
+  });
 
   Future<void> putLyric(Lyric lyric) => _runAsync(() async {
-        emit(state.copyWith(status: LoadingStatus.changing));
-        logger.info('About to change lyric with title ${lyric.title}');
-        logger.info('Lyric json: ${lyric.toJson()}');
-        await api.putLyric(lyric.id!, lyric);
-        logger.info('Changed lyric with title ${lyric.title}');
-        emit(
-          state.copyWith(
-            lyrics: state.lyrics.replaceItem(lyric),
-            status: LoadingStatus.success,
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.changing));
+    logger.info('About to change lyric with title ${lyric.title}');
+    logger.info('Lyric json: ${lyric.toJson()}');
+    await api.putLyric(lyric.id!, lyric);
+    logger.info('Changed lyric with title ${lyric.title}');
+    emit(
+      state.copyWith(
+        lyrics: state.lyrics.replaceItem(lyric),
+        status: LoadingStatus.success,
+      ),
+    );
+  });
 
   Future<void> deleteLyric(String id) => _runAsync(() async {
-        emit(state.copyWith(status: LoadingStatus.changing));
-        await api.deleteLyric(id);
-        logger.info('Deleting lyric with id $id successful');
-        emit(
-          state.copyWith(
-            lyrics: state.lyrics.removeItemById(id),
-            playlists: state.playlists
-                .map((Playlist p) => p.withoutMember(id))
-                .toList(),
-            status: LoadingStatus.success,
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.changing));
+    await api.deleteLyric(id);
+    logger.info('Deleting lyric with id $id successful');
+    emit(
+      state.copyWith(
+        lyrics: state.lyrics.removeItemById(id),
+        playlists:
+            state.playlists.map((Playlist p) => p.withoutMember(id)).toList(),
+        status: LoadingStatus.success,
+      ),
+    );
+  });
 
   Future<void> postPlaylist(Playlist playlist) => _runAsync(() async {
-        emit(state.copyWith(status: LoadingStatus.changing));
-        if (playlist.id == null) {
-          playlist = playlist.copyWith(id: newId());
-        }
-        await api.postPlaylist(playlist);
-        logger
-            .info('Posting new lyric with title ${playlist.title} successfull');
-        emit(
-          state.copyWith(
-            playlists: state.playlists.addItem(playlist),
-            status: LoadingStatus.success,
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.changing));
+    if (playlist.id == null) {
+      playlist = playlist.copyWith(id: newId());
+    }
+    await api.postPlaylist(playlist);
+    logger.info('Posting new lyric with title ${playlist.title} successfull');
+    emit(
+      state.copyWith(
+        playlists: state.playlists.addItem(playlist),
+        status: LoadingStatus.success,
+      ),
+    );
+  });
 
   Future<void> putPlaylist(Playlist playlist) => _runAsync(() async {
-        emit(state.copyWith(status: LoadingStatus.changing));
-        await api.putPlaylist(playlist.id!, playlist);
-        logger.info('Changing lyric with title ${playlist.title} successfull');
-        emit(
-          state.copyWith(
-            playlists: state.playlists.replaceItem(playlist),
-            status: LoadingStatus.success,
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.changing));
+    await api.putPlaylist(playlist.id!, playlist);
+    logger.info('Changing lyric with title ${playlist.title} successfull');
+    emit(
+      state.copyWith(
+        playlists: state.playlists.replaceItem(playlist),
+        status: LoadingStatus.success,
+      ),
+    );
+  });
 
   Future<void> deletePlaylist(String id) => _runAsync(() async {
-        emit(state.copyWith(status: LoadingStatus.changing));
-        await api.deletePlaylist(id);
-        logger.info('Deleting playlist with id $id successfull');
-        emit(
-          state.copyWith(
-            playlists: state.playlists.removeItemById(id),
-            status: LoadingStatus.success,
-          ),
-        );
-      });
+    emit(state.copyWith(status: LoadingStatus.changing));
+    await api.deletePlaylist(id);
+    logger.info('Deleting playlist with id $id successfull');
+    emit(
+      state.copyWith(
+        playlists: state.playlists.removeItemById(id),
+        status: LoadingStatus.success,
+      ),
+    );
+  });
 }

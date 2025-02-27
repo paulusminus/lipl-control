@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,312 +10,187 @@ part of 'lipl_app_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-LiplAppState _$LiplAppStateFromJson(Map<String, dynamic> json) {
-  return _LiplAppState.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LiplAppState {
-  List<Lyric> get lyrics => throw _privateConstructorUsedError;
-  List<Playlist> get playlists => throw _privateConstructorUsedError;
-  LoadingStatus get status => throw _privateConstructorUsedError;
-  Credentials? get credentials => throw _privateConstructorUsedError;
-  DateTime? get lastFetch => throw _privateConstructorUsedError;
+
+ List<Lyric> get lyrics; List<Playlist> get playlists; LoadingStatus get status; Credentials? get credentials; DateTime? get lastFetch;
+/// Create a copy of LiplAppState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LiplAppStateCopyWith<LiplAppState> get copyWith => _$LiplAppStateCopyWithImpl<LiplAppState>(this as LiplAppState, _$identity);
 
   /// Serializes this LiplAppState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of LiplAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LiplAppStateCopyWith<LiplAppState> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiplAppState&&const DeepCollectionEquality().equals(other.lyrics, lyrics)&&const DeepCollectionEquality().equals(other.playlists, playlists)&&(identical(other.status, status) || other.status == status)&&(identical(other.credentials, credentials) || other.credentials == credentials)&&(identical(other.lastFetch, lastFetch) || other.lastFetch == lastFetch));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(lyrics),const DeepCollectionEquality().hash(playlists),status,credentials,lastFetch);
+
+@override
+String toString() {
+  return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LiplAppStateCopyWith<$Res> {
-  factory $LiplAppStateCopyWith(
-    LiplAppState value,
-    $Res Function(LiplAppState) then,
-  ) = _$LiplAppStateCopyWithImpl<$Res, LiplAppState>;
-  @useResult
-  $Res call({
-    List<Lyric> lyrics,
-    List<Playlist> playlists,
-    LoadingStatus status,
-    Credentials? credentials,
-    DateTime? lastFetch,
-  });
+abstract mixin class $LiplAppStateCopyWith<$Res>  {
+  factory $LiplAppStateCopyWith(LiplAppState value, $Res Function(LiplAppState) _then) = _$LiplAppStateCopyWithImpl;
+@useResult
+$Res call({
+ List<Lyric> lyrics, List<Playlist> playlists, LoadingStatus status, Credentials? credentials, DateTime? lastFetch
+});
 
-  $CredentialsCopyWith<$Res>? get credentials;
+
+$CredentialsCopyWith<$Res>? get credentials;
+
 }
-
 /// @nodoc
-class _$LiplAppStateCopyWithImpl<$Res, $Val extends LiplAppState>
+class _$LiplAppStateCopyWithImpl<$Res>
     implements $LiplAppStateCopyWith<$Res> {
-  _$LiplAppStateCopyWithImpl(this._value, this._then);
+  _$LiplAppStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LiplAppState _self;
+  final $Res Function(LiplAppState) _then;
 
-  /// Create a copy of LiplAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? lyrics = null,
-    Object? playlists = null,
-    Object? status = null,
-    Object? credentials = freezed,
-    Object? lastFetch = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            lyrics:
-                null == lyrics
-                    ? _value.lyrics
-                    : lyrics // ignore: cast_nullable_to_non_nullable
-                        as List<Lyric>,
-            playlists:
-                null == playlists
-                    ? _value.playlists
-                    : playlists // ignore: cast_nullable_to_non_nullable
-                        as List<Playlist>,
-            status:
-                null == status
-                    ? _value.status
-                    : status // ignore: cast_nullable_to_non_nullable
-                        as LoadingStatus,
-            credentials:
-                freezed == credentials
-                    ? _value.credentials
-                    : credentials // ignore: cast_nullable_to_non_nullable
-                        as Credentials?,
-            lastFetch:
-                freezed == lastFetch
-                    ? _value.lastFetch
-                    : lastFetch // ignore: cast_nullable_to_non_nullable
-                        as DateTime?,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of LiplAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CredentialsCopyWith<$Res>? get credentials {
-    if (_value.credentials == null) {
-      return null;
-    }
-
-    return $CredentialsCopyWith<$Res>(_value.credentials!, (value) {
-      return _then(_value.copyWith(credentials: value) as $Val);
-    });
-  }
+/// Create a copy of LiplAppState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? lyrics = null,Object? playlists = null,Object? status = null,Object? credentials = freezed,Object? lastFetch = freezed,}) {
+  return _then(_self.copyWith(
+lyrics: null == lyrics ? _self.lyrics : lyrics // ignore: cast_nullable_to_non_nullable
+as List<Lyric>,playlists: null == playlists ? _self.playlists : playlists // ignore: cast_nullable_to_non_nullable
+as List<Playlist>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as LoadingStatus,credentials: freezed == credentials ? _self.credentials : credentials // ignore: cast_nullable_to_non_nullable
+as Credentials?,lastFetch: freezed == lastFetch ? _self.lastFetch : lastFetch // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
 }
+/// Create a copy of LiplAppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CredentialsCopyWith<$Res>? get credentials {
+    if (_self.credentials == null) {
+    return null;
+  }
 
-/// @nodoc
-abstract class _$$LiplAppStateImplCopyWith<$Res>
-    implements $LiplAppStateCopyWith<$Res> {
-  factory _$$LiplAppStateImplCopyWith(
-    _$LiplAppStateImpl value,
-    $Res Function(_$LiplAppStateImpl) then,
-  ) = __$$LiplAppStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    List<Lyric> lyrics,
-    List<Playlist> playlists,
-    LoadingStatus status,
-    Credentials? credentials,
-    DateTime? lastFetch,
+  return $CredentialsCopyWith<$Res>(_self.credentials!, (value) {
+    return _then(_self.copyWith(credentials: value));
   });
-
-  @override
-  $CredentialsCopyWith<$Res>? get credentials;
+}
 }
 
-/// @nodoc
-class __$$LiplAppStateImplCopyWithImpl<$Res>
-    extends _$LiplAppStateCopyWithImpl<$Res, _$LiplAppStateImpl>
-    implements _$$LiplAppStateImplCopyWith<$Res> {
-  __$$LiplAppStateImplCopyWithImpl(
-    _$LiplAppStateImpl _value,
-    $Res Function(_$LiplAppStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LiplAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? lyrics = null,
-    Object? playlists = null,
-    Object? status = null,
-    Object? credentials = freezed,
-    Object? lastFetch = freezed,
-  }) {
-    return _then(
-      _$LiplAppStateImpl(
-        lyrics:
-            null == lyrics
-                ? _value._lyrics
-                : lyrics // ignore: cast_nullable_to_non_nullable
-                    as List<Lyric>,
-        playlists:
-            null == playlists
-                ? _value._playlists
-                : playlists // ignore: cast_nullable_to_non_nullable
-                    as List<Playlist>,
-        status:
-            null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                    as LoadingStatus,
-        credentials:
-            freezed == credentials
-                ? _value.credentials
-                : credentials // ignore: cast_nullable_to_non_nullable
-                    as Credentials?,
-        lastFetch:
-            freezed == lastFetch
-                ? _value.lastFetch
-                : lastFetch // ignore: cast_nullable_to_non_nullable
-                    as DateTime?,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 @JsonSerializable()
-class _$LiplAppStateImpl extends _LiplAppState {
-  const _$LiplAppStateImpl({
-    final List<Lyric> lyrics = const [],
-    final List<Playlist> playlists = const [],
-    this.status = LoadingStatus.initial,
-    this.credentials = null,
-    this.lastFetch = null,
-  }) : _lyrics = lyrics,
-       _playlists = playlists,
-       super._();
 
-  factory _$LiplAppStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LiplAppStateImplFromJson(json);
+class _LiplAppState extends LiplAppState {
+  const _LiplAppState({final  List<Lyric> lyrics = const [], final  List<Playlist> playlists = const [], this.status = LoadingStatus.initial, this.credentials = null, this.lastFetch = null}): _lyrics = lyrics,_playlists = playlists,super._();
+  factory _LiplAppState.fromJson(Map<String, dynamic> json) => _$LiplAppStateFromJson(json);
 
-  final List<Lyric> _lyrics;
-  @override
-  @JsonKey()
-  List<Lyric> get lyrics {
-    if (_lyrics is EqualUnmodifiableListView) return _lyrics;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_lyrics);
-  }
-
-  final List<Playlist> _playlists;
-  @override
-  @JsonKey()
-  List<Playlist> get playlists {
-    if (_playlists is EqualUnmodifiableListView) return _playlists;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_playlists);
-  }
-
-  @override
-  @JsonKey()
-  final LoadingStatus status;
-  @override
-  @JsonKey()
-  final Credentials? credentials;
-  @override
-  @JsonKey()
-  final DateTime? lastFetch;
-
-  @override
-  String toString() {
-    return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LiplAppStateImpl &&
-            const DeepCollectionEquality().equals(other._lyrics, _lyrics) &&
-            const DeepCollectionEquality().equals(
-              other._playlists,
-              _playlists,
-            ) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials) &&
-            (identical(other.lastFetch, lastFetch) ||
-                other.lastFetch == lastFetch));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_lyrics),
-    const DeepCollectionEquality().hash(_playlists),
-    status,
-    credentials,
-    lastFetch,
-  );
-
-  /// Create a copy of LiplAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LiplAppStateImplCopyWith<_$LiplAppStateImpl> get copyWith =>
-      __$$LiplAppStateImplCopyWithImpl<_$LiplAppStateImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LiplAppStateImplToJson(this);
-  }
+ final  List<Lyric> _lyrics;
+@override@JsonKey() List<Lyric> get lyrics {
+  if (_lyrics is EqualUnmodifiableListView) return _lyrics;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_lyrics);
 }
 
-abstract class _LiplAppState extends LiplAppState {
-  const factory _LiplAppState({
-    final List<Lyric> lyrics,
-    final List<Playlist> playlists,
-    final LoadingStatus status,
-    final Credentials? credentials,
-    final DateTime? lastFetch,
-  }) = _$LiplAppStateImpl;
-  const _LiplAppState._() : super._();
-
-  factory _LiplAppState.fromJson(Map<String, dynamic> json) =
-      _$LiplAppStateImpl.fromJson;
-
-  @override
-  List<Lyric> get lyrics;
-  @override
-  List<Playlist> get playlists;
-  @override
-  LoadingStatus get status;
-  @override
-  Credentials? get credentials;
-  @override
-  DateTime? get lastFetch;
-
-  /// Create a copy of LiplAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LiplAppStateImplCopyWith<_$LiplAppStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+ final  List<Playlist> _playlists;
+@override@JsonKey() List<Playlist> get playlists {
+  if (_playlists is EqualUnmodifiableListView) return _playlists;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_playlists);
 }
+
+@override@JsonKey() final  LoadingStatus status;
+@override@JsonKey() final  Credentials? credentials;
+@override@JsonKey() final  DateTime? lastFetch;
+
+/// Create a copy of LiplAppState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LiplAppStateCopyWith<_LiplAppState> get copyWith => __$LiplAppStateCopyWithImpl<_LiplAppState>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$LiplAppStateToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LiplAppState&&const DeepCollectionEquality().equals(other._lyrics, _lyrics)&&const DeepCollectionEquality().equals(other._playlists, _playlists)&&(identical(other.status, status) || other.status == status)&&(identical(other.credentials, credentials) || other.credentials == credentials)&&(identical(other.lastFetch, lastFetch) || other.lastFetch == lastFetch));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_lyrics),const DeepCollectionEquality().hash(_playlists),status,credentials,lastFetch);
+
+@override
+String toString() {
+  return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LiplAppStateCopyWith<$Res> implements $LiplAppStateCopyWith<$Res> {
+  factory _$LiplAppStateCopyWith(_LiplAppState value, $Res Function(_LiplAppState) _then) = __$LiplAppStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<Lyric> lyrics, List<Playlist> playlists, LoadingStatus status, Credentials? credentials, DateTime? lastFetch
+});
+
+
+@override $CredentialsCopyWith<$Res>? get credentials;
+
+}
+/// @nodoc
+class __$LiplAppStateCopyWithImpl<$Res>
+    implements _$LiplAppStateCopyWith<$Res> {
+  __$LiplAppStateCopyWithImpl(this._self, this._then);
+
+  final _LiplAppState _self;
+  final $Res Function(_LiplAppState) _then;
+
+/// Create a copy of LiplAppState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? lyrics = null,Object? playlists = null,Object? status = null,Object? credentials = freezed,Object? lastFetch = freezed,}) {
+  return _then(_LiplAppState(
+lyrics: null == lyrics ? _self._lyrics : lyrics // ignore: cast_nullable_to_non_nullable
+as List<Lyric>,playlists: null == playlists ? _self._playlists : playlists // ignore: cast_nullable_to_non_nullable
+as List<Playlist>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as LoadingStatus,credentials: freezed == credentials ? _self.credentials : credentials // ignore: cast_nullable_to_non_nullable
+as Credentials?,lastFetch: freezed == lastFetch ? _self.lastFetch : lastFetch // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
+
+/// Create a copy of LiplAppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CredentialsCopyWith<$Res>? get credentials {
+    if (_self.credentials == null) {
+    return null;
+  }
+
+  return $CredentialsCopyWith<$Res>(_self.credentials!, (value) {
+    return _then(_self.copyWith(credentials: value));
+  });
+}
+}
+
+// dart format on

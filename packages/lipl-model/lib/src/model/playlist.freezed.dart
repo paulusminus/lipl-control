@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,214 +10,143 @@ part of 'playlist.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
-  return _Playlist.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Playlist {
-  String? get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  List<String> get members => throw _privateConstructorUsedError;
+
+ String? get id; String get title; List<String> get members;
+/// Create a copy of Playlist
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PlaylistCopyWith<Playlist> get copyWith => _$PlaylistCopyWithImpl<Playlist>(this as Playlist, _$identity);
 
   /// Serializes this Playlist to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Playlist
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PlaylistCopyWith<Playlist> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Playlist&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.members, members));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(members));
+
+
+
 }
 
 /// @nodoc
-abstract class $PlaylistCopyWith<$Res> {
-  factory $PlaylistCopyWith(Playlist value, $Res Function(Playlist) then) =
-      _$PlaylistCopyWithImpl<$Res, Playlist>;
-  @useResult
-  $Res call({String? id, String title, List<String> members});
-}
+abstract mixin class $PlaylistCopyWith<$Res>  {
+  factory $PlaylistCopyWith(Playlist value, $Res Function(Playlist) _then) = _$PlaylistCopyWithImpl;
+@useResult
+$Res call({
+ String? id, String title, List<String> members
+});
 
+
+
+
+}
 /// @nodoc
-class _$PlaylistCopyWithImpl<$Res, $Val extends Playlist>
+class _$PlaylistCopyWithImpl<$Res>
     implements $PlaylistCopyWith<$Res> {
-  _$PlaylistCopyWithImpl(this._value, this._then);
+  _$PlaylistCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Playlist _self;
+  final $Res Function(Playlist) _then;
 
-  /// Create a copy of Playlist
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = null,
-    Object? members = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String,
-            members:
-                null == members
-                    ? _value.members
-                    : members // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of Playlist
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = null,Object? members = null,}) {
+  return _then(_self.copyWith(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$PlaylistImplCopyWith<$Res>
-    implements $PlaylistCopyWith<$Res> {
-  factory _$$PlaylistImplCopyWith(
-    _$PlaylistImpl value,
-    $Res Function(_$PlaylistImpl) then,
-  ) = __$$PlaylistImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? id, String title, List<String> members});
 }
 
-/// @nodoc
-class __$$PlaylistImplCopyWithImpl<$Res>
-    extends _$PlaylistCopyWithImpl<$Res, _$PlaylistImpl>
-    implements _$$PlaylistImplCopyWith<$Res> {
-  __$$PlaylistImplCopyWithImpl(
-    _$PlaylistImpl _value,
-    $Res Function(_$PlaylistImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of Playlist
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = null,
-    Object? members = null,
-  }) {
-    return _then(
-      _$PlaylistImpl(
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String,
-        members:
-            null == members
-                ? _value._members
-                : members // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 @JsonSerializable()
-class _$PlaylistImpl extends _Playlist {
-  const _$PlaylistImpl({
-    required this.id,
-    required this.title,
-    required final List<String> members,
-  }) : _members = members,
-       super._();
 
-  factory _$PlaylistImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PlaylistImplFromJson(json);
+class _Playlist extends Playlist {
+  const _Playlist({required this.id, required this.title, required final  List<String> members}): _members = members,super._();
+  factory _Playlist.fromJson(Map<String, dynamic> json) => _$PlaylistFromJson(json);
 
-  @override
-  final String? id;
-  @override
-  final String title;
-  final List<String> _members;
-  @override
-  List<String> get members {
-    if (_members is EqualUnmodifiableListView) return _members;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_members);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PlaylistImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality().equals(other._members, _members));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    title,
-    const DeepCollectionEquality().hash(_members),
-  );
-
-  /// Create a copy of Playlist
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PlaylistImplCopyWith<_$PlaylistImpl> get copyWith =>
-      __$$PlaylistImplCopyWithImpl<_$PlaylistImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PlaylistImplToJson(this);
-  }
+@override final  String? id;
+@override final  String title;
+ final  List<String> _members;
+@override List<String> get members {
+  if (_members is EqualUnmodifiableListView) return _members;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_members);
 }
 
-abstract class _Playlist extends Playlist {
-  const factory _Playlist({
-    required final String? id,
-    required final String title,
-    required final List<String> members,
-  }) = _$PlaylistImpl;
-  const _Playlist._() : super._();
 
-  factory _Playlist.fromJson(Map<String, dynamic> json) =
-      _$PlaylistImpl.fromJson;
+/// Create a copy of Playlist
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PlaylistCopyWith<_Playlist> get copyWith => __$PlaylistCopyWithImpl<_Playlist>(this, _$identity);
 
-  @override
-  String? get id;
-  @override
-  String get title;
-  @override
-  List<String> get members;
-
-  /// Create a copy of Playlist
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PlaylistImplCopyWith<_$PlaylistImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$PlaylistToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Playlist&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._members, _members));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_members));
+
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PlaylistCopyWith<$Res> implements $PlaylistCopyWith<$Res> {
+  factory _$PlaylistCopyWith(_Playlist value, $Res Function(_Playlist) _then) = __$PlaylistCopyWithImpl;
+@override @useResult
+$Res call({
+ String? id, String title, List<String> members
+});
+
+
+
+
+}
+/// @nodoc
+class __$PlaylistCopyWithImpl<$Res>
+    implements _$PlaylistCopyWith<$Res> {
+  __$PlaylistCopyWithImpl(this._self, this._then);
+
+  final _Playlist _self;
+  final $Res Function(_Playlist) _then;
+
+/// Create a copy of Playlist
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = null,Object? members = null,}) {
+  return _then(_Playlist(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+// dart format on

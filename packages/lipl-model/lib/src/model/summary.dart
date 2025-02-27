@@ -9,12 +9,9 @@ mixin class HasSummary {
 }
 
 @freezed
-class Summary with _$Summary {
+abstract class Summary with _$Summary {
   const Summary._();
-  const factory Summary({
-    required String id,
-    required String title,
-  }) = _Summary;
+  const factory Summary({required String id, required String title}) = _Summary;
 
   factory Summary.fromJson(Map<String, Object?> json) =>
       _$SummaryFromJson(json);

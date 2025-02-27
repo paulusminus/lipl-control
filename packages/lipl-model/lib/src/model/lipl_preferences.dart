@@ -5,7 +5,7 @@ part 'lipl_preferences.freezed.dart';
 part 'lipl_preferences.g.dart';
 
 @freezed
-class LiplPreferences with _$LiplPreferences {
+abstract class LiplPreferences with _$LiplPreferences {
   const LiplPreferences._();
   const factory LiplPreferences({
     @Default(null) Credentials? credentials,

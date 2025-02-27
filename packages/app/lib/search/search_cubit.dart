@@ -4,11 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'search_cubit.freezed.dart';
 
 @freezed
-class SearchState with _$SearchState {
-  const SearchState._();
-  const factory SearchState({
-    @Default('') String searchTerm,
-  }) = _SearchState;
+abstract class SearchState with _$SearchState {
+  const factory SearchState({@Default('') String searchTerm}) = _SearchState;
 }
 
 class SearchCubit extends Cubit<SearchState> {

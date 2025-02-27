@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,211 +10,143 @@ part of 'lyric.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-Lyric _$LyricFromJson(Map<String, dynamic> json) {
-  return _Lyric.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Lyric {
-  String? get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  List<List<String>> get parts => throw _privateConstructorUsedError;
+
+ String? get id; String get title; List<List<String>> get parts;
+/// Create a copy of Lyric
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LyricCopyWith<Lyric> get copyWith => _$LyricCopyWithImpl<Lyric>(this as Lyric, _$identity);
 
   /// Serializes this Lyric to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Lyric
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LyricCopyWith<Lyric> get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Lyric&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.parts, parts));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(parts));
+
+
+
 }
 
 /// @nodoc
-abstract class $LyricCopyWith<$Res> {
-  factory $LyricCopyWith(Lyric value, $Res Function(Lyric) then) =
-      _$LyricCopyWithImpl<$Res, Lyric>;
-  @useResult
-  $Res call({String? id, String title, List<List<String>> parts});
-}
+abstract mixin class $LyricCopyWith<$Res>  {
+  factory $LyricCopyWith(Lyric value, $Res Function(Lyric) _then) = _$LyricCopyWithImpl;
+@useResult
+$Res call({
+ String? id, String title, List<List<String>> parts
+});
 
+
+
+
+}
 /// @nodoc
-class _$LyricCopyWithImpl<$Res, $Val extends Lyric>
+class _$LyricCopyWithImpl<$Res>
     implements $LyricCopyWith<$Res> {
-  _$LyricCopyWithImpl(this._value, this._then);
+  _$LyricCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Lyric _self;
+  final $Res Function(Lyric) _then;
 
-  /// Create a copy of Lyric
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = null,
-    Object? parts = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String,
-            parts:
-                null == parts
-                    ? _value.parts
-                    : parts // ignore: cast_nullable_to_non_nullable
-                        as List<List<String>>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of Lyric
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = null,Object? parts = null,}) {
+  return _then(_self.copyWith(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,parts: null == parts ? _self.parts : parts // ignore: cast_nullable_to_non_nullable
+as List<List<String>>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$LyricImplCopyWith<$Res> implements $LyricCopyWith<$Res> {
-  factory _$$LyricImplCopyWith(
-    _$LyricImpl value,
-    $Res Function(_$LyricImpl) then,
-  ) = __$$LyricImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? id, String title, List<List<String>> parts});
 }
 
-/// @nodoc
-class __$$LyricImplCopyWithImpl<$Res>
-    extends _$LyricCopyWithImpl<$Res, _$LyricImpl>
-    implements _$$LyricImplCopyWith<$Res> {
-  __$$LyricImplCopyWithImpl(
-    _$LyricImpl _value,
-    $Res Function(_$LyricImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of Lyric
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = null,
-    Object? parts = null,
-  }) {
-    return _then(
-      _$LyricImpl(
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String,
-        parts:
-            null == parts
-                ? _value._parts
-                : parts // ignore: cast_nullable_to_non_nullable
-                    as List<List<String>>,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 @JsonSerializable()
-class _$LyricImpl extends _Lyric {
-  const _$LyricImpl({
-    required this.id,
-    required this.title,
-    required final List<List<String>> parts,
-  }) : _parts = parts,
-       super._();
 
-  factory _$LyricImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LyricImplFromJson(json);
+class _Lyric extends Lyric {
+  const _Lyric({required this.id, required this.title, required final  List<List<String>> parts}): _parts = parts,super._();
+  factory _Lyric.fromJson(Map<String, dynamic> json) => _$LyricFromJson(json);
 
-  @override
-  final String? id;
-  @override
-  final String title;
-  final List<List<String>> _parts;
-  @override
-  List<List<String>> get parts {
-    if (_parts is EqualUnmodifiableListView) return _parts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_parts);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LyricImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality().equals(other._parts, _parts));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    title,
-    const DeepCollectionEquality().hash(_parts),
-  );
-
-  /// Create a copy of Lyric
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LyricImplCopyWith<_$LyricImpl> get copyWith =>
-      __$$LyricImplCopyWithImpl<_$LyricImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LyricImplToJson(this);
-  }
+@override final  String? id;
+@override final  String title;
+ final  List<List<String>> _parts;
+@override List<List<String>> get parts {
+  if (_parts is EqualUnmodifiableListView) return _parts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_parts);
 }
 
-abstract class _Lyric extends Lyric {
-  const factory _Lyric({
-    required final String? id,
-    required final String title,
-    required final List<List<String>> parts,
-  }) = _$LyricImpl;
-  const _Lyric._() : super._();
 
-  factory _Lyric.fromJson(Map<String, dynamic> json) = _$LyricImpl.fromJson;
+/// Create a copy of Lyric
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LyricCopyWith<_Lyric> get copyWith => __$LyricCopyWithImpl<_Lyric>(this, _$identity);
 
-  @override
-  String? get id;
-  @override
-  String get title;
-  @override
-  List<List<String>> get parts;
-
-  /// Create a copy of Lyric
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LyricImplCopyWith<_$LyricImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$LyricToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Lyric&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._parts, _parts));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_parts));
+
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LyricCopyWith<$Res> implements $LyricCopyWith<$Res> {
+  factory _$LyricCopyWith(_Lyric value, $Res Function(_Lyric) _then) = __$LyricCopyWithImpl;
+@override @useResult
+$Res call({
+ String? id, String title, List<List<String>> parts
+});
+
+
+
+
+}
+/// @nodoc
+class __$LyricCopyWithImpl<$Res>
+    implements _$LyricCopyWith<$Res> {
+  __$LyricCopyWithImpl(this._self, this._then);
+
+  final _Lyric _self;
+  final $Res Function(_Lyric) _then;
+
+/// Create a copy of Lyric
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = null,Object? parts = null,}) {
+  return _then(_Lyric(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,parts: null == parts ? _self._parts : parts // ignore: cast_nullable_to_non_nullable
+as List<List<String>>,
+  ));
+}
+
+
+}
+
+// dart format on

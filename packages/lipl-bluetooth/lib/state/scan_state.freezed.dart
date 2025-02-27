@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,235 +10,169 @@ part of 'scan_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$ScanState {
-  List<ScanResult> get scanResults => throw _privateConstructorUsedError;
-  bool get isScanning => throw _privateConstructorUsedError;
-  ConnectedDevice? get connectedDevice => throw _privateConstructorUsedError;
 
-  /// Create a copy of ScanState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ScanStateCopyWith<ScanState> get copyWith =>
-      throw _privateConstructorUsedError;
+ List<ScanResult> get scanResults; bool get isScanning; ConnectedDevice? get connectedDevice;
+/// Create a copy of ScanState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ScanStateCopyWith<ScanState> get copyWith => _$ScanStateCopyWithImpl<ScanState>(this as ScanState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ScanState&&const DeepCollectionEquality().equals(other.scanResults, scanResults)&&(identical(other.isScanning, isScanning) || other.isScanning == isScanning)&&(identical(other.connectedDevice, connectedDevice) || other.connectedDevice == connectedDevice));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(scanResults),isScanning,connectedDevice);
+
+@override
+String toString() {
+  return 'ScanState(scanResults: $scanResults, isScanning: $isScanning, connectedDevice: $connectedDevice)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ScanStateCopyWith<$Res> {
-  factory $ScanStateCopyWith(ScanState value, $Res Function(ScanState) then) =
-      _$ScanStateCopyWithImpl<$Res, ScanState>;
-  @useResult
-  $Res call({
-    List<ScanResult> scanResults,
-    bool isScanning,
-    ConnectedDevice? connectedDevice,
-  });
+abstract mixin class $ScanStateCopyWith<$Res>  {
+  factory $ScanStateCopyWith(ScanState value, $Res Function(ScanState) _then) = _$ScanStateCopyWithImpl;
+@useResult
+$Res call({
+ List<ScanResult> scanResults, bool isScanning, ConnectedDevice? connectedDevice
+});
 
-  $ConnectedDeviceCopyWith<$Res>? get connectedDevice;
+
+$ConnectedDeviceCopyWith<$Res>? get connectedDevice;
+
 }
-
 /// @nodoc
-class _$ScanStateCopyWithImpl<$Res, $Val extends ScanState>
+class _$ScanStateCopyWithImpl<$Res>
     implements $ScanStateCopyWith<$Res> {
-  _$ScanStateCopyWithImpl(this._value, this._then);
+  _$ScanStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ScanState _self;
+  final $Res Function(ScanState) _then;
 
-  /// Create a copy of ScanState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? scanResults = null,
-    Object? isScanning = null,
-    Object? connectedDevice = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            scanResults:
-                null == scanResults
-                    ? _value.scanResults
-                    : scanResults // ignore: cast_nullable_to_non_nullable
-                        as List<ScanResult>,
-            isScanning:
-                null == isScanning
-                    ? _value.isScanning
-                    : isScanning // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            connectedDevice:
-                freezed == connectedDevice
-                    ? _value.connectedDevice
-                    : connectedDevice // ignore: cast_nullable_to_non_nullable
-                        as ConnectedDevice?,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of ScanState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConnectedDeviceCopyWith<$Res>? get connectedDevice {
-    if (_value.connectedDevice == null) {
-      return null;
-    }
-
-    return $ConnectedDeviceCopyWith<$Res>(_value.connectedDevice!, (value) {
-      return _then(_value.copyWith(connectedDevice: value) as $Val);
-    });
-  }
+/// Create a copy of ScanState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? scanResults = null,Object? isScanning = null,Object? connectedDevice = freezed,}) {
+  return _then(_self.copyWith(
+scanResults: null == scanResults ? _self.scanResults : scanResults // ignore: cast_nullable_to_non_nullable
+as List<ScanResult>,isScanning: null == isScanning ? _self.isScanning : isScanning // ignore: cast_nullable_to_non_nullable
+as bool,connectedDevice: freezed == connectedDevice ? _self.connectedDevice : connectedDevice // ignore: cast_nullable_to_non_nullable
+as ConnectedDevice?,
+  ));
 }
+/// Create a copy of ScanState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ConnectedDeviceCopyWith<$Res>? get connectedDevice {
+    if (_self.connectedDevice == null) {
+    return null;
+  }
 
-/// @nodoc
-abstract class _$$ScanStateImplCopyWith<$Res>
-    implements $ScanStateCopyWith<$Res> {
-  factory _$$ScanStateImplCopyWith(
-    _$ScanStateImpl value,
-    $Res Function(_$ScanStateImpl) then,
-  ) = __$$ScanStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    List<ScanResult> scanResults,
-    bool isScanning,
-    ConnectedDevice? connectedDevice,
+  return $ConnectedDeviceCopyWith<$Res>(_self.connectedDevice!, (value) {
+    return _then(_self.copyWith(connectedDevice: value));
   });
-
-  @override
-  $ConnectedDeviceCopyWith<$Res>? get connectedDevice;
+}
 }
 
-/// @nodoc
-class __$$ScanStateImplCopyWithImpl<$Res>
-    extends _$ScanStateCopyWithImpl<$Res, _$ScanStateImpl>
-    implements _$$ScanStateImplCopyWith<$Res> {
-  __$$ScanStateImplCopyWithImpl(
-    _$ScanStateImpl _value,
-    $Res Function(_$ScanStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ScanState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? scanResults = null,
-    Object? isScanning = null,
-    Object? connectedDevice = freezed,
-  }) {
-    return _then(
-      _$ScanStateImpl(
-        scanResults:
-            null == scanResults
-                ? _value._scanResults
-                : scanResults // ignore: cast_nullable_to_non_nullable
-                    as List<ScanResult>,
-        isScanning:
-            null == isScanning
-                ? _value.isScanning
-                : isScanning // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        connectedDevice:
-            freezed == connectedDevice
-                ? _value.connectedDevice
-                : connectedDevice // ignore: cast_nullable_to_non_nullable
-                    as ConnectedDevice?,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$ScanStateImpl extends _ScanState {
-  const _$ScanStateImpl({
-    final List<ScanResult> scanResults = const [],
-    required this.isScanning,
-    this.connectedDevice = null,
-  }) : _scanResults = scanResults,
-       super._();
 
-  final List<ScanResult> _scanResults;
-  @override
-  @JsonKey()
-  List<ScanResult> get scanResults {
-    if (_scanResults is EqualUnmodifiableListView) return _scanResults;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_scanResults);
-  }
+class _ScanState extends ScanState {
+  const _ScanState({final  List<ScanResult> scanResults = const [], required this.isScanning, this.connectedDevice = null}): _scanResults = scanResults,super._();
+  
 
-  @override
-  final bool isScanning;
-  @override
-  @JsonKey()
-  final ConnectedDevice? connectedDevice;
-
-  @override
-  String toString() {
-    return 'ScanState(scanResults: $scanResults, isScanning: $isScanning, connectedDevice: $connectedDevice)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ScanStateImpl &&
-            const DeepCollectionEquality().equals(
-              other._scanResults,
-              _scanResults,
-            ) &&
-            (identical(other.isScanning, isScanning) ||
-                other.isScanning == isScanning) &&
-            (identical(other.connectedDevice, connectedDevice) ||
-                other.connectedDevice == connectedDevice));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_scanResults),
-    isScanning,
-    connectedDevice,
-  );
-
-  /// Create a copy of ScanState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScanStateImplCopyWith<_$ScanStateImpl> get copyWith =>
-      __$$ScanStateImplCopyWithImpl<_$ScanStateImpl>(this, _$identity);
+ final  List<ScanResult> _scanResults;
+@override@JsonKey() List<ScanResult> get scanResults {
+  if (_scanResults is EqualUnmodifiableListView) return _scanResults;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_scanResults);
 }
 
-abstract class _ScanState extends ScanState {
-  const factory _ScanState({
-    final List<ScanResult> scanResults,
-    required final bool isScanning,
-    final ConnectedDevice? connectedDevice,
-  }) = _$ScanStateImpl;
-  const _ScanState._() : super._();
+@override final  bool isScanning;
+@override@JsonKey() final  ConnectedDevice? connectedDevice;
 
-  @override
-  List<ScanResult> get scanResults;
-  @override
-  bool get isScanning;
-  @override
-  ConnectedDevice? get connectedDevice;
+/// Create a copy of ScanState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ScanStateCopyWith<_ScanState> get copyWith => __$ScanStateCopyWithImpl<_ScanState>(this, _$identity);
 
-  /// Create a copy of ScanState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScanStateImplCopyWith<_$ScanStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ScanState&&const DeepCollectionEquality().equals(other._scanResults, _scanResults)&&(identical(other.isScanning, isScanning) || other.isScanning == isScanning)&&(identical(other.connectedDevice, connectedDevice) || other.connectedDevice == connectedDevice));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_scanResults),isScanning,connectedDevice);
+
+@override
+String toString() {
+  return 'ScanState(scanResults: $scanResults, isScanning: $isScanning, connectedDevice: $connectedDevice)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ScanStateCopyWith<$Res> implements $ScanStateCopyWith<$Res> {
+  factory _$ScanStateCopyWith(_ScanState value, $Res Function(_ScanState) _then) = __$ScanStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<ScanResult> scanResults, bool isScanning, ConnectedDevice? connectedDevice
+});
+
+
+@override $ConnectedDeviceCopyWith<$Res>? get connectedDevice;
+
+}
+/// @nodoc
+class __$ScanStateCopyWithImpl<$Res>
+    implements _$ScanStateCopyWith<$Res> {
+  __$ScanStateCopyWithImpl(this._self, this._then);
+
+  final _ScanState _self;
+  final $Res Function(_ScanState) _then;
+
+/// Create a copy of ScanState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? scanResults = null,Object? isScanning = null,Object? connectedDevice = freezed,}) {
+  return _then(_ScanState(
+scanResults: null == scanResults ? _self._scanResults : scanResults // ignore: cast_nullable_to_non_nullable
+as List<ScanResult>,isScanning: null == isScanning ? _self.isScanning : isScanning // ignore: cast_nullable_to_non_nullable
+as bool,connectedDevice: freezed == connectedDevice ? _self.connectedDevice : connectedDevice // ignore: cast_nullable_to_non_nullable
+as ConnectedDevice?,
+  ));
+}
+
+/// Create a copy of ScanState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ConnectedDeviceCopyWith<$Res>? get connectedDevice {
+    if (_self.connectedDevice == null) {
+    return null;
+  }
+
+  return $ConnectedDeviceCopyWith<$Res>(_self.connectedDevice!, (value) {
+    return _then(_self.copyWith(connectedDevice: value));
+  });
+}
+}
+
+// dart format on

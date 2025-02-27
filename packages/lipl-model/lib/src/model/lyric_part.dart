@@ -4,7 +4,7 @@ part 'lyric_part.freezed.dart';
 part 'lyric_part.g.dart';
 
 @freezed
-class LyricPart with _$LyricPart {
+abstract class LyricPart with _$LyricPart {
   const factory LyricPart({
     required int current,
     required int total,

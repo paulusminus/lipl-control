@@ -5,7 +5,7 @@ import 'package:lipl_model/lipl_model.dart';
 part 'edit_lyric_cubit.freezed.dart';
 
 @freezed
-class EditLyricState with _$EditLyricState {
+abstract class EditLyricState with _$EditLyricState {
   const EditLyricState._();
   const factory EditLyricState({
     required bool isNew,
@@ -17,16 +17,15 @@ class EditLyricState with _$EditLyricState {
 }
 
 class EditLyricCubit extends Cubit<EditLyricState> {
-  EditLyricCubit({
-    Lyric? lyric,
-  }) : super(
-          EditLyricState(
-            isNew: lyric?.id == null,
-            id: lyric?.id ?? newId(),
-            title: lyric?.title ?? '',
-            text: lyric?.parts.toText() ?? '',
-          ),
-        );
+  EditLyricCubit({Lyric? lyric})
+    : super(
+        EditLyricState(
+          isNew: lyric?.id == null,
+          id: lyric?.id ?? newId(),
+          title: lyric?.title ?? '',
+          text: lyric?.parts.toText() ?? '',
+        ),
+      );
 
   void submitted() {
     emit(state.copyWith(status: LoadingStatus.success));
