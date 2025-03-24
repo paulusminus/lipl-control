@@ -5,7 +5,7 @@ version: 1.13.12
 publish: false
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.7.2
 resolution: workspace
 
 dependencies:
