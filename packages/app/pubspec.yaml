@@ -2,7 +2,7 @@ name: lipl_control
 description: App to maintain lyrics and playlists and send text to lipl-display
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: "none"
-version: 1.13.12
+version: 1.13.13
 
 environment:
   sdk: ^3.7.2
@@ -21,7 +21,7 @@ dependencies:
   go_router: ^14.2.0
   hydrated_bloc: ^10.0.0
   http: ^1.2.1
-  intl: ^0.19.0
+  intl: ^0.20.0
   json_annotation: ^4.9.0
   lipl_app_bloc: ^1.13.12
   lipl_bluetooth: ^1.13.12
