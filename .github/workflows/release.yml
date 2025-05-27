@@ -23,7 +23,7 @@ jobs:
         run: flutter build web --release
       - name: Create pwa tarball
         working-directory: "./packages/app/build/web"
-        run: tar -czf ../../lipl-pwa.tar.gz --owner=0 --group=0 .
+        run: tar -czf ../../../../lipl-pwa.tar.gz --owner=0 --group=0 .
       - name: Build linux app
         working-directory: "./packages/app"
         run: flutter build linux --release
