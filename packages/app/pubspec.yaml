@@ -53,3 +53,6 @@ flutter_launcher_icons:
     image_path: "assets/icon/icon.png"
     background_color: #0175C2
     theme_color: #0175C2
+
+flutter:
+  generate: true
