@@ -8,12 +8,9 @@ part of 'lipl_preferences.dart';
 
 _LiplPreferences _$LiplPreferencesFromJson(Map<String, dynamic> json) =>
     _LiplPreferences(
-      credentials:
-          json['credentials'] == null
-              ? null
-              : Credentials.fromJson(
-                json['credentials'] as Map<String, dynamic>,
-              ),
+      credentials: json['credentials'] == null
+          ? null
+          : Credentials.fromJson(json['credentials'] as Map<String, dynamic>),
       lyrics:
           (json['lyrics'] as List<dynamic>?)
               ?.map((e) => Lyric.fromJson(e as Map<String, dynamic>))

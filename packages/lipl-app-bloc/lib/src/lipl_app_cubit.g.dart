@@ -21,16 +21,12 @@ _LiplAppState _$LiplAppStateFromJson(Map<String, dynamic> json) =>
       status:
           $enumDecodeNullable(_$LoadingStatusEnumMap, json['status']) ??
           LoadingStatus.initial,
-      credentials:
-          json['credentials'] == null
-              ? null
-              : Credentials.fromJson(
-                json['credentials'] as Map<String, dynamic>,
-              ),
-      lastFetch:
-          json['lastFetch'] == null
-              ? null
-              : DateTime.parse(json['lastFetch'] as String),
+      credentials: json['credentials'] == null
+          ? null
+          : Credentials.fromJson(json['credentials'] as Map<String, dynamic>),
+      lastFetch: json['lastFetch'] == null
+          ? null
+          : DateTime.parse(json['lastFetch'] as String),
     );
 
 Map<String, dynamic> _$LiplAppStateToJson(_LiplAppState instance) =>

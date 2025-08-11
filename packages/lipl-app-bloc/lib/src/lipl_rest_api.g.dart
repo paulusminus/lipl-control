@@ -6,7 +6,7 @@ part of 'lipl_rest_api.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _LiplRestApi implements LiplRestApi {
   _LiplRestApi(this._dio, {this.baseUrl, this.errorLogger});
@@ -36,10 +36,9 @@ class _LiplRestApi implements LiplRestApi {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Lyric> _value;
     try {
-      _value =
-          _result.data!
-              .map((dynamic i) => Lyric.fromJson(i as Map<String, dynamic>))
-              .toList();
+      _value = _result.data!
+          .map((dynamic i) => Lyric.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -125,10 +124,9 @@ class _LiplRestApi implements LiplRestApi {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Playlist> _value;
     try {
-      _value =
-          _result.data!
-              .map((dynamic i) => Playlist.fromJson(i as Map<String, dynamic>))
-              .toList();
+      _value = _result.data!
+          .map((dynamic i) => Playlist.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -155,10 +153,9 @@ class _LiplRestApi implements LiplRestApi {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Summary> _value;
     try {
-      _value =
-          _result.data!
-              .map((dynamic i) => Summary.fromJson(i as Map<String, dynamic>))
-              .toList();
+      _value = _result.data!
+          .map((dynamic i) => Summary.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -9,10 +9,9 @@ part of 'lyric.dart';
 _Lyric _$LyricFromJson(Map<String, dynamic> json) => _Lyric(
   id: json['id'] as String?,
   title: json['title'] as String,
-  parts:
-      (json['parts'] as List<dynamic>)
-          .map((e) => (e as List<dynamic>).map((e) => e as String).toList())
-          .toList(),
+  parts: (json['parts'] as List<dynamic>)
+      .map((e) => (e as List<dynamic>).map((e) => e as String).toList())
+      .toList(),
 );
 
 Map<String, dynamic> _$LyricToJson(_Lyric instance) => <String, dynamic>{
