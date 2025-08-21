@@ -2,10 +2,10 @@ name: lipl_control
 description: App to maintain lyrics and playlists and send text to lipl-display
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: "none"
-version: 1.13.14
+version: 1.13.15
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.0
 resolution: workspace
 
 dependencies:

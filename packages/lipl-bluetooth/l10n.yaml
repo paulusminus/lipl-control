@@ -3,5 +3,4 @@ nullable-getter: false
 output-class: BluetoothAppLocalizations
 output-localization-file: app_localizations.dart
 output-dir: lib/l10n
-synthetic-package: false
 template-arb-file: lib_en.arb

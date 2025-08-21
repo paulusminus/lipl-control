@@ -8,6 +8,8 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_en.dart';
 import 'app_localizations_nl.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of BluetoothAppLocalizations
 /// returned by `BluetoothAppLocalizations.of(context)`.
 ///
@@ -60,15 +62,20 @@ import 'app_localizations_nl.dart';
 /// be consistent with the languages listed in the BluetoothAppLocalizations.supportedLocales
 /// property.
 abstract class BluetoothAppLocalizations {
-  BluetoothAppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  BluetoothAppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static BluetoothAppLocalizations of(BuildContext context) {
-    return Localizations.of<BluetoothAppLocalizations>(context, BluetoothAppLocalizations)!;
+    return Localizations.of<BluetoothAppLocalizations>(
+      context,
+      BluetoothAppLocalizations,
+    )!;
   }
 
-  static const LocalizationsDelegate<BluetoothAppLocalizations> delegate = _BluetoothAppLocalizationsDelegate();
+  static const LocalizationsDelegate<BluetoothAppLocalizations> delegate =
+      _BluetoothAppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,17 +87,18 @@ abstract class BluetoothAppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('nl')
+    Locale('nl'),
   ];
 
   /// Show connected information
@@ -124,34 +132,38 @@ abstract class BluetoothAppLocalizations {
   String get bluetoothWaitForConnection;
 }
 
-class _BluetoothAppLocalizationsDelegate extends LocalizationsDelegate<BluetoothAppLocalizations> {
+class _BluetoothAppLocalizationsDelegate
+    extends LocalizationsDelegate<BluetoothAppLocalizations> {
   const _BluetoothAppLocalizationsDelegate();
 
   @override
   Future<BluetoothAppLocalizations> load(Locale locale) {
-    return SynchronousFuture<BluetoothAppLocalizations>(lookupBluetoothAppLocalizations(locale));
+    return SynchronousFuture<BluetoothAppLocalizations>(
+      lookupBluetoothAppLocalizations(locale),
+    );
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_BluetoothAppLocalizationsDelegate old) => false;
 }
 
 BluetoothAppLocalizations lookupBluetoothAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return BluetoothAppLocalizationsEn();
-    case 'nl': return BluetoothAppLocalizationsNl();
+    case 'en':
+      return BluetoothAppLocalizationsEn();
+    case 'nl':
+      return BluetoothAppLocalizationsNl();
   }
 
   throw FlutterError(
     'BluetoothAppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }
