@@ -2,6 +2,8 @@
 
 part of 'lipl_rest_api.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -249,3 +251,5 @@ class _LiplRestApi implements LiplRestApi {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

@@ -1,11 +1,11 @@
 name: lipl_model
 description: Domain models for lipl.
 repository: https://github.com/paulusminus/lipl-control/
-version: 1.13.15
+version: 1.13.16
 publish: false
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.9.2
 resolution: workspace
 
 dependencies:
