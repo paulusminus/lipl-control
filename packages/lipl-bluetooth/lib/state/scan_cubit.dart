@@ -7,18 +7,17 @@ import 'package:lipl_bluetooth/lipl_bluetooth.dart';
 
 class ScanCubit extends Cubit<ScanState> {
   ScanCubit() : super(ScanState(isScanning: FlutterBluePlus.isScanningNow)) {
-    _isScanningSubscription = FlutterBluePlus.isScanning.listen(
-      (isScanning) {
-        emit(state.copyWith(isScanning: isScanning));
-      },
-    );
+    _isScanningSubscription = FlutterBluePlus.isScanning.listen((isScanning) {
+      emit(state.copyWith(isScanning: isScanning));
+    });
     _streamSubscription = FlutterBluePlus.scanResults.listen(
       (scanResults) {
         final liplDevices = scanResults
             .where(
               (scanResult) =>
-                  scanResult.advertisementData.serviceUuids
-                      .contains(liplDisplayServiceUuid) &&
+                  scanResult.advertisementData.serviceUuids.contains(
+                    liplDisplayServiceUuid,
+                  ) &&
                   scanResult.advertisementData.connectable,
             )
             .toList();
@@ -46,8 +45,10 @@ class ScanCubit extends Cubit<ScanState> {
 
   _write(BluetoothCharacteristic? characteristic, String text) async {
     try {
-      await characteristic?.write(utf8.encoder.convert(text),
-          withoutResponse: true);
+      await characteristic?.write(
+        utf8.encoder.convert(text),
+        withoutResponse: true,
+      );
     } catch (error) {
       addError(error);
     }
@@ -68,10 +69,11 @@ class ScanCubit extends Cubit<ScanState> {
   connect(BluetoothDevice device) async {
     try {
       await disconnect();
-      await device.connect();
+      await device.connect(license: License.free);
       await _connectionStateSubsribtion?.cancel();
-      _connectionStateSubsribtion =
-          device.connectionState.listen((connectionState) {
+      _connectionStateSubsribtion = device.connectionState.listen((
+        connectionState,
+      ) {
         if (connectionState == BluetoothConnectionState.disconnected) {
           emit(state.copyWith(connectedDevice: null));
         }
@@ -80,21 +82,25 @@ class ScanCubit extends Cubit<ScanState> {
       bluetoothLogger.info('Service list ${device.servicesList}');
       final displayService = device.servicesList
           .where((service) => service.serviceUuid == liplDisplayServiceUuid)
-          .where(
-            (service) => service.isPrimary,
-          )
+          .where((service) => service.isPrimary)
           .firstOrNull;
       final textCharacteristic = displayService?.characteristics
-          .where((characteristic) =>
-              characteristic.characteristicUuid == characteristicTextUuid)
+          .where(
+            (characteristic) =>
+                characteristic.characteristicUuid == characteristicTextUuid,
+          )
           .firstOrNull;
       final statusCharacteristic = displayService?.characteristics
-          .where((characteristic) =>
-              characteristic.characteristicUuid == characteristicStatusUuid)
+          .where(
+            (characteristic) =>
+                characteristic.characteristicUuid == characteristicStatusUuid,
+          )
           .firstOrNull;
       final commandCharacteristic = displayService?.characteristics
-          .where((characteristic) =>
-              characteristic.characteristicUuid == characteristicCommandUuid)
+          .where(
+            (characteristic) =>
+                characteristic.characteristicUuid == characteristicCommandUuid,
+          )
           .firstOrNull;
       bluetoothLogger.info("Found dislay service");
 
