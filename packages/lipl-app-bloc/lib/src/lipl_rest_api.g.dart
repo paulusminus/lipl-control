@@ -42,7 +42,7 @@ class _LiplRestApi implements LiplRestApi {
           .map((dynamic i) => Lyric.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, _result);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -130,7 +130,7 @@ class _LiplRestApi implements LiplRestApi {
           .map((dynamic i) => Playlist.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, _result);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -159,7 +159,7 @@ class _LiplRestApi implements LiplRestApi {
           .map((dynamic i) => Summary.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, _result);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
