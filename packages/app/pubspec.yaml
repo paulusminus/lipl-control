@@ -2,45 +2,45 @@ name: lipl_control
 description: App to maintain lyrics and playlists and send text to lipl-display
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: "none"
-version: 1.13.19
+version: 1.13.21
 
 environment:
-  sdk: ^3.10.1
+  sdk: ^3.11.5
 resolution: workspace
 
 dependencies:
-  bloc: ^9.0.0
-  cupertino_icons: ^1.0.8
+  bloc: ^9.2.1
+  cupertino_icons: ^1.0.9
   flutter:
     sdk: flutter
-  flutter_bloc: ^9.0.0
-  flutter_gen: ^5.5.0
+  flutter_bloc: ^9.1.1
+  flutter_gen: ^5.14.1
   flutter_localizations:
     sdk: flutter
-  freezed_annotation: ^3.0.0
-  go_router: ^17.0.0
-  hydrated_bloc: ^10.0.0
-  http: ^1.2.1
-  intl: ^0.20.0
-  json_annotation: ^4.9.0
-  lipl_app_bloc: ^1.13.12
-  lipl_bluetooth: ^1.13.12
-  lipl_model: ^1.13.12
-  logging: ^1.2.0
-  package_info_plus: ^9.0.0
-  path_provider: ^2.1.3
-  universal_io: ^2.2.2
+  freezed_annotation: ^3.1.0
+  go_router: ^17.2.3
+  hydrated_bloc: ^11.0.0
+  http: ^1.6.0
+  intl: ^0.20.2
+  json_annotation: ^4.11.0
+  lipl_app_bloc: ^1.13.21
+  lipl_bluetooth: ^1.13.21
+  lipl_model: ^1.13.21
+  logging: ^1.3.0
+  package_info_plus: ^10.1.0
+  path_provider: ^2.1.5
+  universal_io: ^2.3.1
 dev_dependencies:
   bloc_test: ^10.0.0
-  build_runner: ^2.4.10
-  flutter_launcher_icons: ^0.14.3
+  build_runner: ^2.15.0
+  flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  freezed: ^3.0.0
+  freezed: ^3.2.5
   integration_test:
     sdk: flutter
-  json_serializable: ^6.8.0
+  json_serializable: ^6.13.2
 
 flutter_launcher_icons:
   adaptive_icon_background: #ffffff

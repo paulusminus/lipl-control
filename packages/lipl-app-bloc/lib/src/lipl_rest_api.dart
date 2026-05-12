@@ -5,7 +5,7 @@ import 'package:lipl_model/lipl_model.dart';
 import 'package:lipl_app_bloc/src/basic_authentication.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
+import 'package:http_cache_hive_store/http_cache_hive_store.dart';
 import 'package:logging/logging.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -26,12 +26,11 @@ abstract class LiplRestApiInterface {
   Future<void> putPlaylist(@Path() String id, @Body() Playlist playlist);
 }
 
-LiplRestApi apiFromConfig({
-  Credentials? credentials,
-  Directory? directory,
-}) {
-  const String apiPrefix = String.fromEnvironment('API_PREFIX',
-      defaultValue: 'https://lipl.paulmin.nl');
+LiplRestApi apiFromConfig({Credentials? credentials, Directory? directory}) {
+  const String apiPrefix = String.fromEnvironment(
+    'API_PREFIX',
+    defaultValue: 'https://lipl.paulmin.nl',
+  );
   logger.info('Prefix = $apiPrefix');
 
   final Dio dio = Dio();
@@ -44,8 +43,9 @@ LiplRestApi apiFromConfig({
     dio.options.baseUrl = "/lipl/api/v1/";
   } else {
     final options = CacheOptions(
-      store:
-          directory == null ? MemCacheStore() : HiveCacheStore(directory.path),
+      store: directory == null
+          ? MemCacheStore()
+          : HiveCacheStore(directory.path),
     );
     dio.options.baseUrl = '$apiPrefix/lipl/api/v1/';
     dio.interceptors.add(DioCacheInterceptor(options: options));
