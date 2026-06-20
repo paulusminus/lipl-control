@@ -3,10 +3,10 @@ description: Scan for TV devices and write a part to them
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: "none"
 
-version: 1.13.21
+version: 1.13.22
 
 environment:
-  sdk: ^3.11.5
+  sdk: ^3.12.2
 resolution: workspace
 
 dependencies:
