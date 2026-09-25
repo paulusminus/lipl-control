@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'lyric_part.dart';
@@ -9,6 +9,7 @@ part of 'lyric_part.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $LyricPartCopyWith<LyricPart> get copyWith => _$LyricPartCopyWithImpl<LyricPart>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LyricPart&&(identical(other.current, current) || other.current == current)&&(identical(other.total, total) || other.total == total)&&(identical(other.text, text) || other.text == text)&&(identical(other.title, title) || other.title == title));
+  final _this = this as LyricPart;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LyricPart&&(identical(other.current, _this.current) || other.current == _this.current)&&(identical(other.total, _this.total) || other.total == _this.total)&&(identical(other.text, _this.text) || other.text == _this.text)&&(identical(other.title, _this.title) || other.title == _this.title));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,current,total,text,title);
+int get hashCode {
+  final _this = this as LyricPart;
+  return Object.hash(runtimeType,_this.current,_this.total,_this.text,_this.title);
+}
 
 @override
 String toString() {
-  return 'LyricPart(current: $current, total: $total, text: $text, title: $title)';
+  final _this = this as LyricPart;
+  return 'LyricPart(current: ${_this.current}, total: ${_this.total}, text: ${_this.text}, title: ${_this.title})';
 }
 
 
@@ -66,7 +72,7 @@ class _$LyricPartCopyWithImpl<$Res>
 /// Create a copy of LyricPart
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? current = null,Object? total = null,Object? text = null,Object? title = null,}) {
-  return _then(_self.copyWith(
+  return _then(LyricPart(
 current: null == current ? _self.current : current // ignore: cast_nullable_to_non_nullable
 as int,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as int,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
@@ -233,16 +239,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LyricPart&&(identical(other.current, current) || other.current == current)&&(identical(other.total, total) || other.total == total)&&(identical(other.text, text) || other.text == text)&&(identical(other.title, title) || other.title == title));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LyricPart&&(identical(other.current, current) || other.current == current)&&(identical(other.total, total) || other.total == total)&&(identical(other.text, text) || other.text == text)&&(identical(other.title, title) || other.title == title));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,current,total,text,title);
+int get hashCode {
+    return Object.hash(runtimeType,current,total,text,title);
+}
 
 @override
 String toString() {
-  return 'LyricPart(current: $current, total: $total, text: $text, title: $title)';
+    return 'LyricPart(current: $current, total: $total, text: $text, title: $title)';
 }
 
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'lyric.dart';
@@ -9,6 +9,7 @@ part of 'lyric.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,12 +29,16 @@ $LyricCopyWith<Lyric> get copyWith => _$LyricCopyWithImpl<Lyric>(this as Lyric, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Lyric&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.parts, parts));
+  final _this = this as Lyric;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Lyric&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&const DeepCollectionEquality().equals(other.parts, _this.parts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(parts));
+int get hashCode {
+  final _this = this as Lyric;
+  return Object.hash(runtimeType,_this.id,_this.title,const DeepCollectionEquality().hash(_this.parts));
+}
 
 
 
@@ -62,7 +67,7 @@ class _$LyricCopyWithImpl<$Res>
 /// Create a copy of Lyric
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = null,Object? parts = null,}) {
-  return _then(_self.copyWith(
+  return _then(Lyric(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,parts: null == parts ? _self.parts : parts // ignore: cast_nullable_to_non_nullable
@@ -207,7 +212,7 @@ return $default(_that.id,_that.title,_that.parts);case _:
 @JsonSerializable()
 
 class _Lyric extends Lyric {
-  const _Lyric({required this.id, required this.title, required final  List<List<String>> parts}): _parts = parts,super._();
+  const _Lyric({required this.id, required this.title, required  List<List<String>> parts}): _parts = parts,super._();
   factory _Lyric.fromJson(Map<String, dynamic> json) => _$LyricFromJson(json);
 
 @override final  String? id;
@@ -233,12 +238,14 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Lyric&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._parts, _parts));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Lyric&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.parts, _parts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_parts));
+int get hashCode {
+    return Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_parts));
+}
 
 
 

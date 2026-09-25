@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'edit_lyric_cubit.dart';
@@ -9,6 +9,7 @@ part of 'edit_lyric_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $EditLyricStateCopyWith<EditLyricState> get copyWith => _$EditLyricStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditLyricState&&(identical(other.isNew, isNew) || other.isNew == isNew)&&(identical(other.status, status) || other.status == status)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.text, text) || other.text == text));
+  final _this = this as EditLyricState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditLyricState&&(identical(other.isNew, _this.isNew) || other.isNew == _this.isNew)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.text, _this.text) || other.text == _this.text));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isNew,status,id,title,text);
+int get hashCode {
+  final _this = this as EditLyricState;
+  return Object.hash(runtimeType,_this.isNew,_this.status,_this.id,_this.title,_this.text);
+}
 
 @override
 String toString() {
-  return 'EditLyricState(isNew: $isNew, status: $status, id: $id, title: $title, text: $text)';
+  final _this = this as EditLyricState;
+  return 'EditLyricState(isNew: ${_this.isNew}, status: ${_this.status}, id: ${_this.id}, title: ${_this.title}, text: ${_this.text})';
 }
 
 
@@ -63,7 +69,7 @@ class _$EditLyricStateCopyWithImpl<$Res>
 /// Create a copy of EditLyricState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? isNew = null,Object? status = null,Object? id = null,Object? title = null,Object? text = null,}) {
-  return _then(_self.copyWith(
+  return _then(EditLyricState(
 isNew: null == isNew ? _self.isNew : isNew // ignore: cast_nullable_to_non_nullable
 as bool,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as LoadingStatus,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
@@ -229,16 +235,18 @@ _$EditLyricStateCopyWith<_EditLyricState> get copyWith => __$EditLyricStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditLyricState&&(identical(other.isNew, isNew) || other.isNew == isNew)&&(identical(other.status, status) || other.status == status)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.text, text) || other.text == text));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditLyricState&&(identical(other.isNew, isNew) || other.isNew == isNew)&&(identical(other.status, status) || other.status == status)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.text, text) || other.text == text));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isNew,status,id,title,text);
+int get hashCode {
+    return Object.hash(runtimeType,isNew,status,id,title,text);
+}
 
 @override
 String toString() {
-  return 'EditLyricState(isNew: $isNew, status: $status, id: $id, title: $title, text: $text)';
+    return 'EditLyricState(isNew: $isNew, status: $status, id: $id, title: $title, text: $text)';
 }
 
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'lipl_app_cubit.dart';
@@ -9,6 +9,7 @@ part of 'lipl_app_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $LiplAppStateCopyWith<LiplAppState> get copyWith => _$LiplAppStateCopyWithImpl<L
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiplAppState&&const DeepCollectionEquality().equals(other.lyrics, lyrics)&&const DeepCollectionEquality().equals(other.playlists, playlists)&&(identical(other.status, status) || other.status == status)&&(identical(other.credentials, credentials) || other.credentials == credentials)&&(identical(other.lastFetch, lastFetch) || other.lastFetch == lastFetch));
+  final _this = this as LiplAppState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiplAppState&&const DeepCollectionEquality().equals(other.lyrics, _this.lyrics)&&const DeepCollectionEquality().equals(other.playlists, _this.playlists)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.credentials, _this.credentials) || other.credentials == _this.credentials)&&(identical(other.lastFetch, _this.lastFetch) || other.lastFetch == _this.lastFetch));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(lyrics),const DeepCollectionEquality().hash(playlists),status,credentials,lastFetch);
+int get hashCode {
+  final _this = this as LiplAppState;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.lyrics),const DeepCollectionEquality().hash(_this.playlists),_this.status,_this.credentials,_this.lastFetch);
+}
 
 @override
 String toString() {
-  return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
+  final _this = this as LiplAppState;
+  return 'LiplAppState(lyrics: ${_this.lyrics}, playlists: ${_this.playlists}, status: ${_this.status}, credentials: ${_this.credentials}, lastFetch: ${_this.lastFetch})';
 }
 
 
@@ -66,7 +72,7 @@ class _$LiplAppStateCopyWithImpl<$Res>
 /// Create a copy of LiplAppState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? lyrics = null,Object? playlists = null,Object? status = null,Object? credentials = freezed,Object? lastFetch = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(LiplAppState(
 lyrics: null == lyrics ? _self.lyrics : lyrics // ignore: cast_nullable_to_non_nullable
 as List<Lyric>,playlists: null == playlists ? _self.playlists : playlists // ignore: cast_nullable_to_non_nullable
 as List<Playlist>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
@@ -225,7 +231,7 @@ return $default(_that.lyrics,_that.playlists,_that.status,_that.credentials,_tha
 @JsonSerializable()
 
 class _LiplAppState extends LiplAppState {
-  const _LiplAppState({final  List<Lyric> lyrics = const [], final  List<Playlist> playlists = const [], this.status = LoadingStatus.initial, this.credentials = null, this.lastFetch = null}): _lyrics = lyrics,_playlists = playlists,super._();
+  const _LiplAppState({ List<Lyric> lyrics = const [],  List<Playlist> playlists = const [], this.status = LoadingStatus.initial, this.credentials = null, this.lastFetch = null}): _lyrics = lyrics,_playlists = playlists,super._();
   factory _LiplAppState.fromJson(Map<String, dynamic> json) => _$LiplAppStateFromJson(json);
 
  final  List<Lyric> _lyrics;
@@ -259,16 +265,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LiplAppState&&const DeepCollectionEquality().equals(other._lyrics, _lyrics)&&const DeepCollectionEquality().equals(other._playlists, _playlists)&&(identical(other.status, status) || other.status == status)&&(identical(other.credentials, credentials) || other.credentials == credentials)&&(identical(other.lastFetch, lastFetch) || other.lastFetch == lastFetch));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LiplAppState&&const DeepCollectionEquality().equals(other.lyrics, _lyrics)&&const DeepCollectionEquality().equals(other.playlists, _playlists)&&(identical(other.status, status) || other.status == status)&&(identical(other.credentials, credentials) || other.credentials == credentials)&&(identical(other.lastFetch, lastFetch) || other.lastFetch == lastFetch));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_lyrics),const DeepCollectionEquality().hash(_playlists),status,credentials,lastFetch);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_lyrics),const DeepCollectionEquality().hash(_playlists),status,credentials,lastFetch);
+}
 
 @override
 String toString() {
-  return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
+    return 'LiplAppState(lyrics: $lyrics, playlists: $playlists, status: $status, credentials: $credentials, lastFetch: $lastFetch)';
 }
 
 

@@ -1,7 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: ["lib/l10n/arb/**.dart"]
+  exclude:
+    - lib/l10n/arb/**.dart
+    - build/**
+    - android/**
+    - web/**
+    - linux/**
 
 linter:
   rules:

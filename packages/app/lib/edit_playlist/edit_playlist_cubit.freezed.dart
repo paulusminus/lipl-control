@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'edit_playlist_cubit.dart';
@@ -9,6 +9,7 @@ part of 'edit_playlist_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $EditPlaylistStateCopyWith<EditPlaylistState> get copyWith => _$EditPlaylistStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditPlaylistState&&(identical(other.isNew, isNew) || other.isNew == isNew)&&(identical(other.status, status) || other.status == status)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.search, search) || other.search == search)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.lyrics, lyrics));
+  final _this = this as EditPlaylistState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditPlaylistState&&(identical(other.isNew, _this.isNew) || other.isNew == _this.isNew)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.search, _this.search) || other.search == _this.search)&&const DeepCollectionEquality().equals(other.members, _this.members)&&const DeepCollectionEquality().equals(other.lyrics, _this.lyrics));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isNew,status,id,title,search,const DeepCollectionEquality().hash(members),const DeepCollectionEquality().hash(lyrics));
+int get hashCode {
+  final _this = this as EditPlaylistState;
+  return Object.hash(runtimeType,_this.isNew,_this.status,_this.id,_this.title,_this.search,const DeepCollectionEquality().hash(_this.members),const DeepCollectionEquality().hash(_this.lyrics));
+}
 
 @override
 String toString() {
-  return 'EditPlaylistState(isNew: $isNew, status: $status, id: $id, title: $title, search: $search, members: $members, lyrics: $lyrics)';
+  final _this = this as EditPlaylistState;
+  return 'EditPlaylistState(isNew: ${_this.isNew}, status: ${_this.status}, id: ${_this.id}, title: ${_this.title}, search: ${_this.search}, members: ${_this.members}, lyrics: ${_this.lyrics})';
 }
 
 
@@ -63,7 +69,7 @@ class _$EditPlaylistStateCopyWithImpl<$Res>
 /// Create a copy of EditPlaylistState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? isNew = null,Object? status = null,Object? id = null,Object? title = null,Object? search = null,Object? members = null,Object? lyrics = null,}) {
-  return _then(_self.copyWith(
+  return _then(EditPlaylistState(
 isNew: null == isNew ? _self.isNew : isNew // ignore: cast_nullable_to_non_nullable
 as bool,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as LoadingStatus,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
@@ -212,7 +218,7 @@ return $default(_that.isNew,_that.status,_that.id,_that.title,_that.search,_that
 
 
 class _EditPlaylistState extends EditPlaylistState {
-  const _EditPlaylistState({required this.isNew, this.status = LoadingStatus.initial, required this.id, this.title = '', this.search = '', final  List<Lyric> members = const [], final  List<Lyric> lyrics = const []}): _members = members,_lyrics = lyrics,super._();
+  const _EditPlaylistState({required this.isNew, this.status = LoadingStatus.initial, required this.id, this.title = '', this.search = '',  List<Lyric> members = const [],  List<Lyric> lyrics = const []}): _members = members,_lyrics = lyrics,super._();
   
 
 @override final  bool isNew;
@@ -245,16 +251,18 @@ _$EditPlaylistStateCopyWith<_EditPlaylistState> get copyWith => __$EditPlaylistS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditPlaylistState&&(identical(other.isNew, isNew) || other.isNew == isNew)&&(identical(other.status, status) || other.status == status)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.search, search) || other.search == search)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._lyrics, _lyrics));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditPlaylistState&&(identical(other.isNew, isNew) || other.isNew == isNew)&&(identical(other.status, status) || other.status == status)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.search, search) || other.search == search)&&const DeepCollectionEquality().equals(other.members, _members)&&const DeepCollectionEquality().equals(other.lyrics, _lyrics));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isNew,status,id,title,search,const DeepCollectionEquality().hash(_members),const DeepCollectionEquality().hash(_lyrics));
+int get hashCode {
+    return Object.hash(runtimeType,isNew,status,id,title,search,const DeepCollectionEquality().hash(_members),const DeepCollectionEquality().hash(_lyrics));
+}
 
 @override
 String toString() {
-  return 'EditPlaylistState(isNew: $isNew, status: $status, id: $id, title: $title, search: $search, members: $members, lyrics: $lyrics)';
+    return 'EditPlaylistState(isNew: $isNew, status: $status, id: $id, title: $title, search: $search, members: $members, lyrics: $lyrics)';
 }
 
 

@@ -3,6 +3,7 @@ include: package:lints/recommended.yaml
 analyzer:
   exclude: 
     - 'lib/**.g.dart'
+    - build/**
 
 linter:
   rules:

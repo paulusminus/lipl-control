@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'search_cubit.dart';
@@ -9,6 +9,7 @@ part of 'search_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $SearchStateCopyWith<SearchState> get copyWith => _$SearchStateCopyWithImpl<Sear
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchState&&(identical(other.searchTerm, searchTerm) || other.searchTerm == searchTerm));
+  final _this = this as SearchState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchState&&(identical(other.searchTerm, _this.searchTerm) || other.searchTerm == _this.searchTerm));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,searchTerm);
+int get hashCode {
+  final _this = this as SearchState;
+  return Object.hash(runtimeType,_this.searchTerm);
+}
 
 @override
 String toString() {
-  return 'SearchState(searchTerm: $searchTerm)';
+  final _this = this as SearchState;
+  return 'SearchState(searchTerm: ${_this.searchTerm})';
 }
 
 
@@ -63,7 +69,7 @@ class _$SearchStateCopyWithImpl<$Res>
 /// Create a copy of SearchState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? searchTerm = null,}) {
-  return _then(_self.copyWith(
+  return _then(SearchState(
 searchTerm: null == searchTerm ? _self.searchTerm : searchTerm // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -221,16 +227,18 @@ _$SearchStateCopyWith<_SearchState> get copyWith => __$SearchStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchState&&(identical(other.searchTerm, searchTerm) || other.searchTerm == searchTerm));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchState&&(identical(other.searchTerm, searchTerm) || other.searchTerm == searchTerm));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,searchTerm);
+int get hashCode {
+    return Object.hash(runtimeType,searchTerm);
+}
 
 @override
 String toString() {
-  return 'SearchState(searchTerm: $searchTerm)';
+    return 'SearchState(searchTerm: $searchTerm)';
 }
 
 

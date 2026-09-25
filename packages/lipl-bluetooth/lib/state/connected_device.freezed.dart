@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'connected_device.dart';
@@ -9,6 +9,7 @@ part of 'connected_device.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $ConnectedDeviceCopyWith<ConnectedDevice> get copyWith => _$ConnectedDeviceCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConnectedDevice&&(identical(other.device, device) || other.device == device)&&(identical(other.displayService, displayService) || other.displayService == displayService)&&(identical(other.textCharacteristic, textCharacteristic) || other.textCharacteristic == textCharacteristic)&&(identical(other.statusCharacteristic, statusCharacteristic) || other.statusCharacteristic == statusCharacteristic)&&(identical(other.commandCharacteristic, commandCharacteristic) || other.commandCharacteristic == commandCharacteristic));
+  final _this = this as ConnectedDevice;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConnectedDevice&&(identical(other.device, _this.device) || other.device == _this.device)&&(identical(other.displayService, _this.displayService) || other.displayService == _this.displayService)&&(identical(other.textCharacteristic, _this.textCharacteristic) || other.textCharacteristic == _this.textCharacteristic)&&(identical(other.statusCharacteristic, _this.statusCharacteristic) || other.statusCharacteristic == _this.statusCharacteristic)&&(identical(other.commandCharacteristic, _this.commandCharacteristic) || other.commandCharacteristic == _this.commandCharacteristic));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,device,displayService,textCharacteristic,statusCharacteristic,commandCharacteristic);
+int get hashCode {
+  final _this = this as ConnectedDevice;
+  return Object.hash(runtimeType,_this.device,_this.displayService,_this.textCharacteristic,_this.statusCharacteristic,_this.commandCharacteristic);
+}
 
 @override
 String toString() {
-  return 'ConnectedDevice(device: $device, displayService: $displayService, textCharacteristic: $textCharacteristic, statusCharacteristic: $statusCharacteristic, commandCharacteristic: $commandCharacteristic)';
+  final _this = this as ConnectedDevice;
+  return 'ConnectedDevice(device: ${_this.device}, displayService: ${_this.displayService}, textCharacteristic: ${_this.textCharacteristic}, statusCharacteristic: ${_this.statusCharacteristic}, commandCharacteristic: ${_this.commandCharacteristic})';
 }
 
 
@@ -63,7 +69,7 @@ class _$ConnectedDeviceCopyWithImpl<$Res>
 /// Create a copy of ConnectedDevice
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? device = null,Object? displayService = null,Object? textCharacteristic = null,Object? statusCharacteristic = null,Object? commandCharacteristic = null,}) {
-  return _then(_self.copyWith(
+  return _then(ConnectedDevice(
 device: null == device ? _self.device : device // ignore: cast_nullable_to_non_nullable
 as BluetoothDevice,displayService: null == displayService ? _self.displayService : displayService // ignore: cast_nullable_to_non_nullable
 as BluetoothService,textCharacteristic: null == textCharacteristic ? _self.textCharacteristic : textCharacteristic // ignore: cast_nullable_to_non_nullable
@@ -229,16 +235,18 @@ _$ConnectedDeviceCopyWith<_ConnectedDevice> get copyWith => __$ConnectedDeviceCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConnectedDevice&&(identical(other.device, device) || other.device == device)&&(identical(other.displayService, displayService) || other.displayService == displayService)&&(identical(other.textCharacteristic, textCharacteristic) || other.textCharacteristic == textCharacteristic)&&(identical(other.statusCharacteristic, statusCharacteristic) || other.statusCharacteristic == statusCharacteristic)&&(identical(other.commandCharacteristic, commandCharacteristic) || other.commandCharacteristic == commandCharacteristic));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConnectedDevice&&(identical(other.device, device) || other.device == device)&&(identical(other.displayService, displayService) || other.displayService == displayService)&&(identical(other.textCharacteristic, textCharacteristic) || other.textCharacteristic == textCharacteristic)&&(identical(other.statusCharacteristic, statusCharacteristic) || other.statusCharacteristic == statusCharacteristic)&&(identical(other.commandCharacteristic, commandCharacteristic) || other.commandCharacteristic == commandCharacteristic));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,device,displayService,textCharacteristic,statusCharacteristic,commandCharacteristic);
+int get hashCode {
+    return Object.hash(runtimeType,device,displayService,textCharacteristic,statusCharacteristic,commandCharacteristic);
+}
 
 @override
 String toString() {
-  return 'ConnectedDevice(device: $device, displayService: $displayService, textCharacteristic: $textCharacteristic, statusCharacteristic: $statusCharacteristic, commandCharacteristic: $commandCharacteristic)';
+    return 'ConnectedDevice(device: $device, displayService: $displayService, textCharacteristic: $textCharacteristic, statusCharacteristic: $statusCharacteristic, commandCharacteristic: $commandCharacteristic)';
 }
 
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'lipl_preferences.dart';
@@ -9,6 +9,7 @@ part of 'lipl_preferences.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $LiplPreferencesCopyWith<LiplPreferences> get copyWith => _$LiplPreferencesCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiplPreferences&&(identical(other.credentials, credentials) || other.credentials == credentials)&&const DeepCollectionEquality().equals(other.lyrics, lyrics)&&const DeepCollectionEquality().equals(other.playlists, playlists));
+  final _this = this as LiplPreferences;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiplPreferences&&(identical(other.credentials, _this.credentials) || other.credentials == _this.credentials)&&const DeepCollectionEquality().equals(other.lyrics, _this.lyrics)&&const DeepCollectionEquality().equals(other.playlists, _this.playlists));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,credentials,const DeepCollectionEquality().hash(lyrics),const DeepCollectionEquality().hash(playlists));
+int get hashCode {
+  final _this = this as LiplPreferences;
+  return Object.hash(runtimeType,_this.credentials,const DeepCollectionEquality().hash(_this.lyrics),const DeepCollectionEquality().hash(_this.playlists));
+}
 
 @override
 String toString() {
-  return 'LiplPreferences(credentials: $credentials, lyrics: $lyrics, playlists: $playlists)';
+  final _this = this as LiplPreferences;
+  return 'LiplPreferences(credentials: ${_this.credentials}, lyrics: ${_this.lyrics}, playlists: ${_this.playlists})';
 }
 
 
@@ -66,7 +72,7 @@ class _$LiplPreferencesCopyWithImpl<$Res>
 /// Create a copy of LiplPreferences
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? credentials = freezed,Object? lyrics = null,Object? playlists = null,}) {
-  return _then(_self.copyWith(
+  return _then(LiplPreferences(
 credentials: freezed == credentials ? _self.credentials : credentials // ignore: cast_nullable_to_non_nullable
 as Credentials?,lyrics: null == lyrics ? _self.lyrics : lyrics // ignore: cast_nullable_to_non_nullable
 as List<Lyric>,playlists: null == playlists ? _self.playlists : playlists // ignore: cast_nullable_to_non_nullable
@@ -223,7 +229,7 @@ return $default(_that.credentials,_that.lyrics,_that.playlists);case _:
 @JsonSerializable()
 
 class _LiplPreferences extends LiplPreferences {
-  const _LiplPreferences({this.credentials = null, final  List<Lyric> lyrics = const [], final  List<Playlist> playlists = const []}): _lyrics = lyrics,_playlists = playlists,super._();
+  const _LiplPreferences({this.credentials = null,  List<Lyric> lyrics = const [],  List<Playlist> playlists = const []}): _lyrics = lyrics,_playlists = playlists,super._();
   factory _LiplPreferences.fromJson(Map<String, dynamic> json) => _$LiplPreferencesFromJson(json);
 
 @override@JsonKey() final  Credentials? credentials;
@@ -255,16 +261,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LiplPreferences&&(identical(other.credentials, credentials) || other.credentials == credentials)&&const DeepCollectionEquality().equals(other._lyrics, _lyrics)&&const DeepCollectionEquality().equals(other._playlists, _playlists));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LiplPreferences&&(identical(other.credentials, credentials) || other.credentials == credentials)&&const DeepCollectionEquality().equals(other.lyrics, _lyrics)&&const DeepCollectionEquality().equals(other.playlists, _playlists));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,credentials,const DeepCollectionEquality().hash(_lyrics),const DeepCollectionEquality().hash(_playlists));
+int get hashCode {
+    return Object.hash(runtimeType,credentials,const DeepCollectionEquality().hash(_lyrics),const DeepCollectionEquality().hash(_playlists));
+}
 
 @override
 String toString() {
-  return 'LiplPreferences(credentials: $credentials, lyrics: $lyrics, playlists: $playlists)';
+    return 'LiplPreferences(credentials: $credentials, lyrics: $lyrics, playlists: $playlists)';
 }
 
 

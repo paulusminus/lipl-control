@@ -2,10 +2,10 @@ name: lipl_app_bloc
 description: Library request and handle response from Lipl Service
 repository: https://github.com/paulusminus/lipl-control/
 publish_to: none
-version: 1.13.22
+version: 1.13.23
 
 environment:
-  sdk: ^3.12.2
+  sdk: ^3.13.4
 resolution: workspace
 
 dependencies:
@@ -35,4 +35,4 @@ dev_dependencies:
   test: ^1.30.0
   uuid: ^4.5.3
   fast_base58: ^0.2.1
-  freezed: ^3.2.5
+  freezed: ^4.0.1

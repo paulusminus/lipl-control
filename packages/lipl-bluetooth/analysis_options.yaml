@@ -3,6 +3,10 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - '**/app_localizations_*.dart'
+    - build/**
+    - android/**
+    - web/**
+    - linux/**
 
 linter:
   rules:

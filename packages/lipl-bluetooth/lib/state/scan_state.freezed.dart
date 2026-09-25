@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'scan_state.dart';
@@ -9,6 +9,7 @@ part of 'scan_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $ScanStateCopyWith<ScanState> get copyWith => _$ScanStateCopyWithImpl<ScanState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ScanState&&const DeepCollectionEquality().equals(other.scanResults, scanResults)&&(identical(other.isScanning, isScanning) || other.isScanning == isScanning)&&(identical(other.connectedDevice, connectedDevice) || other.connectedDevice == connectedDevice));
+  final _this = this as ScanState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ScanState&&const DeepCollectionEquality().equals(other.scanResults, _this.scanResults)&&(identical(other.isScanning, _this.isScanning) || other.isScanning == _this.isScanning)&&(identical(other.connectedDevice, _this.connectedDevice) || other.connectedDevice == _this.connectedDevice));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(scanResults),isScanning,connectedDevice);
+int get hashCode {
+  final _this = this as ScanState;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.scanResults),_this.isScanning,_this.connectedDevice);
+}
 
 @override
 String toString() {
-  return 'ScanState(scanResults: $scanResults, isScanning: $isScanning, connectedDevice: $connectedDevice)';
+  final _this = this as ScanState;
+  return 'ScanState(scanResults: ${_this.scanResults}, isScanning: ${_this.isScanning}, connectedDevice: ${_this.connectedDevice})';
 }
 
 
@@ -63,7 +69,7 @@ class _$ScanStateCopyWithImpl<$Res>
 /// Create a copy of ScanState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? scanResults = null,Object? isScanning = null,Object? connectedDevice = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ScanState(
 scanResults: null == scanResults ? _self.scanResults : scanResults // ignore: cast_nullable_to_non_nullable
 as List<ScanResult>,isScanning: null == isScanning ? _self.isScanning : isScanning // ignore: cast_nullable_to_non_nullable
 as bool,connectedDevice: freezed == connectedDevice ? _self.connectedDevice : connectedDevice // ignore: cast_nullable_to_non_nullable
@@ -220,7 +226,7 @@ return $default(_that.scanResults,_that.isScanning,_that.connectedDevice);case _
 
 
 class _ScanState extends ScanState {
-  const _ScanState({final  List<ScanResult> scanResults = const [], required this.isScanning, this.connectedDevice = null}): _scanResults = scanResults,super._();
+  const _ScanState({ List<ScanResult> scanResults = const [], required this.isScanning, this.connectedDevice = null}): _scanResults = scanResults,super._();
   
 
  final  List<ScanResult> _scanResults;
@@ -243,16 +249,18 @@ _$ScanStateCopyWith<_ScanState> get copyWith => __$ScanStateCopyWithImpl<_ScanSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ScanState&&const DeepCollectionEquality().equals(other._scanResults, _scanResults)&&(identical(other.isScanning, isScanning) || other.isScanning == isScanning)&&(identical(other.connectedDevice, connectedDevice) || other.connectedDevice == connectedDevice));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ScanState&&const DeepCollectionEquality().equals(other.scanResults, _scanResults)&&(identical(other.isScanning, isScanning) || other.isScanning == isScanning)&&(identical(other.connectedDevice, connectedDevice) || other.connectedDevice == connectedDevice));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_scanResults),isScanning,connectedDevice);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_scanResults),isScanning,connectedDevice);
+}
 
 @override
 String toString() {
-  return 'ScanState(scanResults: $scanResults, isScanning: $isScanning, connectedDevice: $connectedDevice)';
+    return 'ScanState(scanResults: $scanResults, isScanning: $isScanning, connectedDevice: $connectedDevice)';
 }
 
 
